@@ -7,7 +7,7 @@ const connectDB = async () => {
     return;
   }
   try {
-    const mongoUri = process.env.MONGO_URI || 'mongodb+srv://sanehmandyal_db_user:KvGLMRqlhhJNroRL@cluster0.wjzihrm.mongodb.net/rinku_tour_travels';
+    const mongoUri = process.env.MONGO_URI || 'mongodb+srv://sanehmandyal_db_user:UGMOXjT3MjiQ1ELz@cluster0.dgagojo.mongodb.net/vista-tour-travel?retryWrites=true&w=majority';
     const conn = await mongoose.connect(mongoUri);
     console.log(`[MongoDB] Connected successfully to host: ${conn.connection.host}, database: ${conn.connection.name}`);
 

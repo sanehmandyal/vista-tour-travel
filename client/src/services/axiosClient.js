@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const defaultBaseUrl =
   import.meta.env.VITE_API_URL ||
-  (import.meta.env.PROD ? 'https://vista-tour-travels-api.onrender.com' : '/api');
+  (import.meta.env.PROD ? 'https://vista-tour-travel-api.onrender.com' : '/api');
 let rawApiUrl = defaultBaseUrl.trim().replace(/\/+$/, '');
 const API_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl}/api`;
 

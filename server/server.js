@@ -46,8 +46,8 @@ app.use(helmet({
 const clientUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, '') : '';
 const allowedOrigins = [
   clientUrl,
+  'https://vista-tour-travel.vercel.app',
   'https://vista-tour-travels.vercel.app',
-  'https://rinku-tour-travels.vercel.app',
   'http://localhost:5173',
   'http://127.0.0.1:5173'
 ].filter(Boolean);

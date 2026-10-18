@@ -1,13 +1,17 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import Destination from '../models/Destination.js';
 import Package from '../models/Package.js';
 import Car from '../models/Car.js';
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 const runSeed = async () => {
-  const mongoUri = process.env.MONGO_URI || 'mongodb+srv://sanehmandyal_db_user:KvGLMRqlhhJNroRL@cluster0.wjzihrm.mongodb.net/rinku_tour_travels';
+  const mongoUri = process.env.MONGO_URI || 'mongodb+srv://sanehmandyal_db_user:UGMOXjT3MjiQ1ELz@cluster0.dgagojo.mongodb.net/vista-tour-travel?retryWrites=true&w=majority';
   console.log('[Seed] Connecting to MongoDB Atlas...');
   await mongoose.connect(mongoUri);
   console.log('[Seed] Connected successfully!');
