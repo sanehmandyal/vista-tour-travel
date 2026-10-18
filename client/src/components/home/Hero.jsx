@@ -75,9 +75,10 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-brand-950/80 via-navy-950/40 to-navy-950/80" />
       </div>
 
-      {/* Decorative Glow Elements */}
-      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-500/15 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[250px] bg-amber-500/10 blur-[100px] rounded-full pointer-events-none" />
+      {/* Decorative Glass Glow Elements */}
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-brand-500/25 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-emerald-500/15 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-500/15 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-28 flex flex-col items-center text-center">
@@ -87,13 +88,13 @@ export const Hero = () => {
             href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-md hover:bg-amber-400/25 transition-all shadow-lg shadow-amber-500/10"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-xl hover:bg-amber-400/30 transition-all shadow-lg shadow-amber-500/15"
           >
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
             <span>5.0 ★ Google Rated • 50+ Verified Traveler Reviews</span>
           </a>
-          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold backdrop-blur-md">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Mohali & Himachal Specialists
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-300/40 text-emerald-300 text-xs font-semibold backdrop-blur-xl">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Ladwa, Kurukshetra & Himachal Specialists
           </span>
         </div>
 
@@ -138,22 +139,22 @@ export const Hero = () => {
             size="lg"
             variant="outline"
             onClick={() => navigate('/services')}
-            className="font-bold text-xs sm:text-sm py-3 px-5 text-white border-white/30 hover:bg-white/10"
+            className="font-bold text-xs sm:text-sm py-3 px-5 text-white border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-sm"
           >
             <Car className="w-4 h-4 mr-1.5 text-amber-400" /> View Cab Fleet
           </Button>
         </div>
 
-        {/* Cab Booking & Travel Search Card */}
-        <div className="w-full max-w-5xl bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl border border-white/70 text-left text-navy-900">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
+        {/* Cab Booking & Travel Search Card (Glassmorphism) */}
+        <div className="w-full max-w-5xl glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl border border-white/85 text-left text-navy-900">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200/80">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-brand-50 text-brand-600 text-xs font-bold">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-brand-50/90 text-brand-600 text-xs font-bold border border-brand-200/50">
                 <Car className="w-4 h-4" /> Book Chauffeur Cab / Sightseeing
               </span>
             </div>
             <span className="hidden sm:inline-block text-xs text-slate-500 font-semibold">
-              🚖 24/7 Doorstep Pickup Across Mohali, Chandigarh & Himachal
+              🚖 24/7 Doorstep Pickup Across Ladwa, Kurukshetra, Haryana & Himachal
             </span>
           </div>
 
@@ -167,8 +168,8 @@ export const Hero = () => {
                 type="text"
                 value={fromLocation}
                 onChange={(e) => setFromLocation(e.target.value)}
-                placeholder="Mohali, Airport, Chandigarh, Delhi..."
-                className="w-full h-11 text-sm font-medium text-navy-900 placeholder:text-slate-400 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+                placeholder="Ladwa, Kurukshetra, Delhi..."
+                className="w-full h-11 text-sm font-medium text-navy-900 placeholder:text-slate-400 glass-input rounded-xl px-3 py-2 transition-colors"
               />
             </div>
 
@@ -182,7 +183,7 @@ export const Hero = () => {
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
                 placeholder="Dharamshala, Manali, Shimla..."
-                className="w-full h-11 text-sm font-medium text-navy-900 placeholder:text-slate-400 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+                className="w-full h-11 text-sm font-medium text-navy-900 placeholder:text-slate-400 glass-input rounded-xl px-3 py-2 transition-colors"
               />
             </div>
 
@@ -195,7 +196,7 @@ export const Hero = () => {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full h-11 text-sm font-medium text-navy-900 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+                className="w-full h-11 text-sm font-medium text-navy-900 glass-input rounded-xl px-3 py-2 transition-colors"
               />
             </div>
 
@@ -207,7 +208,7 @@ export const Hero = () => {
               <select
                 value={vehicleType}
                 onChange={(e) => setVehicleType(e.target.value)}
-                className="w-full h-11 text-sm font-medium text-navy-900 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+                className="w-full h-11 text-sm font-medium text-navy-900 glass-input rounded-xl px-3 py-2 transition-colors"
               >
                 <option value="all">Any Vehicle Type</option>
                 <option value="sedan">Dzire / Etios (Sedan)</option>
@@ -225,7 +226,7 @@ export const Hero = () => {
               <select
                 value={travelers}
                 onChange={(e) => setTravelers(e.target.value)}
-                className="w-full h-11 text-sm font-medium text-navy-900 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+                className="w-full h-11 text-sm font-medium text-navy-900 glass-input rounded-xl px-3 py-2 transition-colors"
               >
                 <option value="1-2">1 - 2 Passengers</option>
                 <option value="3-4">3 - 4 Passengers</option>

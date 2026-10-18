@@ -119,7 +119,7 @@ export const Navbar = () => {
   return (
     <>
       {/* Top micro bar for phone, Google Reviews badge & Admin Panel */}
-      <div className="bg-navy-950 text-slate-300 text-xs py-2 px-3 sm:px-6 border-b border-navy-800">
+      <div className="bg-navy-950/90 backdrop-blur-md text-slate-300 text-xs py-2 px-3 sm:px-6 border-b border-white/10">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
           {/* Phone & Area */}
           <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
@@ -180,10 +180,10 @@ export const Navbar = () => {
 
       {/* Main Sticky Navbar */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-200 ${
+        className={`sticky top-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-soft border-b border-slate-100 py-2.5'
-            : 'bg-white border-b border-slate-100 py-3.5'
+            ? 'glass-dropdown shadow-glass py-2.5'
+            : 'bg-white/80 backdrop-blur-xl border-b border-white/70 shadow-sm py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-2" ref={navContainerRef}>
@@ -240,7 +240,7 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'destinations' && (
-                <div className="absolute left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute left-0 mt-2 w-80 glass-dropdown rounded-2xl shadow-glass-hover border border-white/80 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2.5 py-1">
                     Popular Himachal & North India
                   </div>
@@ -298,7 +298,7 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'packages' && (
-                <div className="absolute left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute left-0 mt-2 w-80 glass-dropdown rounded-2xl shadow-glass-hover border border-white/80 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2.5 py-1">
                     Curated Holiday Itineraries
                   </div>
@@ -356,7 +356,7 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'services' && (
-                <div className="absolute left-0 mt-2 w-84 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute left-0 mt-2 w-84 glass-dropdown rounded-2xl shadow-glass-hover border border-white/80 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2.5 py-1">
                     24/7 Chauffeur Cabs & Fleet
                   </div>
@@ -526,7 +526,7 @@ export const Navbar = () => {
 
         {/* Mobile menu dropdown with Collapsible Accordions */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 mt-2.5 shadow-xl animate-in slide-in-from-top duration-200 max-h-[85vh] overflow-y-auto no-scrollbar">
+          <div className="lg:hidden glass-dropdown border-b border-white/70 px-4 pt-3 pb-6 mt-2.5 shadow-2xl animate-in slide-in-from-top duration-200 max-h-[85vh] overflow-y-auto no-scrollbar">
             {/* Direct quick-call & WhatsApp banner on mobile */}
             <div className="mb-3 p-3 rounded-2xl bg-gradient-to-r from-brand-600 to-navy-900 text-white flex items-center justify-between shadow-sm">
               <div>

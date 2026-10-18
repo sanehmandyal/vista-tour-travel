@@ -434,7 +434,7 @@ export const Services = () => {
             {filteredCars.map((car) => (
               <div
                 key={car._id}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft hover:shadow-card hover:border-brand-200 transition-all duration-300 flex flex-col justify-between group"
+                className="glass-panel glass-panel-hover rounded-2xl overflow-hidden border border-white/80 shadow-glass hover:shadow-glass-hover transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Car Image with Category and Availability */}
@@ -546,9 +546,9 @@ export const Services = () => {
         )}
       </section>
 
-      {/* SECTION 2: WHY HIRE VISTA TOUR AND TRAVELS */}
+      {/* SECTION 2: WHY HIRE VISTA TOUR AND TRAVELS (Glassmorphism Dark) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 mt-20">
-        <div className="bg-gradient-to-r from-navy-950 via-slate-900 to-navy-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+        <div className="glass-dark rounded-3xl p-8 sm:p-12 text-white shadow-2xl border border-white/15 relative overflow-hidden">
           <div className="max-w-2xl">
             <span className="text-xs font-bold text-amber-300 uppercase tracking-widest inline-flex items-center gap-1 bg-amber-400/20 px-3 py-1 rounded-full mb-3 border border-amber-400/30">
               <Award className="w-3.5 h-3.5" /> Vista Tour and Travels Guarantee

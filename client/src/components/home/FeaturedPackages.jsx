@@ -66,7 +66,7 @@ export const FeaturedPackages = () => {
               return (
                 <div
                   key={pkg._id}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1"
+                  className="group glass-panel glass-panel-hover rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-300 border border-white/80 flex flex-col"
                 >
                   {/* Image Container */}
                   <div className="relative h-56 w-full overflow-hidden bg-slate-200">

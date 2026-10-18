@@ -38,16 +38,88 @@
   scrollbar-width: none;
 }
 
-/* Glassmorphism helpers */
+/* ================================================================
+   Ultra-Modern Glassmorphism Design System
+   ================================================================ */
+
+/* Primary Glass Panel (Light Mode / Frosted Cards) */
+.glass-panel,
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 1px 2px 0 rgba(255, 255, 255, 0.8) inset;
 }
 
-.glass-banner {
+/* Interactive Glass Card with Specular Hover Lift */
+.glass-panel-hover,
+.glass-card-hover {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-panel-hover:hover,
+.glass-card-hover:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 45px -10px rgba(2, 132, 199, 0.16), 0 1px 3px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+/* Dark Glass Panel (Navbars, Night Mode & Dark Hero Banners) */
+.glass-dark {
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38), 0 1px 1px 0 rgba(255, 255, 255, 0.15) inset;
+}
+
+/* Glass Dropdown Menus */
+.glass-dropdown {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Glass Micro Pill / Badge */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-pill-dark {
   background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Glass Form Inputs */
+.glass-input {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  transition: all 0.2s ease;
+}
+.glass-input:focus {
+  background: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18), 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Ambient Radial Mesh Gradient for Body/Sections */
+.ambient-glass-bg {
+  position: relative;
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 10% 15%, rgba(14, 165, 233, 0.07) 0px, transparent 50%),
+    radial-gradient(at 90% 25%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(16, 185, 129, 0.05) 0px, transparent 55%),
+    radial-gradient(at 80% 90%, rgba(99, 102, 241, 0.06) 0px, transparent 50%);
+  background-attachment: fixed;
 }

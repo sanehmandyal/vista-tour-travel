@@ -66,11 +66,11 @@ export const Footer = () => {
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              <strong>Vista Tour and Travels</strong> is the top-rated 5.0★ Google verified tour agency and luxury cab service in Mohali, Chandigarh, and Himachal Pradesh. Offering reliable hill-tested cabs, experienced polite local chauffeurs, and customized holiday packages.
+              <strong>Vista Tour and Travels</strong> is the top-rated 5.0★ Google verified tour agency and luxury cab service based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Offering reliable hill-tested cabs, experienced polite local chauffeurs, and customized holiday packages across Himachal and North India.
             </p>
 
-            {/* Google Rating Showcase Box */}
-            <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between gap-4 max-w-sm">
+            {/* Google Rating Showcase Box (Glassmorphism) */}
+            <div className="p-3.5 rounded-2xl glass-dark border border-white/10 flex items-center justify-between gap-4 max-w-sm shadow-glass">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center font-black text-sm">
                   5.0
@@ -162,8 +162,8 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">Areas Served</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Mohali (Sector 73 / 119) & Chandigarh</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Chintpurni & Jawalamukhi</Link></li>
+              <li><Link to="/destinations" className="hover:text-white transition-colors">Ladwa & Kurukshetra (Haryana)</Link></li>
+              <li><Link to="/destinations" className="hover:text-white transition-colors">Delhi NCR, Airport & Chandigarh</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Kangra & Dharamshala</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">McLeodGanj & Bhagsunag</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Bir Billing (Paragliding)</Link></li>

@@ -86,8 +86,8 @@ export const Destinations = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-8 relative z-20">
-        {/* Search & Filter Bar */}
-        <div className="bg-white rounded-2xl shadow-soft border border-slate-100 p-4 sm:p-6 mb-10">
+        {/* Search & Filter Bar (Glassmorphism) */}
+        <div className="glass-panel rounded-2xl shadow-glass border border-white/80 p-4 sm:p-6 mb-10">
           <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* Search input */}
             <div className="relative w-full md:w-80">
@@ -167,7 +167,7 @@ export const Destinations = () => {
                   <Link
                     key={dest._id}
                     to={`/destinations/${dest.slug}`}
-                    className="group relative bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1"
+                    className="group relative glass-panel glass-panel-hover rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-300 border border-white/80 flex flex-col"
                   >
                     <div className="relative h-64 w-full overflow-hidden bg-slate-200">
                       <img

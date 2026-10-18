@@ -73,7 +73,7 @@ export const DestinationPreview = () => {
                 <Link
                   key={dest._id}
                   to={`/destinations/${dest.slug}`}
-                  className="group relative bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1"
+                  className="group relative glass-panel glass-panel-hover rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-300 border border-white/80 flex flex-col"
                 >
                   {/* Image & Overlay */}
                   <div className="relative h-60 w-full overflow-hidden bg-slate-200">

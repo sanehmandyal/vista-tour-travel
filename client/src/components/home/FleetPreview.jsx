@@ -255,7 +255,7 @@ export const FleetPreview = () => {
             return (
               <div
                 key={car._id || car.name}
-                className="bg-white rounded-2xl border border-slate-200/90 shadow-soft hover:shadow-hover transition-all duration-300 flex flex-col overflow-hidden group"
+                className="glass-panel glass-panel-hover rounded-2xl border border-white/80 shadow-glass hover:shadow-glass-hover transition-all duration-300 flex flex-col overflow-hidden group"
               >
                 {/* Image Container */}
                 <div className="relative h-44 w-full bg-slate-100 overflow-hidden shrink-0">
@@ -355,8 +355,8 @@ export const FleetPreview = () => {
           })}
         </div>
 
-        {/* Bottom Trust Banner */}
-        <div className="mt-12 bg-navy-900 rounded-2xl p-5 sm:p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+        {/* Bottom Trust Banner (Glassmorphism Dark) */}
+        <div className="mt-12 glass-dark rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xl border border-white/15 relative overflow-hidden">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center shrink-0">
               <ShieldCheck className="w-5 h-5 text-white" />

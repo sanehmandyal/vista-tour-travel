@@ -22,9 +22,9 @@ export const WhatsAppButton = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end print:hidden">
-      {/* Interactive Tooltip Card */}
+      {/* Interactive Tooltip Card (Glassmorphism) */}
       {showTooltip && (
-        <div className="mb-3 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 animate-in fade-in slide-in-from-bottom-3 duration-200">
+        <div className="mb-3 w-72 glass-dropdown rounded-2xl shadow-glass-hover border border-white/85 p-4 animate-in fade-in slide-in-from-bottom-3 duration-200">
           <div className="flex items-start justify-between gap-2 border-b border-slate-100 pb-2 mb-2">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs">
@@ -79,7 +79,7 @@ export const WhatsAppButton = () => {
         <span className="absolute -inset-1 rounded-full bg-emerald-400/30 animate-ping -z-10 pointer-events-none" />
 
         {/* Floating Mini Pill */}
-        <div className="absolute right-16 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-navy-900/90 backdrop-blur-md text-white text-[11px] font-bold tracking-wide whitespace-nowrap shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        <div className="absolute right-16 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-dark text-white text-[11px] font-bold tracking-wide whitespace-nowrap shadow-glass-hover border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
           <Sparkles className="w-3 h-3 text-amber-400" />
           <span>Instant Quote: +91 90688 88578</span>
         </div>

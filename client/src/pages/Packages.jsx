@@ -160,8 +160,8 @@ export const Packages = () => {
           </div>
         )}
 
-        {/* Category Pills Bar - Hidden scrollbar */}
-        <div className="bg-white rounded-2xl shadow-soft border border-slate-100 p-3 mb-6 overflow-x-auto no-scrollbar">
+        {/* Category Pills Bar (Glassmorphism) */}
+        <div className="glass-panel rounded-2xl shadow-glass border border-white/80 p-3 mb-6 overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-2 min-w-max">
             {categories.map((cat) => (
               <button
@@ -171,7 +171,7 @@ export const Packages = () => {
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                   category === cat
                     ? 'bg-brand-600 text-white shadow-md shadow-brand-600/20'
-                    : 'bg-slate-50 text-slate-700 hover:bg-slate-100'
+                    : 'bg-white/60 text-slate-700 hover:bg-white border border-slate-200/50'
                 }`}
               >
                 {cat}
@@ -180,8 +180,8 @@ export const Packages = () => {
           </div>
         </div>
 
-        {/* Filter Controls Row */}
-        <div className="bg-white rounded-2xl shadow-soft border border-slate-100 p-4 sm:p-6 mb-8">
+        {/* Filter Controls Row (Glassmorphism) */}
+        <div className="glass-panel rounded-2xl shadow-glass border border-white/80 p-4 sm:p-6 mb-8">
           <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
             {/* Search Input */}
             <div className="relative">
@@ -273,7 +273,7 @@ export const Packages = () => {
                 return (
                   <div
                     key={pkg._id}
-                    className="group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1"
+                    className="group glass-panel glass-panel-hover rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-300 border border-white/80 flex flex-col"
                   >
                     <div className="relative h-56 w-full overflow-hidden bg-slate-200">
                       <img

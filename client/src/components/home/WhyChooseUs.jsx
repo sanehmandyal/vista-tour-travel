@@ -59,7 +59,7 @@ export const WhyChooseUs = () => {
             Why Choose Vista Tour and Travels
           </h2>
           <p className="text-slate-500 mt-3 text-base">
-            Backed by 50+ five-star Google reviews, Vista Tour and Travels delivers sanitized cabs, expert hill chauffeurs, and customized itineraries across Mohali, Chandigarh, Himachal and North India.
+            Backed by 50+ five-star Google reviews, Vista Tour and Travels delivers sanitized cabs, expert hill chauffeurs, and customized itineraries across Ladwa, Kurukshetra, Haryana, Chandigarh, Himachal and North India.
           </p>
         </div>
 
@@ -70,9 +70,9 @@ export const WhyChooseUs = () => {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-8 shadow-soft border border-slate-100 hover:shadow-card hover:border-brand-100 transition-all duration-300 flex flex-col items-start"
+                className="glass-panel glass-panel-hover rounded-2xl p-8 shadow-glass hover:shadow-glass-hover border border-white/80 transition-all duration-300 flex flex-col items-start group"
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-brand-50/80 border border-brand-200/50 text-brand-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-navy-900 mb-2">
@@ -86,8 +86,8 @@ export const WhyChooseUs = () => {
           })}
         </div>
 
-        {/* Stats Strip */}
-        <div className="mt-16 bg-navy-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-navy-800">
+        {/* Stats Strip (Glassmorphism Dark) */}
+        <div className="mt-16 glass-dark text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/15 relative overflow-hidden">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-navy-800">
             <div className="pt-4 lg:pt-0">
               <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-400">

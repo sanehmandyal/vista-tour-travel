@@ -178,7 +178,7 @@ export const PackageDetails = () => {
           </div>
 
           {/* Overview */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft border border-slate-100">
+          <div className="glass-panel rounded-3xl p-6 sm:p-8 shadow-glass border border-white/80">
             <h2 className="text-xl font-bold text-navy-900 mb-3">Package Overview</h2>
             <p className="text-slate-600 leading-relaxed text-sm sm:text-base whitespace-pre-line">
               {pkg.description}
@@ -187,7 +187,7 @@ export const PackageDetails = () => {
 
           {/* Day-by-Day Itinerary Accordion */}
           {pkg.itinerary && pkg.itinerary.length > 0 && (
-            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft border border-slate-100">
+            <div className="glass-panel rounded-3xl p-6 sm:p-8 shadow-glass border border-white/80">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-navy-900">Detailed Day-by-Day Itinerary</h2>
                 <span className="text-xs font-semibold text-brand-600">{pkg.daysCount} Days Planned</span>
@@ -316,7 +316,7 @@ export const PackageDetails = () => {
 
         {/* Right 1 Col: Booking Sidebar Box */}
         <div>
-          <div className="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 sticky top-24 space-y-6">
+          <div className="glass-panel rounded-3xl p-6 shadow-glass border border-white/80 sticky top-24 space-y-6">
             <div>
               <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">Vista Tour and Travels</span>
               <h3 className="text-2xl font-black text-navy-900 mt-1">

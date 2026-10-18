@@ -37,6 +37,10 @@ export default {
         'soft': '0 4px 20px -2px rgba(12, 74, 110, 0.08)',
         'card': '0 10px 30px -5px rgba(2, 132, 199, 0.08)',
         'float': '0 20px 40px -15px rgba(2, 132, 199, 0.15)',
+        'glass': '0 8px 32px 0 rgba(15, 23, 42, 0.08), 0 1px 2px 0 rgba(255, 255, 255, 0.6) inset',
+        'glass-hover': '0 20px 45px -10px rgba(2, 132, 199, 0.18), 0 1px 2px 0 rgba(255, 255, 255, 0.8) inset',
+        'glass-dark': '0 20px 50px rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(255, 255, 255, 0.12) inset',
+        'glass-glow': '0 0 30px rgba(14, 165, 233, 0.25)',
       }
     },
   },

@@ -289,7 +289,7 @@ export const Testimonials = () => {
             {filteredTestimonials.map((t) => (
               <div
                 key={t._id}
-                className="bg-white rounded-3xl p-6 sm:p-7 shadow-soft hover:shadow-card border border-slate-100 flex flex-col justify-between transition-all group"
+                className="glass-panel glass-panel-hover rounded-3xl p-6 sm:p-7 shadow-glass hover:shadow-glass-hover border border-white/80 flex flex-col justify-between transition-all group"
               >
                 <div>
                   {/* Top Bar: Stars & Destination Tag */}

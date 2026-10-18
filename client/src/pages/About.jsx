@@ -47,10 +47,10 @@ export const About = () => {
             </h2>
             <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
               <p>
-                Headquartered in Nawarsi Bazar, Ladwa, Haryana (160055), <strong>Vista Tour and Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Mohali, Chandigarh Tricity, Himachal, and North India.
+                Headquartered in Nawarsi Bazar, Ladwa, Haryana (136132), <strong>Vista Tour and Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Ladwa, Kurukshetra, Haryana, Chandigarh Tricity, Himachal, and North India.
               </p>
               <p>
-                Backed by 50+ verified 5.0★ Google reviews, we serve travelers across Mohali (Sector 73 / 119), Chandigarh International Airport, Panchkula, Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, and Shimla.
+                Backed by 50+ verified 5.0★ Google reviews, we serve travelers across Ladwa, Kurukshetra, Delhi NCR, Chandigarh International Airport, Ambala, Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, and Shimla.
               </p>
               <p>
                 Our fleet of modern, sanitized Innova Crysta, Ertiga, Dzire sedans, and Tempo Travellers are manned by polite, police-verified mountain chauffeurs who know every curve, scenic viewpoint, and local gem.
@@ -58,7 +58,7 @@ export const About = () => {
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-xl">
+          <div className="relative rounded-2xl overflow-hidden shadow-xl border border-white/60">
             <img
               src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
               alt="Himalayan travel story"
@@ -71,11 +71,11 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Mission & Vision */}
+        {/* Mission & Vision (Glassmorphism) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-3xl p-8 shadow-soft border border-slate-100 flex flex-col justify-between">
+          <div className="glass-panel glass-panel-hover rounded-3xl p-8 shadow-glass hover:shadow-glass-hover border border-white/80 flex flex-col justify-between transition-all">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-brand-50/80 border border-brand-200/50 text-brand-600 flex items-center justify-center mb-5">
                 <Target className="w-6 h-6" />
               </div>
               <h3 className="text-2xl font-bold text-navy-900 mb-3">Our Mission</h3>
@@ -85,9 +85,9 @@ export const About = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 shadow-soft border border-slate-100 flex flex-col justify-between">
+          <div className="glass-panel glass-panel-hover rounded-3xl p-8 shadow-glass hover:shadow-glass-hover border border-white/80 flex flex-col justify-between transition-all">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50/80 border border-amber-200/50 text-amber-600 flex items-center justify-center mb-5">
                 <Eye className="w-6 h-6" />
               </div>
               <h3 className="text-2xl font-bold text-navy-900 mb-3">Our Vision</h3>
@@ -98,8 +98,8 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Statistics Bar */}
-        <div className="bg-navy-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-navy-800">
+        {/* Statistics Bar (Glassmorphism Dark) */}
+        <div className="glass-dark text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/15 relative overflow-hidden">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-navy-800">
             <div className="pt-4 lg:pt-0">
               <p className="text-4xl lg:text-5xl font-black text-brand-400">{settings.experienceYears || '10+'}</p>

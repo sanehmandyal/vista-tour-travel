@@ -176,7 +176,7 @@ export const Booking = () => {
   if (confirmedBooking) {
     return (
       <div className="bg-slate-50 min-h-screen py-16 px-4 sm:px-6 flex items-center justify-center">
-        <div className="max-w-2xl w-full bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-slate-100 text-center">
+        <div className="max-w-2xl w-full glass-panel rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/80 text-center">
           <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-6 shadow-soft">
             <CheckCircle2 className="w-10 h-10" />
           </div>
@@ -272,8 +272,8 @@ export const Booking = () => {
           {/* Left 2 Cols: Form */}
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Primary Contact Details */}
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft border border-slate-100">
+              {/* Primary Contact Details (Glassmorphism) */}
+              <div className="glass-panel rounded-2xl p-6 sm:p-8 shadow-glass border border-white/80">
                 <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
                   <div className="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-sm">
                     1
@@ -350,8 +350,8 @@ export const Booking = () => {
                 </div>
               </div>
 
-              {/* Journey & Vehicle Preferences */}
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft border border-slate-100">
+              {/* Journey & Vehicle Preferences (Glassmorphism) */}
+              <div className="glass-panel rounded-2xl p-6 sm:p-8 shadow-glass border border-white/80">
                 <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
                   <div className="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-sm">
                     2
@@ -476,7 +476,7 @@ export const Booking = () => {
 
           {/* Right 1 Col: Trip Summary & Direct Phone Contact */}
           <div>
-            <div className="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 sticky top-24 space-y-6">
+            <div className="glass-panel rounded-3xl p-6 shadow-glass border border-white/80 sticky top-24 space-y-6">
               <h3 className="text-base font-bold text-navy-900 border-b border-slate-100 pb-3">
                 Trip Details
               </h3>
