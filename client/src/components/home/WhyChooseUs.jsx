@@ -48,11 +48,15 @@ export const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="py-20 bg-gradient-to-b from-white via-slate-50/60 to-white relative overflow-hidden">
+      {/* Ambient background glow orbs for glassmorphism refraction */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-brand-400/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 px-3.5 py-1 rounded-full mb-3">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200/60 px-3.5 py-1 rounded-full mb-3 shadow-xs">
             <Award className="w-3.5 h-3.5" /> 5.0★ Google Rated Tour & Luxury Cab Service
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">

@@ -39,17 +39,33 @@
 }
 
 /* ================================================================
-   Ultra-Modern Glassmorphism Design System
+   Ultra-Modern Acrylic Glassmorphism Design System
    ================================================================ */
+
+/* Ambient Radial Mesh Gradient for Body/Sections */
+.ambient-glass-bg {
+  position: relative;
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(circle at 12% 8%, rgba(14, 165, 233, 0.14) 0px, transparent 40%),
+    radial-gradient(circle at 88% 18%, rgba(245, 158, 11, 0.12) 0px, transparent 42%),
+    radial-gradient(circle at 50% 48%, rgba(99, 102, 241, 0.09) 0px, transparent 48%),
+    radial-gradient(circle at 18% 75%, rgba(16, 185, 129, 0.10) 0px, transparent 45%),
+    radial-gradient(circle at 82% 88%, rgba(2, 132, 199, 0.12) 0px, transparent 42%);
+  background-attachment: fixed;
+}
 
 /* Primary Glass Panel (Light Mode / Frosted Cards) */
 .glass-panel,
 .glass-card {
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 1px 2px 0 rgba(255, 255, 255, 0.8) inset;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 12px 35px -5px rgba(15, 23, 42, 0.07),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+    0 1px 2px 0 rgba(255, 255, 255, 0.95) inset;
 }
 
 /* Interactive Glass Card with Specular Hover Lift */
@@ -60,66 +76,91 @@
 .glass-panel-hover:hover,
 .glass-card-hover:hover {
   transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 
+    0 24px 50px -10px rgba(2, 132, 199, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.85) inset,
+    0 1px 3px 0 rgba(255, 255, 255, 1) inset;
+}
+
+/* Sticky Navbar Frosted Acrylic Glass */
+.glass-navbar {
   background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 20px 45px -10px rgba(2, 132, 199, 0.16), 0 1px 3px 0 rgba(255, 255, 255, 0.9) inset;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+}
+
+/* Glass Dropdown Menus - 100% Zero Bleed-Through, Crystal-Clear Porcelain Glass */
+.glass-dropdown {
+  background: rgba(255, 255, 255, 0.985);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.98);
+  box-shadow: 
+    0 25px 60px -12px rgba(15, 23, 42, 0.26),
+    0 0 0 1px rgba(15, 23, 42, 0.06),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 1);
 }
 
 /* Dark Glass Panel (Navbars, Night Mode & Dark Hero Banners) */
 .glass-dark {
-  background: rgba(15, 23, 42, 0.78);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38), 0 1px 1px 0 rgba(255, 255, 255, 0.15) inset;
-}
-
-/* Glass Dropdown Menus */
-.glass-dropdown {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(24px) saturate(190%);
   -webkit-backdrop-filter: blur(24px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 20px 0 rgba(14, 165, 233, 0.05);
 }
 
 /* Glass Micro Pill / Badge */
 .glass-pill {
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 .glass-pill-dark {
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 /* Glass Form Inputs */
 .glass-input {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(226, 232, 240, 0.85);
-  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03), 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.25s ease;
 }
 .glass-input:focus {
   background: #ffffff;
   border-color: #0284c7;
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18), 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18), inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
-/* Ambient Radial Mesh Gradient for Body/Sections */
-.ambient-glass-bg {
-  position: relative;
-  background-color: #f8fafc;
-  background-image: 
-    radial-gradient(at 10% 15%, rgba(14, 165, 233, 0.07) 0px, transparent 50%),
-    radial-gradient(at 90% 25%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
-    radial-gradient(at 50% 80%, rgba(16, 185, 129, 0.05) 0px, transparent 55%),
-    radial-gradient(at 80% 90%, rgba(99, 102, 241, 0.06) 0px, transparent 50%);
-  background-attachment: fixed;
+/* Glass Buttons with Specular Highlight */
+.glass-button-light {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  transition: all 0.25s ease;
+}
+.glass-button-light:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
 }

@@ -30,7 +30,7 @@ export const About = () => {
             About Vista Tour and Travels
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Leading luxury cab service and tour operator in Mohali, Chandigarh, and Himachal Pradesh. Trusted for punctual cab pickups, verified mountain chauffeurs, and customized holiday packages.
+            Leading luxury cab service and tour operator based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana), serving Chandigarh Tricity, Delhi NCR, and Himachal Pradesh. Trusted for punctual cab pickups, verified mountain chauffeurs, and customized holiday packages.
           </p>
         </div>
       </div>

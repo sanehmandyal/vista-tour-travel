@@ -42,7 +42,7 @@ export const Booking = () => {
     adults: searchParams.get('passengers') === '3-4' ? 4 : searchParams.get('passengers') === '5-7' ? 6 : 2,
     children: 0,
     vehicleType: searchParams.get('cab') === 'sedan' ? 'Dzire / Etios (Sedan)' : searchParams.get('cab') === 'suv' ? 'Ertiga (SUV)' : 'Innova Crysta / Ertiga',
-    pickupLocation: searchParams.get('from') || searchParams.get('pickup') || 'Kangra / Gaggal Airport',
+    pickupLocation: searchParams.get('from') || searchParams.get('pickup') || 'Ladwa / Kurukshetra / Chandigarh / Delhi Airport',
     specialRequirements: ''
   });
 

@@ -27,12 +27,16 @@ export const FeaturedPackages = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-white border-y border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="py-20 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden border-y border-slate-100">
+      {/* Ambient background glow orbs */}
+      <div className="absolute top-10 left-1/3 w-96 h-96 bg-amber-400/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/3 w-96 h-96 bg-brand-400/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full mb-3 border border-amber-200">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 uppercase tracking-widest bg-amber-50 px-3.5 py-1 rounded-full mb-3 border border-amber-200/80 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Best Selling Journeys
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">

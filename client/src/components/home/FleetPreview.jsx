@@ -201,12 +201,16 @@ export const FleetPreview = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+      {/* Background Glow Elements for Glassmorphic Cars */}
+      <div className="absolute top-1/3 -left-20 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100/80 text-brand-600 text-xs font-bold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200/60 text-brand-600 text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
               <Car className="w-3.5 h-3.5" /> Premium Chauffeur-Driven Fleet
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-navy-900 tracking-tight">

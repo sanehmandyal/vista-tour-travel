@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
+import FeaturedPackages from '../components/home/FeaturedPackages';
 import DestinationPreview from '../components/home/DestinationPreview';
 import FleetPreview from '../components/home/FleetPreview';
 import WhyChooseUs from '../components/home/WhyChooseUs';
@@ -11,6 +12,7 @@ export const Home = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
+      <FeaturedPackages />
       <DestinationPreview />
       <FleetPreview />
       <WhyChooseUs />

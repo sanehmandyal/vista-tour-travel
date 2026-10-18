@@ -48,7 +48,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     areasServed: {
       type: String,
-      default: 'Mohali (Sector 73/119), Chandigarh Tricity, Airport Transfers, Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, Shimla, Kurukshetra & All Himachal'
+      default: 'Nawarsi Bazar, Ladwa, Kurukshetra, Haryana, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)'
     },
     googleRating: {
       type: Number,
@@ -60,7 +60,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     googleMapsUrl: {
       type: String,
-      default: 'https://www.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203'
+      default: 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132'
     },
     googleReviewsUrl: {
       type: String,

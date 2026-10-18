@@ -182,8 +182,8 @@ export const Navbar = () => {
       <header
         className={`sticky top-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'glass-dropdown shadow-glass py-2.5'
-            : 'bg-white/80 backdrop-blur-xl border-b border-white/70 shadow-sm py-3.5'
+            ? 'glass-navbar py-2.5 shadow-sm'
+            : 'bg-white/95 backdrop-blur-2xl border-b border-slate-200/60 shadow-xs py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-2" ref={navContainerRef}>
@@ -240,8 +240,8 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'destinations' && (
-                <div className="absolute left-0 mt-2 w-80 glass-dropdown rounded-2xl shadow-glass-hover border border-white/80 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2.5 py-1">
+                <div className="absolute left-0 mt-2.5 w-84 glass-dropdown rounded-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-2.5 py-1">
                     Popular Himachal & North India
                   </div>
                   <div className="space-y-1">
@@ -252,14 +252,14 @@ export const Navbar = () => {
                           key={item.name}
                           to={item.path}
                           onClick={() => setOpenDropdown(null)}
-                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-50/70 text-slate-700 hover:text-navy-900 transition-colors group"
+                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
                         >
-                          <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
-                            <Icon className="w-3.5 h-3.5" />
+                          <div className="w-8 h-8 rounded-xl bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                            <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
                           </div>
                           <div>
                             <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700">{item.name}</p>
-                            <p className="text-[10px] text-slate-400 leading-tight mt-0.5">{item.desc}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5">{item.desc}</p>
                           </div>
                         </Link>
                       );
@@ -298,8 +298,8 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'packages' && (
-                <div className="absolute left-0 mt-2 w-80 glass-dropdown rounded-2xl shadow-glass-hover border border-white/80 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2.5 py-1">
+                <div className="absolute left-0 mt-2.5 w-84 glass-dropdown rounded-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-2.5 py-1">
                     Curated Holiday Itineraries
                   </div>
                   <div className="space-y-1">
@@ -310,14 +310,14 @@ export const Navbar = () => {
                           key={item.name}
                           to={item.path}
                           onClick={() => setOpenDropdown(null)}
-                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-50/70 text-slate-700 hover:text-navy-900 transition-colors group"
+                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
                         >
-                          <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
-                            <Icon className="w-3.5 h-3.5" />
+                          <div className="w-8 h-8 rounded-xl bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                            <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
                           </div>
                           <div>
                             <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700">{item.name}</p>
-                            <p className="text-[10px] text-slate-400 leading-tight mt-0.5">{item.desc}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5">{item.desc}</p>
                           </div>
                         </Link>
                       );
@@ -356,8 +356,8 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'services' && (
-                <div className="absolute left-0 mt-2 w-84 glass-dropdown rounded-2xl shadow-glass-hover border border-white/80 p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2.5 py-1">
+                <div className="absolute left-0 mt-2.5 w-84 glass-dropdown rounded-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-2.5 py-1">
                     24/7 Chauffeur Cabs & Fleet
                   </div>
                   <div className="space-y-1">
@@ -368,14 +368,14 @@ export const Navbar = () => {
                           key={item.name}
                           to={item.path}
                           onClick={() => setOpenDropdown(null)}
-                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-50/70 text-slate-700 hover:text-navy-900 transition-colors group"
+                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
                         >
-                          <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
-                            <Icon className="w-3.5 h-3.5" />
+                          <div className="w-8 h-8 rounded-xl bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                            <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
                           </div>
                           <div>
                             <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700">{item.name}</p>
-                            <p className="text-[10px] text-slate-400 leading-tight mt-0.5">{item.desc}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5">{item.desc}</p>
                           </div>
                         </Link>
                       );

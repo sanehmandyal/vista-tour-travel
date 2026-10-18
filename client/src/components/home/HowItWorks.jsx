@@ -36,11 +36,15 @@ export const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-20 bg-white border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="py-20 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden border-b border-slate-100">
+      {/* Ambient background glow orbs */}
+      <div className="absolute top-1/2 left-10 -translate-y-1/2 w-80 h-80 bg-brand-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full mb-3 inline-block">
+          <span className="text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200/60 px-3.5 py-1 rounded-full mb-3 inline-block shadow-xs">
             Seamless & Transparent
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
@@ -58,22 +62,22 @@ export const HowItWorks = () => {
             return (
               <div
                 key={idx}
-                className="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:bg-brand-50/50 hover:border-brand-200 transition-all flex flex-col items-center text-center group"
+                className="relative glass-panel glass-panel-hover rounded-2xl p-6 border border-white/85 shadow-glass hover:shadow-glass-hover flex flex-col items-center text-center group"
               >
                 {/* Step Number */}
-                <span className="text-xs font-black text-brand-500 mb-2">
+                <span className="text-xs font-black text-brand-600 mb-2 tracking-wider">
                   STEP {step.num}
                 </span>
 
                 {/* Icon Circle */}
-                <div className="w-14 h-14 rounded-2xl bg-white shadow-soft text-brand-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon className="w-6 h-6" />
+                <div className="w-14 h-14 rounded-2xl bg-white/90 border border-white shadow-soft text-brand-600 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white transition-all">
+                  <Icon className="w-6 h-6 transition-colors" />
                 </div>
 
                 <h3 className="text-base font-bold text-navy-900 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">
                   {step.description}
                 </p>
               </div>
