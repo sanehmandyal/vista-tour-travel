@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment Secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Uploads (Keep folder via .gitkeep)
+uploads/*
+!uploads/.gitkeep
+
+# OS / Editor
+.DS_Store
+Thumbs.db

@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Production Build
+dist/
+dist-ssr/
+
+# Logs & Cache
+*.log
+.cache/
+
+# OS / Editor
+.DS_Store
+Thumbs.db

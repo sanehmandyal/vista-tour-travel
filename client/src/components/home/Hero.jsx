@@ -1,0 +1,277 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useWebsite } from '../../context/WebsiteContext';
+import {
+  Search,
+  MapPin,
+  Calendar,
+  Users,
+  Car,
+  ArrowRight,
+  Star,
+  Phone,
+  Navigation,
+  MessageCircle,
+  ShieldCheck,
+  CheckCircle2,
+  Compass
+} from 'lucide-react';
+import Button from '../common/Button';
+
+export const Hero = () => {
+  const { settings } = useWebsite();
+  const navigate = useNavigate();
+
+  // Form State
+  const [fromLocation, setFromLocation] = useState('');
+  const [destination, setDestination] = useState('');
+  const [date, setDate] = useState('');
+  const [travelers, setTravelers] = useState('1-4');
+  const [vehicleType, setVehicleType] = useState('all');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (fromLocation) params.append('from', fromLocation);
+    if (destination) params.append('to', destination);
+    if (vehicleType && vehicleType !== 'all') params.append('vehicle', vehicleType);
+    if (date) params.append('date', date);
+    if (travelers) params.append('travelers', travelers);
+    navigate(`/booking?${params.toString()}`);
+  };
+
+  const handleWhatsAppInstantQuote = () => {
+    const pickup = fromLocation || 'Mohali / Chandigarh / Himachal';
+    const drop = destination || 'Sightseeing / Tour';
+    const cleanWa = (settings.whatsapp || '919876543210').replace(/[^0-9]/g, '');
+    const text = encodeURIComponent(
+      `Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to get an instant cab/travel quote:\n` +
+      `• Pickup: ${pickup}\n` +
+      `• Destination: ${drop}\n` +
+      `• Date: ${date || 'Upcoming'}\n` +
+      `• Vehicle: ${vehicleType !== 'all' ? vehicleType : 'Best Available'}\n` +
+      `• Passengers: ${travelers}\n` +
+      `Please share availability and best hill cab rates.`
+    );
+    window.open(`https://wa.me/${cleanWa}?text=${text}`, '_blank');
+  };
+
+  return (
+    <div className="relative min-h-[640px] lg:min-h-[720px] flex items-center justify-center bg-navy-950 overflow-hidden">
+      {/* Background Photography with Soft Deep-Navy Gradient */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={settings.heroImage || "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"}
+          alt="Vista Tour and Travels - Mohali, Chandigarh & Himachal Tour & Luxury Cabs"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80';
+          }}
+          className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
+          loading="eager"
+        />
+        {/* Gradients */}
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-900/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/80 via-navy-950/40 to-navy-950/80" />
+      </div>
+
+      {/* Decorative Glow Elements */}
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-500/15 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[400px] h-[250px] bg-amber-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+      {/* Hero Content Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-28 flex flex-col items-center text-center">
+        {/* Google 5.0 Rating Badge */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+          <a
+            href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?cid=2473238779693105097"}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-md hover:bg-amber-400/25 transition-all shadow-lg shadow-amber-500/10"
+          >
+            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            <span>5.0 ★ Google Rated • 50+ Verified Traveler Reviews</span>
+          </a>
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold backdrop-blur-md">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Mohali & Himachal Specialists
+          </span>
+        </div>
+
+        {/* Headline */}
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.1] mb-5">
+          {settings.heroTitle || 'Experience Seamless Journeys with Vista Tour and Travels'}
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-sm sm:text-base lg:text-lg text-slate-200/90 max-w-2xl leading-relaxed mb-8 font-normal">
+          {settings.heroSubtitle || 'Himachal’s top-rated luxury cab service and travel provider. Clean commercial cabs, certified local hill chauffeurs, and transparent quotes.'}
+        </p>
+
+        {/* Action Buttons: Phone, WhatsApp, Destinations */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
+          <a
+            href={`tel:${settings.phone || '9876543210'}`}
+            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-6 py-3.5 rounded-xl text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95"
+          >
+            <Phone className="w-4 h-4 text-slate-950" /> Call {settings.phone || '+91 98765 43210'}
+          </a>
+
+          <a
+            href={`https://wa.me/${(settings.whatsapp || '919876543210').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about Himachal cabs and custom tour itineraries.`)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3.5 rounded-xl text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"
+          >
+            <MessageCircle className="w-4 h-4 text-white" /> Instant WhatsApp Quote
+          </a>
+
+          <Button
+            size="lg"
+            variant="white"
+            onClick={() => navigate('/destinations')}
+            className="font-bold text-xs sm:text-sm py-3 px-5 shadow-lg"
+          >
+            <Compass className="w-4 h-4 mr-1.5 text-brand-600" /> Explore Destinations
+          </Button>
+
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={() => navigate('/services')}
+            className="font-bold text-xs sm:text-sm py-3 px-5 text-white border-white/30 hover:bg-white/10"
+          >
+            <Car className="w-4 h-4 mr-1.5 text-amber-400" /> View Cab Fleet
+          </Button>
+        </div>
+
+        {/* Cab Booking & Travel Search Card */}
+        <div className="w-full max-w-5xl bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl border border-white/70 text-left text-navy-900">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-brand-50 text-brand-600 text-xs font-bold">
+                <Car className="w-4 h-4" /> Book Chauffeur Cab / Sightseeing
+              </span>
+            </div>
+            <span className="hidden sm:inline-block text-xs text-slate-500 font-semibold">
+              🚖 24/7 Doorstep Pickup Across Mohali, Chandigarh & Himachal
+            </span>
+          </div>
+
+          <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 items-end">
+            {/* Field 1: Pickup Point */}
+            <div className="space-y-1">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <Navigation className="w-3.5 h-3.5 text-emerald-600" /> Pickup Location
+              </label>
+              <input
+                type="text"
+                value={fromLocation}
+                onChange={(e) => setFromLocation(e.target.value)}
+                placeholder="Mohali, Airport, Chandigarh, Delhi..."
+                className="w-full h-11 text-sm font-medium text-navy-900 placeholder:text-slate-400 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+              />
+            </div>
+
+            {/* Field 2: Destination */}
+            <div className="space-y-1">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-brand-600" /> Destination
+              </label>
+              <input
+                type="text"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                placeholder="Dharamshala, Manali, Shimla..."
+                className="w-full h-11 text-sm font-medium text-navy-900 placeholder:text-slate-400 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+              />
+            </div>
+
+            {/* Field 3: Travel Date */}
+            <div className="space-y-1">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-brand-600" /> Journey Date
+              </label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="w-full h-11 text-sm font-medium text-navy-900 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+              />
+            </div>
+
+            {/* Field 4: Vehicle Type */}
+            <div className="space-y-1">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <Car className="w-3.5 h-3.5 text-brand-600" /> Preferred Cab
+              </label>
+              <select
+                value={vehicleType}
+                onChange={(e) => setVehicleType(e.target.value)}
+                className="w-full h-11 text-sm font-medium text-navy-900 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+              >
+                <option value="all">Any Vehicle Type</option>
+                <option value="sedan">Dzire / Etios (Sedan)</option>
+                <option value="suv">Ertiga / Scorpio (SUV)</option>
+                <option value="innova">Innova Crysta (Luxury)</option>
+                <option value="tempo">Tempo (12/17 Seater)</option>
+              </select>
+            </div>
+
+            {/* Field 5: Passengers */}
+            <div className="space-y-1">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-brand-600" /> Passengers
+              </label>
+              <select
+                value={travelers}
+                onChange={(e) => setTravelers(e.target.value)}
+                className="w-full h-11 text-sm font-medium text-navy-900 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors"
+              >
+                <option value="1-2">1 - 2 Passengers</option>
+                <option value="3-4">3 - 4 Passengers</option>
+                <option value="5-7">5 - 7 Passengers</option>
+                <option value="8+">8+ Group</option>
+              </select>
+            </div>
+
+            {/* Field 6: Action Button */}
+            <div className="w-full pt-1 sm:pt-0">
+              <Button
+                type="submit"
+                variant="primary"
+                className="w-full h-11 px-3 text-sm font-bold shadow-lg flex items-center justify-center gap-1.5 whitespace-nowrap bg-brand-600 hover:bg-brand-700"
+              >
+                <Search className="w-4 h-4 shrink-0" /> Book Cab
+              </Button>
+            </div>
+          </form>
+
+          {/* Quick Features Strip */}
+          <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs text-slate-600 font-medium">
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Hill-Certified Commercial Chauffeurs</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-brand-600" />
+              <span>Clean Sanitized Cabs • AC & Hill Heater</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+              <span>Zero Hidden Charges • Transparent Hill Billing</span>
+            </div>
+            <button
+              type="button"
+              onClick={handleWhatsAppInstantQuote}
+              className="text-emerald-700 font-bold hover:underline flex items-center gap-1 ml-auto"
+            >
+              <MessageCircle className="w-3 h-3" /> Need quick quote? WhatsApp Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
