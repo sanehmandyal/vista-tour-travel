@@ -23,19 +23,19 @@ import { processDeviceImage } from '../../utils/imageUpload';
 export default function AdminProfile() {
   const { user, updateUser } = useAuth();
   const [profileData, setProfileData] = useState(() => {
-    let savedLoc = 'Sector 73, Mohali, Punjab 160055';
+    let savedLoc = 'Nawarsi Bazar, Ladwa, Haryana 136132';
     try {
       localStorage.removeItem('rtt_user');
       const u = JSON.parse(localStorage.getItem('vtt_user') || '{}');
       if (u.location && (u.location.includes('Amb') || u.location.includes('Una'))) {
-        u.location = 'Sector 73, Mohali, Punjab 160055';
+        u.location = 'Nawarsi Bazar, Ladwa, Haryana 136132';
         localStorage.setItem('vtt_user', JSON.stringify(u));
       }
       if (u.location) savedLoc = u.location;
     } catch (e) {}
     return {
       name: user?.name || 'Vista Admin',
-      phone: (user?.phone && user.phone !== '098164 13603' && user.phone !== '70180 88530') ? user.phone : '+91 98765 43210',
+      phone: (user?.phone && user.phone !== '098164 13603' && user.phone !== '70180 88530') ? user.phone : '+91 90688 88578',
       location: user?.location || savedLoc,
     };
   });
@@ -245,12 +245,12 @@ export default function AdminProfile() {
 
           <p className="text-slate-600 text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-1.5 font-medium">
             <Phone className="w-4 h-4 text-amber-500" />
-            {profileData.phone || '+91 98765 43210'}
+            {profileData.phone || '+91 90688 88578'}
           </p>
 
           <p className="text-slate-600 text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-1.5 font-medium">
             <MapPin className="w-4 h-4 text-rose-500 shrink-0" />
-            {profileData.location || 'Sector 73, Mohali, Punjab 160055'}
+            {profileData.location || 'Nawarsi Bazar, Ladwa, Haryana 136132'}
           </p>
 
           {/* Avatar Action Buttons */}
@@ -316,7 +316,7 @@ export default function AdminProfile() {
                 name="phone"
                 value={profileData.phone}
                 onChange={handleProfileChange}
-                placeholder="+91 98765 43210"
+                placeholder="+91 90688 88578"
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500 text-sm font-medium"
               />
             </div>
@@ -327,7 +327,7 @@ export default function AdminProfile() {
                 name="location"
                 value={profileData.location}
                 onChange={handleProfileChange}
-                placeholder="Sector 73, Mohali, Punjab 160055"
+                placeholder="Nawarsi Bazar, Ladwa, Haryana 136132"
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500 text-sm font-medium"
               />
             </div>

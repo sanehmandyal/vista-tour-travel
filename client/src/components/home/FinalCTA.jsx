@@ -56,10 +56,10 @@ export const FinalCTA = () => {
           </a>
 
           <a
-            href={`tel:${settings.phone || '9876543210'}`}
+            href={`tel:${settings.phone || '9068888578'}`}
             className="inline-flex items-center justify-center font-medium rounded-xl text-base px-6 py-3.5 gap-2.5 font-semibold bg-white/10 hover:bg-white/20 text-white transition-all border border-white/20"
           >
-            <PhoneCall className="w-4 h-4" /> {settings.phone || '+91 98765 43210'}
+            <PhoneCall className="w-4 h-4" /> {settings.phone || '+91 90688 88578'}
           </a>
         </div>
       </div>

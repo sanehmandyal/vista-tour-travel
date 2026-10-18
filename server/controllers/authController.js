@@ -94,7 +94,7 @@ export const login = async (req, res, next) => {
           email: normalizedEmail,
           password: password,
           role: 'superadmin',
-          phone: '+91 98765 43210',
+          phone: '+91 90688 88578',
           isActive: true
         });
       } catch (e) {
@@ -103,7 +103,7 @@ export const login = async (req, res, next) => {
           name: 'Vista Admin (Super Admin)',
           email: normalizedEmail,
           role: 'superadmin',
-          phone: '+91 98765 43210',
+          phone: '+91 90688 88578',
           isActive: true,
           getSignedJwtToken: () => 'vtt_admin_verified_jwt_token'
         };
@@ -290,7 +290,7 @@ export const updatePassword = async (req, res, next) => {
           email: req.user?.email || 'admin@vistatourtravels.com',
           password: newPassword,
           role: 'superadmin',
-          phone: '+91 98765 43210',
+          phone: '+91 90688 88578',
           isActive: true
         });
       } catch (createErr) {}

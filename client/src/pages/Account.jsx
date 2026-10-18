@@ -280,7 +280,7 @@ export const Account = () => {
                     type="tel"
                     value={profileData.phone}
                     onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 90688 88578"
                     className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
                   />
                 </div>

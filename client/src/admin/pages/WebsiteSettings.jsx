@@ -278,7 +278,7 @@ export const WebsiteSettings = () => {
                 name="address"
                 value={form.address}
                 onChange={handleChange}
-                placeholder="e.g. Sector 73, Mohali, Punjab 160055, India"
+                placeholder="e.g. Nawarsi Bazar, Ladwa, Haryana 136132, India"
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
             </div>

@@ -32,11 +32,11 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      default: '+91 98765 43210'
+      default: '+91 90688 88578'
     },
     altPhone: {
       type: String,
-      default: '+91 98765 43211'
+      default: '+91 90688 88578'
     },
     email: {
       type: String,
@@ -44,7 +44,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     address: {
       type: String,
-      default: 'Sector 73, Mohali, Punjab 160055, India'
+      default: 'Nawarsi Bazar, Ladwa, Haryana 136132, India'
     },
     areasServed: {
       type: String,
@@ -64,7 +64,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     googleReviewsUrl: {
       type: String,
-      default: 'https://www.google.com/maps?cid=2473238779693105097'
+      default: 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132'
     },
     facebook: {
       type: String,
@@ -80,7 +80,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     whatsapp: {
       type: String,
-      default: '+919876543210'
+      default: '+919068888578'
     },
     businessHours: {
       type: String,

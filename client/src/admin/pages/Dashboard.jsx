@@ -591,10 +591,10 @@ export const Dashboard = () => {
           <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
             <span className="text-slate-400 text-[11px]">Need to call back?</span>
             <a
-              href="tel:+919876543210"
+              href="tel:+919068888578"
               className="inline-flex items-center gap-1 text-brand-600 font-bold hover:text-brand-700"
             >
-              <PhoneCall className="w-3 h-3" /> Dial Dispatch HQ (+91 98765 43210)
+              <PhoneCall className="w-3 h-3" /> Dial Dispatch HQ (+91 90688 88578)
             </a>
           </div>
         </div>

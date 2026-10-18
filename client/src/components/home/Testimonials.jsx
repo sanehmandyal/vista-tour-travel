@@ -210,7 +210,7 @@ export const Testimonials = () => {
             </button>
 
             <a
-              href={settings.googleReviewsUrl || 'https://www.google.com/maps?cid=2473238779693105097'}
+              href={settings.googleReviewsUrl || 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132'}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-white border border-slate-200 hover:border-amber-300 text-slate-800 text-xs sm:text-sm font-bold shadow-sm hover:shadow transition-all"

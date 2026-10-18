@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }) => {
           if (parsed && (parsed.role === 'superadmin' || parsed.role === 'admin')) {
             // Sanitize legacy naming
             if (parsed.name?.includes('Ravi')) parsed.name = 'Vista Admin';
-            if (parsed.location?.includes('Amb')) parsed.location = 'Sector 73, Mohali, Punjab 160055';
-            if (parsed.phone === '70180 88530') parsed.phone = '+91 98765 43210';
+            if (parsed.location?.includes('Amb')) parsed.location = 'Nawarsi Bazar, Ladwa, Haryana 136132';
+            if (parsed.phone === '70180 88530') parsed.phone = '+91 90688 88578';
             setUser(parsed);
             setLoading(false);
             return;
@@ -72,10 +72,10 @@ export const AuthProvider = ({ children }) => {
             if (parsed && (parsed.role === 'superadmin' || parsed.role === 'admin')) {
               if (parsed.name?.includes('Ravi')) parsed.name = 'Vista Admin';
               if (!parsed.phone || parsed.phone === '70180 88530') {
-                parsed.phone = '+91 98765 43210';
+                parsed.phone = '+91 90688 88578';
               }
               if (!parsed.location || parsed.location.includes('Amb') || parsed.location.includes('Una')) {
-                parsed.location = 'Sector 73, Mohali, Punjab 160055';
+                parsed.location = 'Nawarsi Bazar, Ladwa, Haryana 136132';
               }
               localStorage.setItem('vtt_user', JSON.stringify(parsed));
               setUser(parsed);
@@ -137,8 +137,8 @@ export const AuthProvider = ({ children }) => {
           name: 'Vista Admin (Super Admin)',
           email: 'admin@vistatourtravels.com',
           role: 'superadmin',
-          phone: '+91 98765 43210',
-          location: 'Sector 73, Mohali, Punjab 160055, India',
+          phone: '+91 90688 88578',
+          location: 'Nawarsi Bazar, Ladwa, Haryana 136132, India',
           avatar: localStorage.getItem('vtt_admin_avatar') || '',
           isActive: true
         };

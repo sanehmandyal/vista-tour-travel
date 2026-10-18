@@ -43,7 +43,7 @@ export const Hero = () => {
   const handleWhatsAppInstantQuote = () => {
     const pickup = fromLocation || 'Mohali / Chandigarh / Himachal';
     const drop = destination || 'Sightseeing / Tour';
-    const cleanWa = (settings.whatsapp || '919876543210').replace(/[^0-9]/g, '');
+    const cleanWa = (settings.whatsapp || '919068888578').replace(/[^0-9]/g, '');
     const text = encodeURIComponent(
       `Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to get an instant cab/travel quote:\n` +
       `• Pickup: ${pickup}\n` +
@@ -84,7 +84,7 @@ export const Hero = () => {
         {/* Google 5.0 Rating Badge */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           <a
-            href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?cid=2473238779693105097"}
+            href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-md hover:bg-amber-400/25 transition-all shadow-lg shadow-amber-500/10"
@@ -110,14 +110,14 @@ export const Hero = () => {
         {/* Action Buttons: Phone, WhatsApp, Destinations */}
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
           <a
-            href={`tel:${settings.phone || '9876543210'}`}
+            href={`tel:${settings.phone || '9068888578'}`}
             className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-6 py-3.5 rounded-xl text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95"
           >
-            <Phone className="w-4 h-4 text-slate-950" /> Call {settings.phone || '+91 98765 43210'}
+            <Phone className="w-4 h-4 text-slate-950" /> Call {settings.phone || '+91 90688 88578'}
           </a>
 
           <a
-            href={`https://wa.me/${(settings.whatsapp || '919876543210').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about Himachal cabs and custom tour itineraries.`)}`}
+            href={`https://wa.me/${(settings.whatsapp || '919068888578').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about Himachal cabs and custom tour itineraries.`)}`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3.5 rounded-xl text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"

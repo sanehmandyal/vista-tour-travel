@@ -197,7 +197,7 @@ export const FleetPreview = () => {
     const text = encodeURIComponent(
       `Hello Vista Tour and Travels! I would like to check availability and get a quote for booking the ${carName} for my Himachal trip.`
     );
-    return `https://wa.me/919876543210?text=${text}`;
+    return `https://wa.me/919068888578?text=${text}`;
   };
 
   return (
@@ -342,7 +342,7 @@ export const FleetPreview = () => {
                     </a>
 
                     <a
-                      href="tel:9876543210"
+                      href="tel:9068888578"
                       className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-all"
                       title="Call Taxi Service"
                     >
@@ -368,10 +368,10 @@ export const FleetPreview = () => {
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href="tel:9876543210"
+              href="tel:9068888578"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white text-navy-900 hover:bg-slate-100 text-xs font-bold transition-colors shadow"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-brand-600" /> +91 98765 43210
+              <PhoneCall className="w-3.5 h-3.5 text-brand-600" /> +91 90688 88578
             </a>
             <Link
               to="/services"

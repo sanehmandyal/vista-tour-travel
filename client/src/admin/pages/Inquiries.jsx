@@ -76,15 +76,15 @@ export const Inquiries = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Admin Notification Active
             </span>
-            <span className="text-xs text-slate-400 font-medium">Hotline: +91 98765 43210</span>
+            <span className="text-xs text-slate-400 font-medium">Hotline: +91 90688 88578</span>
           </div>
           <h1 className="text-2xl font-black text-navy-900 tracking-tight">Customer Inquiries & Leads</h1>
-          <p className="text-xs text-slate-500">Inquiries submitted from website are linked to Admin contact (+91 98765 43210) for instant dispatch.</p>
+          <p className="text-xs text-slate-500">Inquiries submitted from website are linked to Admin contact (+91 90688 88578) for instant dispatch.</p>
         </div>
 
         <div className="flex items-center gap-2">
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/919068888578"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-xs transition-colors shrink-0"
@@ -92,7 +92,7 @@ export const Inquiries = () => {
             <MessageCircle className="w-3.5 h-3.5" /> Admin WhatsApp
           </a>
           <a
-            href="tel:+919876543210"
+            href="tel:+919068888578"
             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-xs transition-colors shrink-0"
           >
             <PhoneCall className="w-3.5 h-3.5" /> Call Admin HQ

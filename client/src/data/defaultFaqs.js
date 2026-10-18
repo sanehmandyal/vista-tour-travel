@@ -2,7 +2,7 @@ export const defaultFaqs = [
   {
     _id: 'faq-1',
     question: 'How do I book a taxi or tour package with Vista Tour and Travels?',
-    answer: 'You can book easily in three ways: 1) Fill out our online booking or contact form on this website, 2) Call our 24/7 dispatch desk directly at +91 98765 43210, or 3) Click the WhatsApp button to receive an instant customized quote with driver and car details.',
+    answer: 'You can book easily in three ways: 1) Fill out our online booking or contact form on this website, 2) Call our 24/7 dispatch desk directly at +91 90688 88578, or 3) Click the WhatsApp button to receive an instant customized quote with driver and car details.',
     category: 'Booking',
     order: 1
   },

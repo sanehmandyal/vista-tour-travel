@@ -10,18 +10,20 @@ import {
   Send,
   MessageCircle,
   Headphones,
-  CheckCircle2
+  CheckCircle2,
+  PhoneCall,
+  Bell,
+  Sparkles
 } from 'lucide-react';
 import Button from '../components/common/Button';
 import toast from 'react-hot-toast';
-import { PhoneCall, Bell, Sparkles } from 'lucide-react';
 
 export const Contact = () => {
   const { settings } = useWebsite();
   const [searchParams] = useSearchParams();
 
-  const adminPhone = settings?.phone || '+91 98765 43210';
-  const adminRawPhone = '919876543210';
+  const adminPhone = settings?.phone || '+91 90688 88578';
+  const adminRawPhone = '919068888578';
 
   const [formData, setFormData] = useState({
     name: '',
@@ -71,11 +73,14 @@ export const Contact = () => {
       if (res.success) {
         setLastInquiry(currentData);
         setSubmitted(true);
-        toast.success(res.message || 'Inquiry submitted successfully!');
+        toast.success(res.message || 'Inquiry submitted! Admin (+91 90688 88578) notified on WhatsApp.');
 
-        if (directWhatsApp) {
-          const waUrl = res.whatsappUrl || getAdminWhatsAppLink(currentData);
+        // Automatically open WhatsApp with inquiry details for instant admin update
+        const waUrl = res.whatsappUrl || getAdminWhatsAppLink(currentData);
+        try {
           window.open(waUrl, '_blank', 'noopener,noreferrer');
+        } catch (e) {
+          console.warn('Popup blocked, WhatsApp link available in confirmation screen.');
         }
 
         setFormData({
@@ -106,7 +111,7 @@ export const Contact = () => {
             Contact & Travel Inquiries
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-            Inquiries are linked directly to Admin Vista (<span className="text-amber-400 font-bold">+91 98765 43210</span>) for instant notification and fast booking confirmation.
+            Inquiries are linked directly to Admin Vista (<span className="text-amber-400 font-bold">+91 90688 88578</span>) for instant notification and fast booking confirmation.
           </p>
         </div>
       </div>
@@ -124,7 +129,7 @@ export const Contact = () => {
               <div>
                 <h4 className="text-sm font-bold text-navy-900">Registered Office</h4>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  {settings.address || 'Sector 73, Mohali, Punjab 160055, India'}
+                  {settings.address || 'Nawarsi Bazar, Ladwa, Haryana 136132, India'}
                 </p>
               </div>
             </div>
@@ -135,8 +140,8 @@ export const Contact = () => {
               </div>
               <div>
                 <h4 className="text-sm font-bold text-navy-900">Admin Phone Support (24/7)</h4>
-                <a href={`tel:${settings.phone || '9876543210'}`} className="text-xs text-brand-600 font-bold mt-1 block">
-                  {settings.phone || '+91 98765 43210'}
+                <a href={`tel:${settings.phone || '9068888578'}`} className="text-xs text-brand-600 font-bold mt-1 block">
+                  {settings.phone || '+91 90688 88578'}
                 </a>
                 {settings.altPhone && (
                   <a href={`tel:${settings.altPhone}`} className="text-xs text-slate-500 block">
@@ -180,7 +185,7 @@ export const Contact = () => {
               rel="noreferrer"
               className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-md"
             >
-              <MessageCircle className="w-4 h-4" /> WhatsApp Admin (+91 98765 43210)
+              <MessageCircle className="w-4 h-4" /> WhatsApp Admin (+91 90688 88578)
             </a>
           </div>
         </div>
@@ -191,11 +196,11 @@ export const Contact = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
               <h2 className="text-2xl font-bold text-navy-900">Send Us an Inquiry</h2>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-amber-50 text-amber-900 border border-amber-200 shrink-0">
-                <Bell className="w-3.5 h-3.5 text-amber-600" /> Linked to Admin (+91 98765 43210)
+                <Bell className="w-3.5 h-3.5 text-amber-600" /> Linked to Admin (+91 90688 88578)
               </span>
             </div>
             <p className="text-xs text-slate-500 mb-6">
-              Fill in your trip details below. Your request is linked directly to Dispatch Admin (+91 98765 43210) for swift confirmation.
+              Fill in your trip details below. Your request is linked directly to Dispatch Admin (+91 90688 88578) for swift confirmation.
             </p>
 
             {submitted ? (
@@ -216,12 +221,12 @@ export const Contact = () => {
                       Admin Dispatch Notification
                     </span>
                     <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      Hotline: +91 98765 43210
+                      Hotline: +91 90688 88578
                     </span>
                   </div>
 
                   <p className="text-xs text-slate-600 mb-4">
-                    Send inquiry details directly to <strong>Dispatch Admin (+91 98765 43210)</strong> on WhatsApp:
+                    Send inquiry details directly to <strong>Dispatch Admin (+91 90688 88578)</strong> on WhatsApp:
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-2.5">
@@ -257,14 +262,14 @@ export const Contact = () => {
                     </div>
                     <div>
                       <p className="font-bold text-navy-900">Direct Admin Hotline Linked</p>
-                      <p className="text-[11px] text-amber-900">Submitting here notifies Dispatch Admin on <strong>+91 98765 43210</strong></p>
+                      <p className="text-[11px] text-amber-900">Submitting here notifies Dispatch Admin on <strong>+91 90688 88578</strong></p>
                     </div>
                   </div>
                   <a
                     href={`tel:${adminRawPhone}`}
                     className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[11px] shrink-0 transition-colors"
                   >
-                    Call +91 98765 43210
+                    Call +91 90688 88578
                   </a>
                 </div>
 
@@ -303,7 +308,7 @@ export const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      placeholder="e.g. +91 98765 43210"
+                      placeholder="e.g. +91 90688 88578"
                       className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
                     />
                   </div>
@@ -362,7 +367,7 @@ export const Contact = () => {
           <div className="bg-white rounded-3xl p-4 shadow-soft border border-slate-100 overflow-hidden">
             <iframe
               title="Vista Tour and Travels Office Location"
-              src="https://maps.google.com/maps?q=30.7232768,76.6990167+(Vista+Tour+and+Travels)&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=29.9943, 77.0494+(Vista+Tour+and+Travels)&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="320"
               style={{ border: 0, borderRadius: '1rem' }}

@@ -6,22 +6,22 @@ const sanitizeSettings = (data) => {
   if (!data) return data;
   const s = { ...data };
   if (s.phone === '098164 13603' || s.phone === '09816413603' || s.phone === '70180 88530' || !s.phone) {
-    s.phone = '+91 98765 43210';
+    s.phone = '+91 90688 88578';
   }
   if (s.altPhone === '+91 98164 13603' || s.altPhone === '098164 13603' || s.altPhone === '+91 70180 88530' || !s.altPhone) {
-    s.altPhone = '+91 98765 43211';
+    s.altPhone = '+91 90688 88578';
   }
   if (s.whatsapp === '+919816413603' || s.whatsapp === '919816413603' || s.whatsapp === '+917018088530' || s.whatsapp === '917018088530' || !s.whatsapp) {
-    s.whatsapp = '+919876543210';
+    s.whatsapp = '+919068888578';
   }
   if (!s.email || s.email.includes('ravi') || s.email.includes('rinku')) {
     s.email = 'info@vistatourtravels.com';
   }
-  if (!s.address || s.address.includes('Amb') || s.address.includes('Una')) {
-    s.address = 'Sector 73, Mohali, Punjab 160055, India';
+  if (!s.address || s.address.includes('Amb') || s.address.includes('Una') || s.address.includes('Mohali')) {
+    s.address = 'Nawarsi Bazar, Ladwa, Haryana 136132, India';
   }
-  if (!s.areasServed || s.areasServed.includes('Amb (Near Bus Stand)')) {
-    s.areasServed = 'Mohali (Sector 73/119), Chandigarh Tricity, Airport Transfers, Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, Shimla, Kurukshetra & All Himachal';
+  if (!s.areasServed || s.areasServed.includes('Amb') || s.areasServed.includes('Mohali')) {
+    s.areasServed = 'Nawarsi Bazar, Ladwa, Kurukshetra, Pipli, Shahbad, Yamunanagar, Karnal, Ambala, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)';
   }
   if (!s.serviceName || s.serviceName.includes('Ravi') || s.serviceName.includes('Rinku')) {
     s.serviceName = 'Vista Tour and Travels';
@@ -30,10 +30,10 @@ const sanitizeSettings = (data) => {
     s.companyName = 'Vista Tour and Travels';
   }
   if (!s.googleMapsUrl || s.googleMapsUrl.includes('Amb') || s.googleMapsUrl.includes('Kangra')) {
-    s.googleMapsUrl = 'https://www.google.com/maps?cid=2473238779693105097';
+    s.googleMapsUrl = 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132';
   }
   if (!s.googleReviewsUrl || s.googleReviewsUrl.includes('Amb') || s.googleReviewsUrl.includes('Kangra')) {
-    s.googleReviewsUrl = 'https://www.google.com/maps?cid=2473238779693105097';
+    s.googleReviewsUrl = 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132';
   }
   if (!s.facebook || s.facebook.includes('ravi') || s.facebook.includes('rinku')) {
     s.facebook = 'https://facebook.com/vistatourtravels';

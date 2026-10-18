@@ -16,7 +16,7 @@ export const createInquiry = async (req, res, next) => {
 
     const inquiry = await Inquiry.create(req.body);
 
-    const adminPhone = '9876543210';
+    const adminPhone = '9068888578';
     const whatsappNotificationUrl = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(
       `🔔 *NEW INQUIRY - Vista Tour and Travels*\n` +
       `👤 *Customer:* ${name}\n` +
@@ -26,13 +26,13 @@ export const createInquiry = async (req, res, next) => {
       `💬 *Message:* ${message}`
     )}`;
 
-    console.log(`[ADMIN NOTIFICATION DISPATCH] New Inquiry for Admin Contact +91 98765 43210: ${name} (${phone}) - "${message.slice(0, 60)}"`);
+    console.log(`[ADMIN NOTIFICATION DISPATCH] New Inquiry for Admin Contact +91 90688 88578: ${name} (${phone}) - "${message.slice(0, 60)}"`);
 
     res.status(201).json({
       success: true,
-      message: 'Thank you for reaching out! Inquiry is linked with Admin contact (+91 98765 43210).',
+      message: 'Thank you for reaching out! Inquiry is linked with Admin contact (+91 90688 88578).',
       data: inquiry,
-      adminContact: '+91 98765 43210',
+      adminContact: '+91 90688 88578',
       adminWhatsAppUrl: whatsappNotificationUrl
     });
   } catch (error) {

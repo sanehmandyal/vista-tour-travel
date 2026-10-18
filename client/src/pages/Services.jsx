@@ -350,7 +350,7 @@ export const Services = () => {
 
   const getWhatsAppLink = (carName) => {
     const message = `Hello Vista Tour and Travels, I want to inquire about booking the ${carName} for my upcoming trip. Please share availability and rates.`;
-    return `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/919068888578?text=${encodeURIComponent(message)}`;
   };
 
   return (
@@ -370,13 +370,13 @@ export const Services = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
             <a
-              href="tel:9876543210"
+              href="tel:9068888578"
               className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl shadow-lg transition-colors"
             >
-              <Phone className="w-4 h-4" /> Call: +91 98765 43210
+              <Phone className="w-4 h-4" /> Call: +91 90688 88578
             </a>
             <a
-              href="https://wa.me/919876543210?text=Hello%20Vista%20Tour%20and%20Travels,%20I%20want%20to%20inquire%20about%20cab%20services."
+              href="https://wa.me/919068888578?text=Hello%20Vista%20Tour%20and%20Travels,%20I%20want%20to%20inquire%20about%20cab%20services."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl shadow-lg transition-colors"

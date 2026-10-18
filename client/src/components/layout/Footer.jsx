@@ -85,7 +85,7 @@ export const Footer = () => {
                 </div>
               </div>
               <a
-                href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?cid=2473238779693105097"}
+                href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"}
                 target="_blank"
                 rel="noreferrer"
                 className="text-xs font-bold text-brand-400 hover:text-white flex items-center gap-1 transition-colors"
@@ -134,7 +134,7 @@ export const Footer = () => {
                 <Youtube className="w-4 h-4" />
               </a>
               <a
-                href={`https://wa.me/${(settings.whatsapp || '919876543210').replace(/[^0-9]/g, '')}`}
+                href={`https://wa.me/${(settings.whatsapp || '919068888578').replace(/[^0-9]/g, '')}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-colors"
@@ -178,12 +178,12 @@ export const Footer = () => {
             <ul className="space-y-3.5 text-sm text-slate-400">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
-                <span>{settings.address || 'Sector 73, Mohali, Punjab 160055, India'}</span>
+                <span>{settings.address || 'Nawarsi Bazar, Ladwa, Haryana 136132, India'}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href={`tel:${settings.phone || '9876543210'}`} className="hover:text-white font-bold text-white transition-colors">
-                  {settings.phone || '+91 98765 43210'}
+                <a href={`tel:${settings.phone || '9068888578'}`} className="hover:text-white font-bold text-white transition-colors">
+                  {settings.phone || '+91 90688 88578'}
                 </a>
               </li>
               <li className="flex items-center gap-3">

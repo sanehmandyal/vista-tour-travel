@@ -5,6 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import { WebsiteProvider } from './context/WebsiteContext';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import AppRoutes from './routes/AppRoutes';
+import WhatsAppButton from './components/common/WhatsAppButton';
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
@@ -61,6 +62,7 @@ export default function App() {
               }}
             />
             <AppRoutes />
+            <WhatsAppButton />
           </ErrorBoundary>
         </WebsiteProvider>
       </AuthProvider>

@@ -33,23 +33,35 @@ const connectDB = async () => {
       console.warn('[MongoDB] Admin auto-seed warning:', seedErr.message);
     }
 
-    // Auto-migrate WebsiteSetting to Amb Near Bus Stand and info@vistatourtravels.com
+    // Auto-migrate WebsiteSetting to Ladwa, Haryana and info@vistatourtravels.com
     try {
       let settings = await WebsiteSetting.findOne();
       if (!settings) {
         await WebsiteSetting.create({});
       } else {
         let changed = false;
-        if (!settings.email || settings.email.includes('rinku') || settings.email === 'info@vistatourtravels.com') {
+        if (!settings.phone || settings.phone !== '+91 90688 88578') {
+          settings.phone = '+91 90688 88578';
+          changed = true;
+        }
+        if (!settings.altPhone || settings.altPhone !== '+91 90688 88578') {
+          settings.altPhone = '+91 90688 88578';
+          changed = true;
+        }
+        if (!settings.whatsapp || settings.whatsapp !== '+919068888578') {
+          settings.whatsapp = '+919068888578';
+          changed = true;
+        }
+        if (!settings.email || settings.email.includes('rinku') || settings.email.includes('ravi')) {
           settings.email = 'info@vistatourtravels.com';
           changed = true;
         }
-        if (!settings.address || settings.address.includes('Kangra') || settings.address.includes('Amb') || settings.address.includes('Una')) {
-          settings.address = 'Sector 73, Mohali, Punjab 160055, India';
+        if (!settings.address || settings.address.includes('Kangra') || settings.address.includes('Amb') || settings.address.includes('Una') || settings.address.includes('Mohali')) {
+          settings.address = 'Nawarsi Bazar, Ladwa, Haryana 136132, India';
           changed = true;
         }
-        if (!settings.areasServed || settings.areasServed.includes('Amb') || settings.areasServed.startsWith('Kangra')) {
-          settings.areasServed = 'Mohali (Sector 73/119), Chandigarh Tricity, Airport Transfers, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal';
+        if (!settings.areasServed || settings.areasServed.includes('Amb') || settings.areasServed.includes('Mohali') || settings.areasServed.startsWith('Kangra')) {
+          settings.areasServed = 'Nawarsi Bazar, Ladwa, Kurukshetra, Pipli, Shahbad, Yamunanagar, Karnal, Ambala, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)';
           changed = true;
         }
         if (!settings.serviceName || settings.serviceName.includes('Kangra') || settings.serviceName.includes('Rinku') || settings.serviceName.includes('Ravi')) {
@@ -57,11 +69,11 @@ const connectDB = async () => {
           changed = true;
         }
         if (!settings.googleMapsUrl || settings.googleMapsUrl.includes('Kangra') || settings.googleMapsUrl.includes('Amb')) {
-          settings.googleMapsUrl = 'https://www.google.com/maps?cid=2473238779693105097';
+          settings.googleMapsUrl = 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132';
           changed = true;
         }
         if (!settings.googleReviewsUrl || settings.googleReviewsUrl.includes('Kangra') || settings.googleReviewsUrl.includes('Amb')) {
-          settings.googleReviewsUrl = 'https://www.google.com/maps?cid=2473238779693105097';
+          settings.googleReviewsUrl = 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132';
           changed = true;
         }
         if (settings.facebook && (settings.facebook.includes('rinku') || settings.facebook.includes('ravi'))) {
@@ -78,7 +90,7 @@ const connectDB = async () => {
         }
         if (changed) {
           await settings.save();
-          console.log('[MongoDB] WebsiteSetting migrated with updated Vista Tour and Travels Mohali details.');
+          console.log('[MongoDB] WebsiteSetting migrated with updated Vista Tour and Travels Ladwa, Haryana details.');
         }
       }
     } catch (settingErr) {

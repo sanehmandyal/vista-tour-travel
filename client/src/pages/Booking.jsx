@@ -15,7 +15,8 @@ import {
   User,
   Home,
   Car,
-  Star
+  Star,
+  MessageCircle
 } from 'lucide-react';
 import Loader from '../components/common/Loader';
 import Button from '../components/common/Button';
@@ -132,6 +133,27 @@ export const Booking = () => {
       if (res.success && res.data) {
         setConfirmedBooking(res.data);
         toast.success('Your tour & taxi booking request was submitted successfully!');
+
+        // Dispatch instant WhatsApp alert directly to Admin (+91 90688 88578)
+        const waText = `🛎️ *NEW TOUR & CAB BOOKING - VISTA TRAVELS*\n\n` +
+          `📌 *Booking Ref:* ${res.data.bookingNumber || 'VTT-' + Date.now().toString().slice(-6)}\n` +
+          `🚗 *Tour/Cab:* ${pkg?.title || 'Tour & Cab Booking'}\n` +
+          `👤 *Customer Name:* ${formData.customerName}\n` +
+          `📞 *Customer Phone:* ${formData.phone}\n` +
+          `✉️ *Email:* ${formData.email || 'N/A'}\n` +
+          `📍 *Pickup:* ${formData.pickupLocation || 'Ladwa / Nawarsi Bazar'}\n` +
+          `📅 *Travel Date:* ${formData.travelDate}\n` +
+          `👥 *Travelers:* ${adultCount} Adult(s), ${childCount} Child(ren)\n` +
+          `🚙 *Cab Preference:* ${formData.vehicleType || 'Any'}\n` +
+          `💬 *Notes:* ${formData.specialRequirements || 'None'}\n\n` +
+          `🌐 *Dispatch Portal:* Vista Tour and Travels (Nawarsi Bazar, Ladwa)`;
+
+        const waUrl = `https://wa.me/919068888578?text=${encodeURIComponent(waText)}`;
+        try {
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+        } catch (e) {
+          console.warn('Popup blocked, WhatsApp button available on confirmation screen.');
+        }
       }
     } catch (err) {
       toast.error(err.message || 'Failed to place booking');
@@ -196,16 +218,24 @@ export const Booking = () => {
             </div>
             <div className="flex justify-between py-1 pt-1 text-xs text-slate-500">
               <span>Immediate Helpline:</span>
-              <a href="tel:9876543210" className="font-bold text-brand-600 hover:underline">+91 98765 43210</a>
+              <a href="tel:9068888578" className="font-bold text-brand-600 hover:underline">+91 90688 88578</a>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href="tel:9876543210"
+              href={`https://wa.me/919068888578?text=${encodeURIComponent(`*TOUR & CAB BOOKING INQUIRY*\nBooking ID: ${confirmedBooking.bookingNumber}\nPackage: ${currentPkg.title}\nPassenger: ${confirmedBooking.customerName}\nPhone: ${confirmedBooking.phone || confirmedBooking.customerPhone || ''}\nTravel Date: ${new Date(confirmedBooking.travelDate).toLocaleDateString('en-IN')}\nPassengers: ${confirmedBooking.adults} Adults, ${confirmedBooking.children} Children\nVehicle: ${confirmedBooking.vehicleType || 'Standard'}\nPickup: ${confirmedBooking.pickupLocation || 'Nawarsi Bazar, Ladwa'}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-all"
+            >
+              <MessageCircle className="w-4 h-4" /> Notify Admin on WhatsApp
+            </a>
+            <a
+              href="tel:9068888578"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-md"
             >
-              <Phone className="w-4 h-4" /> Call +91 98765 43210 Now
+              <Phone className="w-4 h-4" /> Call +91 90688 88578
             </a>
             <Button variant="outline" onClick={() => navigate('/')}>
               Return to Homepage
@@ -281,7 +311,7 @@ export const Booking = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 90688 88578"
                         className="w-full text-sm rounded-xl border border-slate-200 pl-10 pr-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
                       />
                     </div>
@@ -498,10 +528,10 @@ export const Booking = () => {
                   Call Vista Tour and Travels directly for immediate quotes and cab dispatch.
                 </p>
                 <a
-                  href="tel:9876543210"
+                  href="tel:9068888578"
                   className="inline-flex items-center justify-center gap-1.5 w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-lg text-xs transition-colors shadow-sm"
                 >
-                  <Phone className="w-3.5 h-3.5" /> Call +91 98765 43210
+                  <Phone className="w-3.5 h-3.5" /> Call +91 90688 88578
                 </a>
               </div>
 

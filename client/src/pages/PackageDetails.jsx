@@ -17,7 +17,9 @@ import {
   Share2,
   Calendar,
   ChevronRight,
-  Check
+  Check,
+  Phone,
+  MessageCircle
 } from 'lucide-react';
 import Loader from '../components/common/Loader';
 import Button from '../components/common/Button';
@@ -354,14 +356,23 @@ export const PackageDetails = () => {
             </Button>
 
             <a
-              href="tel:9876543210"
+              href={`https://wa.me/919068888578?text=${encodeURIComponent(`Hi Vista Tour and Travels, I am interested in inquiring about "${pkg.title}" (${pkg.duration}). Please share customized quote and vehicle availability.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+            >
+              <MessageCircle className="w-4 h-4" /> Instant Quote on WhatsApp
+            </a>
+
+            <a
+              href="tel:9068888578"
               className="w-full py-2.5 rounded-xl border border-slate-200 hover:border-brand-300 text-navy-900 text-xs font-bold transition-all flex items-center justify-center gap-2"
             >
-              <Phone className="w-3.5 h-3.5 text-brand-600" /> Direct Call: +91 98765 43210
+              <Phone className="w-3.5 h-3.5 text-brand-600" /> Direct Call: +91 90688 88578
             </a>
 
             <p className="text-[11px] text-slate-400 text-center">
-              ⭐ 5.0 Rated Operator in Mohali, Punjab & Himachal • No Hidden Charges
+              ⭐ 5.0 Rated Operator in Ladwa, Kurukshetra, Haryana & Himachal • No Hidden Charges
             </p>
           </div>
         </div>

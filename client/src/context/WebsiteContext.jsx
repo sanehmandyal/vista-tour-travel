@@ -6,24 +6,24 @@ const SETTINGS_KEY = 'vtt_website_settings';
 export const defaultSettings = {
   companyName: 'Vista Tour and Travels',
   serviceName: 'Vista Tour and Travels',
-  tagline: '5.0 ★ Rated Tour Packages & Luxury Cabs in Mohali & Himachal',
+  tagline: '5.0 ★ Rated Tour Packages & Luxury Cabs in Ladwa, Kurukshetra & Himachal',
   heroTitle: 'Experience Seamless Journeys with Vista Tour and Travels',
-  heroSubtitle: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Mohali, Chandigarh & Himachal. Clean commercial fleet, hill-certified chauffeurs, and customized holiday packages.',
+  heroSubtitle: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana) & Himachal. Clean commercial fleet, hill-certified chauffeurs, and customized holiday packages.',
   heroImage: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
   logo: '/logo.jpg',
-  phone: '+91 98765 43210',
-  altPhone: '+91 98765 43211',
+  phone: '+91 90688 88578',
+  altPhone: '+91 90688 88578',
   email: 'info@vistatourtravels.com',
-  address: 'Sector 73, Mohali, Punjab 160055, India',
-  areasServed: 'Mohali (Sector 73/119), Chandigarh Tricity, Airport Transfers, Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, Shimla, Kurukshetra & All Himachal',
+  address: 'Nawarsi Bazar, Ladwa, Haryana 136132, India',
+  areasServed: 'Nawarsi Bazar, Ladwa, Kurukshetra, Pipli, Shahbad, Yamunanagar, Karnal, Ambala, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)',
   googleRating: 5.0,
   googleReviewCount: 50,
-  googleMapsUrl: 'https://www.google.com/maps?cid=2473238779693105097',
-  googleReviewsUrl: 'https://www.google.com/maps?cid=2473238779693105097',
+  googleMapsUrl: 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132',
+  googleReviewsUrl: 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132',
   facebook: 'https://facebook.com/vistatourtravels',
   instagram: 'https://instagram.com/vistatourtravels',
   youtube: 'https://youtube.com/@vistatourtravels',
-  whatsapp: '+919876543210',
+  whatsapp: '+919068888578',
   businessHours: '24 Hours Open (7 Days a Week)',
   experienceYears: '12+',
   happyTravelers: '10,000+',
@@ -39,12 +39,15 @@ const getInitialSettings = () => {
     const saved = localStorage.getItem(SETTINGS_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      // Cleanse any old cached Ravi/Amb data
+      // Cleanse any old cached Ravi/Amb/Mohali/old phone data
       if (
         !parsed.companyName ||
         parsed.companyName.includes('Ravi') ||
         parsed.phone === '70180 88530' ||
         parsed.phone === '098164 13603' ||
+        parsed.phone?.includes('98765') ||
+        parsed.address?.includes('Mohali') ||
+        parsed.address?.includes('Sector 73') ||
         parsed.address?.includes('Amb') ||
         parsed.address?.includes('Una') ||
         parsed.email?.includes('ravi') ||

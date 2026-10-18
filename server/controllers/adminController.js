@@ -180,7 +180,7 @@ export const getSettings = async (req, res, next) => {
       needsSave = true;
     }
     if (!settings.address || settings.address.includes('Kangra') || !settings.address.includes('Bus Stand') || !settings.address.includes('Una') || settings.address === 'Amb, Himachal Pradesh 177203, India') {
-      settings.address = 'Sector 73, Mohali, Punjab 160055, India';
+      settings.address = 'Nawarsi Bazar, Ladwa, Haryana 136132, India';
       needsSave = true;
     }
     if (!settings.areasServed || !settings.areasServed.includes('Bus Stand') || settings.areasServed.startsWith('Kangra')) {
@@ -196,7 +196,7 @@ export const getSettings = async (req, res, next) => {
       needsSave = true;
     }
     if (!settings.googleReviewsUrl || settings.googleReviewsUrl.includes('Kangra')) {
-      settings.googleReviewsUrl = 'https://www.google.com/maps?cid=2473238779693105097';
+      settings.googleReviewsUrl = 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132';
       needsSave = true;
     }
     if (settings.facebook && settings.facebook.includes('rinku')) {

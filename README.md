@@ -82,7 +82,7 @@ cp client/.env.example client/.env
 Key configuration:
 - `VITE_API_URL=http://localhost:5000/api`
 - `VITE_APP_TITLE="Vista Tour and Travels"`
-- `VITE_APP_PHONE="+91 98765 43210"`
+- `VITE_APP_PHONE="+91 90688 88578"`
 - `VITE_APP_EMAIL="info@vistatourtravels.com"`
 
 ---

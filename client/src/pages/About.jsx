@@ -47,7 +47,7 @@ export const About = () => {
             </h2>
             <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
               <p>
-                Headquartered in Sector 73, Mohali, Punjab (160055), <strong>Vista Tour and Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Mohali, Chandigarh Tricity, Himachal, and North India.
+                Headquartered in Nawarsi Bazar, Ladwa, Haryana (160055), <strong>Vista Tour and Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Mohali, Chandigarh Tricity, Himachal, and North India.
               </p>
               <p>
                 Backed by 50+ verified 5.0★ Google reviews, we serve travelers across Mohali (Sector 73 / 119), Chandigarh International Airport, Panchkula, Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, and Shimla.

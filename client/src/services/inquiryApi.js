@@ -70,7 +70,7 @@ export const inquiryApi = {
     const updated = [newInquiry, ...list];
     saveLocalInquiries(updated);
 
-    const adminPhone = '9876543210';
+    const adminPhone = '9068888578';
     const whatsappMsg = `🔔 *NEW TRAVEL INQUIRY*\n` +
       `👤 *Name:* ${data.name || 'Traveler'}\n` +
       `📞 *Phone:* ${data.phone || 'Not provided'}\n` +
@@ -88,9 +88,9 @@ export const inquiryApi = {
     }
     return {
       success: true,
-      message: 'Inquiry submitted successfully! Admin (+91 98765 43210) linked for notification.',
+      message: 'Inquiry submitted successfully! Admin (+91 90688 88578) linked for notification.',
       data: newInquiry,
-      adminPhone: '+91 98765 43210',
+      adminPhone: '+91 90688 88578',
       whatsappUrl
     };
   },
