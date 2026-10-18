@@ -243,11 +243,20 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'destinations' && (
-                <div className="absolute left-0 mt-2.5 w-84 glass-dropdown rounded-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-2.5 py-1">
-                    Haryana, Delhi NCR & Chandigarh
+                <div className="absolute left-0 mt-2.5 w-[620px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                  <div className="flex items-center justify-between px-2.5 pb-2 mb-2 border-b border-slate-100/90">
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-brand-600" />
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+                        Haryana, Delhi NCR & Chandigarh Destinations
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full border border-brand-200/60">
+                      8 Major Hubs
+                    </span>
                   </div>
-                  <div className="space-y-1">
+
+                  <div className="grid grid-cols-2 gap-2">
                     {destinationDropdownItems.map((item) => {
                       const Icon = item.icon;
                       return (
@@ -255,27 +264,29 @@ export const Navbar = () => {
                           key={item.name}
                           to={item.path}
                           onClick={() => setOpenDropdown(null)}
-                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
+                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
                         >
-                          <div className="w-8 h-8 rounded-xl bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                          <div className="w-8 h-8 rounded-lg bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
                             <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
                           </div>
-                          <div>
-                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700">{item.name}</p>
-                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5">{item.desc}</p>
+                          <div className="min-w-0">
+                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700 truncate">{item.name}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5 line-clamp-1">{item.desc}</p>
                           </div>
                         </Link>
                       );
                     })}
                   </div>
-                  <div className="mt-2 pt-2 border-t border-slate-100 px-2">
+
+                  <div className="mt-2.5 pt-2 border-t border-slate-100/90 px-3 flex items-center justify-between bg-slate-50/60 -mx-3.5 -mb-3.5 p-2.5 rounded-b-2xl">
+                    <span className="text-[11px] text-slate-500 font-medium">All tours include sanitized AC cabs with verified local drivers</span>
                     <Link
                       to="/destinations"
                       onClick={() => setOpenDropdown(null)}
-                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center justify-between py-1"
+                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group shrink-0"
                     >
-                      <span>Explore All 8 Destinations</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>Explore All Destinations</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -301,11 +312,20 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'packages' && (
-                <div className="absolute left-0 mt-2.5 w-84 glass-dropdown rounded-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-2.5 py-1">
-                    Curated Holiday Itineraries
+                <div className="absolute -left-28 mt-2.5 w-[640px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                  <div className="flex items-center justify-between px-2.5 pb-2 mb-2 border-b border-slate-100/90">
+                    <div className="flex items-center gap-1.5">
+                      <PackageIcon className="w-3.5 h-3.5 text-brand-600" />
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+                        Curated Holiday & Spiritual Itineraries
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
+                      Custom Quotes
+                    </span>
                   </div>
-                  <div className="space-y-1">
+
+                  <div className="grid grid-cols-2 gap-2">
                     {packagesDropdownItems.map((item) => {
                       const Icon = item.icon;
                       return (
@@ -313,27 +333,29 @@ export const Navbar = () => {
                           key={item.name}
                           to={item.path}
                           onClick={() => setOpenDropdown(null)}
-                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
+                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
                         >
-                          <div className="w-8 h-8 rounded-xl bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                          <div className="w-8 h-8 rounded-lg bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
                             <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
                           </div>
-                          <div>
-                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700">{item.name}</p>
-                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5">{item.desc}</p>
+                          <div className="min-w-0">
+                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700 truncate">{item.name}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5 line-clamp-1">{item.desc}</p>
                           </div>
                         </Link>
                       );
                     })}
                   </div>
-                  <div className="mt-2 pt-2 border-t border-slate-100 px-2">
+
+                  <div className="mt-2.5 pt-2 border-t border-slate-100/90 px-3 flex items-center justify-between bg-slate-50/60 -mx-3.5 -mb-3.5 p-2.5 rounded-b-2xl">
+                    <span className="text-[11px] text-slate-500 font-medium">Customizable group & family packages from Ladwa & Kurukshetra</span>
                     <Link
                       to="/packages"
                       onClick={() => setOpenDropdown(null)}
-                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center justify-between py-1"
+                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group shrink-0"
                     >
-                      <span>View All Tour Packages & Quotes</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>View All Tour Packages</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -359,11 +381,20 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'services' && (
-                <div className="absolute left-0 mt-2.5 w-84 glass-dropdown rounded-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-2.5 py-1">
-                    24/7 Chauffeur Cabs & Fleet
+                <div className="absolute -left-44 mt-2.5 w-[580px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                  <div className="flex items-center justify-between px-2.5 pb-2 mb-2 border-b border-slate-100/90">
+                    <div className="flex items-center gap-1.5">
+                      <Car className="w-3.5 h-3.5 text-brand-600" />
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+                        24/7 Chauffeur Cabs & Verified Fleet
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/60">
+                      Instant Booking
+                    </span>
                   </div>
-                  <div className="space-y-1">
+
+                  <div className="grid grid-cols-2 gap-2">
                     {servicesDropdownItems.map((item) => {
                       const Icon = item.icon;
                       return (
@@ -371,35 +402,36 @@ export const Navbar = () => {
                           key={item.name}
                           to={item.path}
                           onClick={() => setOpenDropdown(null)}
-                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
+                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
                         >
-                          <div className="w-8 h-8 rounded-xl bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                          <div className="w-8 h-8 rounded-lg bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
                             <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
                           </div>
-                          <div>
-                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700">{item.name}</p>
-                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5">{item.desc}</p>
+                          <div className="min-w-0">
+                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700 truncate">{item.name}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5 line-clamp-1">{item.desc}</p>
                           </div>
                         </Link>
                       );
                     })}
                   </div>
-                  <div className="mt-2 pt-2 border-t border-slate-100 px-2 flex justify-between">
+
+                  <div className="mt-2.5 pt-2 border-t border-slate-100/90 px-3 flex items-center justify-between bg-slate-50/60 -mx-3.5 -mb-3.5 p-2.5 rounded-b-2xl">
                     <Link
                       to="/cars"
                       onClick={() => setOpenDropdown(null)}
-                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 py-1"
+                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group py-0.5"
                     >
-                      <span>View Cab Fleet</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>View Cab Fleet (Innova, Ertiga, Dzire)</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                     <Link
                       to="/services"
                       onClick={() => setOpenDropdown(null)}
-                      className="text-xs font-bold text-slate-600 hover:text-brand-700 flex items-center gap-1 py-1"
+                      className="text-xs font-bold text-slate-600 hover:text-brand-700 flex items-center gap-1 group py-0.5"
                     >
-                      <span>Taxi Rates</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>Taxi Rates & Services</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </div>
