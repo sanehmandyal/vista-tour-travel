@@ -34,9 +34,13 @@ const websiteSettingSchema = new mongoose.Schema(
       type: String,
       default: '+91 90688 88578'
     },
+    secondaryPhone: {
+      type: String,
+      default: '+91 99965 70920'
+    },
     altPhone: {
       type: String,
-      default: '+91 90688 88578'
+      default: '+91 99965 70920'
     },
     email: {
       type: String,
@@ -48,7 +52,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     areasServed: {
       type: String,
-      default: 'Nawarsi Bazar, Ladwa, Kurukshetra, Haryana, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)'
+      default: 'Nawarsi Bazar, Ladwa, Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh'
     },
     googleRating: {
       type: Number,

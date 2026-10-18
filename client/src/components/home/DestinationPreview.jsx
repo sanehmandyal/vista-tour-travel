@@ -47,7 +47,7 @@ export const DestinationPreview = () => {
               Popular Destinations
             </h2>
             <p className="text-slate-500 mt-2 text-base max-w-xl">
-              From snow-kissed Himalayan passes to serene pine woods, explore our most sought-after Himachal vacation spots.
+              Explore sacred spiritual heritage, historic battlefields, wildlife sanctuaries, and bustling commercial hubs across Kurukshetra, Ambala, Delhi, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh.
             </p>
           </div>
           <Link

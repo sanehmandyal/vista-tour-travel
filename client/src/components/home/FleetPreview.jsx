@@ -27,9 +27,9 @@ const fallbackFleet = [
       'Dual Front & Rear Chill AC',
       'Plush Reclining Captain Seats',
       'Generous Legroom for Long Journeys',
-      'Certified Mountain-Expert Chauffeur'
+      'Verified Highway-Expert Chauffeur'
     ],
-    description: 'The undisputed monarch of hill road trips. Outstanding suspension and power for Manali, Spiti, Dharamshala, and Shimla circuits.',
+    description: 'The undisputed monarch of road trips. Outstanding suspension, comfort, and reliability for Kurukshetra, Ambala, Delhi NCR, and Chandigarh routes.',
     isAvailable: true
   },
   {
@@ -46,7 +46,7 @@ const fallbackFleet = [
       'First Class Ottoman Lounge Seating',
       'Phone Fast Charging & High-End Audio'
     ],
-    description: 'Next-generation luxury for VIP tours, executive delegates, and family holidays requiring supreme road refinement.',
+    description: 'Next-generation luxury for VIP tours, executive delegates, and family journeys requiring supreme highway refinement across Haryana & Delhi NCR.',
     isAvailable: true
   },
   {
@@ -60,10 +60,10 @@ const fallbackFleet = [
     features: [
       'Roof Mounted AC Blower Vents',
       'Modular 3-Row Foldable Seating',
-      'Smooth Hill Highway Ride',
+      'Smooth Highway & City Ride',
       'USB Ports in All Rows'
     ],
-    description: 'The preferred family choice offering unbeatable value, high mileage, and spacious legroom for Kangra Valley and temple yatras.',
+    description: 'The preferred family choice offering unbeatable value, high mileage, and spacious seating for Kurukshetra, Kaithal, and Karnal trips.',
     isAvailable: true
   },
   {
@@ -80,41 +80,41 @@ const fallbackFleet = [
       'Bluetooth Music System',
       'Ideal for Couples & Small Families'
     ],
-    description: 'Comfortable, compact sedan for quick airport transfers from Gaggal, Amritsar, Pathankot, and local Dharamshala day tours.',
+    description: 'Comfortable, compact sedan for 24/7 Delhi IGI & Chandigarh airport transfers, local Ladwa trips, and fast outstation travel.',
     isAvailable: true
   },
   {
     _id: 'car-scorpio',
-    name: 'Mahindra Scorpio-N (4x4 Snow King)',
-    category: '4x4 Off-Road',
+    name: 'Mahindra Scorpio-N (Tough Highway SUV)',
+    category: 'SUV',
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '3 Large Bags + Heavy Roof Carrier',
     fuelType: 'Diesel',
     image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
     features: [
-      'Electronic 4x4 Shift-on-Fly Terrain Modes',
-      'High Ground Clearance (200mm)',
-      'Snow-Chains & High Torque Power',
-      'Pothole & Rough Terrain Armor'
+      'High Ground Clearance & Sturdy Build',
+      'Electronic Terrain Modes & High Torque Engine',
+      'Commanding Seating & Safety',
+      'Pothole & Rough Highway Armor'
     ],
-    description: 'Built for extreme Himalayas. The #1 recommendation for Atal Tunnel snow conditions, Spiti Valley crossing, and Jalori Pass.',
+    description: 'Powerful and commanding SUV for all-weather cruising across Haryana, GT Road (NH 44), and regional excursions.',
     isAvailable: true
   },
   {
     _id: 'car-alto',
-    name: 'Maruti Suzuki Alto K10 (Budget Hill Climber)',
+    name: 'Maruti Suzuki Alto K10 (Budget City Cab)',
     category: 'Hatchback',
     seatingCapacity: '3 + 1 Chauffeur',
     luggageCapacity: '2 Medium Bags',
     fuelType: 'Petrol',
     image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
     features: [
-      'Nimble Steering for Narrow Hill Bends',
-      'Punchy Engine on Steep Mountain Climbs',
-      'Chilling AC & Heater for High Altitudes',
+      'Nimble Handling for City Traffic & Local Markets',
+      'Efficient Engine for Cost-Effective Travel',
+      'Chilling AC & Comfortable Seating',
       'Most Economical Per-KM Fare'
     ],
-    description: 'Pocket-friendly solution for solo backpackers, couples, and fast point-to-point transfers through winding hillside streets.',
+    description: 'Pocket-friendly cab for solo travelers, couples, and fast point-to-point journeys across Ladwa, Kurukshetra, and nearby districts.',
     isAvailable: true
   },
   {
@@ -131,7 +131,7 @@ const fallbackFleet = [
       'Sealed Dust-Free Cabin with Triple AC',
       'Panoramic View Tinted Windows'
     ],
-    description: 'The gold standard of luxury group travel in Himachal. Unmatched ride smoothness, quietness, and high-roof cabin space.',
+    description: 'The gold standard of luxury group travel in Haryana and Delhi NCR. Unmatched ride smoothness, quietness, and high-roof cabin space.',
     isAvailable: true
   },
   {
@@ -146,9 +146,9 @@ const fallbackFleet = [
       'Wide 2x1 Reclining Luxury Seats',
       'Dual High-Capacity AC Units',
       'High-Roof Stand-up Cabin Height',
-      'Senior Mountain Chauffeur'
+      'Senior Verified Chauffeur'
     ],
-    description: 'Maximum capacity with supreme comfort for large pilgrim groups, family get-togethers, and multi-day Himachal temple yatras.',
+    description: 'Maximum capacity with supreme comfort for large pilgrim groups visiting Kurukshetra Jyotisar, family functions, and weddings.',
     isAvailable: true
   }
 ];
@@ -195,7 +195,7 @@ export const FleetPreview = () => {
 
   const getWhatsAppBookingLink = (carName) => {
     const text = encodeURIComponent(
-      `Hello Vista Tour and Travels! I would like to check availability and get a quote for booking the ${carName} for my Himachal trip.`
+      `Hello Vista Tour and Travels! I would like to check availability and get a quote for booking the ${carName} for my journey.`
     );
     return `https://wa.me/919068888578?text=${text}`;
   };
@@ -217,7 +217,7 @@ export const FleetPreview = () => {
               Our Cabs & Vehicle Fleet
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-2xl font-medium">
-              Travel comfortably across Dharamshala, Manali, Shimla, Spiti, and all Himachal hills with verified cabs and certified local mountain drivers.
+              Travel comfortably across Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal, and Chandigarh with verified cabs and professional chauffeurs.
             </p>
           </div>
 
@@ -329,7 +329,7 @@ export const FleetPreview = () => {
                   {/* Pricing Badge (Transparent / Zero Numeric Price) */}
                   <div className="pt-1">
                     <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-700 text-[11px] font-bold">
-                      <Sparkles className="w-3 h-3" /> Best Hill Rates Guaranteed
+                      <Sparkles className="w-3 h-3" /> Best Rates & Transparent Billing Guaranteed
                     </div>
                   </div>
 
@@ -367,7 +367,7 @@ export const FleetPreview = () => {
             </div>
             <div>
               <h4 className="font-extrabold text-sm sm:text-base">Govt. Authorized Commercial Fleet</h4>
-              <p className="text-xs text-slate-300">All permits, commercial mountain fitness licenses, and hill-certified chauffeurs included.</p>
+              <p className="text-xs text-slate-300">All commercial permits, full insurance coverage, and verified professional chauffeurs included.</p>
             </div>
           </div>
           <div className="flex items-center gap-3 shrink-0">

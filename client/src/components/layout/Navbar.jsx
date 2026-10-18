@@ -90,27 +90,30 @@ export const Navbar = () => {
 
   // Dropdown data definitions
   const destinationDropdownItems = [
-    { name: 'Manali & Solang Valley', desc: 'Snow peaks, Rohtang pass & adventure sports', path: '/destinations', icon: Mountain },
-    { name: 'Shimla & Kufri', desc: 'Colonial heritage, Mall Road & ridge views', path: '/destinations', icon: Compass },
-    { name: 'Dharamshala & McLeodGanj', desc: 'Tibetan culture, monasteries & Triund trek', path: '/destinations', icon: MapPin },
-    { name: 'Dalhousie & Khajjiar', desc: 'Mini Switzerland of India & deodar forests', path: '/destinations', icon: Sparkles },
-    { name: 'Kurukshetra & Brahma Sarovar', desc: 'Historic spiritual land of Gita & holy sarovars', path: '/destinations', icon: Star },
-    { name: 'Spiti Valley & Kinnaur', desc: 'High-altitude cold desert & ancient gompas', path: '/destinations', icon: Mountain }
+    { name: 'Kurukshetra', desc: 'Brahma Sarovar, Jyotisar & Mahabharata heritage', path: '/destinations', icon: Star },
+    { name: 'Ambala', desc: 'Historic Gurdwaras & Asia’s largest cloth market', path: '/destinations', icon: Compass },
+    { name: 'Delhi & NCR', desc: 'Monuments, shopping & 24/7 IGI Airport cab drops', path: '/destinations', icon: Plane },
+    { name: 'Karnal', desc: 'Karna Lake, heritage tower & Kalpana Chawla planetarium', path: '/destinations', icon: MapPin },
+    { name: 'Panipat', desc: 'Historic battles, Kala Amb & weaver textile hub', path: '/destinations', icon: Sparkles },
+    { name: 'Yamunanagar', desc: 'Kalesar National Park & Hathni Kund Barrage', path: '/destinations', icon: Mountain },
+    { name: 'Kaithal', desc: 'Hanuman birthplace, Anjani Tirth & historic forts', path: '/destinations', icon: Heart },
+    { name: 'Chandigarh', desc: 'Rock Garden, Sukhna Lake & Elante luxury shopping', path: '/destinations', icon: Compass }
   ];
 
   const packagesDropdownItems = [
-    { name: 'Himachal Holiday Specials', desc: 'Best-selling 3N to 6N hill tour packages', path: '/packages', icon: PackageIcon },
-    { name: 'Honeymoon Tour Packages', desc: 'Romantic hill stays, luxury cabs & candlelight setups', path: '/packages', icon: Heart },
-    { name: 'Family & Group Tours', desc: 'Comfortable family tempo traveller & SUV tours', path: '/packages', icon: Users },
-    { name: 'Spiritual Yatra Tours', desc: 'Kurukshetra, Golden Temple & Himachal Devi Darshan', path: '/packages', icon: Star },
-    { name: 'Weekend Getaways', desc: 'Quick 2-day escapes from Haryana, Delhi & Chandigarh', path: '/packages', icon: Clock }
+    { name: 'Kurukshetra Mahabharata Spiritual Tour', desc: 'Brahma Sarovar, Jyotisar & museum day tour', path: '/packages', icon: Star },
+    { name: 'Haryana Golden Belt (Kurukshetra-Karnal-Panipat)', desc: '2D/1N historic battles & lake getaway', path: '/packages', icon: PackageIcon },
+    { name: 'Chandigarh City & Sukhna Lake Tour', desc: '2D/1N weekend getaway with luxury cab', path: '/packages', icon: Sparkles },
+    { name: 'Yamunanagar & Kalesar Wildlife Safari', desc: 'Nature, wildlife & Hathni Kund riverfront tour', path: '/packages', icon: Clock },
+    { name: 'Delhi NCR Heritage & Shopping Tour', desc: 'Full-day door-to-door capital city excursion', path: '/packages', icon: Plane },
+    { name: 'Haryana Shaktipeeth & Pehowa Darshan', desc: 'Divine 2D/1N family temple yatra', path: '/packages', icon: Users }
   ];
 
   const servicesDropdownItems = [
-    { name: 'Outstation Cabs from Ladwa / Haryana', desc: 'Round-trip and one-way drops to Delhi, Chandigarh & hills', path: '/services', icon: Car },
-    { name: 'Delhi IGI & Chandigarh Airport Taxi', desc: 'Timely 24/7 flight pickups with verified chauffeurs', path: '/services', icon: Plane },
+    { name: 'Outstation Cabs from Ladwa & Kurukshetra', desc: 'Doorstep pickup to Delhi, Chandigarh, Karnal & Ambala', path: '/services', icon: Car },
+    { name: 'Delhi IGI & Chandigarh Airport Taxi', desc: 'Guaranteed 24/7 timely flight pickups with verified chauffeurs', path: '/services', icon: Plane },
     { name: 'Luxury Vehicle Fleet', desc: 'Innova Crysta, Ertiga, Dzire & Tempo Travellers', path: '/cars', icon: Sparkles },
-    { name: 'Local & Corporate Cab Rentals', desc: 'Flexible hourly & day packages with clean AC cars', path: '/services', icon: Clock }
+    { name: 'Local & Wedding Cab Rentals', desc: 'Flexible hourly & day packages for events and business', path: '/services', icon: Clock }
   ];
 
   const cleanPhone = (settings.phone || '9068888578').replace(/[^0-9]/g, '');
@@ -242,7 +245,7 @@ export const Navbar = () => {
               {openDropdown === 'destinations' && (
                 <div className="absolute left-0 mt-2.5 w-84 glass-dropdown rounded-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-2.5 py-1">
-                    Popular Himachal & North India
+                    Haryana, Delhi NCR & Chandigarh
                   </div>
                   <div className="space-y-1">
                     {destinationDropdownItems.map((item) => {
@@ -271,7 +274,7 @@ export const Navbar = () => {
                       onClick={() => setOpenDropdown(null)}
                       className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center justify-between py-1"
                     >
-                      <span>Explore All 12 Destinations</span>
+                      <span>Explore All 8 Destinations</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -589,7 +592,7 @@ export const Navbar = () => {
                       onClick={() => setMobileMenuOpen(false)}
                       className="block px-3 py-2 text-xs font-bold text-brand-600 border-t border-slate-100"
                     >
-                      View All 12 Destinations →
+                      View All 8 Destinations →
                     </Link>
                   </div>
                 )}

@@ -6,16 +6,17 @@ const SETTINGS_KEY = 'vtt_website_settings';
 export const defaultSettings = {
   companyName: 'Vista Tour and Travels',
   serviceName: 'Vista Tour and Travels',
-  tagline: '5.0 ★ Rated Tour Packages & Luxury Cabs in Ladwa, Kurukshetra & Himachal',
+  tagline: '5.0 ★ Rated Tour Packages & Luxury Cabs in Ladwa, Kurukshetra & Haryana',
   heroTitle: 'Experience Seamless Journeys with Vista Tour and Travels',
-  heroSubtitle: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana) & Himachal. Clean commercial fleet, hill-certified chauffeurs, and customized holiday packages.',
+  heroSubtitle: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Clean commercial fleet, polite chauffeurs, and customized tour packages for Kurukshetra, Ambala, Delhi, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh.',
   heroImage: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
   logo: '/logo.jpg',
   phone: '+91 90688 88578',
-  altPhone: '+91 90688 88578',
+  secondaryPhone: '+91 99965 70920',
+  altPhone: '+91 99965 70920',
   email: 'info@vistatourtravels.com',
   address: 'Nawarsi Bazar, Ladwa, Haryana 136132, India',
-  areasServed: 'Nawarsi Bazar, Ladwa, Kurukshetra, Pipli, Shahbad, Yamunanagar, Karnal, Ambala, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)',
+  areasServed: 'Nawarsi Bazar, Ladwa, Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh',
   googleRating: 5.0,
   googleReviewCount: 50,
   googleMapsUrl: 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132',
@@ -27,7 +28,7 @@ export const defaultSettings = {
   businessHours: '24 Hours Open (7 Days a Week)',
   experienceYears: '12+',
   happyTravelers: '10,000+',
-  destinationCount: '50+',
+  destinationCount: '8 Premier Destinations',
   supportHours: '24/7'
 };
 

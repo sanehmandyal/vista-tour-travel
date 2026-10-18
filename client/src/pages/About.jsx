@@ -12,9 +12,9 @@ export const About = () => {
   const navigate = useNavigate();
 
   const milestones = [
-    { year: '2014', title: 'Foundation', desc: 'Started with 2 private cabs providing Shimla & Manali weekend tours.' },
-    { year: '2017', title: 'Pan-India Expansion', desc: 'Launched full tour operations in Kashmir, Goa, Rajasthan, and Kerala.' },
-    { year: '2021', title: '5000+ Travelers Milestone', desc: 'Recognized as leading Himachal & North India holiday specialists.' },
+    { year: '2014', title: 'Foundation', desc: 'Started with 2 private cabs providing Kurukshetra, Ambala & Delhi NCR outstation tours.' },
+    { year: '2017', title: 'Regional Expansion', desc: 'Expanded fleet across Haryana, Chandigarh Tricity, and Delhi NCR.' },
+    { year: '2021', title: '5000+ Travelers Milestone', desc: 'Recognized as leading Haryana, GT Road & NCR travel specialists.' },
     { year: '2026', title: 'Modern SaaS Travel Platform', desc: '100% digital booking, 24/7 live concierge, and verified stays.' }
   ];
 
@@ -30,7 +30,7 @@ export const About = () => {
             About Vista Tour and Travels
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Leading luxury cab service and tour operator based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana), serving Chandigarh Tricity, Delhi NCR, and Himachal Pradesh. Trusted for punctual cab pickups, verified mountain chauffeurs, and customized holiday packages.
+            Leading luxury cab service and tour operator based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana), serving Kurukshetra, Ambala, Karnal, Panipat, Yamunanagar, Kaithal, Chandigarh, and Delhi NCR. Trusted for punctual cab pickups, verified professional chauffeurs, and customized holiday packages.
           </p>
         </div>
       </div>
@@ -47,13 +47,13 @@ export const About = () => {
             </h2>
             <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
               <p>
-                Headquartered in Nawarsi Bazar, Ladwa, Haryana (136132), <strong>Vista Tour and Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Ladwa, Kurukshetra, Haryana, Chandigarh Tricity, Himachal, and North India.
+                Headquartered in Nawarsi Bazar, Ladwa, Haryana (136132), <strong>Vista Tour and Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Ladwa, Kurukshetra, Haryana, Chandigarh, and Delhi NCR.
               </p>
               <p>
-                Backed by 50+ verified 5.0★ Google reviews, we serve travelers across Ladwa, Kurukshetra, Delhi NCR, Chandigarh International Airport, Ambala, Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, and Shimla.
+                Backed by 50+ verified 5.0★ Google reviews, we serve travelers across Kurukshetra, Ambala, Delhi NCR, Chandigarh International Airport, Karnal, Panipat, Yamunanagar, and Kaithal.
               </p>
               <p>
-                Our fleet of modern, sanitized Innova Crysta, Ertiga, Dzire sedans, and Tempo Travellers are manned by polite, police-verified mountain chauffeurs who know every curve, scenic viewpoint, and local gem.
+                Our fleet of modern, sanitized Innova Crysta, Ertiga, Dzire sedans, and Tempo Travellers are manned by polite, police-verified commercial chauffeurs who know every highway route, express corridor, and local landmark.
               </p>
             </div>
           </div>

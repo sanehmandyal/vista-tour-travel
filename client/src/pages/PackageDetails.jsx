@@ -281,7 +281,7 @@ export const PackageDetails = () => {
                 <div>
                   <h4 className="text-sm font-bold text-navy-900">Accommodations</h4>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    {pkg.hotels || 'Hand-picked 3 & 4-Star verified hotels with mountain views and daily breakfast.'}
+                    {pkg.hotels || 'Hand-picked 3 & 4-Star verified hotels with scenic views and daily breakfast.'}
                   </p>
                 </div>
               </div>
@@ -293,7 +293,7 @@ export const PackageDetails = () => {
                 <div>
                   <h4 className="text-sm font-bold text-navy-900">Private Transportation</h4>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    {pkg.transport || 'Dedicated sanitized AC vehicle with polite, experienced hill driver.'}
+                    {pkg.transport || 'Dedicated sanitized AC vehicle with polite, experienced commercial chauffeur.'}
                   </p>
                 </div>
               </div>
@@ -309,7 +309,7 @@ export const PackageDetails = () => {
               {pkg.cancellationPolicy || 'Free cancellation up to 7 days before departure. 50% refund between 7 to 3 days. Non-refundable within 72 hours.'}
             </p>
             <p className="text-xs text-slate-500 leading-relaxed bg-amber-50 p-3 rounded-xl border border-amber-200">
-              {pkg.importantInformation || 'Please carry valid government-issued photo ID (Aadhaar/Passport). Warm jacket is advised for evening hill temperatures.'}
+              {pkg.importantInformation || 'Please carry valid government-issued photo ID (Aadhaar/Passport). All highway tolls, parking, and driver allowances included in quotes.'}
             </p>
           </div>
         </div>
@@ -334,7 +334,7 @@ export const PackageDetails = () => {
               </div>
               <div className="flex justify-between py-1">
                 <span className="text-slate-400">Destination:</span>
-                <span className="font-bold text-navy-900">{pkg.destinationName || 'Himachal'}</span>
+                <span className="font-bold text-navy-900">{pkg.destinationName || 'Haryana & NCR'}</span>
               </div>
               <div className="flex justify-between py-1">
                 <span className="text-slate-400">Category:</span>
@@ -372,7 +372,7 @@ export const PackageDetails = () => {
             </a>
 
             <p className="text-[11px] text-slate-400 text-center">
-              ⭐ 5.0 Rated Operator in Ladwa, Kurukshetra, Haryana & Himachal • No Hidden Charges
+              ⭐ 5.0 Rated Operator in Ladwa, Kurukshetra, Haryana, Delhi NCR & Chandigarh • No Hidden Charges
             </p>
           </div>
         </div>

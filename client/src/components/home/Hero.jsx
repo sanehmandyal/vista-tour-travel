@@ -94,7 +94,7 @@ export const Hero = () => {
             <span>5.0 ★ Google Rated • 50+ Verified Traveler Reviews</span>
           </a>
           <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-300/40 text-emerald-300 text-xs font-semibold backdrop-blur-xl">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Ladwa, Kurukshetra & Himachal Specialists
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Ladwa, Kurukshetra, Haryana & NCR Specialists
           </span>
         </div>
 
@@ -105,7 +105,7 @@ export const Hero = () => {
 
         {/* Subtitle */}
         <p className="text-sm sm:text-base lg:text-lg text-slate-200/90 max-w-2xl leading-relaxed mb-8 font-normal">
-          {settings.heroSubtitle || 'Himachal’s top-rated luxury cab service and travel provider. Clean commercial cabs, certified local hill chauffeurs, and transparent quotes.'}
+          {settings.heroSubtitle || 'Haryana’s top-rated luxury cab service and travel provider. Clean commercial cabs, verified professional chauffeurs, and transparent all-inclusive quotes.'}
         </p>
 
         {/* Action Buttons: Phone, WhatsApp, Destinations */}
@@ -118,7 +118,7 @@ export const Hero = () => {
           </a>
 
           <a
-            href={`https://wa.me/${(settings.whatsapp || '919068888578').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about Himachal cabs and custom tour itineraries.`)}`}
+            href={`https://wa.me/${(settings.whatsapp || '919068888578').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about cab booking and custom Haryana/Delhi/Chandigarh tour itineraries.`)}`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3.5 rounded-xl text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"
@@ -154,7 +154,7 @@ export const Hero = () => {
               </span>
             </div>
             <span className="hidden sm:inline-block text-xs text-slate-500 font-semibold">
-              🚖 24/7 Doorstep Pickup Across Ladwa, Kurukshetra, Haryana & Himachal
+              🚖 24/7 Doorstep Pickup Across Ladwa, Kurukshetra, Ambala, Delhi NCR & Chandigarh
             </span>
           </div>
 
@@ -182,7 +182,7 @@ export const Hero = () => {
                 type="text"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                placeholder="Dharamshala, Manali, Shimla..."
+                placeholder="Delhi, Chandigarh, Ambala, Karnal..."
                 className="w-full h-11 text-sm font-medium text-navy-900 placeholder:text-slate-400 glass-input rounded-xl px-3 py-2 transition-colors"
               />
             </div>
@@ -251,15 +251,15 @@ export const Hero = () => {
           <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs text-slate-600 font-medium">
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Hill-Certified Commercial Chauffeurs</span>
+              <span>Verified Professional Commercial Chauffeurs</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-brand-600" />
-              <span>Clean Sanitized Cabs • AC & Hill Heater</span>
+              <span>Clean Sanitized Cabs • Climate Controlled AC</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-              <span>Zero Hidden Charges • Transparent Hill Billing</span>
+              <span>Zero Hidden Charges • Transparent All-Inclusive Billing</span>
             </div>
             <button
               type="button"

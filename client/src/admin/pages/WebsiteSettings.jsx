@@ -21,7 +21,8 @@ export const WebsiteSettings = () => {
     heroImage: settings.heroImage || defaultSettings.heroImage,
     logo: settings.logo || defaultSettings.logo,
     phone: settings.phone || defaultSettings.phone,
-    altPhone: settings.altPhone || defaultSettings.altPhone,
+    secondaryPhone: settings.secondaryPhone || defaultSettings.secondaryPhone || '+91 99965 70920',
+    altPhone: settings.altPhone || settings.secondaryPhone || defaultSettings.altPhone || '+91 99965 70920',
     email: (settings.email && !settings.email.includes('ravi') && !settings.email.includes('rinku')) ? settings.email : defaultSettings.email,
     address: settings.address || defaultSettings.address,
     serviceName: settings.serviceName || defaultSettings.serviceName,
@@ -228,24 +229,40 @@ export const WebsiteSettings = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Primary Phone</label>
+              <label className="text-xs font-bold text-slate-700 block mb-1">Primary Phone (Navbar, WhatsApp & Hotline)</label>
               <input
                 type="text"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
+                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-bold"
               />
+              <span className="text-[10px] text-amber-600 font-medium">Only this number displays in Navbar & triggers WhatsApp</span>
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Alternate / WhatsApp Phone</label>
+              <label className="text-xs font-bold text-slate-700 block mb-1">Secondary Helpline Phone (Footer Only)</label>
+              <input
+                type="text"
+                name="secondaryPhone"
+                value={form.secondaryPhone || form.altPhone || '+91 99965 70920'}
+                onChange={(e) => {
+                  handleChange(e);
+                  setForm(prev => ({ ...prev, altPhone: e.target.value }));
+                }}
+                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-bold text-emerald-700"
+              />
+              <span className="text-[10px] text-emerald-600 font-medium">Secondary helpline displayed exclusively in website footer</span>
+            </div>
+
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-1">WhatsApp Target Number</label>
               <input
                 type="text"
                 name="whatsapp"
                 value={form.whatsapp}
                 onChange={handleChange}
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
+                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-bold text-emerald-700"
               />
             </div>
 
@@ -290,7 +307,7 @@ export const WebsiteSettings = () => {
                 name="areasServed"
                 value={form.areasServed || ''}
                 onChange={handleChange}
-                placeholder="Mohali (Sector 73/119), Chandigarh Tricity, Airport Transfers, Kangra, Dharamshala, Manali..."
+                placeholder="Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal, Chandigarh, Ladwa..."
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
             </div>

@@ -15,7 +15,8 @@ import {
   MessageCircle,
   ShieldCheck,
   Star,
-  ExternalLink
+  ExternalLink,
+  PhoneCall
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -60,13 +61,13 @@ export const Footer = () => {
                   Vista <span className="text-brand-400">Travels</span>
                 </span>
                 <span className="text-xs text-amber-400 font-semibold block -mt-1">
-                  Himachal Tours & Luxury Cabs
+                  Haryana, Delhi NCR & Chandigarh Cabs & Tours
                 </span>
               </div>
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              <strong>Vista Tour and Travels</strong> is the top-rated 5.0★ Google verified tour agency and luxury cab service based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Offering reliable hill-tested cabs, experienced polite local chauffeurs, and customized holiday packages across Himachal and North India.
+              <strong>Vista Tour and Travels</strong> is the top-rated 5.0★ Google verified tour agency and luxury cab service based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Offering reliable commercial cabs, experienced polite chauffeurs, and customized tour packages across Kurukshetra, Ambala, Delhi, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh.
             </p>
 
             {/* Google Rating Showcase Box (Glassmorphism) */}
@@ -149,7 +150,8 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">Quick Links</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Himachal & Hill Stations</Link></li>
+              <li><Link to="/destinations" className="hover:text-white transition-colors">Haryana & Delhi NCR Tours</Link></li>
+              <li><Link to="/packages" className="hover:text-white transition-colors">Tour Packages</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Luxury Cab Fleet</Link></li>
               <li><Link to="/#reviews" className="hover:text-white transition-colors text-brand-300 font-medium">★ Traveler Reviews</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About Vista Travels</Link></li>
@@ -162,13 +164,14 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">Areas Served</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Ladwa & Kurukshetra (Haryana)</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Delhi NCR, Airport & Chandigarh</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Kangra & Dharamshala</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">McLeodGanj & Bhagsunag</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Bir Billing (Paragliding)</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Dalhousie & Khajjiar</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Manali & Shimla</Link></li>
+              <li><Link to="/destinations/kurukshetra" className="hover:text-white transition-colors">Kurukshetra (Brahma Sarovar)</Link></li>
+              <li><Link to="/destinations/ambala" className="hover:text-white transition-colors">Ambala (Cantt & Cloth Market)</Link></li>
+              <li><Link to="/destinations/delhi" className="hover:text-white transition-colors">Delhi NCR & IGI Airport</Link></li>
+              <li><Link to="/destinations/karnal" className="hover:text-white transition-colors">Karnal (Karna Lake)</Link></li>
+              <li><Link to="/destinations/panipat" className="hover:text-white transition-colors">Panipat (Historic Battlefield)</Link></li>
+              <li><Link to="/destinations/yamunanagar" className="hover:text-white transition-colors">Yamunanagar (Kalesar Safari)</Link></li>
+              <li><Link to="/destinations/kaithal" className="hover:text-white transition-colors">Kaithal (Hanuman Tirth & Fort)</Link></li>
+              <li><Link to="/destinations/chandigarh" className="hover:text-white transition-colors">Chandigarh (Rock Garden & Lake)</Link></li>
             </ul>
           </div>
 
@@ -180,11 +183,23 @@ export const Footer = () => {
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
                 <span>{settings.address || 'Nawarsi Bazar, Ladwa, Haryana 136132, India'}</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href={`tel:${settings.phone || '9068888578'}`} className="hover:text-white font-bold text-white transition-colors">
-                  {settings.phone || '+91 90688 88578'}
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
+                <div>
+                  <a href="tel:9068888578" className="hover:text-white font-bold text-white transition-colors block">
+                    +91 90688 88578
+                  </a>
+                  <span className="text-[11px] text-amber-400 font-semibold block">Primary Number & WhatsApp</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <PhoneCall className="w-4 h-4 text-emerald-400 shrink-0 mt-1" />
+                <div>
+                  <a href="tel:9996570920" className="hover:text-white font-bold text-white transition-colors block">
+                    +91 99965 70920
+                  </a>
+                  <span className="text-[11px] text-emerald-400 font-semibold block">Secondary Helpline Number</span>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-brand-400 shrink-0" />

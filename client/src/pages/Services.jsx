@@ -43,9 +43,9 @@ export const Services = () => {
         'Dual AC & Climate Control',
         'Roof Carrier for Extra Luggage',
         'Pushback Recliner Seats',
-        'Experienced Hill Chauffeur'
+        'Experienced Highway Chauffeur'
       ],
-      description: 'The premier choice for hill travel. Exceptional comfort, high safety rating, and ample luggage room for family tours across Himachal Pradesh.'
+      description: 'The premier choice for comfortable road trips. Exceptional comfort, high safety rating, and ample luggage room for family tours across Haryana, Delhi NCR, and Chandigarh.'
     },
     {
       _id: 'c2',
@@ -59,9 +59,9 @@ export const Services = () => {
         'Ottoman Recliner Captain Seats',
         'Dual Zone Chilled Climate Control',
         'Panoramic Sunroof Experience',
-        'Silent Hybrid Hill Cruise'
+        'Silent Hybrid Highway Cruise'
       ],
-      description: 'Ultra-luxurious hybrid cruiser for VIPs, executives, and luxury family holidays across Himachal Pradesh.'
+      description: 'Ultra-luxurious hybrid cruiser for VIPs, executives, and luxury family holidays across Haryana, Delhi NCR, and Chandigarh.'
     },
     {
       _id: 'c3',
@@ -74,10 +74,10 @@ export const Services = () => {
       features: [
         'Chilled AC with Rear Vents',
         'Comfortable 3-Row Seating',
-        'Smooth Mountain Suspension',
-        'Hill-Certified Driver'
+        'Smooth Highway Suspension',
+        'Verified Commercial Driver'
       ],
-      description: 'Budget-friendly yet remarkably spacious. Perfect for small families, local Kangra temple circuits, and airport pickups.'
+      description: 'Budget-friendly yet remarkably spacious. Perfect for small families, Kurukshetra & Ambala temple circuits, and airport pickups.'
     },
     {
       _id: 'c4',
@@ -88,12 +88,12 @@ export const Services = () => {
       fuelType: 'Petrol',
       image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800',
       features: [
-        'AC & Cabin Heating',
+        'Effective AC & Cabin Comfort',
         'Deep Boot Space',
         'Smooth Highway Ride',
         'Sanitized Daily'
       ],
-      description: 'Most popular and economical choice for couples, solo travelers, and city tours across Kangra, Dharamshala, and Chamunda Devi.'
+      description: 'Most popular and economical choice for couples, solo travelers, and city tours across Kurukshetra, Ambala, Karnal, and Delhi NCR.'
     },
     {
       _id: 'c5',
@@ -106,10 +106,10 @@ export const Services = () => {
       features: [
         'Extra Legroom & Shoulder Room',
         'Huge 595L Boot Space',
-        'Powerful Mountain AC',
+        'Powerful Chilling AC',
         'Chauffeur Driven'
       ],
-      description: 'Remarkably roomy sedan renowned for rugged reliability, comfort, and generous luggage room for mountain touring.'
+      description: 'Remarkably roomy sedan renowned for rugged reliability, comfort, and generous luggage room for outstation touring.'
     },
     {
       _id: 'c6',
@@ -120,44 +120,44 @@ export const Services = () => {
       fuelType: 'Petrol',
       image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
       features: [
-        'Compact & Nimble on Mountain Roads',
-        'Chilled AC & Hill Heater',
+        'Compact & Nimble in City Traffic',
+        'Chilled AC & Efficient Engine',
         'Most Economical Budget Rates',
-        'Local Kangra Driver'
+        'Verified Local Driver'
       ],
-      description: 'Agile and budget-friendly. Navigates narrow mountain lanes and temple roads with ease.'
+      description: 'Agile and budget-friendly. Navigates city traffic and busy bazaar lanes across Ladwa and Kurukshetra with ease.'
     },
     {
       _id: 'c7',
-      name: 'Mahindra Scorpio-N 4x4',
-      category: '4x4 Off-Road',
+      name: 'Mahindra Scorpio-N',
+      category: 'SUV',
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '4 Large Bags',
       fuelType: 'Diesel',
       image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
       features: [
-        '4x4 High Ground Clearance',
-        'Rugged All-Terrain Hill Tires',
-        'Roof Luggage Rack',
-        'Snow Chain Equipped'
+        'High Ground Clearance',
+        'Rugged All-Terrain Highway Tires',
+        'Spacious Seating',
+        'High Torque Engine'
       ],
-      description: 'Built tough for rough Himalayan terrains. Best suited for high-altitude expeditions to Rohtang Pass, Spiti Valley, and snow passes.'
+      description: 'Built tough for long highway cruises. Best suited for GT Road NH 44 travel, intercity trips, and family tours.'
     },
     {
       _id: 'c8',
-      name: 'Toyota Fortuner 4x4',
+      name: 'Toyota Fortuner',
       category: 'Luxury',
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '5 Large Bags',
       fuelType: 'Diesel',
       image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800',
       features: [
-        '4x4 High-Torque Mountain Engine',
+        'High-Torque Reliable Engine',
         'Plush Leather Interior',
-        'Extreme Off-Road Capability',
-        'VIP Hill Escort Service'
+        'Commanding Road Presence',
+        'VIP Escort Service'
       ],
-      description: 'The ultimate beast for luxury travel, high mountain passes, and snowy winter expeditions across Himachal.'
+      description: 'The ultimate beast for luxury travel, executive delegations, and VIP family travel across North India.'
     },
     {
       _id: 'c9',
@@ -189,7 +189,7 @@ export const Services = () => {
         'Music Surround Sound',
         'Spacious Center Walkway'
       ],
-      description: 'First-class group luxury. Ideal for joint families, corporate offsites, and wedding guest transfers across Himachal.'
+      description: 'First-class group luxury. Ideal for joint families, corporate offsites, and wedding guest transfers across Haryana and Delhi NCR.'
     },
     {
       _id: 'c11',
@@ -219,9 +219,9 @@ export const Services = () => {
         '2x2 Pushback Maharaja Seats',
         'Twin High-Powered Cooling Units',
         'LCD TV with Sound System',
-        'Senior Mountain Chauffeur'
+        'Senior Verified Chauffeur'
       ],
-      description: 'The ultimate group carrier for weddings, school excursions, and grand Himachal temple pilgrimages.'
+      description: 'The ultimate group carrier for weddings, school excursions, and grand Kurukshetra Jyotisar & regional pilgrimages.'
     }
   ];
 
@@ -237,49 +237,49 @@ export const Services = () => {
   const fallbackServices = [
     {
       title: 'Chauffeur Cab & Taxi Services',
-      desc: 'Sanitized AC sedans, SUVs, and luxury Tempo Travellers driven by experienced hill-certified chauffeurs.',
+      desc: 'Sanitized AC sedans, SUVs, and luxury Tempo Travellers driven by experienced, verified commercial chauffeurs.',
       icon: Car,
       features: ['Fixed Transparent Fares', 'Zero Cancellation Fees', 'Punctual Doorstep Pickups']
     },
     {
       title: 'Customized Tour Packages',
-      desc: 'Bespoke domestic and international holiday plans personalized to your travel pace, budget, and dates.',
+      desc: 'Bespoke regional and North India holiday plans personalized to your travel pace, budget, and dates.',
       icon: Compass,
-      features: ['100% Tailored Day-by-Day Itineraries', 'Handpicked 3/4/5-Star Hotels', 'Dedicated Tour Guide Option']
+      features: ['100% Tailored Day-by-Day Itineraries', 'Handpicked 3/4/5-Star Hotels', 'Dedicated Travel Assistance']
     },
     {
       title: 'Airport & Railway Transfers',
-      desc: 'Punctual meet-and-greet transfers for Gaggal (Kangra) Airport, Pathankot, Amritsar, and Chandigarh.',
+      desc: 'Punctual meet-and-greet transfers for Delhi IGI Airport, Chandigarh Airport, and Ambala Cantt Railway Station.',
       icon: Clock,
       features: ['Flight Tracking Technology', 'Luggage Handling Assistance', 'Zero Surge Pricing']
     },
     {
       title: 'Hotel & Resort Booking',
-      desc: 'Special negotiated rates at verified family resorts, boutique mountain chalets, and heritage palaces.',
+      desc: 'Special negotiated rates at verified family resorts, business hotels, and heritage properties.',
       icon: Hotel,
-      features: ['Verified Cleanliness & Hygiene', 'Complimentary Breakfast Inclusions', 'Prime Scenic Locations']
+      features: ['Verified Cleanliness & Hygiene', 'Complimentary Breakfast Inclusions', 'Prime Accessible Locations']
     },
     {
-      title: 'Adventure Expeditions & Paragliding',
-      desc: 'Authorized bookings for Bir Billing paragliding, Solang skiing, Beas rafting, and high-pass trekking.',
+      title: 'Eco-Tourism & Nature Excursions',
+      desc: 'Explore Kalesar National Park jungle safaris, Hathni Kund Barrage eco-walks, and Yamunanagar nature trails.',
       icon: Sliders,
-      features: ['Authorized Permit Assistance', 'Certified Safety Equipment', 'Experienced Local Guides']
+      features: ['Permit & Entry Assistance', 'Family-Friendly Itineraries', 'Experienced Local Chauffeur']
     },
     {
-      title: 'Honeymoon Special Packages',
-      desc: 'Romantic escapes in Kashmir, Manali, Goa, and Kerala featuring candlelit dinners and floral setups.',
+      title: 'Honeymoon & Romantic Getaways',
+      desc: 'Romantic escapes to Udaipur, Jaipur, Shimla, or Agra featuring luxury stays and private chauffeur cars.',
       icon: Heart,
-      features: ['Romantic Candlelit Dinners', 'Balcony Mountain Views', 'Complimentary Honeymoon Cake']
+      features: ['Romantic Candlelit Dinners', 'Luxury Hotel Upgrades', 'Complimentary Honeymoon Cake']
     },
     {
       title: 'Corporate Travel & MICE',
-      desc: 'Hassle-free corporate retreats, team offsites, conferences, and executive ground logistics.',
+      desc: 'Hassle-free corporate business travel, NCR conferences, team offsites, and executive airport transfers.',
       icon: Briefcase,
-      features: ['Dedicated Account Manager', 'GST Invoicing & Compliance', 'AV Equipment & Event Coordination']
+      features: ['Dedicated Account Manager', 'GST Invoicing & Compliance', 'Clean Commercial Fleet']
     },
     {
       title: 'Large Group & Pilgrim Tours',
-      desc: 'Luxury 12 to 26-seater Tempo Travellers for joint families, weddings, Chamunda-Jawalaji yatra, and college tours.',
+      desc: 'Luxury 12 to 26-seater Tempo Travellers for joint families, weddings, Kurukshetra 48 Kos Parikrama, and pilgrimages.',
       icon: Users2,
       features: ['Spacious Recliner Seats', 'Experienced Fleet Chauffeurs', 'Flexible Multiple Stops']
     }
@@ -365,7 +365,7 @@ export const Services = () => {
             Our Taxi Fleet & Travel Services
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Choose from our premium sanitized fleet of SUVs, Sedans, Hatchbacks, 4x4 Off-Roaders, and Tempo Travellers. Driven by police-verified, certified mountain chauffeurs across Himachal Pradesh.
+            Choose from our premium sanitized fleet of SUVs, Sedans, Hatchbacks, and Tempo Travellers. Driven by police-verified, certified commercial chauffeurs across Haryana, Delhi NCR, and Chandigarh.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
@@ -397,7 +397,7 @@ export const Services = () => {
             Our Taxi & Cab Fleet
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 mt-2">
-            Clean, sanitized, and commercial-licensed vehicles equipped for smooth hill driving and highway tours.
+            Clean, sanitized, and commercial-licensed vehicles equipped for smooth city driving, GT Road cruising, and outstation tours.
           </p>
         </div>
 
@@ -512,7 +512,7 @@ export const Services = () => {
                     <div className="pt-2 flex items-center justify-between border-t border-slate-100 text-[11px]">
                       <div className="flex items-center gap-1 font-bold text-slate-700">
                         <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>Best Hill Rates</span>
+                        <span>Best Rates</span>
                       </div>
                       <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
                         Instant Quote
@@ -554,10 +554,10 @@ export const Services = () => {
               <Award className="w-3.5 h-3.5" /> Vista Tour and Travels Guarantee
             </span>
             <h3 className="text-2xl sm:text-3xl font-black mb-3">
-              Safe Mountain Chauffeurs & Punctual Doorstep Cabs
+              Reliable Commercial Chauffeurs & Punctual Doorstep Cabs
             </h3>
             <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-              Driving on Himalayan bends requires expert skill and local familiarity. All our cab drivers have 8+ years of mountain driving experience, valid commercial hill permits, police verification, and extensive knowledge of scenic viewpoints and shortcuts.
+              Punctual, safe, and courteous travel is our top priority. All our chauffeurs have 8+ years of commercial driving experience, valid all-India permits, police verification, and extensive knowledge of GT Road routes, Delhi NCR expressways, and regional Haryana destinations.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-white/10 pt-6">
@@ -567,7 +567,7 @@ export const Services = () => {
               </div>
               <div>
                 <span className="text-2xl font-black text-white block">10,000+</span>
-                <span className="text-xs text-slate-300">Safe Hill Trips</span>
+                <span className="text-xs text-slate-300">Safe Journeys</span>
               </div>
               <div>
                 <span className="text-2xl font-black text-white block">24/7</span>

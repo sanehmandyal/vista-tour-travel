@@ -44,8 +44,12 @@ const connectDB = async () => {
           settings.phone = '+91 90688 88578';
           changed = true;
         }
-        if (!settings.altPhone || settings.altPhone !== '+91 90688 88578') {
-          settings.altPhone = '+91 90688 88578';
+        if (!settings.secondaryPhone || settings.secondaryPhone !== '+91 99965 70920') {
+          settings.secondaryPhone = '+91 99965 70920';
+          changed = true;
+        }
+        if (!settings.altPhone || settings.altPhone !== '+91 99965 70920') {
+          settings.altPhone = '+91 99965 70920';
           changed = true;
         }
         if (!settings.whatsapp || settings.whatsapp !== '+919068888578') {
@@ -60,8 +64,8 @@ const connectDB = async () => {
           settings.address = 'Nawarsi Bazar, Ladwa, Haryana 136132, India';
           changed = true;
         }
-        if (!settings.areasServed || settings.areasServed.includes('Amb') || settings.areasServed.includes('Mohali') || settings.areasServed.startsWith('Kangra')) {
-          settings.areasServed = 'Nawarsi Bazar, Ladwa, Kurukshetra, Pipli, Shahbad, Yamunanagar, Karnal, Ambala, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)';
+        if (!settings.areasServed || settings.areasServed.includes('Himachal') || settings.areasServed.includes('Amb') || settings.areasServed.includes('Mohali') || settings.areasServed.startsWith('Kangra')) {
+          settings.areasServed = 'Nawarsi Bazar, Ladwa, Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh';
           changed = true;
         }
         if (!settings.serviceName || settings.serviceName.includes('Kangra') || settings.serviceName.includes('Rinku') || settings.serviceName.includes('Ravi')) {

@@ -19,7 +19,7 @@ export const Destinations = () => {
   const [region, setRegion] = useState(searchParams.get('region') || 'All');
   const [budget, setBudget] = useState(searchParams.get('budget') || 'all');
   const [sort, setSort] = useState(searchParams.get('sort') || '');
-  const regions = ['All', 'Himalayas', 'Kangra Valley', 'Kullu & Manali', 'Shimla Hills', 'Spiti & Lahaul', 'Chamba & Dalhousie', 'Kinnaur'];
+  const regions = ['All', 'Kurukshetra / GT Road', 'Ambala Division', 'National Capital Region', 'Karnal / GT Road', 'Panipat / GT Road', 'Shivalik Foothills', 'Kaithal / Pehowa Belt', 'Chandigarh Tricity'];
 
   const fetchDestinations = async () => {
     setLoading(true);
@@ -74,13 +74,13 @@ export const Destinations = () => {
         </div>
         <div className="max-w-7xl mx-auto relative z-10 text-center">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-300 uppercase tracking-widest bg-brand-500/20 px-3 py-1 rounded-full mb-3 border border-brand-400/30">
-            <Compass className="w-3.5 h-3.5" /> Explore Himachal Pradesh
+            <Compass className="w-3.5 h-3.5" /> Explore Haryana, Delhi NCR & Chandigarh
           </div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-3">
-            Himachal Pradesh Destinations
+            Haryana & Regional Destinations
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
-            Explore breathtaking hill stations, sacred valley temples, high-altitude passes, and apple orchards across Himachal Pradesh with Vista Tour and Travels.
+            Explore sacred heritage sites, battlefields, national parks, and urban centers across Kurukshetra, Ambala, Delhi, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh with Vista Tour and Travels.
           </p>
         </div>
       </div>

@@ -52,7 +52,7 @@ export const Contact = () => {
       `👤 *Customer Name:* ${data.name || 'Traveler'}\n` +
       `📞 *Customer Phone:* ${data.phone || 'Not provided'}\n` +
       `✉️ *Email:* ${data.email || 'Not provided'}\n` +
-      `📍 *Subject / Destination:* ${data.subject || data.destination || 'Himachal Tour'}\n` +
+      `📍 *Subject / Destination:* ${data.subject || data.destination || 'Haryana / NCR Tour'}\n` +
       `💬 *Message / Requirement:* ${data.message || 'Custom tour quote needed'}\n` +
       `🌐 *Source:* Vista Tour and Travels Website`;
     return `https://wa.me/${adminRawPhone}?text=${encodeURIComponent(text)}`;
@@ -182,7 +182,7 @@ export const Contact = () => {
 
             {/* WhatsApp CTA */}
             <a
-              href={`https://wa.me/${adminRawPhone}?text=${encodeURIComponent('Hi Vista Tour and Travels, I have an inquiry regarding Himachal tour & taxi service.')}`}
+              href={`https://wa.me/${adminRawPhone}?text=${encodeURIComponent('Hi Vista Tour and Travels, I have an inquiry regarding tour & taxi service.')}`}
               target="_blank"
               rel="noreferrer"
               className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-md"
@@ -322,7 +322,7 @@ export const Contact = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="e.g. Manali 5 Days Package Inquiry"
+                      placeholder="e.g. Kurukshetra Spiritual Tour or Delhi Cab Inquiry"
                       className="w-full text-sm rounded-xl glass-input px-3.5 py-2.5 transition-colors"
                     />
                   </div>

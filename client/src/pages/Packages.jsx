@@ -40,11 +40,11 @@ export const Packages = () => {
 
   const categories = [
     'All',
+    'Spiritual Yatras',
+    'Heritage & History',
     'Family Trips',
-    'Honeymoon',
-    'Adventure',
     'Weekend Getaways',
-    'Luxury Travel',
+    'Delhi NCR & Airport',
     'Group Tours'
   ];
 
@@ -146,7 +146,7 @@ export const Packages = () => {
               <span className="font-bold text-sky-800 flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5 text-brand-600" /> Destination:
               </span>
-              <span className="bg-white px-2.5 py-0.5 rounded-lg border border-sky-200 font-bold">{destination || search || 'Himachal & Beyond'}</span>
+              <span className="bg-white px-2.5 py-0.5 rounded-lg border border-sky-200 font-bold">{destination || search || 'Haryana, Delhi NCR & Chandigarh'}</span>
               {searchParams.get('date') && (
                 <span className="text-slate-500 text-xs">📅 {searchParams.get('date')}</span>
               )}

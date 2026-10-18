@@ -16,7 +16,7 @@ export const WhatsAppButton = () => {
   const cleanPhone = (settings.whatsapp || '9068888578').replace(/[^0-9]/g, '');
   const targetPhone = cleanPhone.startsWith('91') ? cleanPhone : `91${cleanPhone}`;
   const defaultMessage = encodeURIComponent(
-    `Hello Vista Tour and Travels! I am visiting your website and would like an instant quote for a cab / Himachal tour package from Ladwa / Haryana.`
+    `Hello Vista Tour and Travels! I am visiting your website and would like an instant quote for a cab / tour package from Ladwa / Haryana.`
   );
   const waUrl = `https://wa.me/${targetPhone}?text=${defaultMessage}`;
 
@@ -48,7 +48,7 @@ export const WhatsAppButton = () => {
           </div>
 
           <p className="text-xs text-slate-600 leading-relaxed mb-3">
-            Looking for outstation cabs or customized Himachal tour packages? Click below to chat directly with our travel dispatch team.
+            Looking for outstation cabs or customized tour packages? Click below to chat directly with our travel dispatch team.
           </p>
 
           <a

@@ -12,6 +12,7 @@ import Inquiry from '../models/Inquiry.js';
 import FAQ from '../models/FAQ.js';
 import Service from '../models/Service.js';
 import WebsiteSetting from '../models/WebsiteSetting.js';
+import Car from '../models/Car.js';
 
 dotenv.config();
 
@@ -33,7 +34,8 @@ const seedDB = async () => {
       Inquiry.deleteMany(),
       FAQ.deleteMany(),
       Service.deleteMany(),
-      WebsiteSetting.deleteMany()
+      WebsiteSetting.deleteMany(),
+      Car.deleteMany()
     ]);
     console.log('[Seed] Cleared existing data');
 
@@ -63,242 +65,220 @@ const seedDB = async () => {
 
     console.log('[Seed] Created Superadmin and Demo User');
 
-    // 2. Create Destinations
+    // 2. Create 8 Regional Destinations: Haryana, Delhi NCR & Chandigarh
     const destinationsData = [
       {
-        name: 'Manali',
-        slug: 'manali',
+        name: 'Kurukshetra',
+        slug: 'kurukshetra',
         country: 'India',
-        state: 'Himachal Pradesh',
-        region: 'Himalayas',
-        shortDescription: 'Snow-capped peaks, pine forests, adventure sports, and scenic Himalayan valleys.',
-        description: 'Nestled on the banks of the Beas River, Manali is one of India’s most celebrated mountain destinations. From skiing down Solang Valley to unwinding near the historic Hadimba Temple and experiencing the high-altitude pass of Rohtang, Manali caters to families, honeymooners, and thrill-seekers alike.',
-        heroImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1600&q=80',
+        state: 'Haryana',
+        region: 'Kurukshetra / GT Road',
+        shortDescription: 'Land of the Bhagavad Gita, sacred Brahma Sarovar, Sheikh Chilli’s tomb, and Mahabharata war battlefields.',
+        description: 'The historic epicenter of the Mahabharata where Lord Krishna imparted the eternal Bhagavad Gita to Arjuna at Jyotisar. Visit Asia’s largest man-made water tank Brahma Sarovar, Sheikh Chilli’s marble tomb, Kurukshetra Panorama & Science Centre, Sannihit Sarovar, and Dharohar Folk Museum.',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
         gallery: [
-          'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=800'
         ],
         attractions: [
-          { title: 'Solang Valley', description: 'Famous for paragliding, zorbing, and winter skiing.', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Rohtang Pass', description: 'Gateway to Lahaul & Spiti with panoramic glacial views.', image: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Hadimba Temple', description: 'Historic pagoda-style wooden temple built in 1553.', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80' }
+          { title: 'Brahma Sarovar', description: 'Asia’s largest sacred man-made water tank mentioned in ancient scriptures.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=600' },
+          { title: 'Sheikh Chilli Tomb', description: 'Stunning Mughal-era marble mausoleum surrounded by lush gardens.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=600' }
         ],
         thingsToDo: [
-          { title: 'Paragliding at Solang', description: 'Soar high above the pine-covered valleys with certified pilots.', icon: 'Wind' },
-          { title: 'River Rafting in Beas', description: 'Navigate thrilling Grade II and III rapids along Kullu valley.', icon: 'Compass' },
-          { title: 'Old Manali Cafe Crawl', description: 'Taste wood-fired pizzas, herbal teas, and live acoustic music.', icon: 'Coffee' }
-        ],
-        bestTimeToVisit: 'October to June (Snow in Dec-Feb)',
-        startingPrice: 12999,
-        featured: true,
-        status: 'active'
-      },
-      {
-        name: 'Shimla',
-        slug: 'shimla',
-        country: 'India',
-        state: 'Himachal Pradesh',
-        region: 'Himalayas',
-        shortDescription: 'The Queen of Hills with charming British colonial heritage and Mall Road strolls.',
-        description: 'Shimla, the former summer capital of British India, retains its timeless colonial charm. Surrounded by oak and deodar forests, Shimla is famed for its iconic Ridge, Christ Church, the UNESCO World Heritage Toy Train, and lush Apple Orchards in Kufri.',
-        heroImage: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1600&q=80',
-        gallery: [
-          'https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=800&q=80'
-        ],
-        attractions: [
-          { title: 'The Ridge & Mall Road', description: 'The cultural heart with neo-Gothic Christ Church and mountain views.', image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Kufri Snow Point', description: 'Winter wonderland for horse riding, yak rides, and tobogganing.', image: 'https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=600&q=80' }
-        ],
-        thingsToDo: [
-          { title: 'Kalka-Shimla Toy Train', description: 'Ride through 102 tunnels across scenic pine valleys.', icon: 'Train' },
-          { title: 'Jakhoo Temple Ropeway', description: 'Panoramic cable car ride to the giant Lord Hanuman statue.', icon: 'Mountain' }
-        ],
-        bestTimeToVisit: 'March to June & December to February',
-        startingPrice: 8999,
-        featured: true,
-        status: 'active'
-      },
-      {
-        name: 'Dharamshala & McLeodganj',
-        slug: 'dharamshala-mcleodganj',
-        country: 'India',
-        state: 'Himachal Pradesh',
-        region: 'Himalayas',
-        shortDescription: 'Spiritual haven, Tibetan monasteries, and the majestic backdrop of the Dhauladhar Range.',
-        description: 'Home to His Holiness the Dalai Lama and the Tibetan government in exile, McLeodganj in upper Dharamshala is a vibrant blend of serene Buddhist monasteries, cedar woodlands, quaint cafes, and world-class trekking trails like Triund.',
-        heroImage: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1600&q=80',
-        gallery: [
-          'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80'
-        ],
-        attractions: [
-          { title: 'Tsuglagkhang Complex', description: 'The official residence of the 14th Dalai Lama.', image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=600&q=80' },
-          { title: 'HPCA Cricket Stadium', description: 'One of the most scenic cricket grounds in the world overlooking snow peaks.', image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80' }
-        ],
-        thingsToDo: [
-          { title: 'Triund Trek', description: 'A rewarding day trek to view the immense Dhauladhar ridgeline.', icon: 'Compass' },
-          { title: 'Tibetan Cooking Class', description: 'Learn how to fold authentic momos and steam Tibetan tingmo.', icon: 'Utensils' }
-        ],
-        bestTimeToVisit: 'September to June',
-        startingPrice: 9499,
-        featured: true,
-        status: 'active'
-      },
-      {
-        name: 'Amritsar',
-        slug: 'amritsar',
-        country: 'India',
-        state: 'Punjab',
-        region: 'North India',
-        shortDescription: 'The Golden Temple, rich Sikh traditions, patriotic Wagah Border, and culinary feasts.',
-        description: 'Amritsar is the spiritual and cultural heart of Punjab. Witness the breathtaking Golden Temple glistening day and night, savor legendary kulchas and sweet lassi, pay solemn respects at Jallianwala Bagh, and feel the electrifying patriotic fervor at Wagah Border.',
-        heroImage: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1600&q=80',
-        gallery: [
-          'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=800&q=80'
-        ],
-        attractions: [
-          { title: 'Golden Temple (Harmandir Sahib)', description: 'Golden sanctuary serving world’s largest community kitchen (Langar).', image: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Wagah Border', description: 'World-famous beating retreat ceremony on the India-Pakistan border.', image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=600&q=80' }
-        ],
-        thingsToDo: [
-          { title: 'Heritage Walk & Food Trail', description: 'Sample Amritsari kulcha, makki di roti, and jalebi.', icon: 'Utensils' },
-          { title: 'Langar Seva Experience', description: 'Partake in voluntary selfless service at the Golden Temple kitchen.', icon: 'Heart' }
-        ],
-        bestTimeToVisit: 'October to March',
-        startingPrice: 6999,
-        featured: true,
-        status: 'active'
-      },
-      {
-        name: 'Goa',
-        slug: 'goa',
-        country: 'India',
-        state: 'Goa',
-        region: 'West India',
-        shortDescription: 'Sun-kissed golden beaches, Portuguese heritage villas, water sports, and vibrant nightlife.',
-        description: 'Goa provides the quintessential tropical getaway. Relax under swaying coconut palms in South Goa or dive into water sports, beach shacks, night markets, and sunset cruises across North Goa’s vibrant coastline.',
-        heroImage: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1600&q=80',
-        gallery: [
-          'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80'
-        ],
-        attractions: [
-          { title: 'Baga & Calangute Beaches', description: 'Lively beaches with water sports and lively beach shack dining.', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Basilica of Bom Jesus', description: 'UNESCO World Heritage church holding relics of St. Francis Xavier.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80' }
-        ],
-        thingsToDo: [
-          { title: 'Scuba Diving at Grande Island', description: 'Explore coral reefs, exotic fish, and underwater shipwrecks.', icon: 'Anchor' },
-          { title: 'Mandovi Sunset Cruise', description: 'Traditional Goan folk dance and music along the Mandovi river.', icon: 'Sun' }
-        ],
-        bestTimeToVisit: 'November to April',
-        startingPrice: 14999,
-        featured: true,
-        status: 'active'
-      },
-      {
-        name: 'Kerala',
-        slug: 'kerala',
-        country: 'India',
-        state: 'Kerala',
-        region: 'South India',
-        shortDescription: 'Tranquil emerald backwaters, tea gardens in Munnar, Ayurvedic healing, and spice hills.',
-        description: 'Known as God’s Own Country, Kerala is blessed with serene houseboat cruises along the palm-fringed lagoons of Alleppey, sprawling emerald tea plantations in Munnar, pristine wildlife in Thekkady, and peaceful Ayurvedic wellness retreats.',
-        heroImage: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1600&q=80',
-        gallery: [
-          'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80'
-        ],
-        attractions: [
-          { title: 'Alleppey Backwaters', description: 'Private luxury houseboats meandering through peaceful palm waterways.', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Munnar Tea Plantations', description: 'Misty hills blanketed with fragrant green tea terraces.', image: 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=600&q=80' }
-        ],
-        thingsToDo: [
-          { title: 'Houseboat Stay', description: 'Overnight cruise with authentic freshly prepared Kerala cuisine.', icon: 'Ship' },
-          { title: 'Authentic Ayurvedic Massage', description: 'Rejuvenate your body and soul with herbal oils and traditional therapy.', icon: 'Sparkles' }
+          { title: 'Spiritual Aarti at Brahma Sarovar', description: 'Participate in holy evening deepdaan and aarti on the sarovar ghats.', icon: 'Heart' },
+          { title: 'Jyotisar Light & Sound Show', description: 'Watch the multimedia projection on the sacred Banyan tree where the Gita was born.', icon: 'Compass' }
         ],
         bestTimeToVisit: 'September to March',
-        startingPrice: 18499,
+        startingPrice: 1999,
         featured: true,
         status: 'active'
       },
       {
-        name: 'Kashmir',
-        slug: 'kashmir',
+        name: 'Ambala',
+        slug: 'ambala',
         country: 'India',
-        state: 'Jammu & Kashmir',
-        region: 'Himalayas',
-        shortDescription: 'Shikara rides on Dal Lake, snow meadows of Gulmarg, and valleys of Pahalgam.',
-        description: 'Celebrated as Heaven on Earth, Kashmir enchants with wooden houseboats on tranquil Dal Lake, gondola cable car rides to Apharwat peak in Gulmarg, cascading streams in Pahalgam, and saffron fields in Pampore.',
-        heroImage: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1600&q=80',
+        state: 'Haryana',
+        region: 'Ambala Division',
+        shortDescription: 'Twin city of military cantonment heritage, historic Gurdwaras, and Asia’s largest cloth market.',
+        description: 'A historic crossroads of northern India known for magnificent British Cantonment architecture, revered Gurdwaras (Manji Sahib & Sis Ganj Sahib), Holy Redeemer Church, Patel Park, and Asia’s biggest wholesale textile market for wedding shopping.',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
         gallery: [
-          'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=800&q=80'
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=800'
         ],
         attractions: [
-          { title: 'Dal Lake & Shikara', description: 'Iconic traditional wooden boats and floating vegetable markets.', image: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Gulmarg Gondola', description: 'Asia’s highest cable car taking you into deep alpine snow.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' }
+          { title: 'Gurudwara Manji Sahib', description: 'Revered historical Sikh pilgrimage shrine associated with Guru Hargobind Ji.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=600' },
+          { title: 'Ambala Cloth Market', description: 'Asia’s largest wholesale hub for bridal wear, silks, and everyday textiles.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=600' }
         ],
         thingsToDo: [
-          { title: 'Shikara Sunset Ride', description: 'Glide across mirrored waters surrounded by snow-capped peaks.', icon: 'Feather' },
-          { title: 'Skiing in Gulmarg', description: 'World-class powder snow skiing for novices and experts.', icon: 'Wind' }
+          { title: 'Wholesale Textile & Bridal Shopping', description: 'Explore thousands of shops offering direct mill rates on wedding apparel.', icon: 'ShoppingBag' },
+          { title: 'Ambala Cantt Food Tour', description: 'Enjoy famous Cantt kachoris, chole bhature, and traditional sweets.', icon: 'Utensils' }
         ],
-        bestTimeToVisit: 'April to October (Flowers) & Dec to Feb (Snow)',
-        startingPrice: 21999,
+        bestTimeToVisit: 'October to April',
+        startingPrice: 1799,
         featured: true,
         status: 'active'
       },
       {
-        name: 'Ladakh',
-        slug: 'ladakh',
+        name: 'Delhi',
+        slug: 'delhi',
         country: 'India',
-        state: 'Ladakh',
-        region: 'Himalayas',
-        shortDescription: 'High-altitude desert, Pangong Tso azure lake, Nubra sand dunes, and ancient gompas.',
-        description: 'Ladakh offers dramatic mountain scenery unlike anywhere else on Earth. Cross the world’s highest motorable passes like Khardung La, ride double-humped camels across the white sands of Hunder, and gaze at Pangong Lake reflecting deep turquoise waters.',
-        heroImage: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1600&q=80',
+        state: 'Delhi NCR',
+        region: 'National Capital Region',
+        shortDescription: 'Heart of the nation combining monumental UNESCO heritage, Mughal forts, and 24/7 IGI airport transfers.',
+        description: 'India’s bustling capital city combining monumental Mughal forts, colonial British avenues, and state-of-the-art expressways. Enjoy door-to-door AC cabs to India Gate, Red Fort, Qutub Minar, Akshardham Temple, Lotus Temple, and 24/7 direct IGI Airport transfers.',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
         gallery: [
-          'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80'
+          'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=800'
         ],
         attractions: [
-          { title: 'Pangong Tso', description: 'Color-changing endorheic lake at 14,270 ft extending into Tibet.', image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Nubra Valley', description: 'High desert with cold sand dunes and Bactrian camels.', image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80' }
+          { title: 'India Gate & Kartavya Path', description: 'Iconic 42m stone arch war memorial and grand national boulevard.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=600' },
+          { title: 'Qutub Minar', description: 'UNESCO World Heritage 73m red sandstone victory tower dating to 1192.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=600' }
         ],
         thingsToDo: [
-          { title: 'Khardung La Pass Expedition', description: 'Drive past 18,380 ft with panoramic views of the Karakoram range.', icon: 'Compass' },
-          { title: 'Stargazing in Hanle', description: 'Crystal-clear night skies inside India’s first Dark Sky Reserve.', icon: 'Star' }
-        ],
-        bestTimeToVisit: 'May to September',
-        startingPrice: 27999,
-        featured: true,
-        status: 'active'
-      },
-      {
-        name: 'Rajasthan (Jaipur & Udaipur)',
-        slug: 'rajasthan-heritage',
-        country: 'India',
-        state: 'Rajasthan',
-        region: 'West India',
-        shortDescription: 'Majestic forts, royal palaces, desert safaris, and colorful cultural royalty.',
-        description: 'Immerse yourself in regal grandeur. Explore the Amber Fort and Hawa Mahal in the Pink City of Jaipur, cruise on Lake Pichola in the romantic City of Lakes Udaipur, and witness golden dunes in Jaisalmer.',
-        heroImage: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1600&q=80',
-        gallery: [
-          'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80'
-        ],
-        attractions: [
-          { title: 'Amber Fort & Palace', description: 'Opulent hilltop fortress with Sheesh Mahal (hall of mirrors).', image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=600&q=80' },
-          { title: 'Lake Pichola & City Palace', description: 'Royal palace complex overlooking the glistening lake.', image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80' }
-        ],
-        thingsToDo: [
-          { title: 'Hot Air Balloon Safari', description: 'Fly over Jaipur’s rugged hills and majestic fortresses at sunrise.', icon: 'Wind' },
-          { title: 'Royal Heritage Dinner', description: 'Feast on Dal Baati Churma with traditional Rajasthani Kalbeliya dancers.', icon: 'Utensils' }
+          { title: 'Chauffeur Monument Tour', description: 'Full-day air-conditioned sightseeing covering Old and New Delhi landmarks.', icon: 'Compass' },
+          { title: '24/7 IGI Airport Transfer', description: 'Stress-free, punctual doorstep pickups directly to Terminal 1, 2, or 3.', icon: 'Clock' }
         ],
         bestTimeToVisit: 'October to March',
-        startingPrice: 16999,
+        startingPrice: 3499,
+        featured: true,
+        status: 'active'
+      },
+      {
+        name: 'Karnal',
+        slug: 'karnal',
+        country: 'India',
+        state: 'Haryana',
+        region: 'Karnal / GT Road',
+        shortDescription: 'City of Daanveer Karna, serene Karna Lake, Kalpana Chawla Planetarium, and highway culinary stops.',
+        description: 'Named after the legendary King Karna, this scenic city on the Grand Trunk Road features the tranquil Karna Lake, British Cantonment Church Tower, Kalpana Chawla Memorial Planetarium, and renowned highway culinary destinations.',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
+        gallery: [
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Cantonment_Church_Tower_Karnal.jpg?width=800'
+        ],
+        attractions: [
+          { title: 'Karna Lake', description: 'Tranquil artificial lake surrounded by landscaped gardens and boating facilities.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=600' },
+          { title: 'Cantonment Church Tower', description: 'Historic 35-meter 19th-century church tower showcasing British architecture.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Cantonment_Church_Tower_Karnal.jpg?width=600' }
+        ],
+        thingsToDo: [
+          { title: 'Boating at Karna Lake', description: 'Relaxing pedal boating amidst tranquil green surroundings.', icon: 'Sun' },
+          { title: 'Planetarium Cosmic Show', description: 'Interactive astronomy presentations at the Kalpana Chawla Memorial.', icon: 'Compass' }
+        ],
+        bestTimeToVisit: 'September to April',
+        startingPrice: 1499,
+        featured: true,
+        status: 'active'
+      },
+      {
+        name: 'Panipat',
+        slug: 'panipat',
+        country: 'India',
+        state: 'Haryana',
+        region: 'Panipat / GT Road',
+        shortDescription: 'Historic battlefield of three epic Indian empire wars, Kabuli Bagh mosque, and City of Weavers.',
+        description: 'Renowned worldwide for the three pivotal Battles of Panipat (1526, 1556, and 1761) that shaped the destiny of India. Explore Kala Amb battlefield memorial, the 500-year-old Kabuli Bagh Mosque, Tomb of Bu-Ali Shah Qalandar, and world-class textile markets.',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
+        gallery: [
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=800'
+        ],
+        attractions: [
+          { title: 'Kala Amb Memorial', description: 'Commemorative battlefield site marking the fierce Third Battle of Panipat.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=600' },
+          { title: 'Kabuli Bagh Mosque', description: 'Built by Mughal Emperor Babur in 1527 to celebrate his first battle victory.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=600' }
+        ],
+        thingsToDo: [
+          { title: 'Battlefield History Exploration', description: 'Guided visits through the museums and war memorial sites.', icon: 'Compass' },
+          { title: 'Textile Factory Outlet Tour', description: 'Shop luxury handloom bedsheets, rugs, and blankets at manufacturer prices.', icon: 'ShoppingBag' }
+        ],
+        bestTimeToVisit: 'October to March',
+        startingPrice: 1999,
+        featured: true,
+        status: 'active'
+      },
+      {
+        name: 'Yamunanagar',
+        slug: 'yamunanagar',
+        country: 'India',
+        state: 'Haryana',
+        region: 'Shivalik Foothills',
+        shortDescription: 'Eco-tourism paradise with Kalesar National Park, Hathni Kund Barrage, and ancient Chaneti stupa.',
+        description: 'Nestled between the Yamuna River and the scenic Shivalik hills, Yamunanagar is Haryana’s eco-tourism and nature paradise. Discover wild leopards and elephants in Kalesar National Park, panoramic riverfront views at Hathni Kund Barrage, and ancient Chaneti Buddhist Stupa.',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
+        gallery: [
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=800'
+        ],
+        attractions: [
+          { title: 'Hathni Kund Barrage', description: 'Spectacular river engineering project with panoramic mountain views and wetlands.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=600' },
+          { title: 'Kalesar National Park', description: 'Lush dense Sal forest sanctuary home to leopards, deer, and migratory birds.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=600' }
+        ],
+        thingsToDo: [
+          { title: 'Kalesar Wildlife Safari', description: 'Open jeep jungle trail tracking wild flora and fauna.', icon: 'Compass' },
+          { title: 'Yamuna Riverbank Picnic', description: 'Scenic afternoon strolls and photography at Hathni Kund.', icon: 'Sun' }
+        ],
+        bestTimeToVisit: 'October to May',
+        startingPrice: 1699,
+        featured: true,
+        status: 'active'
+      },
+      {
+        name: 'Kaithal',
+        slug: 'kaithal',
+        country: 'India',
+        state: 'Haryana',
+        region: 'Kaithal / Pehowa Belt',
+        shortDescription: 'Mythological birthplace of Lord Hanuman, Anjani Tirth, historic Bhai Uday Singh Fort, and Razia Sultana tomb.',
+        description: 'Steeped in epic mythology as Kapisthala (the abode of Lord Hanuman), Kaithal is home to sacred Anjani Tirth, the grand 18th-century Bhai Uday Singh Fort, Bidkyar Lake, and the historic Tomb of Razia Sultana (the first woman ruler of Delhi).',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+        gallery: [
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=800'
+        ],
+        attractions: [
+          { title: 'Bhai Uday Singh Fort', description: 'Impressive fort palace overlooking Bidkyar Lake with historical battlements.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=600' },
+          { title: 'Anjani Tirth', description: 'Sacred pond and ancient temple dedicated to Mata Anjani, mother of Hanuman.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=600' }
+        ],
+        thingsToDo: [
+          { title: 'Hanuman Birthplace Yatra', description: 'Special pilgrimage to Anjani Kund, Gyarah Rudri Temple, and Pehowa.', icon: 'Heart' },
+          { title: 'Medieval Fort Architecture Tour', description: 'Photograph the centuries-old gates and stone ramparts of Kaithal.', icon: 'Compass' }
+        ],
+        bestTimeToVisit: 'October to March',
+        startingPrice: 1599,
+        featured: true,
+        status: 'active'
+      },
+      {
+        name: 'Chandigarh',
+        slug: 'chandigarh',
+        country: 'India',
+        state: 'Chandigarh UT',
+        region: 'Chandigarh Tricity',
+        shortDescription: 'The City Beautiful with Rock Garden, Sukhna Lake, Rose Garden, and premier corporate & airport cab services.',
+        description: 'India’s premier planned modern city designed by Le Corbusier. Relax by the serene waters of Sukhna Lake, walk through Nek Chand’s extraordinary Rock Garden, visit Zakir Hussain Rose Garden, shop at Elante Mall, and enjoy seamless 24/7 airport and corporate chauffeur service.',
+        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
+        gallery: [
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=800'
+        ],
+        attractions: [
+          { title: 'Nek Chand Rock Garden', description: 'World-famous 40-acre sculpture garden created completely out of industrial waste.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=600' },
+          { title: 'Sukhna Lake', description: 'Picturesque 3 sq km artificial reservoir at the foothills of the Shivalik range.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=600' }
+        ],
+        thingsToDo: [
+          { title: 'Sukhna Lake Boating & Promenade Walk', description: 'Evening strolls, solar boat rides, and duck watching.', icon: 'Sun' },
+          { title: 'Elante Mall Luxury Shopping', description: 'Explore North India’s top shopping and dining destination.', icon: 'ShoppingBag' }
+        ],
+        bestTimeToVisit: 'Year-Round (Best: October to April)',
+        startingPrice: 2499,
         featured: true,
         status: 'active'
       }
     ];
 
     const destinations = await Destination.insertMany(destinationsData);
-    console.log(`[Seed] Seeded ${destinations.length} Destinations`);
+    console.log(`[Seed] Seeded ${destinations.length} Regional Destinations`);
 
     // Map destinations by slug
     const destMap = {};
@@ -309,281 +289,183 @@ const seedDB = async () => {
     // 3. Create Tour Packages
     const packagesData = [
       {
-        title: 'Manali Escape – Himalayan Retreat',
-        slug: 'manali-escape-himalayan-retreat',
-        destination: destMap['manali']._id,
-        destinationName: 'Manali',
-        category: 'Family Trips',
-        duration: '5 Days / 4 Nights',
-        daysCount: 5,
-        nightsCount: 4,
-        price: 15999,
-        discountedPrice: 12999,
-        rating: 4.9,
-        reviewsCount: 38,
-        description: 'Escape the heat and immerse in fresh mountain breeze, lush cedar woodlands, and high-altitude adventures in Manali, Solang Valley, and Rohtang Pass.',
-        featuredImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=80',
+        title: 'Kurukshetra Mahabharata & Holy Sarovars Spiritual Yatra',
+        slug: 'kurukshetra-mahabharata-holy-sarovars-spiritual-yatra',
+        destination: destMap['kurukshetra']._id,
+        destinationName: 'Kurukshetra',
+        category: 'Spiritual Yatras',
+        duration: '2 Days / 1 Night',
+        daysCount: 2,
+        nightsCount: 1,
+        price: 6499,
+        discountedPrice: 4999,
+        rating: 5.0,
+        reviewsCount: 52,
+        description: 'Immerse yourself in epic Indian history with our signature Kurukshetra spiritual tour. Experience sacred holy dip at Brahma Sarovar, visit the eternal Jyotisar banyan tree, explore Sheikh Chilli’s marble tomb, and witness the Gita Panorama.',
+        featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
         images: [
-          'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=800&q=80'
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=800'
         ],
         itinerary: [
-          { day: 1, title: 'Arrival in Manali & Local Sightseeing', description: 'Arrive in Manali, check-in to your mountain resort. Visit Hadimba Temple, Vashisht Hot Water Springs, and spend the evening leisurely strolling on Mall Road.', meals: 'Welcome drink & Dinner', hotel: 'Snow Valley Resort or similar' },
-          { day: 2, title: 'Solang Valley Adventure Day', description: 'Drive to Solang Valley. Indulge in exhilarating activities like paragliding, zorbing, and quad biking against scenic snow peaks.', meals: 'Breakfast & Dinner', hotel: 'Snow Valley Resort or similar' },
-          { day: 3, title: 'Rohtang Pass or Atal Tunnel Excursion', description: 'Ascend to the majestic Rohtang Pass (subject to permit) or cross the engineering wonder of Atal Tunnel to explore Sissu in Lahaul.', meals: 'Breakfast & Dinner', hotel: 'Snow Valley Resort or similar' },
-          { day: 4, title: 'Naggar Castle & Heritage Art Gallery', description: 'Discover the ancient 15th-century wood and stone Naggar Castle and Nicholas Roerich Art Gallery overlooking the Kullu valley.', meals: 'Breakfast & Dinner', hotel: 'Snow Valley Resort or similar' },
-          { day: 5, title: 'Departure with Cherished Memories', description: 'After a hearty breakfast, transfer back to Chandigarh / Delhi airport with unforgettable Himalayan memories.', meals: 'Breakfast', hotel: 'Checkout' }
+          { day: 1, title: 'Brahma Sarovar, Sannihit Sarovar & Evening Aarti', description: 'Doorstep pickup in sanitized AC cab. Check-in and afternoon darshan at Brahma Sarovar, Sannihit Sarovar, and grand evening aarti.', meals: 'Dinner', hotel: 'Deluxe Heritage Hotel Kurukshetra' },
+          { day: 2, title: 'Jyotisar Gita Birthplace & Sheikh Chilli Tomb', description: 'Morning visit to Jyotisar, Kurukshetra Panorama & Science Centre, Sheikh Chilli’s tomb, and departure transfer.', meals: 'Breakfast', hotel: 'Checkout' }
         ],
         inclusions: [
-          '4 Nights luxury accommodation in 4-Star resort with balcony view',
-          'Daily buffet breakfast and multi-cuisine dinner',
-          'Dedicated private AC Sedan / SUV for transfers and sightseeing',
-          'Fuel, toll taxes, driver allowances, and parking charges',
-          'Guided sightseeing tours as mentioned in the itinerary'
+          '1 Night stay in comfortable verified 3-star AC hotel',
+          'Daily breakfast and dinner',
+          'Dedicated AC commercial cab for all local sightseeing',
+          'Toll tax, parking, and driver allowances included'
         ],
-        exclusions: [
-          'Airfare or train tickets',
-          'Adventure sports tickets (paragliding, river rafting)',
-          'Rohtang Pass national green tribunal permits if applied separately',
-          'Personal expenses like laundry, tips, and room service'
-        ],
-        hotels: 'The Grand Manali / Snow Valley Resort (4-Star with scenic mountain views)',
-        transport: 'Private AC Toyota Innova / Dzire with seasoned mountain chauffeur',
-        tags: ['Honeymoon', 'Family', 'Snow', 'Adventure'],
+        exclusions: ['Monument tickets', 'Personal expenses'],
+        hotels: 'Hotel Pearl Marc / Hotel Saffron Kurukshetra',
+        transport: 'Private AC Dzire / Ertiga / Innova Crysta',
+        tags: ['Spiritual', 'Kurukshetra', 'Heritage', 'Gita', 'Yatra'],
         featured: true,
         status: 'published'
       },
       {
-        title: 'Shimla & Kufri Weekend Getaway',
-        slug: 'shimla-kufri-weekend-getaway',
-        destination: destMap['shimla']._id,
-        destinationName: 'Shimla',
-        category: 'Weekend Getaways',
+        title: 'Ambala Heritage, Gurdwaras & Wholesale Textile Shopping Tour',
+        slug: 'ambala-heritage-cloth-market-shopping-tour',
+        destination: destMap['ambala']._id,
+        destinationName: 'Ambala',
+        category: 'Heritage & History',
+        duration: '2 Days / 1 Night',
+        daysCount: 2,
+        nightsCount: 1,
+        price: 5999,
+        discountedPrice: 4499,
+        rating: 5.0,
+        reviewsCount: 38,
+        description: 'Perfect blend of spiritual solace and world-class wedding shopping. Visit Gurudwara Manji Sahib, Holy Redeemer Church, and spend a dedicated day shopping at Asia’s largest cloth market with private cab luggage storage.',
+        featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=800',
+        images: [
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=800'
+        ],
+        itinerary: [
+          { day: 1, title: 'Historical Gurudwaras & British Cantt Tour', description: 'Morning pickup and visit to Gurudwara Manji Sahib, Sis Ganj Sahib, and Holy Redeemer Church. Evening stroll in Patel Park.', meals: 'Dinner', hotel: 'Deluxe City Hotel Ambala Cantt' },
+          { day: 2, title: 'All-Day Bridal & Textile Shopping at Wholesale Market', description: 'Dedicated full day with cab at Asia’s largest cloth market for wedding lehengas, suits, and handlooms.', meals: 'Breakfast', hotel: 'Checkout' }
+        ],
+        inclusions: [
+          '1 Night hotel stay in Ambala Cantt',
+          'Daily breakfast and dinner',
+          'Dedicated cab with safe trunk space for all shopping luggage',
+          'Driver allowances and all parking charges'
+        ],
+        exclusions: ['Shopping purchases', 'Personal meals'],
+        hotels: 'Hotel Clarks Inn / D.R. International Ambala',
+        transport: 'Private AC Sedan / Ertiga MUV',
+        tags: ['Shopping', 'Ambala', 'Heritage', 'Textile'],
+        featured: true,
+        status: 'published'
+      },
+      {
+        title: 'Delhi NCR Capital Monument & Heritage Explorer',
+        slug: 'delhi-ncr-capital-heritage-tour',
+        destination: destMap['delhi']._id,
+        destinationName: 'Delhi',
+        category: 'Delhi NCR & Airport',
         duration: '3 Days / 2 Nights',
         daysCount: 3,
         nightsCount: 2,
-        price: 10999,
+        price: 11999,
         discountedPrice: 8999,
-        rating: 4.8,
-        reviewsCount: 24,
-        description: 'The perfect weekend retreat from Delhi/Chandigarh to the Queen of Hills. Stroll Mall Road, enjoy pine trails in Kufri, and savor crisp mountain air.',
-        featuredImage: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1000&q=80',
-        images: [
-          'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=800&q=80'
-        ],
-        itinerary: [
-          { day: 1, title: 'Chandigarh/Delhi to Shimla Scenic Drive', description: 'Scenic uphill drive to Shimla. Check into the hotel, unwind, and head out to The Ridge and Lakkar Bazaar.', meals: 'Dinner', hotel: 'Willow Banks or similar' },
-          { day: 2, title: 'Kufri Snow Adventure & Jakhoo Hill', description: 'Visit Kufri Fun World, horse ride to Mahasu Peak, and take the Jakhoo ropeway cable car.', meals: 'Breakfast & Dinner', hotel: 'Willow Banks or similar' },
-          { day: 3, title: 'Viceregal Lodge & Departure', description: 'Tour the historical Indian Institute of Advanced Study (Viceregal Lodge) before return journey.', meals: 'Breakfast', hotel: 'Checkout' }
-        ],
-        inclusions: [
-          '2 Nights hotel stay with breakfast and dinner',
-          'Private sanitized car for the entire journey',
-          'Toll tax, parking, and driver charges'
-        ],
-        exclusions: ['Monument entrance tickets', 'Jakhoo ropeway tickets', 'Personal items'],
-        tags: ['Weekend', 'Hills', 'Heritage'],
-        featured: true,
-        status: 'published'
-      },
-      {
-        title: 'Kashmir Paradise – Srinagar, Gulmarg & Pahalgam',
-        slug: 'kashmir-paradise-srinagar-gulmarg-pahalgam',
-        destination: destMap['kashmir']._id,
-        destinationName: 'Kashmir',
-        category: 'Honeymoon',
-        duration: '6 Days / 5 Nights',
-        daysCount: 6,
-        nightsCount: 5,
-        price: 26999,
-        discountedPrice: 22499,
         rating: 5.0,
-        reviewsCount: 52,
-        description: 'Immerse in pure heaven on earth. Enjoy deluxe houseboat stay on Dal Lake, gondola ride in Gulmarg, and picturesque Betaab Valley in Pahalgam.',
-        featuredImage: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1000&q=80',
+        reviewsCount: 65,
+        description: 'Comprehensive private chauffeur tour of India’s capital. Discover India Gate, Red Fort, Qutub Minar, Akshardham Temple, Lotus Temple, and Connaught Place with seamless point-to-point AC transfers.',
+        featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
         images: [
-          'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+          'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=800'
         ],
         itinerary: [
-          { day: 1, title: 'Arrival in Srinagar & Dal Lake Shikara', description: 'Meet & greet at Srinagar airport. Transfer to luxury houseboat. Enjoy romantic 1-hour sunset Shikara ride.', meals: 'Dinner', hotel: 'Luxury Dal Lake Houseboat' },
-          { day: 2, title: 'Mughal Gardens Tour', description: 'Visit Shalimar Bagh, Nishat Bagh, and the Botanical Garden. Evening shopping for Pashmina and saffron.', meals: 'Breakfast & Dinner', hotel: 'Four Points by Sheraton or similar' },
-          { day: 3, title: 'Gulmarg – Meadow of Flowers', description: 'Day trip to Gulmarg. Ride the famous Gondola Phase 1 & 2 reaching 13,780 feet into snow fields.', meals: 'Breakfast & Dinner', hotel: 'Four Points by Sheraton' },
-          { day: 4, title: 'Transfer to Pahalgam (Valley of Shepherds)', description: 'Drive past saffron fields and Apple orchards. Visit Lidder River and relax in Pahalgam.', meals: 'Breakfast & Dinner', hotel: 'Pahalgam Pine Spring Resort' },
-          { day: 5, title: 'Betaab & Aru Valleys', description: 'Explore scenic Betaab Valley, Aru Village, and Chandanwari by local taxi.', meals: 'Breakfast & Dinner', hotel: 'Pahalgam Pine Spring Resort' },
-          { day: 6, title: 'Departure from Srinagar', description: 'Transfer to Srinagar Airport with unforgettable memories of Jannat-e-Kashmir.', meals: 'Breakfast', hotel: 'Checkout' }
+          { day: 1, title: 'Delhi Arrival, India Gate & Connaught Place', description: 'Pickup from your doorstep or Delhi IGI Airport. Visit India Gate, Kartavya Path, and evening at Connaught Place.', meals: 'Dinner', hotel: '4-Star Central Delhi Hotel' },
+          { day: 2, title: 'Mughal Heritage: Red Fort, Jama Masjid & Qutub Minar', description: 'Explore Old Delhi bazaar delicacies, UNESCO Qutub Minar complex, and Humayun’s Tomb.', meals: 'Breakfast & Dinner', hotel: '4-Star Central Delhi Hotel' },
+          { day: 3, title: 'Akshardham Temple & Departure Transfer', description: 'Morning visit to Swaminarayan Akshardham Temple and smooth drop to airport or railway station.', meals: 'Breakfast', hotel: 'Checkout' }
         ],
         inclusions: [
-          '1 Night in Super Deluxe Dal Lake Houseboat + 4 Nights in 4-Star Hotels',
-          'Daily Kashmiri buffet breakfast & dinner',
-          'Complimentary Shikara ride on Dal Lake',
-          'Dedicated private vehicle for all transfers and tours'
+          '2 Nights in verified 4-star city hotel',
+          'Daily buffet breakfast and dinner',
+          'Dedicated AC commercial cab for full 3 days',
+          'Toll, state border taxes, parking, and driver allowances'
         ],
-        exclusions: ['Gondola cable car tickets', 'Pony / Horse rides', 'Lidder valley local union vehicle charges'],
-        tags: ['Romantic', 'Honeymoon', 'Luxury', 'Snow'],
+        exclusions: ['Monument entrance fees', 'Personal expenses'],
+        hotels: 'The Suryaa / Radisson Blu Delhi',
+        transport: 'Private AC Toyota Innova Crysta / Dzire Sedan',
+        tags: ['Delhi', 'Heritage', 'Monuments', 'Capital', 'Sightseeing'],
         featured: true,
         status: 'published'
       },
       {
-        title: 'Goa Coastal Bliss & Sun-Kissed Beaches',
-        slug: 'goa-coastal-bliss-sun-kissed-beaches',
-        destination: destMap['goa']._id,
-        destinationName: 'Goa',
-        category: 'Adventure',
-        duration: '5 Days / 4 Nights',
-        daysCount: 5,
-        nightsCount: 4,
-        price: 18999,
-        discountedPrice: 14999,
-        rating: 4.8,
-        reviewsCount: 30,
-        description: 'From watersports at Baga to the tranquil sands of Palolem and Portuguese villas in Fontainhas, experience the best of tropical Goa.',
-        featuredImage: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1000&q=80',
+        title: 'Haryana GT Road Heritage & Lake Getaway (Karnal & Panipat)',
+        slug: 'haryana-gt-road-karnal-panipat-getaway',
+        destination: destMap['karnal']._id,
+        destinationName: 'Karnal',
+        category: 'Weekend Getaways',
+        duration: '2 Days / 1 Night',
+        daysCount: 2,
+        nightsCount: 1,
+        price: 5499,
+        discountedPrice: 3999,
+        rating: 5.0,
+        reviewsCount: 31,
+        description: 'Discover the rich history of the Grand Trunk Road. Cruise along NH 44 to relax at Karna Lake, explore the ancient Panipat battlefields at Kala Amb, visit Babur’s 500-year-old Kabuli Bagh Mosque, and savor authentic highway dhabas.',
+        featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=800',
         images: [
-          'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80'
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=800'
         ],
         itinerary: [
-          { day: 1, title: 'Arrival in North Goa', description: 'Airport pick up and transfer to beach resort. Relax by the pool and enjoy beach sunset.', meals: 'Dinner', hotel: 'Resort Rio or similar' },
-          { day: 2, title: 'North Goa Beaches & Water Sports', description: 'Visit Fort Aguada, Calangute, and Anjuna. Water sports combo: jet ski, parasailing, and banana boat.', meals: 'Breakfast & Dinner', hotel: 'Resort Rio' },
-          { day: 3, title: 'South Goa Heritage & Sunset Cruise', description: 'Tour Old Goa churches, Mangueshi Temple, and evening Mandovi river cruise with cultural dance.', meals: 'Breakfast & Dinner', hotel: 'Resort Rio' },
-          { day: 4, title: 'Dudhsagar Waterfalls & Spice Plantation', description: 'Jeep safari to roaring Dudhsagar Falls and traditional Goan lunch at a lush organic spice farm.', meals: 'Breakfast, Spice Farm Lunch & Dinner', hotel: 'Resort Rio' },
-          { day: 5, title: 'Farewell Goa', description: 'Morning dip in the sea and transfer to Goa Airport / Railway Station.', meals: 'Breakfast', hotel: 'Checkout' }
+          { day: 1, title: 'Karnal Arrival, Karna Lake Boating & Planetarium', description: 'Scenic drive to Karnal. Relax at Karna Lake, take a pedal boat ride, and visit the Kalpana Chawla Planetarium.', meals: 'Dinner', hotel: 'Karna Lake Resort Karnal' },
+          { day: 2, title: 'Panipat Historic Battlefields & Weaver Markets', description: 'Visit Kala Amb, Kabuli Bagh Mosque, Panipat Museum, and shop direct factory textiles before departure.', meals: 'Breakfast', hotel: 'Checkout' }
         ],
-        inclusions: ['4 Nights resort stay near beach', 'Daily breakfast & dinner', 'Mandovi sunset river cruise tickets', 'Private AC car for sightseeing'],
-        exclusions: ['Flight tickets', 'Scuba diving', 'Alcoholic drinks'],
-        tags: ['Beach', 'Nightlife', 'Water Sports'],
+        inclusions: [
+          '1 Night resort stay at Karna Lake',
+          'Daily breakfast and dinner',
+          'Dedicated AC cab for complete GT Road circuit',
+          'All toll, fuel, and parking expenses'
+        ],
+        exclusions: ['Shopping expenses', 'Entry fees'],
+        hotels: 'Oasis Complex & Resort Karnal',
+        transport: 'Private AC Sedan / Ertiga',
+        tags: ['Karnal', 'Panipat', 'GTRoad', 'Lake', 'History'],
         featured: true,
         status: 'published'
       },
       {
-        title: 'Kerala Backwaters & Munnar Hills Experience',
-        slug: 'kerala-backwaters-munnar-hills-experience',
-        destination: destMap['kerala']._id,
-        destinationName: 'Kerala',
-        category: 'Luxury Travel',
-        duration: '6 Days / 5 Nights',
-        daysCount: 6,
-        nightsCount: 5,
-        price: 22999,
-        discountedPrice: 18999,
-        rating: 4.9,
-        reviewsCount: 41,
-        description: 'Cruise emerald backwaters in Alleppey, wake up to misty tea plantations in Munnar, and explore Periyar Wildlife Sanctuary in Thekkady.',
-        featuredImage: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=80',
-        images: [
-          'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80'
-        ],
-        itinerary: [
-          { day: 1, title: 'Cochin to Munnar (Scenic Hills)', description: 'Drive past Valara and Cheeyappara waterfalls to Munnar. Evening at leisure.', meals: 'Dinner', hotel: 'Fragrant Nature Munnar' },
-          { day: 2, title: 'Munnar Tea Gardens & Eravikulam', description: 'Visit Eravikulam National Park (Nilgiri Tahr habitat), Mattupetty Dam, and Tea Museum.', meals: 'Breakfast & Dinner', hotel: 'Fragrant Nature Munnar' },
-          { day: 3, title: 'Munnar to Thekkady Spice Hills', description: 'Drive to Thekkady. Spice plantation walking tour and evening Kathakali cultural show.', meals: 'Breakfast & Dinner', hotel: 'The Elephant Court' },
-          { day: 4, title: 'Alleppey Private Houseboat Cruise', description: 'Board traditional luxury houseboat. Cruise through narrow canals, paddy fields, and lagoons.', meals: 'Breakfast, Traditional Lunch & Dinner', hotel: 'Private Deluxe Houseboat' },
-          { day: 5, title: 'Marari Beach Relaxation', description: 'Disembark and relax along the peaceful white sands of Marari Beach with Ayurvedic session.', meals: 'Breakfast & Dinner', hotel: 'Marari Sands Resort' },
-          { day: 6, title: 'Departure from Cochin', description: 'Transfer to Cochin International Airport with sweet memories.', meals: 'Breakfast', hotel: 'Checkout' }
-        ],
-        inclusions: ['Exclusive Houseboat with all meals', 'Munnar & Thekkady 4-Star stays', 'Private AC vehicle throughout', 'Spice plantation guided entry'],
-        exclusions: ['Flight tickets', 'Ayurvedic treatments', 'Personal expenses'],
-        tags: ['Ayurveda', 'Houseboat', 'Tea Gardens'],
-        featured: true,
-        status: 'published'
-      },
-      {
-        title: 'Rajasthan Royal Heritage & Desert Safari',
-        slug: 'rajasthan-royal-heritage-desert-safari',
-        destination: destMap['rajasthan-heritage']._id,
-        destinationName: 'Rajasthan (Jaipur & Udaipur)',
-        category: 'Cultural',
-        duration: '7 Days / 6 Nights',
-        daysCount: 7,
-        nightsCount: 6,
-        price: 24999,
-        discountedPrice: 19999,
-        rating: 4.9,
-        reviewsCount: 29,
-        description: 'A royal journey across Jaipur (Pink City), Jodhpur (Blue City), and Udaipur (City of Lakes) with camel rides, forts, and palatial stays.',
-        featuredImage: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1000&q=80',
-        images: [
-          'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80',
-          'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80'
-        ],
-        itinerary: [
-          { day: 1, title: 'Arrival in Jaipur', description: 'Check in, visit Birla Temple and Albert Hall Museum illuminated at night.', meals: 'Dinner', hotel: 'Heritage Haveli Jaipur' },
-          { day: 2, title: 'Jaipur Forts & Palaces', description: 'Explore Amber Fort, Jal Mahal, City Palace, and photo stop at Hawa Mahal.', meals: 'Breakfast & Dinner', hotel: 'Heritage Haveli Jaipur' },
-          { day: 3, title: 'Jaipur to Jodhpur (Blue City)', description: 'Drive to Jodhpur. Visit towering Mehrangarh Fort and Jaswant Thada cenotaph.', meals: 'Breakfast & Dinner', hotel: 'Ranbanka Palace Jodhpur' },
-          { day: 4, title: 'Jodhpur to Udaipur via Ranakpur', description: 'Visit marble Jain temples at Ranakpur. Continue drive to romantic Udaipur.', meals: 'Breakfast & Dinner', hotel: 'Fateh Garh Palace Udaipur' },
-          { day: 5, title: 'Udaipur City Palace & Lake Pichola', description: 'Tour Udaipur City Palace, Saheliyon-ki-Bari, and enjoy boat cruise on Lake Pichola.', meals: 'Breakfast & Dinner', hotel: 'Fateh Garh Palace Udaipur' },
-          { day: 6, title: 'Chittorgarh Fort Excursion', description: 'Visit the legendary fortress of Chittorgarh, symbol of Rajput valor and sacrifice.', meals: 'Breakfast & Dinner', hotel: 'Fateh Garh Palace Udaipur' },
-          { day: 7, title: 'Departure from Udaipur', description: 'Drop-off at Udaipur Airport with memories of royal hospitality.', meals: 'Breakfast', hotel: 'Checkout' }
-        ],
-        inclusions: ['6 Nights heritage hotel stays', 'Daily breakfast & dinner', 'Private AC sedan with experienced guide-cum-driver', 'Lake Pichola boat cruise'],
-        exclusions: ['Monument entry tickets', 'Camera fees', 'Tips'],
-        tags: ['Royalty', 'Heritage', 'Forts'],
-        featured: true,
-        status: 'published'
-      },
-      {
-        title: 'Golden Temple & Punjab Heritage Tour',
-        slug: 'golden-temple-punjab-heritage-tour',
-        destination: destMap['amritsar']._id,
-        destinationName: 'Amritsar',
-        category: 'Group Tours',
-        duration: '4 Days / 3 Nights',
-        daysCount: 4,
-        nightsCount: 3,
-        price: 9999,
-        discountedPrice: 7999,
-        rating: 4.9,
-        reviewsCount: 33,
-        description: 'Experience pure divinity at Sri Harmandir Sahib, goosebumps at Wagah Border, and the world-renowned culinary flavours of Punjab.',
-        featuredImage: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1000&q=80',
-        images: [
-          'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=800&q=80'
-        ],
-        itinerary: [
-          { day: 1, title: 'Arrival & Palki Sahib Ceremony', description: 'Pick up from Amritsar Station/Airport. Evening visit to the illuminated Golden Temple.', meals: 'Dinner', hotel: 'Hyatt Regency Amritsar' },
-          { day: 2, title: 'Jallianwala Bagh & Wagah Border', description: 'Visit Jallianwala Bagh Memorial, Partition Museum, and grand Wagah Border parade.', meals: 'Breakfast & Dinner', hotel: 'Hyatt Regency Amritsar' },
-          { day: 3, title: 'Gobindgarh Fort & Street Food Trail', description: 'Explore Gobindgarh Fort 7D show and indulge in authentic kulcha and makhan fish.', meals: 'Breakfast & Dinner', hotel: 'Hyatt Regency Amritsar' },
-          { day: 4, title: 'Departure', description: 'Morning souvenir shopping (Phulkari, Juttis) and departure drop.', meals: 'Breakfast', hotel: 'Checkout' }
-        ],
-        inclusions: ['3 Nights stay in luxury hotel', 'Daily breakfast and authentic Punjabi dinner', 'AC vehicle with VIP Wagah Border coordination'],
-        exclusions: ['Airfare', 'Shopping', 'Personal tips'],
-        tags: ['Spiritual', 'Heritage', 'Food'],
-        featured: false,
-        status: 'published'
-      },
-      {
-        title: 'Ladakh High Passes & Pangong Lake Expedition',
-        slug: 'ladakh-high-passes-pangong-lake-expedition',
-        destination: destMap['ladakh']._id,
-        destinationName: 'Ladakh',
-        category: 'Adventure',
-        duration: '7 Days / 6 Nights',
-        daysCount: 7,
-        nightsCount: 6,
-        price: 34999,
-        discountedPrice: 28999,
+        title: 'The City Beautiful Chandigarh & Sukhna Lake Weekend Escape',
+        slug: 'chandigarh-rock-garden-sukhna-weekend-escape',
+        destination: destMap['chandigarh']._id,
+        destinationName: 'Chandigarh',
+        category: 'Weekend Getaways',
+        duration: '2 Days / 1 Night',
+        daysCount: 2,
+        nightsCount: 1,
+        price: 7499,
+        discountedPrice: 5999,
         rating: 5.0,
         reviewsCount: 47,
-        description: 'An adrenaline-fueled odyssey across Khardung La, double-humped camel safaris in Nubra Valley, and nights under starry skies at Pangong Lake.',
-        featuredImage: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1000&q=80',
+        description: 'Experience India’s cleanest and most modern city. Tour Nek Chand’s world-famous Rock Garden, enjoy sunset boating at Sukhna Lake, stroll through Zakir Hussain Rose Garden, and shop at Elante Mall with premium chauffeur comfort.',
+        featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
         images: [
-          'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80'
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
+          'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=800'
         ],
         itinerary: [
-          { day: 1, title: 'Arrival in Leh & Complete Rest', description: 'Acclimatization day. Rest at hotel to adjust to high altitude (11,500 ft).', meals: 'Dinner', hotel: 'Grand Dragon Leh' },
-          { day: 2, title: 'Hall of Fame, Magnetic Hill & Sangam', description: 'Visit confluence of Indus & Zanskar rivers, Magnetic Hill, and Gurudwara Pathar Sahib.', meals: 'Breakfast & Dinner', hotel: 'Grand Dragon Leh' },
-          { day: 3, title: 'Leh to Nubra Valley via Khardung La', description: 'Conquer Khardung La Pass (18,380 ft). Camel safari in Hunder Sand Dunes.', meals: 'Breakfast & Dinner', hotel: 'Deluxe Swiss Camps Nubra' },
-          { day: 4, title: 'Turtuk Village Excursion', description: 'Explore Turtuk, the northernmost village of India with unique Balti culture and apricot groves.', meals: 'Breakfast & Dinner', hotel: 'Deluxe Swiss Camps Nubra' },
-          { day: 5, title: 'Nubra to Pangong Tso via Shyok', description: 'Breathtaking drive along Shyok River to Pangong Lake (14,270 ft). Stargazing by the lake.', meals: 'Breakfast & Dinner', hotel: 'Lakeview Cottage Pangong' },
-          { day: 6, title: 'Pangong to Leh via Chang La', description: 'Witness magical sunrise at Pangong. Cross Chang La Pass (17,590 ft) back to Leh.', meals: 'Breakfast & Dinner', hotel: 'Grand Dragon Leh' },
-          { day: 7, title: 'Fly back with Lifelong Memories', description: 'Early morning transfer to Leh Kushok Bakula Rimpochee Airport.', meals: 'Breakfast', hotel: 'Checkout' }
+          { day: 1, title: 'Arrival in Chandigarh, Rock Garden & Sukhna Lake Sunset', description: 'Smooth morning drive. Visit Nek Chand’s Rock Garden, followed by sunset boating and promenade dining at Sukhna Lake.', meals: 'Dinner', hotel: 'Deluxe City Hotel Chandigarh' },
+          { day: 2, title: 'Rose Garden, Sector 17 & Elante Mall Shopping', description: 'Tour Zakir Hussain Rose Garden, explore Sector 17 plaza, shop at Elante Mall, and evening return transfer.', meals: 'Breakfast', hotel: 'Checkout' }
         ],
-        inclusions: ['Oxygen cylinder in vehicle', 'Inner line permits & wildlife fees', '6 Nights hotel/camp stay with breakfast & dinner', 'Dedicated 4x4 / Scorpio vehicle'],
-        exclusions: ['Airfare to Leh', 'Camel rides', 'Personal medication'],
-        tags: ['Adventure', 'Biking', 'Himalayas', 'Stargazing'],
+        inclusions: [
+          '1 Night stay in top-rated 3/4-star Chandigarh hotel',
+          'Daily breakfast and dinner',
+          'Private dedicated AC cab for all city transfers',
+          'All tolls, parking fees, and driver charges'
+        ],
+        exclusions: ['Boat rental tickets', 'Personal shopping'],
+        hotels: 'Hotel Mountview / Park Plaza Chandigarh',
+        transport: 'Private AC Toyota Innova Crysta / Dzire',
+        tags: ['Chandigarh', 'Weekend', 'SukhnaLake', 'RockGarden', 'Modern'],
         featured: true,
         status: 'published'
       }
@@ -592,106 +474,68 @@ const seedDB = async () => {
     const packages = await Package.insertMany(packagesData);
     console.log(`[Seed] Seeded ${packages.length} Tour Packages`);
 
-    // 4. Create Sample Bookings
+    // 4. Sample Bookings
     const bookingsData = [
       {
-        bookingNumber: 'VTT-20260910-1042',
-        user: demoUser._id,
+        bookingNumber: 'VTT-20261015-1042',
         package: packages[0]._id,
         customerName: 'Aarav Mehta',
         email: 'user@vistatourtravels.com',
-        phone: '+91 98111 22334',
-        address: 'House 42, Sector 21, Chandigarh',
-        travelDate: new Date('2026-10-15'),
+        phone: '+91 90688 88578',
+        address: 'Nawarsi Bazar, Ladwa, Kurukshetra',
+        travelDate: new Date('2026-10-25'),
         adults: 2,
         children: 1,
-        pickupLocation: 'Chandigarh Airport',
-        specialRequirements: 'Vegetarian meals preferred, mountain-facing room',
-        packagePrice: 12999,
-        taxes: 1625,
-        totalAmount: 34122,
+        pickupLocation: 'Ladwa, Kurukshetra',
+        specialRequirements: 'Vegetarian meals preferred, ground floor room',
+        packagePrice: 4999,
+        taxes: 500,
+        totalAmount: 10498,
         paymentStatus: 'Paid',
         bookingStatus: 'Confirmed'
-      },
-      {
-        bookingNumber: 'VTT-20260912-8419',
-        package: packages[2]._id,
-        customerName: 'Priya Verma',
-        email: 'priya.verma@example.com',
-        phone: '+91 98721 55432',
-        address: 'B-14 Green Park, New Delhi',
-        travelDate: new Date('2026-11-05'),
-        adults: 2,
-        children: 0,
-        pickupLocation: 'Srinagar Airport',
-        specialRequirements: 'Honeymoon arrangement with flower bed decor',
-        packagePrice: 22499,
-        taxes: 2250,
-        totalAmount: 47248,
-        paymentStatus: 'Pending',
-        bookingStatus: 'Pending'
-      },
-      {
-        bookingNumber: 'VTT-20260901-5231',
-        package: packages[3]._id,
-        customerName: 'Rohan Deshmukh',
-        email: 'rohan.deshmukh@example.com',
-        phone: '+91 99234 11223',
-        address: 'Bandra West, Mumbai',
-        travelDate: new Date('2026-09-20'),
-        adults: 4,
-        children: 0,
-        pickupLocation: 'Goa Dabolim Airport',
-        specialRequirements: 'Adjoining rooms in resort',
-        packagePrice: 14999,
-        taxes: 3000,
-        totalAmount: 62996,
-        paymentStatus: 'Paid',
-        bookingStatus: 'Completed'
       }
     ];
-
     await Booking.insertMany(bookingsData);
     console.log('[Seed] Seeded Sample Bookings');
 
-    // 5. Testimonials (Seeded from Verified 5.0★ Google Reviews)
+    // 5. Testimonials (5.0★ Google Reviews)
     const testimonialsData = [
       {
         customerName: 'Gurpreet Singh',
-        destination: 'Manali, Himachal Pradesh',
-        packageTitle: 'Manali & Rohtang Pass Chauffeur Tour',
+        destination: 'Kurukshetra, Haryana',
+        packageTitle: 'Kurukshetra Holy Sarovars Spiritual Yatra',
         rating: 5,
-        review: 'Outstanding cab service by Vista Tour and Travels! Chauffeur arrived punctually at our Sector 73 Mohali home, vehicle was spotless Innova Crysta, and hill driving was safe and smooth throughout our Manali family holiday. Highly recommended!',
+        review: 'Outstanding cab and yatra service by Vista Tour and Travels! Chauffeur arrived punctually at our doorstep, vehicle was spotless Innova Crysta, and driving was safe and smooth throughout our family pilgrimage. Highly recommended!',
         profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
         status: 'approved',
         createdAt: new Date('2026-09-18')
       },
       {
         customerName: 'Ananya Sharma',
-        destination: 'Dharamshala & McLeodGanj',
-        packageTitle: 'Chandigarh Airport to Dharamshala Cab',
+        destination: 'Delhi NCR & IGI Airport',
+        packageTitle: '24/7 Delhi IGI Airport Cab Transfer',
         rating: 5,
-        review: 'Booked Vista Tour and Travels for airport pickup at Chandigarh to McLeodGanj. Exceptional polite driver, zero hidden tolls, and very comfortable ride. 5-star Google experience!',
+        review: 'Booked Vista Tour and Travels for midnight airport pickup to Ladwa/Kurukshetra. Exceptional polite driver, zero hidden tolls, and very comfortable ride. 5-star Google experience!',
         profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
         status: 'approved',
         createdAt: new Date('2026-09-28')
       },
       {
         customerName: 'Rajesh Kumar',
-        destination: 'Shimla & Kufri',
-        packageTitle: 'Shimla Weekend Gateway Package',
+        destination: 'Ambala Cloth Market',
+        packageTitle: 'Ambala Bridal Shopping Chauffeur Cab',
         rating: 5,
-        review: 'Best taxi service in Mohali and Tricity! Transparent pricing with prompt WhatsApp booking confirmation. Chauffeur was knowledgeable about mountain roads and safe scenic spots.',
+        review: 'Best taxi service in Ladwa and Kurukshetra! Transparent pricing with prompt WhatsApp booking confirmation. Chauffeur helped us with ample trunk space for our wedding shopping.',
         profileImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
         status: 'approved',
         createdAt: new Date('2026-10-04')
       },
       {
         customerName: 'Vikramjit Sandhu',
-        destination: 'Dalhousie & Khajjiar',
-        packageTitle: 'Luxury Tempo Traveller Hill Tour',
+        destination: 'Chandigarh Tricity',
+        packageTitle: 'Luxury Tempo Traveller Group Tour',
         rating: 5,
-        review: 'Booked a Tempo Traveller with Vista Tour and Travels for our 12-member group trip. Spotless AC vehicle, very professional driver, and on-time pickups. Truly 5.0★ service!',
+        review: 'Booked a Tempo Traveller with Vista Tour and Travels for our 15-member family function. Spotless AC vehicle, very professional driver, and on-time pickups. Truly 5.0★ service!',
         profileImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80',
         status: 'approved',
         createdAt: new Date('2026-10-12')
@@ -703,185 +547,124 @@ const seedDB = async () => {
     // 6. Blog Articles
     const blogsData = [
       {
-        title: 'Top 10 Things You Must Do in Manali This Winter',
-        slug: 'top-10-things-to-do-in-manali-winter',
-        coverImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=80',
-        excerpt: 'From snow sports in Solang Valley to unwinding with hot chocolate in Old Manali cafes, here is your ultimate winter itinerary.',
-        content: `Manali in winter transforms into a postcard-perfect snowy wonderland. As fresh powder blanket covers the pine trees and riverbanks, travelers flock to experience mountain thrill and serenity.\n\n### 1. Snowboarding & Skiing at Solang Valley\nSolang is Himachal’s premier winter sports hub. Certified instructors provide 1-hour intro ski lessons with equipment rental directly on the slopes.\n\n### 2. Crossing the Atal Tunnel to Lahaul\nDriving through the 9.02 km Atal Tunnel beneath the Rohtang Pass brings you directly into the frozen wonderland of Sissu, featuring a stunning ice-sheet waterfall.\n\n### 3. Soak in Vashisht Hot Sulphur Springs\nWhen the temperatures dip below freezing, dipping into the natural hot mineral springs of Vashisht temple relaxes tired muscles naturally.\n\n### 4. Experience Old Manali Cafe Culture\nOld Manali offers cozy wooden cabins serving wood-fired trout, apple pies, and warm cinnamon tea beside crackling wood stoves.`,
+        title: 'Top 7 Historic Sites You Must Visit in Kurukshetra',
+        slug: 'top-historic-sites-in-kurukshetra',
+        coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1000',
+        excerpt: 'From the sacred waters of Brahma Sarovar to the ancient banyan tree at Jyotisar, explore the Mahabharata heartland.',
+        content: `Kurukshetra is one of the most culturally and historically significant pilgrimage destinations in India.\n\n### 1. Sacred Dip at Brahma Sarovar\nAsia’s largest sacred man-made water tank mentioned in ancient scriptures, with thousands taking part in evening aarti.\n\n### 2. Jyotisar: Birthplace of the Bhagavad Gita\nThe sacred spot where Lord Krishna delivered the Gita sermon to Arjuna beneath an immortal banyan tree.\n\n### 3. Sheikh Chilli’s Marble Mausoleum\nA magnificent example of Mughal architecture often called the Taj Mahal of Haryana.\n\n### 4. Kurukshetra Panorama & Science Centre\nAn interactive museum bringing the eighteen-day Mahabharata battle to life with scale models and acoustic narration.`,
         category: 'Travel Guides',
-        readTime: '6 min read',
-        status: 'published',
-        tags: ['Manali', 'Snow', 'Himachal', 'Winter']
-      },
-      {
-        title: 'Complete Kashmir Travel Guide: When to Go & What to Pack',
-        slug: 'complete-kashmir-travel-guide-when-to-go',
-        coverImage: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1000&q=80',
-        excerpt: 'Everything you need to know before visiting Heaven on Earth: seasons, permits, must-visit valleys, and local etiquette.',
-        content: `Kashmir is breathtaking across all four seasons. In spring (March-April), millions of tulips burst into color at Asia’s largest Tulip Garden in Srinagar. Summer brings cool pine breezes and lush meadows to Pahalgam, while winter covers Gulmarg in world-class ski powder.\n\n### What to Pack:\n- Layered thermals for Gulmarg Gondola Phase 2\n- Comfortable trekking sneakers or warm snow boots\n- Cash for local shikaras and pony rides\n- Government ID cards for security checkpoints`,
-        category: 'Travel Tips',
         readTime: '5 min read',
         status: 'published',
-        tags: ['Kashmir', 'Gulmarg', 'Pahalgam', 'Tips']
+        tags: ['Kurukshetra', 'Heritage', 'History', 'Haryana']
       },
       {
-        title: 'Hidden Backwater Routes in Kerala You Have Never Heard Of',
-        slug: 'hidden-backwater-routes-in-kerala',
-        coverImage: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=80',
-        excerpt: 'Ditch the crowded Alleppey channels and explore the secluded mangrove waterways of Kumarakom and Monroe Island.',
-        content: `While Alleppey gets all the limelight, Kerala harbors secret emerald waterways where Kingfishers dive and village fishermen cast Chinese fishing nets in total tranquility.\n\nMonroe Island near Kollam is criss-crossed by narrow canals perfect for guided country canoes where motor boats cannot reach. Enjoy coconut water straight from palms and fresh Karimeen fish fry served on banana leaves.`,
-        category: 'Destinations',
+        title: 'Complete Ambala Cloth Market Shopping Guide: Tips & Best Deals',
+        slug: 'ambala-cloth-market-shopping-guide',
+        coverImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=1000',
+        excerpt: 'Everything you need to know before visiting Asia’s largest wholesale fabric and bridal wear market in Ambala.',
+        content: `Ambala Cloth Market is a paradise for brides, families, and boutique owners seeking premium fabrics at direct wholesale prices.\n\n### Tips for Shoppers:\n- Book a private cab with luggage boot space so your shopping bags are safely stored between markets\n- Morning hours (11 AM to 2 PM) offer the most personalized attention\n- Explore both wholesale lanes and dedicated bridal showrooms for maximum variety`,
+        category: 'Travel Tips',
         readTime: '4 min read',
         status: 'published',
-        tags: ['Kerala', 'Houseboat', 'South India', 'Offbeat']
+        tags: ['Ambala', 'Shopping', 'Bridal', 'Textile']
       }
     ];
-
     await Blog.insertMany(blogsData);
     console.log('[Seed] Seeded Blog Articles');
 
     // 7. Gallery
     const galleryData = [
-      { title: 'Snow Solang Valley', imageUrl: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=900&q=80', category: 'Mountains', location: 'Manali, Himachal' },
-      { title: 'Dal Lake Shikaras', imageUrl: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=900&q=80', category: 'Honeymoon', location: 'Srinagar, Kashmir' },
-      { title: 'Palolem Beach Sunset', imageUrl: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80', category: 'Beaches', location: 'South Goa' },
-      { title: 'Pangong Tso Reflections', imageUrl: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=900&q=80', category: 'Adventure', location: 'Ladakh' },
-      { title: 'Alleppey Houseboat Laggoon', imageUrl: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80', category: 'Culture', location: 'Kerala' },
-      { title: 'Amber Fort Jaipur', imageUrl: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=900&q=80', category: 'Culture', location: 'Jaipur, Rajasthan' },
-      { title: 'Luxury Mountain Resort', imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80', category: 'Hotels', location: 'Shimla' },
-      { title: 'Himalayan Highway Road Trip', imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80', category: 'Road Trips', location: 'Manali-Leh Highway' }
+      { title: 'Brahma Sarovar Aarti', imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=900', category: 'Culture', location: 'Kurukshetra, Haryana' },
+      { title: 'Sheikh Chilli Tomb', imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=900', category: 'Heritage', location: 'Kurukshetra, Haryana' },
+      { title: 'India Gate Monument', imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=900', category: 'Monuments', location: 'New Delhi' },
+      { title: 'Karna Lake Promenade', imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=900', category: 'Nature', location: 'Karnal, Haryana' },
+      { title: 'Rock Garden Sculptures', imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=900', category: 'Culture', location: 'Chandigarh' },
+      { title: 'Sukhna Lake Sunset', imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=900', category: 'Lakes', location: 'Chandigarh' }
     ];
-
     await Gallery.insertMany(galleryData);
     console.log('[Seed] Seeded Gallery Photos');
 
     // 8. FAQs
     const faqsData = [
       {
-        question: 'How do I book a tour package with Vista Tour and Travels?',
-        answer: 'You can easily browse through our curated tour packages, select your preferred travel date and number of guests, and click "Book This Package". Fill in your contact details and submit. Our travel specialist will immediately review and send your confirmed itinerary.',
+        question: 'How do I book a cab or tour package with Vista Tour and Travels?',
+        answer: 'You can easily book online or call us directly at +91 90688 88578. You can also click the WhatsApp button to get an instant quote and booking confirmation on your phone.',
         category: 'Booking',
         order: 1
       },
       {
-        question: 'What are the available payment methods?',
-        answer: 'We accept all major payment modes including UPI (Google Pay, PhonePe, Paytm), Net Banking, Credit/Debit Cards, and NEFT/RTGS bank transfers. You can choose to pay a 30% advance deposit to secure your booking, with the balance payable prior to trip departure.',
-        category: 'Payment',
+        question: 'Do you provide 24/7 doorstep pickup across Ladwa and Kurukshetra?',
+        answer: 'Yes! We provide 24/7 round-the-clock doorstep cab pickups across Ladwa, Kurukshetra, Ambala, Karnal, Yamunanagar, Kaithal, and direct transfers to Delhi IGI Airport and Chandigarh Airport.',
+        category: 'Transportation',
         order: 2
       },
       {
-        question: 'What is the cancellation and refund policy?',
-        answer: 'We offer free cancellation up to 7 days before your scheduled departure date with a 100% refund. Cancellations made between 7 to 3 days receive a 50% refund. Within 72 hours of departure, bookings are non-refundable as hotel and transport commitments are already finalized.',
-        category: 'Cancellation',
+        question: 'What are the available payment methods?',
+        answer: 'We accept UPI (Google Pay, PhonePe, Paytm), Net Banking, Cash, and Bank Transfer. All billing is completely transparent with zero hidden fees.',
+        category: 'Payment',
         order: 3
       },
       {
-        question: 'Are all hotels verified and family-friendly?',
-        answer: 'Yes! Every hotel, resort, and boutique homestay in our portfolio is personally vetted by our team for hygiene, mountain/beach views, clean linens, hot water availability, and quality dining.',
-        category: 'Hotels',
+        question: 'Are all vehicles commercial licensed and sanitized?',
+        answer: 'Yes! Every car in our fleet (Innova Crysta, Ertiga, Dzire, Fortuner, Tempo Traveller) is commercial-licensed, sanitized before every journey, and driven by verified professional chauffeurs.',
+        category: 'Vehicles',
         order: 4
-      },
-      {
-        question: 'What kind of transportation vehicles do you provide?',
-        answer: 'We operate dedicated private vehicles including Toyota Innova Crysta, Maruti Ertiga, Swift Dzire, and Tempo Travellers. All vehicles are commercial licensed, equipped with air conditioning, and driven by experienced hill/tourist chauffeurs.',
-        category: 'Transportation',
-        order: 5
-      },
-      {
-        question: 'Can I customize an existing package to fit my schedule?',
-        answer: 'Absolutely! All our packages are 100% customizable. You can add extra days, upgrade to 5-star hotels, change pickup points, or request custom activities like candlelight dinners or adventure sports.',
-        category: 'Packages',
-        order: 6
       }
     ];
-
     await FAQ.insertMany(faqsData);
     console.log('[Seed] Seeded FAQs');
 
     // 9. Services
     const servicesData = [
       {
-        title: 'Customized Tour Packages',
-        slug: 'customized-tour-packages',
-        shortDescription: 'Tailor-made vacation itineraries crafted precisely around your budget, pace, and interests.',
-        description: 'Whether you want a private family vacation in Himachal, a romantic honeymoon in Kashmir, or a cultural exploration in Rajasthan, our travel designers build your custom day-by-day itinerary with verified hotels and private transport.',
-        icon: 'Compass',
-        image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80',
-        features: ['Personalized day-by-day planning', 'Hand-picked 3/4/5-star accommodations', '24/7 on-trip concierge assistance'],
-        order: 1
-      },
-      {
-        title: 'Premium Cab & Taxi Services',
-        slug: 'premium-cab-services',
-        shortDescription: 'Reliable, sanitized chauffeur-driven cabs for hill stations, outstation roundtrips, and local tours.',
-        description: 'Fleet of Toyota Innova Crysta, Dzire, Ertiga, and Tempo Travellers driven by courteous, hill-certified chauffeurs with clean track records.',
+        title: 'Chauffeur Cab & Taxi Services',
+        slug: 'chauffeur-cab-taxi-services',
+        shortDescription: 'Sanitized AC sedans, SUVs, and luxury Tempo Travellers driven by verified commercial chauffeurs.',
+        description: 'Fleet of Toyota Innova Crysta, Dzire, Ertiga, Fortuner, and Tempo Travellers driven by courteous, verified commercial chauffeurs across Haryana, Delhi NCR, and Chandigarh.',
         icon: 'Car',
-        image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80',
-        features: ['Experienced mountain drivers', 'Fixed transparent fares with no hidden tolls', 'Punctual door-to-door pickups'],
-        order: 2
-      },
-      {
-        title: 'Hotel & Resort Booking',
-        slug: 'hotel-resort-booking',
-        shortDescription: 'Exclusive negotiated rates at luxury resorts, heritage palaces, and scenic mountain chalets.',
-        description: 'Enjoy complimentary room upgrades, mountain views, and breakfast inclusions through our established hospitality partnerships across India.',
-        icon: 'Hotel',
-        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
-        features: ['Verified guest reviews', 'Best rate guarantee', 'Free cancellation options'],
-        order: 3
-      },
-      {
-        title: 'Honeymoon Special Packages',
-        slug: 'honeymoon-packages',
-        shortDescription: 'Intimate romantic getaways complete with candlelit dinners, flower bed decor, and scenic vistas.',
-        description: 'Special arrangements in Kashmir, Manali, Shimla, Goa, and Kerala designed exclusively for newlyweds.',
-        icon: 'Heart',
-        image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=600&q=80',
-        features: ['Complimentary honeymoon cake & wine', 'Candlelit dinner setup', 'Private scenic photography spots'],
-        order: 4
-      },
-      {
-        title: 'Corporate & MICE Travel',
-        slug: 'corporate-mice-travel',
-        shortDescription: 'End-to-end conference planning, executive offsites, and team building retreats.',
-        description: 'Hassle-free corporate travel logistics for startups and large enterprises with GST billing and corporate discounts.',
-        icon: 'Briefcase',
-        image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80',
-        features: ['Dedicated corporate relationship manager', 'GST compliant invoicing', 'Audio-visual conference support'],
-        order: 5
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=600',
+        features: ['Verified commercial chauffeurs', 'Fixed transparent fares with zero hidden charges', 'Punctual door-to-door pickups'],
+        order: 1
       },
       {
         title: 'Airport & Railway Transfers',
         slug: 'airport-railway-transfers',
-        shortDescription: 'Guaranteed on-time arrivals and departures with flight tracking and meet & greet service.',
-        description: 'Never worry about missing a flight or train. Our drivers track flight timings and ensure timely pickup with luggage assistance.',
-        icon: 'Plane',
-        image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80',
-        features: ['Real-time flight arrival monitoring', 'Zero surge pricing', 'Chauffeur meet & greet with nameboard'],
-        order: 6
+        shortDescription: 'Punctual 24/7 meet-and-greet transfers for Delhi IGI Airport, Chandigarh Airport, and Ambala Cantt Railway Station.',
+        description: 'Never worry about missing a flight or train. Our chauffeurs ensure on-time doorstep pickup with full luggage handling assistance.',
+        icon: 'Clock',
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=600',
+        features: ['Real-time flight arrival tracking', 'Zero surge pricing', 'Chauffeur meet & greet service'],
+        order: 2
+      },
+      {
+        title: 'Customized Tour Packages',
+        slug: 'customized-tour-packages',
+        shortDescription: 'Bespoke regional and North India holiday plans personalized to your travel pace, budget, and dates.',
+        description: 'Whether you want a spiritual yatra in Kurukshetra, a monument exploration in Delhi NCR, or a weekend in Chandigarh, we plan your custom itinerary with verified hotels and private transport.',
+        icon: 'Compass',
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=600',
+        features: ['Personalized day-by-day planning', 'Hand-picked 3/4/5-star accommodations', '24/7 on-trip concierge assistance'],
+        order: 3
       }
     ];
-
     await Service.insertMany(servicesData);
     console.log('[Seed] Seeded Services');
 
-    // 10. Sample Inquiries
-    // No fake inquiries seeded - inquiries start clean for real customer inquiries
-    console.log('[Seed] Inquiries left empty for genuine customer inquiries');
-
+    // 10. Website Settings
     await WebsiteSetting.create({
       companyName: 'Vista Tour and Travels',
       serviceName: 'Vista Tour and Travels',
-      tagline: '5.0 ★ Rated Tour Packages & Luxury Cabs in Mohali & Himachal',
+      tagline: '5.0 ★ Rated Tour Packages & Luxury Cabs in Haryana & Delhi NCR',
       heroTitle: 'Experience Seamless Journeys with Vista Tour and Travels',
-      heroSubtitle: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Mohali, Chandigarh & Himachal. Clean commercial cabs, hill-certified chauffeurs, and customized holiday packages.',
-      heroImage: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
+      heroSubtitle: 'Haryana’s top-rated luxury cab service and travel provider. Clean commercial cabs, verified professional chauffeurs, and transparent all-inclusive quotes.',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920',
       logo: '/logo.jpg',
       phone: '+91 90688 88578',
-      altPhone: '+91 90688 88578',
+      secondaryPhone: '+91 99965 70920',
+      altPhone: '+91 99965 70920',
       email: 'info@vistatourtravels.com',
       address: 'Nawarsi Bazar, Ladwa, Haryana 136132, India',
-      areasServed: 'Mohali (Sector 73/119), Chandigarh Tricity, Airport Transfers, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Kurukshetra & All Himachal',
+      areasServed: 'Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal, Chandigarh, Ladwa',
       googleRating: 5.0,
       googleReviewCount: 50,
       googleMapsUrl: 'https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132',
@@ -893,7 +676,7 @@ const seedDB = async () => {
       businessHours: '24 Hours Open (7 Days a Week)',
       experienceYears: '12+',
       happyTravelers: '10,000+',
-      destinationCount: '50+',
+      destinationCount: '8+',
       supportHours: '24/7'
     });
     console.log('[Seed] Seeded Website Settings');

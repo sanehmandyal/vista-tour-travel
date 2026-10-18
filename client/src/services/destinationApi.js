@@ -5,142 +5,92 @@ const STORAGE_KEY = 'rtt_custom_destinations';
 
 export const getExactDestinationImages = (name = '', slug = '') => {
   const q = `${name} ${slug}`.toLowerCase();
-  if (q.includes('dharamshala') || q.includes('mcleod')) {
+  if (q.includes('kurukshetra') || q.includes('brahma') || q.includes('jyotisar')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Mcleodganj.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('manali') || q.includes('solang') || q.includes('rohtang')) {
+  if (q.includes('ambala') || q.includes('cantt')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Solang_Valley_Manali.JPG?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('dalhousie') || q.includes('khajjiar')) {
+  if (q.includes('delhi') || q.includes('ncr') || q.includes('qutub') || q.includes('india gate')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('bir') || q.includes('billing')) {
+  if (q.includes('karnal') || q.includes('karna')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Cantonment_Church_Tower_Karnal.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('shimla') || q.includes('kufri')) {
+  if (q.includes('panipat') || q.includes('kala amb') || q.includes('kabuli')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('spiti') || q.includes('kaza')) {
+  if (q.includes('yamunanagar') || q.includes('kalesar') || q.includes('hathni')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/1000_Year_loop.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('kasol') || q.includes('manikaran') || q.includes('tosh') || q.includes('parvati')) {
+  if (q.includes('kaithal') || q.includes('kathial') || q.includes('hanuman') || q.includes('anjani')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('jibhi') || q.includes('tirthan')) {
+  if (q.includes('chandigarh') || q.includes('chandigark') || q.includes('sukhna') || q.includes('rock garden')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Waterfall_Gate.jpg?width=1200'
-      ]
-    };
-  }
-  if (q.includes('kinnaur') || q.includes('kalpa') || q.includes('sangla') || q.includes('chitkul')) {
-    return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
-      images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Temple_at_Chitkul.JPG?width=1200'
-      ]
-    };
-  }
-  if (q.includes('palampur') || q.includes('baijnath')) {
-    return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=1200',
-      images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200'
-      ]
-    };
-  }
-  if (q.includes('jawala') || q.includes('chintpurni')) {
-    return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=1200',
-      images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Chintpurni_Devi_(1).JPG?width=1200'
-      ]
-    };
-  }
-  if (q.includes('kangra') || q.includes('masroor') || q.includes('chamunda')) {
-    return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
-      images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_,Himachal_Pradesh_06.jpg?width=1200'
-      ]
-    };
-  }
-  if (q.includes('kullu') || q.includes('naggar')) {
-    return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=1200',
-      images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=1200'
       ]
     };
   }
   return {
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
+    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200'
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=1200'
     ]
   };
 };
