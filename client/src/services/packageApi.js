@@ -81,7 +81,25 @@ export const packageApi = {
     try {
       const res = await axiosClient.get('/packages', { params });
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        return res;
+        const local = getLocalPackages();
+        const customItems = local.filter(p => !res.data.some(b => b._id === p._id || b.slug === p.slug));
+        const merged = [
+          ...customItems,
+          ...res.data.map(b => {
+            const localMatch = local.find(l => l._id === b._id || l.slug === b.slug);
+            return localMatch ? { ...b, ...localMatch } : b;
+          })
+        ];
+        return {
+          success: true,
+          data: merged,
+          pagination: res.pagination || {
+            total: merged.length,
+            page: params.page || 1,
+            totalPages: 1,
+            limit: params.limit || 50
+          }
+        };
       }
     } catch (err) {
       // Remote backend fallback to client regional packages
@@ -101,17 +119,19 @@ export const packageApi = {
   },
 
   getBySlug: async (slug) => {
+    const list = getLocalPackages();
+    const localFound = list.find(p => p.slug === slug || p._id === slug);
+
     try {
       const res = await axiosClient.get(`/packages/${slug}`);
       if (res && res.success && res.data) {
-        return res;
+        const item = localFound ? { ...localFound, ...res.data } : res.data;
+        return { success: true, data: item };
       }
     } catch (err) {}
 
-    const list = getLocalPackages();
-    const found = list.find(p => p.slug === slug || p._id === slug);
-    if (found) {
-      return { success: true, data: found };
+    if (localFound) {
+      return { success: true, data: localFound };
     }
     return { success: false, message: 'Package not found' };
   },

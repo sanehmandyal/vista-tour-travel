@@ -41,8 +41,9 @@ export const AdminLayout = () => {
       group: 'Travel Catalog',
       items: [
         { name: 'Destinations', path: '/admin/destinations', icon: MapPin },
-        { name: 'Car Fleet & Models', path: '/admin/fleet', icon: Car },
-        { name: 'Services', path: '/admin/services', icon: Briefcase }
+        { name: 'Tour Packages', path: '/admin/packages', icon: Package },
+        { name: 'Car Fleet & Vehicles', path: '/admin/cars', icon: Car },
+        { name: 'Taxi Services', path: '/admin/services', icon: Briefcase }
       ]
     },
     {
@@ -56,7 +57,7 @@ export const AdminLayout = () => {
     {
       group: 'Content & Media',
       items: [
-        { name: 'Traveler Reviews (Delete)', path: '/admin/reviews', icon: Star },
+        { name: 'Traveler Reviews', path: '/admin/reviews', icon: Star },
         { name: 'FAQs', path: '/admin/faqs', icon: HelpCircle }
       ]
     },

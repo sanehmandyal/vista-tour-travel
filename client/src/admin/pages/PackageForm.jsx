@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { packageApi } from '../../services/packageApi';
 import { destinationApi } from '../../services/destinationApi';
-import { adminApi } from '../../services/adminApi';
 import { processDeviceImage } from '../../utils/imageUpload';
-import { ArrowLeft, Upload, Save, Plus, Trash2, Sparkles } from 'lucide-react';
+import { ArrowLeft, Upload, Save, Sparkles, Image as ImageIcon, MapPin } from 'lucide-react';
 import Button from '../../components/common/Button';
+import Loader from '../../components/common/Loader';
 import toast from 'react-hot-toast';
 
 export const PackageForm = () => {
@@ -15,29 +15,20 @@ export const PackageForm = () => {
 
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(isEdit);
   const [uploading, setUploading] = useState(false);
 
   const [formData, setFormData] = useState({
     title: '',
     destination: '',
-    category: 'Family Trips',
-    duration: '5 Days / 4 Nights',
-    daysCount: 5,
-    nightsCount: 4,
-    price: '',
-    discountedPrice: '',
-    featuredImage: '',
+    destinationName: '',
+    category: 'Spiritual & Heritage',
+    duration: '2 Days / 1 Night',
     description: '',
-    inclusions: '4-Star Resort Stay, Daily Breakfast & Dinner, Private Sanitized Cab, Sightseeing Tours',
-    exclusions: 'Airfare, Personal Expenses, Adventure activity fees',
-    hotels: 'Verified 3-Star & 4-Star Deluxe Stays & Highway Resorts with modern amenities',
-    transport: 'Private Chauffeur AC Sedan / SUV for transfers and tours',
+    inclusions: 'Sanitized AC Cab, Verified Polite Chauffeur, Sightseeing, All Tolls & State Taxes Included',
+    featuredImage: '',
     featured: false,
-    status: 'published',
-    itinerary: [
-      { day: 1, title: 'Arrival & Hotel Check-in', description: 'Meet & greet, hotel check-in and evening at leisure.', meals: 'Dinner', hotel: '4-Star Resort' },
-      { day: 2, title: 'Local Sightseeing Tour', description: 'Explore iconic highlights and viewpoints.', meals: 'Breakfast & Dinner', hotel: '4-Star Resort' }
-    ]
+    status: 'published'
   });
 
   useEffect(() => {
@@ -47,7 +38,11 @@ export const PackageForm = () => {
         if (res.success && res.data) {
           setDestinations(res.data);
           if (!formData.destination && res.data.length > 0) {
-            setFormData(prev => ({ ...prev, destination: res.data[0]._id }));
+            setFormData(prev => ({
+              ...prev,
+              destination: res.data[0].slug || res.data[0]._id,
+              destinationName: res.data[0].name
+            }));
           }
         }
       } catch (err) {
@@ -66,28 +61,21 @@ export const PackageForm = () => {
             const p = res.data;
             setFormData({
               title: p.title || '',
-              destination: p.destination?._id || p.destination || '',
-              category: p.category || 'Family Trips',
-              duration: p.duration || '',
-              daysCount: p.daysCount || 5,
-              nightsCount: p.nightsCount || 4,
-              price: p.price || '',
-              discountedPrice: p.discountedPrice || '',
-              featuredImage: p.featuredImage || '',
+              destination: p.destination?._id || p.destination || p.destinationSlug || '',
+              destinationName: p.destinationName || p.destination?.name || '',
+              category: p.category || 'Spiritual & Heritage',
+              duration: p.duration || '2 Days / 1 Night',
               description: p.description || '',
               inclusions: Array.isArray(p.inclusions) ? p.inclusions.join(', ') : p.inclusions || '',
-              exclusions: Array.isArray(p.exclusions) ? p.exclusions.join(', ') : p.exclusions || '',
-              hotels: p.hotels || '',
-              transport: p.transport || '',
+              featuredImage: p.featuredImage || '',
               featured: Boolean(p.featured),
-              status: p.status || 'published',
-              itinerary: p.itinerary && p.itinerary.length > 0 ? p.itinerary : [
-                { day: 1, title: 'Arrival & Welcome', description: 'Arrival and transfer to hotel.', meals: 'Dinner', hotel: 'Standard Hotel' }
-              ]
+              status: p.status || 'published'
             });
           }
         } catch (err) {
           toast.error('Failed to load package details');
+        } finally {
+          setFetching(false);
         }
       };
       fetchPkg();
@@ -96,21 +84,30 @@ export const PackageForm = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+    if (name === 'destination') {
+      const matched = destinations.find(d => d._id === value || d.slug === value);
+      setFormData(prev => ({
+        ...prev,
+        destination: value,
+        destinationName: matched ? matched.name : value
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: type === 'checkbox' ? checked : value
+      }));
+    }
   };
 
   const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
     if (!file) return;
 
     try {
       setUploading(true);
       const dataUri = await processDeviceImage(file);
       setFormData(prev => ({ ...prev, featuredImage: dataUri }));
-      toast.success('Package image loaded from your device!');
+      toast.success('Package image loaded from device!');
     } catch (err) {
       toast.error(err.message || 'Image processing failed');
     } finally {
@@ -119,55 +116,37 @@ export const PackageForm = () => {
     }
   };
 
-  // Itinerary handlers
-  const handleItineraryChange = (index, field, value) => {
-    const updated = [...formData.itinerary];
-    updated[index][field] = value;
-    setFormData(prev => ({ ...prev, itinerary: updated }));
-  };
-
-  const addItineraryDay = () => {
-    const nextDay = formData.itinerary.length + 1;
-    setFormData(prev => ({
-      ...prev,
-      itinerary: [
-        ...prev.itinerary,
-        { day: nextDay, title: `Day ${nextDay} Itinerary`, description: '', meals: 'Breakfast & Dinner', hotel: 'Hotel' }
-      ]
-    }));
-  };
-
-  const removeItineraryDay = (index) => {
-    const updated = formData.itinerary.filter((_, i) => i !== index).map((item, i) => ({
-      ...item,
-      day: i + 1
-    }));
-    setFormData(prev => ({ ...prev, itinerary: updated }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.destination || !formData.price || !formData.featuredImage) {
-      toast.error('Please complete all required fields.');
+    if (!formData.title.trim()) {
+      toast.error('Please enter a tour package title');
       return;
     }
 
     try {
       setLoading(true);
+
+      const finalImage = formData.featuredImage.trim() || '/assets/images/hero-haryana-kurukshetra.jpg';
+      const inclusionsArray = typeof formData.inclusions === 'string'
+        ? formData.inclusions.split(',').map(s => s.trim()).filter(Boolean)
+        : formData.inclusions;
+
       const payload = {
         ...formData,
-        price: Number(formData.price),
-        discountedPrice: Number(formData.discountedPrice) || 0,
-        inclusions: formData.inclusions.split(',').map(s => s.trim()).filter(Boolean),
-        exclusions: formData.exclusions.split(',').map(s => s.trim()).filter(Boolean)
+        featuredImage: finalImage,
+        images: [finalImage],
+        inclusions: inclusionsArray.length > 0 ? inclusionsArray : ['Sanitized AC Cab', 'Professional Driver', 'Customized Itinerary'],
+        description: formData.description.trim() || `Enjoy our customized ${formData.title} tour across Haryana, Delhi NCR and Chandigarh with Vista Tour and Travels.`,
+        price: 0,
+        discountedPrice: 0
       };
 
       if (isEdit) {
         await packageApi.update(id, payload);
-        toast.success('Package updated successfully');
+        toast.success(`"${formData.title}" updated successfully!`);
       } else {
         await packageApi.create(payload);
-        toast.success('Package created successfully');
+        toast.success(`"${formData.title}" created successfully and is live on site!`);
       }
       navigate('/admin/packages');
     } catch (err) {
@@ -177,301 +156,229 @@ export const PackageForm = () => {
     }
   };
 
+  if (fetching) {
+    return <Loader text="Loading package details..." />;
+  }
+
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-3xl mx-auto space-y-6">
+      {/* Top Header */}
       <div className="flex items-center gap-3">
         <button
           onClick={() => navigate('/admin/packages')}
-          className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100"
+          className="p-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
+          title="Back to Tour Packages"
         >
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div>
           <h1 className="text-2xl font-black text-navy-900 tracking-tight">
-            {isEdit ? 'Edit Tour Package' : 'Create New Tour Package'}
+            {isEdit ? `Edit Tour Package: ${formData.title}` : 'Add New Tour Package'}
           </h1>
-          <p className="text-xs text-slate-500">Configure itinerary days, pricing, hotel inclusions, and photos.</p>
+          <p className="text-xs text-slate-500">
+            Fill in basic details to publish or update this holiday itinerary on the website.
+          </p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-8">
-        {/* 1. Basic Info */}
-        <div className="space-y-4">
-          <h2 className="text-base font-bold text-navy-900 border-b border-slate-100 pb-2">1. General Information</h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="sm:col-span-2">
-              <label className="text-xs font-bold text-slate-700 block mb-1">Package Title *</label>
-              <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                required
-                placeholder="e.g. Kurukshetra Mahabharata Spiritual Tour"
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Destination *</label>
-              <select
-                name="destination"
-                value={formData.destination}
-                onChange={handleChange}
-                required
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500"
-              >
-                {destinations.map(d => (
-                  <option key={d._id} value={d._id}>{d.name} ({d.state})</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Travel Category *</label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500"
-              >
-                <option value="Family Trips">Family Trips</option>
-                <option value="Honeymoon">Honeymoon</option>
-                <option value="Adventure">Adventure</option>
-                <option value="Weekend Getaways">Weekend Getaways</option>
-                <option value="Luxury Travel">Luxury Travel</option>
-                <option value="Group Tours">Group Tours</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Duration Text *</label>
-              <input
-                type="text"
-                name="duration"
-                value={formData.duration}
-                onChange={handleChange}
-                required
-                placeholder="e.g. 5 Days / 4 Nights"
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Days Count</label>
-              <input
-                type="number"
-                name="daysCount"
-                value={formData.daysCount}
-                onChange={handleChange}
-                min={1}
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Regular Price (₹) *</label>
-              <input
-                type="number"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-                required
-                placeholder="15999"
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Discounted Price (₹)</label>
-              <input
-                type="number"
-                name="discountedPrice"
-                value={formData.discountedPrice}
-                onChange={handleChange}
-                placeholder="12999"
-                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* 2. Photo */}
-        <div className="space-y-3">
-          <label className="text-xs font-bold text-slate-700 block">Featured Image URL or File *</label>
-          <div className="flex gap-2">
+      <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="sm:col-span-2">
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Package Title <span className="text-rose-500">*</span>
+            </label>
             <input
               type="text"
-              name="featuredImage"
-              value={formData.featuredImage}
+              name="title"
+              value={formData.title}
               onChange={handleChange}
               required
-              placeholder="https://images.unsplash.com/..."
-              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
+              placeholder="e.g. Kurukshetra Mahabharata Spiritual Tour"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-semibold text-navy-900"
             />
-            <label className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-slate-700 cursor-pointer shrink-0">
-              <Upload className="w-4 h-4" /> {uploading ? 'Uploading...' : 'Upload'}
-              <input type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
-            </label>
           </div>
-          {formData.featuredImage && (
-            <div className="h-40 w-full rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
-              <img src={formData.featuredImage} alt="Preview" className="w-full h-full object-cover" />
-            </div>
-          )}
-        </div>
 
-        {/* Description */}
-        <div>
-          <label className="text-xs font-bold text-slate-700 block mb-1">Package Description *</label>
-          <textarea
-            rows={4}
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-            placeholder="Detailed overview for travelers..."
-            className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
-          />
-        </div>
-
-        {/* 3. Dynamic Itinerary Builder */}
-        <div className="space-y-4 pt-4 border-t border-slate-100">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-base font-bold text-navy-900">Day-by-Day Itinerary</h2>
-              <p className="text-xs text-slate-400">Add detailed schedules for each day of the journey.</p>
-            </div>
-            <button
-              type="button"
-              onClick={addItineraryDay}
-              className="inline-flex items-center gap-1 text-xs font-bold text-brand-600 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl"
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">Destination Area</label>
+            <select
+              name="destination"
+              value={formData.destination}
+              onChange={handleChange}
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500 font-medium"
             >
-              <Plus className="w-3.5 h-3.5" /> Add Day
-            </button>
-          </div>
-
-          <div className="space-y-4">
-            {formData.itinerary.map((day, idx) => (
-              <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-black text-brand-700 bg-white px-2 py-0.5 rounded border border-slate-200">
-                    Day {day.day}
-                  </span>
-                  {formData.itinerary.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeItineraryDay(idx)}
-                      className="text-rose-600 hover:text-rose-700 p-1"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="sm:col-span-3">
-                    <input
-                      type="text"
-                      value={day.title}
-                      onChange={(e) => handleItineraryChange(idx, 'title', e.target.value)}
-                      placeholder="Day Title (e.g. Brahma Sarovar & Jyotisar Heritage Tour)"
-                      className="w-full text-xs font-bold rounded-xl border border-slate-200 px-3 py-2 bg-white"
-                    />
-                  </div>
-                  <div className="sm:col-span-3">
-                    <textarea
-                      rows={2}
-                      value={day.description}
-                      onChange={(e) => handleItineraryChange(idx, 'description', e.target.value)}
-                      placeholder="Day activities and schedule..."
-                      className="w-full text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      value={day.meals}
-                      onChange={(e) => handleItineraryChange(idx, 'meals', e.target.value)}
-                      placeholder="Meals (e.g. Breakfast & Dinner)"
-                      className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 bg-white"
-                    />
-                  </div>
-                  <div className="sm:col-span-2">
-                    <input
-                      type="text"
-                      value={day.hotel}
-                      onChange={(e) => handleItineraryChange(idx, 'hotel', e.target.value)}
-                      placeholder="Hotel / Stay (e.g. Hotel Saffron Kurukshetra)"
-                      className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 bg-white"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 4. Inclusions & Exclusions */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Inclusions (comma separated)</label>
-            <textarea
-              rows={3}
-              name="inclusions"
-              value={formData.inclusions}
-              onChange={handleChange}
-              className="w-full text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
-            />
+              {destinations.map(d => (
+                <option key={d._id || d.slug} value={d.slug || d._id}>
+                  {d.name} ({d.state})
+                </option>
+              ))}
+              <option value="Haryana & NCR">Haryana & Delhi NCR (Multi-City)</option>
+              <option value="Chandigarh">Chandigarh & Shivalik</option>
+            </select>
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Exclusions (comma separated)</label>
-            <textarea
-              rows={3}
-              name="exclusions"
-              value={formData.exclusions}
+            <label className="text-xs font-bold text-slate-700 block mb-1">Travel Category</label>
+            <select
+              name="category"
+              value={formData.category}
               onChange={handleChange}
-              className="w-full text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
-            />
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500 font-medium"
+            >
+              <option value="Spiritual & Heritage">Spiritual & Heritage</option>
+              <option value="Family Trips">Family Trips</option>
+              <option value="Weekend Getaways">Weekend Getaways</option>
+              <option value="Sightseeing & Day Tours">Sightseeing & Day Tours</option>
+              <option value="Wildlife & Nature">Wildlife & Nature (Kalesar)</option>
+              <option value="Luxury Cab Tour">Luxury Cab Tour</option>
+              <option value="Custom Group Tour">Custom Group Tour</option>
+            </select>
           </div>
-        </div>
 
-        {/* Toggles */}
-        <div className="flex flex-wrap items-center gap-6 pt-2">
-          <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-navy-900">
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">Duration</label>
             <input
-              type="checkbox"
-              name="featured"
-              checked={formData.featured}
+              type="text"
+              name="duration"
+              value={formData.duration}
               onChange={handleChange}
-              className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500"
+              placeholder="e.g. 2 Days / 1 Night, Full Day, 3 Days / 2 Nights"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
             />
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Feature on Homepage
-          </label>
+          </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-700">Status:</span>
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">Status</label>
             <select
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="text-xs font-semibold rounded-lg border border-slate-200 px-2 py-1 bg-slate-50"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500 font-semibold"
             >
-              <option value="published">Published</option>
-              <option value="draft">Draft</option>
+              <option value="published">Published (Visible on Website)</option>
+              <option value="draft">Draft / Hidden</option>
             </select>
           </div>
+
+          <div className="sm:col-span-2">
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Tour Overview & Description
+            </label>
+            <textarea
+              name="description"
+              rows={4}
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Describe what travelers will experience, holy tirthas visited, scenic stops, and highlights..."
+              className="w-full text-sm rounded-xl border border-slate-200 p-3.5 focus:outline-none focus:border-brand-500 font-normal leading-relaxed"
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Inclusions & Highlights (comma separated)
+            </label>
+            <input
+              type="text"
+              name="inclusions"
+              value={formData.inclusions}
+              onChange={handleChange}
+              placeholder="e.g. Sanitized AC Cab, Verified Chauffeur, Sightseeing, All Tolls & State Taxes"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
+            />
+          </div>
+        </div>
+
+        {/* Package Photo Upload & Preview */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
+          <label className="text-xs font-bold text-slate-700 flex items-center justify-between">
+            <span>Tour Package Banner Image</span>
+            <span className="text-[11px] text-slate-400 font-normal">Optional (Auto-assigns authentic regional image if blank)</span>
+          </label>
+
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            {formData.featuredImage ? (
+              <div className="relative w-36 h-24 rounded-xl overflow-hidden border border-slate-200 shadow-sm shrink-0">
+                <img
+                  src={formData.featuredImage}
+                  alt="Preview"
+                  className="w-full h-full object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => setFormData(prev => ({ ...prev, featuredImage: '' }))}
+                  className="absolute top-1 right-1 bg-navy-950/80 text-white rounded-full p-1 text-[10px] hover:bg-rose-600 transition-colors"
+                  title="Remove Image"
+                >
+                  ✕
+                </button>
+              </div>
+            ) : (
+              <div className="w-36 h-24 rounded-xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400 shrink-0 bg-white">
+                <ImageIcon className="w-6 h-6 mb-1 text-slate-300" />
+                <span className="text-[10px] font-bold">No Photo</span>
+              </div>
+            )}
+
+            <div className="flex-1 space-y-2 w-full">
+              <label className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-300 hover:border-brand-500 text-navy-900 font-bold text-xs shadow-xs cursor-pointer transition-colors">
+                <Upload className="w-3.5 h-3.5 text-brand-600" />
+                <span>{uploading ? 'Processing Image...' : 'Upload Image from Device'}</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  disabled={uploading}
+                  className="hidden"
+                />
+              </label>
+
+              <div className="text-[11px] text-slate-500">
+                Or paste image web link:
+              </div>
+              <input
+                type="url"
+                name="featuredImage"
+                value={formData.featuredImage}
+                onChange={handleChange}
+                placeholder="https://example.com/banner.jpg"
+                className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 font-medium bg-white"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Featured Switch */}
+        <div className="flex items-center gap-3 pt-2">
+          <input
+            type="checkbox"
+            id="featured"
+            name="featured"
+            checked={formData.featured}
+            onChange={handleChange}
+            className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-slate-300"
+          />
+          <label htmlFor="featured" className="text-xs font-bold text-navy-900 cursor-pointer">
+            Feature this package on the homepage showcase
+          </label>
         </div>
 
         {/* Action Buttons */}
         <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
-          <Button variant="outline" onClick={() => navigate('/admin/packages')}>
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => navigate('/admin/packages')}
+          >
             Cancel
           </Button>
-          <Button type="submit" variant="primary" loading={loading}>
-            <Save className="w-4 h-4 mr-1.5" /> {isEdit ? 'Update Package' : 'Publish Package'}
+          <Button
+            type="submit"
+            variant="primary"
+            loading={loading}
+            className="px-6 font-bold shadow-md flex items-center gap-2"
+          >
+            <Save className="w-4 h-4" />
+            <span>{isEdit ? 'Save Changes' : 'Publish Tour Package'}</span>
           </Button>
         </div>
       </form>

@@ -153,8 +153,15 @@ export const createPackage = async (req, res, next) => {
     const { title, destination } = req.body;
     const slug = req.body.slug || createSlug(title);
 
-    const destDoc = await Destination.findById(destination);
-    const destinationName = destDoc ? destDoc.name : '';
+    let destinationName = req.body.destinationName || '';
+    if (!destinationName && destination) {
+      if (mongoose.isValidObjectId(destination)) {
+        const destDoc = await Destination.findById(destination);
+        if (destDoc) destinationName = destDoc.name;
+      } else {
+        destinationName = String(destination);
+      }
+    }
 
     const pkg = await Package.create({
       ...req.body,
@@ -184,8 +191,12 @@ export const updatePackage = async (req, res, next) => {
     }
 
     if (req.body.destination) {
-      const destDoc = await Destination.findById(req.body.destination);
-      if (destDoc) req.body.destinationName = destDoc.name;
+      if (mongoose.isValidObjectId(req.body.destination)) {
+        const destDoc = await Destination.findById(req.body.destination);
+        if (destDoc) req.body.destinationName = destDoc.name;
+      } else if (!req.body.destinationName) {
+        req.body.destinationName = String(req.body.destination);
+      }
     }
 
     const isId = mongoose.isValidObjectId(id);

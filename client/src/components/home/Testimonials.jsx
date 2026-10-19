@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { testimonialApi } from '../../services/testimonialApi';
 import { useWebsite } from '../../context/WebsiteContext';
-import { processDeviceImage } from '../../utils/imageUpload';
 import {
   Star,
   Quote,
   MessageSquareHeart,
   Plus,
   X,
-  Upload,
   CheckCircle2,
   MapPin,
   Car,
-  Camera,
   ThumbsUp,
   ExternalLink,
   Trash2
@@ -22,6 +19,13 @@ import Button from '../common/Button';
 import { CardSkeleton } from '../common/Skeleton';
 import toast from 'react-hot-toast';
 
+const getInitials = (name) => {
+  if (!name) return 'TR';
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+};
+
 export const Testimonials = () => {
   const { settings } = useWebsite();
   const [testimonials, setTestimonials] = useState([]);
@@ -30,7 +34,6 @@ export const Testimonials = () => {
   const { isAdmin } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
   const handleDeleteReview = async (id, name) => {
     const reviewer = name || 'this traveler';
@@ -47,14 +50,13 @@ export const Testimonials = () => {
     }
   };
 
-  // New review form state
+  // New review form state (No image required)
   const [formData, setFormData] = useState({
     customerName: '',
     destination: '',
     packageTitle: '',
     rating: 5,
-    review: '',
-    profileImage: ''
+    review: ''
   });
 
   const [hoverRating, setHoverRating] = useState(0);
@@ -83,23 +85,6 @@ export const Testimonials = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handlePhotoUpload = async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    try {
-      setUploadingPhoto(true);
-      const dataUri = await processDeviceImage(file, 400, 400, 0.85);
-      setFormData((prev) => ({ ...prev, profileImage: dataUri }));
-      toast.success('Your photo has been attached!');
-    } catch (err) {
-      toast.error(err.message || 'Failed to process photo');
-    } finally {
-      setUploadingPhoto(false);
-      if (e.target) e.target.value = '';
-    }
   };
 
   const handleSubmitReview = async (e) => {
@@ -131,8 +116,7 @@ export const Testimonials = () => {
           destination: '',
           packageTitle: '',
           rating: 5,
-          review: '',
-          profileImage: ''
+          review: ''
         });
         setIsModalOpen(false);
         fetchReviews();
@@ -318,19 +302,9 @@ export const Testimonials = () => {
                 {/* Traveler Details */}
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img
-                      src={
-                        t.profileImage ||
-                        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
-                      }
-                      alt={t.customerName}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src =
-                          'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';
-                      }}
-                      className="w-11 h-11 rounded-full object-cover border-2 border-brand-200 shadow-sm shrink-0"
-                    />
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-600 via-brand-700 to-amber-500 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-brand-500/20 shrink-0 uppercase tracking-wider">
+                      {getInitials(t.customerName)}
+                    </div>
                     <div>
                       <h4 className="text-sm font-bold text-navy-900 leading-tight">
                         {t.customerName}
@@ -508,48 +482,6 @@ export const Testimonials = () => {
                   placeholder="Tell us about the chauffeur, vehicle condition, punctuality, highway driving safety, and memorable journey highlights..."
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500 text-sm font-medium"
                 />
-              </div>
-
-              {/* Optional Photo Upload */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Attach Your Travel Photo / Avatar (Optional)
-                </label>
-                <div className="flex items-center gap-3">
-                  {formData.profileImage ? (
-                    <div className="relative shrink-0">
-                      <img
-                        src={formData.profileImage}
-                        alt="Preview"
-                        className="w-12 h-12 rounded-xl object-cover border-2 border-brand-500 shadow-sm"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setFormData((prev) => ({ ...prev, profileImage: '' }))}
-                        className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-rose-500 text-white rounded-full flex items-center justify-center text-[10px]"
-                        title="Remove photo"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
-                      <Camera className="w-5 h-5" />
-                    </div>
-                  )}
-
-                  <label className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-slate-700 cursor-pointer">
-                    <Upload className="w-3.5 h-3.5" />
-                    {uploadingPhoto ? 'Processing...' : formData.profileImage ? 'Change Photo' : 'Upload From Device'}
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handlePhotoUpload}
-                      disabled={uploadingPhoto}
-                      className="hidden"
-                    />
-                  </label>
-                </div>
               </div>
 
               {/* Submit Buttons */}

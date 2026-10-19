@@ -10,13 +10,11 @@ const packageSchema = new mongoose.Schema(
     slug: {
       type: String,
       required: true,
-      unique: true,
       lowercase: true
     },
     destination: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Destination',
-      required: [true, 'Destination is required']
+      type: mongoose.Schema.Types.Mixed,
+      default: ''
     },
     destinationName: {
       type: String,
@@ -24,25 +22,23 @@ const packageSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['Family Trips', 'Honeymoon', 'Adventure', 'Weekend Getaways', 'Luxury Travel', 'Group Tours', 'Road Trips', 'Cultural'],
-      required: [true, 'Category is required'],
       default: 'Family Trips'
     },
     duration: {
       type: String,
-      required: [true, 'Duration is required (e.g. 5 Days / 4 Nights)']
+      default: 'Full Day'
     },
     daysCount: {
       type: Number,
-      default: 5
+      default: 1
     },
     nightsCount: {
       type: Number,
-      default: 4
+      default: 0
     },
     price: {
       type: Number,
-      required: [true, 'Base price is required'],
+      default: 0,
       min: 0
     },
     discountedPrice: {
@@ -52,7 +48,7 @@ const packageSchema = new mongoose.Schema(
     },
     rating: {
       type: Number,
-      default: 4.8,
+      default: 5.0,
       min: 1,
       max: 5
     },
@@ -62,11 +58,11 @@ const packageSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, 'Description is required']
+      default: ''
     },
     featuredImage: {
       type: String,
-      required: true
+      default: ''
     },
     images: [
       {
@@ -75,45 +71,33 @@ const packageSchema = new mongoose.Schema(
     ],
     itinerary: [
       {
-        day: { type: Number, required: true },
-        title: { type: String, required: true },
-        description: { type: String, required: true },
-        meals: { type: String, default: 'Breakfast included' },
-        hotel: { type: String, default: '3/4-Star Hotel or Resort' }
+        day: { type: Number, default: 1 },
+        title: { type: String, default: '' },
+        description: { type: String, default: '' },
+        meals: { type: String, default: '' },
+        hotel: { type: String, default: '' }
       }
     ],
     inclusions: [{ type: String }],
     exclusions: [{ type: String }],
     hotels: {
       type: String,
-      default: 'Verified 3-Star & 4-Star Accommodations with mountain/valley/beach views'
+      default: ''
     },
     transport: {
       type: String,
-      default: 'Dedicated AC Sedan / SUV with professional experienced driver'
+      default: ''
     },
     cancellationPolicy: {
       type: String,
-      default: 'Free cancellation up to 7 days before departure. 50% refund between 7 to 3 days. Non-refundable within 72 hours.'
+      default: ''
     },
-    importantInformation: {
-      type: String,
-      default: 'Please carry valid government photo identification. Warm clothing is recommended for hilly terrains.'
-    },
-    faqs: [
-      {
-        question: { type: String, required: true },
-        answer: { type: String, required: true }
-      }
-    ],
-    tags: [{ type: String }],
     featured: {
       type: Boolean,
       default: false
     },
     status: {
       type: String,
-      enum: ['published', 'draft', 'archived'],
       default: 'published'
     }
   },

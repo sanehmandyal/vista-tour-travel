@@ -105,7 +105,7 @@ const normalizeDestination = (dest) => {
     url.includes('photo-15') ||
     url.includes('photo-16') ||
     url.includes('photo-14') ||
-    !url.startsWith('http');
+    (!url.startsWith('http') && !url.startsWith('data:') && !url.startsWith('/'));
 
   if (isGeneric(doc.heroImage)) {
     doc.heroImage = exact.heroImage;

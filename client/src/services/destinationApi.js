@@ -104,7 +104,7 @@ const enrichDestinationWithExactImage = (dest) => {
     url.includes('photo-15') || 
     url.includes('photo-16') || 
     url.includes('photo-14') ||
-    !url.startsWith('http');
+    (!url.startsWith('http') && !url.startsWith('data:') && !url.startsWith('/'));
 
   const heroImage = isGenericOrUnmatched(dest.heroImage) ? exact.heroImage : (dest.heroImage || exact.heroImage);
   const featuredImage = isGenericOrUnmatched(dest.featuredImage) ? exact.featuredImage : (dest.featuredImage || exact.featuredImage);
@@ -130,18 +130,14 @@ const getLocalDestinations = () => {
     if (saved) {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        // Discard legacy himachal or outdated schema with string attractions
-        const isOutdated = parsed.some(d =>
-          d.name?.toLowerCase().includes('manali') ||
-          d.name?.toLowerCase().includes('shimla') ||
-          d.state?.toLowerCase().includes('himachal') ||
-          (Array.isArray(d.attractions) && typeof d.attractions[0] === 'string') ||
-          !d.shortDescription
+        // Filter out legacy Himachal items while preserving all custom destinations
+        const cleanList = parsed.filter(d =>
+          !d.name?.toLowerCase().includes('manali') &&
+          !d.name?.toLowerCase().includes('shimla') &&
+          !d.state?.toLowerCase().includes('himachal')
         );
-        if (!isOutdated) {
-          return parsed.map(enrichDestinationWithExactImage);
-        } else {
-          localStorage.removeItem(STORAGE_KEY);
+        if (cleanList.length > 0) {
+          return cleanList.map(enrichDestinationWithExactImage);
         }
       }
     }

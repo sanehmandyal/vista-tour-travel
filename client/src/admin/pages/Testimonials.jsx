@@ -17,6 +17,13 @@ import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import toast from 'react-hot-toast';
 
+const getInitials = (name) => {
+  if (!name) return 'TR';
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+};
+
 export const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -236,19 +243,9 @@ export const Testimonials = () => {
               <div className="pt-4 border-t border-slate-100 space-y-3">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <img
-                      src={
-                        t.profileImage ||
-                        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
-                      }
-                      alt={t.customerName}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src =
-                          'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80';
-                      }}
-                      className="w-9 h-9 rounded-full object-cover border border-slate-200 shrink-0"
-                    />
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-600 to-amber-500 text-white font-black text-xs flex items-center justify-center shadow-xs shrink-0 tracking-wider uppercase">
+                      {getInitials(t.customerName)}
+                    </div>
                     <div className="min-w-0">
                       <h4 className="text-xs font-bold text-navy-900 truncate">
                         {t.customerName || 'Anonymous Traveler'}

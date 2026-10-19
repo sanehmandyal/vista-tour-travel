@@ -42,6 +42,7 @@ import AdminTestimonials from '../admin/pages/Testimonials';
 import AdminInquiries from '../admin/pages/Inquiries';
 import AdminFAQs from '../admin/pages/FAQs';
 import AdminServices from '../admin/pages/Services';
+import AdminCars from '../admin/pages/Cars';
 import WebsiteSettings from '../admin/pages/WebsiteSettings';
 import AdminProfile from '../admin/pages/AdminProfile';
 
@@ -94,7 +95,8 @@ export default function AppRoutes() {
         <Route path="inquiries" element={<AdminInquiries />} />
         <Route path="faqs" element={<AdminFAQs />} />
         <Route path="services" element={<AdminServices />} />
-        <Route path="fleet" element={<AdminServices defaultTab="fleet" />} />
+        <Route path="cars" element={<AdminCars />} />
+        <Route path="fleet" element={<AdminCars />} />
         <Route path="settings" element={<WebsiteSettings />} />
         <Route path="profile" element={<AdminProfile />} />
       </Route>
