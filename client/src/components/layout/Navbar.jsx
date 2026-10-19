@@ -146,8 +146,8 @@ export const Navbar = () => {
   return (
     <>
       {/* Top micro bar for phone, Google Reviews badge & Admin Panel */}
-      <div className="bg-navy-950/90 backdrop-blur-md text-slate-300 text-xs py-2 px-3 sm:px-6 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div className="bg-navy-950/90 backdrop-blur-md text-slate-300 text-xs py-1.5 sm:py-2 px-2.5 min-[360px]:px-4 sm:px-6 border-b border-white/10">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-1.5 sm:gap-2">
           {/* Phone & Area */}
           <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
             <a
@@ -164,7 +164,7 @@ export const Navbar = () => {
           </div>
 
           {/* Google Reviews Badge + WhatsApp + Admin CTA */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 flex-wrap">
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour and Travels! I would like to inquire about cabs / tour packages from Ladwa, Haryana.')}`}
               target="_blank"
@@ -172,8 +172,8 @@ export const Navbar = () => {
               className="inline-flex items-center gap-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors border border-emerald-400/30 shrink-0"
             >
               <MessageCircle className="w-3 h-3 fill-emerald-400 text-emerald-400 shrink-0" />
-              <span className="hidden xs:inline">WhatsApp Inquiries</span>
-              <span className="xs:hidden">WhatsApp</span>
+              <span className="hidden min-[380px]:inline">WhatsApp Inquiries</span>
+              <span className="min-[380px]:hidden">WhatsApp</span>
             </a>
 
             <a
@@ -183,7 +183,8 @@ export const Navbar = () => {
               className="inline-flex items-center gap-1.5 bg-amber-400/15 hover:bg-amber-400/25 text-amber-300 px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors border border-amber-400/30 shrink-0"
             >
               <Star className="w-3 h-3 fill-amber-400 text-amber-400 shrink-0" />
-              <span>5.0 (50+ reviews)</span>
+              <span className="hidden min-[340px]:inline">5.0 (50+ reviews)</span>
+              <span className="min-[340px]:hidden">5.0 ★</span>
               <ExternalLink className="w-2.5 h-2.5 opacity-70 hidden sm:inline" />
             </a>
 
@@ -199,7 +200,7 @@ export const Navbar = () => {
                 to="/login"
                 className="text-slate-400 hover:text-white text-[11px] font-medium transition-colors flex items-center gap-1 shrink-0"
               >
-                <ShieldAlert className="w-3 h-3 text-brand-400 shrink-0" /> <span className="hidden xs:inline">Admin </span>Login
+                <ShieldAlert className="w-3 h-3 text-brand-400 shrink-0" /> <span className="hidden min-[340px]:inline">Admin </span>Login
               </Link>
             )}
           </div>
@@ -235,11 +236,11 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation Links with Interactive Dropdowns */}
-          <nav className="hidden lg:flex items-center gap-0.5 2xl:gap-1.5">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5">
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `hidden 2xl:inline-flex px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive && location.pathname === '/' && !location.hash
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -547,7 +548,7 @@ export const Navbar = () => {
               </button>
 
               {openDropdown === 'services' && (
-                <div className="absolute -left-44 mt-2.5 w-[580px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                <div className="absolute right-0 mt-2.5 w-[580px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                   <div className="flex items-center justify-between px-2.5 pb-2 mb-2 border-b border-slate-100/90">
                     <div className="flex items-center gap-1.5">
                       <Car className="w-3.5 h-3.5 text-brand-600" />
@@ -607,7 +608,7 @@ export const Navbar = () => {
             <NavLink
               to="/#reviews"
               className={() =>
-                `px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `hidden xl:inline-flex px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   location.hash === '#reviews'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -620,7 +621,7 @@ export const Navbar = () => {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `hidden xl:inline-flex px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `hidden 2xl:inline-flex px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -645,24 +646,23 @@ export const Navbar = () => {
           </nav>
 
           {/* Right Action buttons */}
-          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 2xl:gap-2.5 shrink-0">
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
             {/* Direct WhatsApp Pill */}
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour & Travels! I want to inquire about a cab / holiday package.')}`}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1.5 px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition-all shadow-sm whitespace-nowrap"
-              title="Chat on WhatsApp"
+              className="p-2 2xl:px-3 2xl:py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition-all shadow-sm whitespace-nowrap flex items-center gap-1.5"
+              title="Chat on WhatsApp: 90688 88578"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
+              <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600" />
               <span className="hidden 2xl:inline">WhatsApp: 90688 88578</span>
-              <span className="hidden xl:inline 2xl:hidden">WhatsApp</span>
             </a>
 
             {/* Direct Call Button */}
             <a
               href={`tel:${cleanPhone}`}
-              className="flex items-center gap-1.5 px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-300 text-navy-900 text-xs font-bold transition-all whitespace-nowrap"
+              className="flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-300 text-navy-900 text-xs font-bold transition-all whitespace-nowrap"
             >
               <Phone className="w-3.5 h-3.5 text-brand-600 shrink-0" />
               <span>Call Now</span>
@@ -672,7 +672,7 @@ export const Navbar = () => {
               <div className="flex items-center gap-1.5">
                 <Link
                   to="/admin/dashboard"
-                  className="px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
+                  className="px-2.5 xl:px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
                 >
                   <ShieldAlert className="w-3.5 h-3.5 shrink-0" /> Dashboard
                 </Link>
@@ -689,7 +689,7 @@ export const Navbar = () => {
                 variant="accent"
                 size="sm"
                 onClick={() => navigate('/contact')}
-                className="shadow-sm font-bold text-xs py-1.5 px-2.5 xl:px-3.5 whitespace-nowrap"
+                className="shadow-sm font-bold text-xs py-1.5 px-3 xl:px-3.5 whitespace-nowrap"
               >
                 Get Quote
               </Button>
@@ -730,25 +730,25 @@ export const Navbar = () => {
 
         {/* Mobile menu dropdown with Collapsible Accordions */}
         {mobileMenuOpen && (
-          <div className="lg:hidden glass-dropdown border-b border-white/70 px-4 pt-3 pb-8 pb-safe mt-2.5 shadow-2xl animate-in slide-in-from-top duration-200 max-h-[82vh] overflow-y-auto no-scrollbar overscroll-contain">
+          <div className="lg:hidden glass-dropdown border-b border-white/70 px-2.5 min-[360px]:px-4 pt-3 pb-8 pb-safe mt-2.5 shadow-2xl animate-in slide-in-from-top duration-200 max-h-[82vh] overflow-y-auto no-scrollbar overscroll-contain">
             {/* Direct quick-call & WhatsApp banner on mobile */}
-            <div className="mb-3 p-3 rounded-2xl bg-gradient-to-r from-brand-600 to-navy-900 text-white flex items-center justify-between shadow-sm">
+            <div className="mb-3 p-2.5 min-[360px]:p-3 rounded-2xl bg-gradient-to-r from-brand-600 to-navy-900 text-white flex flex-col min-[380px]:flex-row min-[380px]:items-center justify-between gap-2 shadow-sm">
               <div>
                 <p className="text-[11px] text-sky-200 font-semibold">24/7 Helpline • Ladwa, Haryana</p>
                 <p className="text-sm font-extrabold">+91 90688 88578</p>
               </div>
-              <div className="flex gap-1.5">
+              <div className="flex gap-1.5 w-full min-[380px]:w-auto">
                 <a
                   href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Travels! I need an instant tour/cab quote.')}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-2.5 py-1.5 bg-emerald-500 text-white rounded-xl font-bold text-xs shadow-sm flex items-center gap-1"
+                  className="flex-1 min-[380px]:flex-initial justify-center px-2.5 py-1.5 bg-emerald-500 text-white rounded-xl font-bold text-xs shadow-sm flex items-center gap-1"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
+                  <MessageCircle className="w-3.5 h-3.5 shrink-0" /> WhatsApp
                 </a>
                 <a
                   href={`tel:${cleanPhone}`}
-                  className="px-2.5 py-1.5 bg-white text-navy-900 rounded-xl font-bold text-xs shadow-sm"
+                  className="flex-1 min-[380px]:flex-initial justify-center px-2.5 py-1.5 bg-white text-navy-900 rounded-xl font-bold text-xs shadow-sm text-center"
                 >
                   Call
                 </a>

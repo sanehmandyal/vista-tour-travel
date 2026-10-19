@@ -219,7 +219,7 @@ export const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 pb-12 sm:pb-0 text-center sm:text-left">
           <p>© {new Date().getFullYear()} Vista Tour and Travels. All rights reserved.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2">
             <Link to="/faq" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
             <Link to="/faq" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
             <Link to="/admin/login" className="text-slate-400 hover:text-white font-semibold flex items-center gap-1 transition-colors">
