@@ -130,18 +130,68 @@ export const packageApi = {
 
   create: async (data) => {
     let savedItem = null;
+    const VALID_CATEGORIES = ['Family Trips', 'Honeymoon', 'Adventure', 'Weekend Getaways', 'Luxury Travel', 'Group Tours', 'Road Trips', 'Cultural'];
+    const mapCategory = (cat) => {
+      if (VALID_CATEGORIES.includes(cat)) return cat;
+      if (!cat) return 'Cultural';
+      const c = cat.toLowerCase();
+      if (c.includes('spirit') || c.includes('herit') || c.includes('cultur') || c.includes('temple')) return 'Cultural';
+      if (c.includes('advent') || c.includes('wild') || c.includes('nature') || c.includes('safari')) return 'Adventure';
+      if (c.includes('road') || c.includes('airport') || c.includes('cab') || c.includes('ncr') || c.includes('delhi')) return 'Road Trips';
+      if (c.includes('weekend') || c.includes('escape') || c.includes('day')) return 'Weekend Getaways';
+      if (c.includes('group') || c.includes('tempo') || c.includes('custom') || c.includes('grand')) return 'Group Tours';
+      if (c.includes('luxur') || c.includes('vip')) return 'Luxury Travel';
+      if (c.includes('honey')) return 'Honeymoon';
+      return 'Family Trips';
+    };
+
+    // Ensure valid destination ObjectId
+    let destId = data.destination;
+    const isObjectId = (str) => /^[0-9a-fA-F]{24}$/.test(String(str));
+    if (!isObjectId(destId)) {
+      try {
+        const dests = JSON.parse(localStorage.getItem('rtt_custom_destinations') || '[]');
+        const found = dests.find(d => d._id === destId || d.slug === destId || d.name === data.destinationName);
+        if (found && isObjectId(found._id)) {
+          destId = found._id;
+        } else if (dests.length > 0 && isObjectId(dests[0]._id)) {
+          destId = dests[0]._id;
+        }
+      } catch {}
+    }
+
+    const payload = {
+      ...data,
+      category: mapCategory(data.category),
+      destination: destId,
+      price: Number(data.price) || 3499,
+      discountedPrice: Number(data.discountedPrice) || Number(data.price) || 2999,
+      duration: data.duration || '2 Days / 1 Night',
+      featuredImage: data.featuredImage || '/assets/images/hero-haryana-kurukshetra.jpg',
+      images: Array.isArray(data.images) && data.images.length > 0 ? data.images : [data.featuredImage || '/assets/images/hero-haryana-kurukshetra.jpg'],
+      itinerary: Array.isArray(data.itinerary) && data.itinerary.length > 0 ? data.itinerary : [
+        {
+          day: 1,
+          title: `Day 1: ${data.title} Sightseeing`,
+          description: data.description || 'Chauffeur pickup, sightseeing, and comfortable travel.',
+          meals: 'Breakfast included',
+          hotel: 'Verified 3/4-Star Hotel'
+        }
+      ]
+    };
+
     try {
-      const res = await axiosClient.post('/packages', data);
+      const res = await axiosClient.post('/packages', payload);
       if (res && res.success && res.data) {
         savedItem = res.data;
       }
     } catch (e) {
-      console.warn('Direct server create failed, saving locally:', e.message);
+      console.warn('Direct server create error, falling back locally:', e.message);
     }
 
     const list = getLocalPackages();
     const newPkg = savedItem || {
-      ...data,
+      ...payload,
       _id: `custom-pkg-${Date.now()}`,
       slug: data.slug || data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       rating: data.rating || 5.0,
@@ -156,13 +206,35 @@ export const packageApi = {
 
   update: async (id, data) => {
     let updatedItem = null;
+    const VALID_CATEGORIES = ['Family Trips', 'Honeymoon', 'Adventure', 'Weekend Getaways', 'Luxury Travel', 'Group Tours', 'Road Trips', 'Cultural'];
+    const mapCategory = (cat) => {
+      if (VALID_CATEGORIES.includes(cat)) return cat;
+      if (!cat) return 'Cultural';
+      const c = cat.toLowerCase();
+      if (c.includes('spirit') || c.includes('herit') || c.includes('cultur') || c.includes('temple')) return 'Cultural';
+      if (c.includes('advent') || c.includes('wild') || c.includes('nature') || c.includes('safari')) return 'Adventure';
+      if (c.includes('road') || c.includes('airport') || c.includes('cab') || c.includes('ncr') || c.includes('delhi')) return 'Road Trips';
+      if (c.includes('weekend') || c.includes('escape') || c.includes('day')) return 'Weekend Getaways';
+      if (c.includes('group') || c.includes('tempo') || c.includes('custom') || c.includes('grand')) return 'Group Tours';
+      if (c.includes('luxur') || c.includes('vip')) return 'Luxury Travel';
+      if (c.includes('honey')) return 'Honeymoon';
+      return 'Family Trips';
+    };
+
+    const payload = {
+      ...data,
+      category: data.category ? mapCategory(data.category) : undefined
+    };
+    if (payload.price !== undefined) payload.price = Number(payload.price) || 0;
+    if (payload.discountedPrice !== undefined) payload.discountedPrice = Number(payload.discountedPrice) || 0;
+
     try {
-      const res = await axiosClient.put(`/packages/${id}`, data);
+      const res = await axiosClient.put(`/packages/${id}`, payload);
       if (res && res.success && res.data) {
         updatedItem = res.data;
       }
     } catch (e) {
-      console.warn('Direct server update failed, updating locally:', e.message);
+      console.warn('Direct server update error, updating locally:', e.message);
     }
 
     const list = getLocalPackages();

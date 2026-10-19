@@ -272,18 +272,41 @@ export const destinationApi = {
 
   create: async (data) => {
     let savedItem = null;
+    const VALID_REGIONS = ['North India', 'South India', 'West India', 'East India', 'Himalayas', 'Central India', 'International'];
+    const exact = getExactDestinationImages(data.name, data.slug);
+    const finalHero = data.heroImage || exact.heroImage;
+
+    const payload = {
+      ...data,
+      region: VALID_REGIONS.includes(data.region) ? data.region : 'North India',
+      startingPrice: Number(data.startingPrice) || 1999,
+      bestTimeToVisit: data.bestTimeToVisit || 'September to March',
+      heroImage: finalHero,
+      featuredImage: data.featuredImage || finalHero,
+      images: Array.isArray(data.images) && data.images.length > 0 ? data.images : [finalHero],
+      gallery: Array.isArray(data.gallery) && data.gallery.length > 0 ? data.gallery : [finalHero],
+      shortDescription: data.shortDescription?.trim() || `${data.name} tour and taxi packages from Ladwa & Kurukshetra, Haryana.`,
+      description: data.description?.trim() || `Explore ${data.name} with reliable sanitized cabs and experienced drivers from Vista Tour and Travels.`,
+      attractions: Array.isArray(data.attractions) && data.attractions.length > 0 ? data.attractions : [
+        { title: `${data.name} Sightseeing`, description: 'Key historic and spiritual points of interest', image: finalHero }
+      ],
+      thingsToDo: Array.isArray(data.thingsToDo) && data.thingsToDo.length > 0 ? data.thingsToDo : [
+        { title: 'Local Sightseeing & Tour', description: 'Explore top landmarks and markets', icon: 'Compass' }
+      ]
+    };
+
     try {
-      const res = await axiosClient.post('/destinations', data);
+      const res = await axiosClient.post('/destinations', payload);
       if (res && res.success && res.data) {
         savedItem = res.data;
       }
     } catch (e) {
-      console.warn('Direct server create failed, saving locally:', e.message);
+      console.warn('Direct server create error, falling back locally:', e.message);
     }
 
     const list = getLocalDestinations();
     const newDest = savedItem ? enrichDestinationWithExactImage(savedItem) : {
-      ...data,
+      ...payload,
       _id: `custom-dest-${Date.now()}`,
       slug: data.slug || data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       rating: data.rating || 5.0,
@@ -300,19 +323,26 @@ export const destinationApi = {
 
   update: async (id, data) => {
     let updatedItem = null;
+    const VALID_REGIONS = ['North India', 'South India', 'West India', 'East India', 'Himalayas', 'Central India', 'International'];
+    const payload = {
+      ...data,
+      region: data.region && VALID_REGIONS.includes(data.region) ? data.region : (data.region ? 'North India' : undefined)
+    };
+    if (payload.startingPrice !== undefined) payload.startingPrice = Number(payload.startingPrice) || 1999;
+
     try {
-      const res = await axiosClient.put(`/destinations/${id}`, data);
+      const res = await axiosClient.put(`/destinations/${id}`, payload);
       if (res && res.success && res.data) {
         updatedItem = res.data;
       }
     } catch (e) {
-      console.warn('Direct server update failed, updating locally:', e.message);
+      console.warn('Direct server update error, updating locally:', e.message);
     }
 
     const list = getLocalDestinations();
     const updated = list.map(d => {
       if (d._id === id || d.slug === id) {
-        return updatedItem ? enrichDestinationWithExactImage(updatedItem) : { ...d, ...data };
+        return updatedItem ? enrichDestinationWithExactImage(updatedItem) : { ...d, ...payload };
       }
       return d;
     });

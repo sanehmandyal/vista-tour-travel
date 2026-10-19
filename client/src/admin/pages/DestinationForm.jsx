@@ -20,6 +20,7 @@ export const DestinationForm = () => {
     name: '',
     state: 'Haryana',
     region: 'North India',
+    startingPrice: 1999,
     shortDescription: '',
     description: '',
     heroImage: '',
@@ -39,6 +40,7 @@ export const DestinationForm = () => {
               name: current.name || '',
               state: current.state || 'Haryana',
               region: current.region || 'North India',
+              startingPrice: current.startingPrice || 1999,
               shortDescription: current.shortDescription || '',
               description: current.description || '',
               heroImage: current.heroImage || current.featuredImage || '',
@@ -100,6 +102,9 @@ export const DestinationForm = () => {
 
       const payload = {
         ...formData,
+        region: formData.region || 'North India',
+        startingPrice: Number(formData.startingPrice) || 1999,
+        bestTimeToVisit: formData.bestTimeToVisit || 'September to March',
         heroImage: finalImage,
         featuredImage: finalImage,
         images: [finalImage],
@@ -205,6 +210,38 @@ export const DestinationForm = () => {
               placeholder="Share what makes this destination special, key sights, temple circuits, or pickup info..."
               className="w-full text-sm rounded-xl border border-slate-200 p-3.5 focus:outline-none focus:border-brand-500 font-normal leading-relaxed"
             />
+          </div>
+
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Starting Cab / Package Fare (₹) <span className="text-rose-500">*</span>
+            </label>
+            <input
+              type="number"
+              name="startingPrice"
+              value={formData.startingPrice}
+              onChange={handleChange}
+              min="0"
+              placeholder="e.g. 1999"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-semibold text-navy-900"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">Geographical Region</label>
+            <select
+              name="region"
+              value={formData.region}
+              onChange={handleChange}
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500 font-medium"
+            >
+              <option value="North India">North India (Haryana, Delhi NCR, Punjab, Chandigarh)</option>
+              <option value="Himalayas">Himalayas & Foothills</option>
+              <option value="South India">South India</option>
+              <option value="West India">West India</option>
+              <option value="East India">East India</option>
+              <option value="Central India">Central India</option>
+            </select>
           </div>
 
           <div>

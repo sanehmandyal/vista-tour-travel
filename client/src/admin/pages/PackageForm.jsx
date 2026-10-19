@@ -18,12 +18,30 @@ export const PackageForm = () => {
   const [fetching, setFetching] = useState(isEdit);
   const [uploading, setUploading] = useState(false);
 
+  const VALID_CATEGORIES = ['Cultural', 'Weekend Getaways', 'Family Trips', 'Road Trips', 'Adventure', 'Group Tours', 'Luxury Travel', 'Honeymoon'];
+
+  const mapCategory = (cat) => {
+    if (VALID_CATEGORIES.includes(cat)) return cat;
+    if (!cat) return 'Cultural';
+    const c = cat.toLowerCase();
+    if (c.includes('spirit') || c.includes('herit') || c.includes('cultur') || c.includes('temple')) return 'Cultural';
+    if (c.includes('advent') || c.includes('wild') || c.includes('nature') || c.includes('safari')) return 'Adventure';
+    if (c.includes('road') || c.includes('airport') || c.includes('cab') || c.includes('ncr') || c.includes('delhi')) return 'Road Trips';
+    if (c.includes('weekend') || c.includes('escape') || c.includes('day')) return 'Weekend Getaways';
+    if (c.includes('group') || c.includes('tempo') || c.includes('custom') || c.includes('grand')) return 'Group Tours';
+    if (c.includes('luxur') || c.includes('vip')) return 'Luxury Travel';
+    if (c.includes('honey')) return 'Honeymoon';
+    return 'Family Trips';
+  };
+
   const [formData, setFormData] = useState({
     title: '',
     destination: '',
     destinationName: '',
-    category: 'Spiritual & Heritage',
+    category: 'Cultural',
     duration: '2 Days / 1 Night',
+    price: 3499,
+    discountedPrice: 2999,
     description: '',
     inclusions: 'Sanitized AC Cab, Verified Polite Chauffeur, Sightseeing, All Tolls & State Taxes Included',
     featuredImage: '',
@@ -35,15 +53,16 @@ export const PackageForm = () => {
     const fetchDests = async () => {
       try {
         const res = await destinationApi.getAll({ limit: 100 });
-        if (res.success && res.data) {
+        if (res.success && res.data && res.data.length > 0) {
           setDestinations(res.data);
-          if (!formData.destination && res.data.length > 0) {
-            setFormData(prev => ({
+          setFormData(prev => {
+            if (prev.destination) return prev;
+            return {
               ...prev,
-              destination: res.data[0].slug || res.data[0]._id,
+              destination: res.data[0]._id,
               destinationName: res.data[0].name
-            }));
-          }
+            };
+          });
         }
       } catch (err) {
         console.error(err);
@@ -61,10 +80,12 @@ export const PackageForm = () => {
             const p = res.data;
             setFormData({
               title: p.title || '',
-              destination: p.destination?._id || p.destination || p.destinationSlug || '',
+              destination: p.destination?._id || p.destination || '',
               destinationName: p.destinationName || p.destination?.name || '',
-              category: p.category || 'Spiritual & Heritage',
+              category: mapCategory(p.category),
               duration: p.duration || '2 Days / 1 Night',
+              price: p.price || 3499,
+              discountedPrice: p.discountedPrice || 2999,
               description: p.description || '',
               inclusions: Array.isArray(p.inclusions) ? p.inclusions.join(', ') : p.inclusions || '',
               featuredImage: p.featuredImage || '',
@@ -88,8 +109,8 @@ export const PackageForm = () => {
       const matched = destinations.find(d => d._id === value || d.slug === value);
       setFormData(prev => ({
         ...prev,
-        destination: value,
-        destinationName: matched ? matched.name : value
+        destination: matched ? matched._id : value,
+        destinationName: matched ? matched.name : prev.destinationName
       }));
     } else {
       setFormData(prev => ({
@@ -131,14 +152,38 @@ export const PackageForm = () => {
         ? formData.inclusions.split(',').map(s => s.trim()).filter(Boolean)
         : formData.inclusions;
 
+      // Ensure valid destination ObjectId
+      let targetDestId = formData.destination;
+      const isObjectId = (str) => /^[0-9a-fA-F]{24}$/.test(String(str));
+      if (!isObjectId(targetDestId)) {
+        const found = destinations.find(d => d._id === targetDestId || d.slug === targetDestId || d.name === formData.destinationName);
+        targetDestId = found?._id || destinations[0]?._id;
+      }
+
+      const matchedDest = destinations.find(d => d._id === targetDestId);
+
       const payload = {
         ...formData,
+        destination: targetDestId,
+        destinationName: matchedDest?.name || formData.destinationName,
+        destinationSlug: matchedDest?.slug || '',
+        category: mapCategory(formData.category),
         featuredImage: finalImage,
         images: [finalImage],
+        price: Number(formData.price) || 3499,
+        discountedPrice: Number(formData.discountedPrice) || Number(formData.price) || 2999,
+        duration: formData.duration || '2 Days / 1 Night',
+        itinerary: [
+          {
+            day: 1,
+            title: `Day 1: ${formData.title} Departure & Sightseeing`,
+            description: formData.description.trim() || `Comfortable chauffeur pickup, scenic road journey, key monument exploration, and check-in assistance.`,
+            meals: 'Breakfast included',
+            hotel: '3/4-Star Verified Hotel or Resort'
+          }
+        ],
         inclusions: inclusionsArray.length > 0 ? inclusionsArray : ['Sanitized AC Cab', 'Professional Driver', 'Customized Itinerary'],
-        description: formData.description.trim() || `Enjoy our customized ${formData.title} tour across Haryana, Delhi NCR and Chandigarh with Vista Tour and Travels.`,
-        price: 0,
-        discountedPrice: 0
+        description: formData.description.trim() || `Enjoy our customized ${formData.title} tour across Haryana, Delhi NCR and Chandigarh with Vista Tour and Travels.`
       };
 
       if (isEdit) {
@@ -199,20 +244,21 @@ export const PackageForm = () => {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Destination Area</label>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Destination Area <span className="text-rose-500">*</span>
+            </label>
             <select
               name="destination"
               value={formData.destination}
               onChange={handleChange}
-              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500 font-medium"
+              required
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500 font-semibold text-navy-900"
             >
               {destinations.map(d => (
-                <option key={d._id || d.slug} value={d.slug || d._id}>
-                  {d.name} ({d.state})
+                <option key={d._id} value={d._id}>
+                  {d.name} ({d.state || 'North India'})
                 </option>
               ))}
-              <option value="Haryana & NCR">Haryana & Delhi NCR (Multi-City)</option>
-              <option value="Chandigarh">Chandigarh & Shivalik</option>
             </select>
           </div>
 
@@ -224,13 +270,14 @@ export const PackageForm = () => {
               onChange={handleChange}
               className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500 font-medium"
             >
-              <option value="Spiritual & Heritage">Spiritual & Heritage</option>
-              <option value="Family Trips">Family Trips</option>
-              <option value="Weekend Getaways">Weekend Getaways</option>
-              <option value="Sightseeing & Day Tours">Sightseeing & Day Tours</option>
-              <option value="Wildlife & Nature">Wildlife & Nature (Kalesar)</option>
-              <option value="Luxury Cab Tour">Luxury Cab Tour</option>
-              <option value="Custom Group Tour">Custom Group Tour</option>
+              <option value="Cultural">Spiritual, Temple & Heritage Yatra (Kurukshetra, Pehowa)</option>
+              <option value="Weekend Getaways">Weekend Getaway & City Break (Chandigarh, Karnal)</option>
+              <option value="Family Trips">Family Holiday & Sightseeing Tour</option>
+              <option value="Road Trips">Delhi NCR, Highway & Airport Express Cab</option>
+              <option value="Adventure">Wildlife Safari & Nature Eco-Tour (Kalesar)</option>
+              <option value="Group Tours">Group Yatra & Tempo Traveller Tour</option>
+              <option value="Luxury Travel">Luxury Chauffeur & VIP Cruiser Tour</option>
+              <option value="Honeymoon">Honeymoon & Scenic Getaway</option>
             </select>
           </div>
 
@@ -242,6 +289,34 @@ export const PackageForm = () => {
               value={formData.duration}
               onChange={handleChange}
               placeholder="e.g. 2 Days / 1 Night, Full Day, 3 Days / 2 Nights"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Package Fare (₹) <span className="text-rose-500">*</span>
+            </label>
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              min="0"
+              placeholder="e.g. 3499"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-semibold text-navy-900"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-1">Discounted / Offer Fare (₹)</label>
+            <input
+              type="number"
+              name="discountedPrice"
+              value={formData.discountedPrice}
+              onChange={handleChange}
+              min="0"
+              placeholder="e.g. 2999"
               className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
             />
           </div>
