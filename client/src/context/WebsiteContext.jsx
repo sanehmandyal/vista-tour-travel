@@ -9,7 +9,7 @@ export const defaultSettings = {
   tagline: '5.0 ★ Rated Tour Packages & Luxury Cabs in Ladwa, Kurukshetra & Haryana',
   heroTitle: 'Experience Seamless Journeys with Vista Tour and Travels',
   heroSubtitle: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Clean commercial fleet, polite chauffeurs, and customized tour packages for Kurukshetra, Ambala, Delhi, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh.',
-  heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920',
+  heroImage: '/assets/images/hero-haryana-kurukshetra.jpg',
   logo: '/logo.jpg',
   phone: '+91 90688 88578',
   secondaryPhone: '+91 99965 70920',
@@ -40,7 +40,7 @@ const getInitialSettings = () => {
     const saved = localStorage.getItem(SETTINGS_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      // Cleanse any old cached mountain images or old data
+      // Cleanse any old cached mountain images or old dull image
       if (
         !parsed.companyName ||
         parsed.companyName.includes('Ravi') ||
@@ -54,12 +54,13 @@ const getInitialSettings = () => {
         parsed.email?.includes('ravi') ||
         parsed.logo === '/logo.svg' ||
         parsed.heroImage?.includes('photo-1506744038136-46273834b3fb') ||
-        parsed.heroImage?.includes('unsplash')
+        parsed.heroImage?.includes('unsplash') ||
+        parsed.heroImage?.includes('Brahma_Sarovar_Kurukshetra.jpg')
       ) {
         localStorage.setItem(SETTINGS_KEY, JSON.stringify(defaultSettings));
         return defaultSettings;
       }
-      return { ...defaultSettings, ...parsed, heroImage: parsed.heroImage?.includes('unsplash') ? defaultSettings.heroImage : (parsed.heroImage || defaultSettings.heroImage), logo: parsed.logo === '/logo.svg' ? '/logo.jpg' : (parsed.logo || '/logo.jpg') };
+      return { ...defaultSettings, ...parsed, heroImage: (!parsed.heroImage || parsed.heroImage.includes('unsplash') || parsed.heroImage.includes('Brahma_Sarovar_Kurukshetra.jpg')) ? defaultSettings.heroImage : parsed.heroImage, logo: parsed.logo === '/logo.svg' ? '/logo.jpg' : (parsed.logo || '/logo.jpg') };
     }
   } catch (e) {}
   return defaultSettings;
@@ -94,7 +95,7 @@ export const WebsiteProvider = ({ children }) => {
           data.googleReviewsUrl = defaultSettings.googleReviewsUrl;
           data.whatsapp = defaultSettings.whatsapp;
         }
-        if (!data.heroImage || data.heroImage.includes('unsplash') || data.heroImage.includes('photo-1506744038136-46273834b3fb')) {
+        if (!data.heroImage || data.heroImage.includes('unsplash') || data.heroImage.includes('photo-1506744038136-46273834b3fb') || data.heroImage.includes('Brahma_Sarovar_Kurukshetra.jpg')) {
           data.heroImage = defaultSettings.heroImage;
         }
         setSettings(prev => ({ ...prev, ...data }));

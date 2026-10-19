@@ -58,27 +58,28 @@ export const Hero = () => {
 
   return (
     <div className="relative min-h-[640px] lg:min-h-[720px] flex items-center justify-center bg-navy-950 overflow-hidden">
-      {/* Background Photography with Soft Deep-Navy Gradient */}
+      {/* Background Photography with Vibrant Golden Hour Atmosphere */}
       <div className="absolute inset-0 z-0">
         <img
-          src={settings.heroImage && !settings.heroImage.includes('unsplash') ? settings.heroImage : "https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920"}
+          src={settings.heroImage && !settings.heroImage.includes('unsplash') && !settings.heroImage.includes('Brahma_Sarovar_Kurukshetra.jpg') ? settings.heroImage : "/assets/images/hero-haryana-kurukshetra.jpg"}
           alt="Vista Tour and Travels - Ladwa, Kurukshetra & Haryana Tour & Luxury Cabs"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920';
+            e.target.src = '/assets/images/hero-haryana-chariot-mirror.jpg';
           }}
-          className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
+          className="w-full h-full object-cover object-center scale-100 transition-transform duration-1000 brightness-[1.03] contrast-[1.03]"
           loading="eager"
         />
-        {/* Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-900/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/80 via-navy-950/40 to-navy-950/80" />
+        {/* Cinematic atmospheric overlays that let the warm golden sunset and chariot shine through */}
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-navy-900/15" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/65 via-transparent to-navy-950/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/30 via-transparent to-navy-950/70" />
       </div>
 
-      {/* Decorative Glass Glow Elements */}
-      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-brand-500/25 blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-emerald-500/15 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-500/15 blur-[120px] rounded-full pointer-events-none" />
+      {/* Decorative Warm Glass Glow Elements */}
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-amber-500/20 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-brand-500/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-400/20 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-28 flex flex-col items-center text-center">
@@ -88,23 +89,23 @@ export const Hero = () => {
             href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-xl hover:bg-amber-400/30 transition-all shadow-lg shadow-amber-500/15"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/25 border border-amber-300/50 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-xl hover:bg-amber-400/35 transition-all shadow-lg shadow-amber-500/20"
           >
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
             <span>5.0 ★ Google Rated • 50+ Verified Traveler Reviews</span>
           </a>
-          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-300/40 text-emerald-300 text-xs font-semibold backdrop-blur-xl">
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/25 border border-emerald-300/50 text-emerald-300 text-xs font-semibold backdrop-blur-xl">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Ladwa, Kurukshetra, Haryana & NCR Specialists
           </span>
         </div>
 
         {/* Headline */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.1] mb-5">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.1] mb-5 drop-shadow-md">
           {settings.heroTitle || 'Experience Seamless Journeys with Vista Tour and Travels'}
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base lg:text-lg text-slate-200/90 max-w-2xl leading-relaxed mb-8 font-normal">
+        <p className="text-sm sm:text-base lg:text-lg text-slate-100 max-w-2xl leading-relaxed mb-8 font-medium drop-shadow-sm">
           {settings.heroSubtitle || 'Haryana’s top-rated luxury cab service and travel provider. Clean commercial cabs, verified professional chauffeurs, and transparent all-inclusive quotes.'}
         </p>
 
