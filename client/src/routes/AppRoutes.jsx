@@ -99,10 +99,19 @@ export default function AppRoutes() {
       {/* Admin Login convenience alias */}
       <Route path="/admin/login" element={<Navigate to="/login" replace />} />
 
-      {/* Public Routes wrapped in PublicLayout */}
       <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
       <Route path="/destinations" element={<PublicLayout><Destinations /></PublicLayout>} />
       <Route path="/destinations/:slug" element={<PublicLayout><DestinationDetails /></PublicLayout>} />
+
+      {/* Direct Destination Convenience URL Aliases */}
+      <Route path="/kurukshetra" element={<Navigate to="/destinations/kurukshetra" replace />} />
+      <Route path="/ambala" element={<Navigate to="/destinations/ambala" replace />} />
+      <Route path="/delhi" element={<Navigate to="/destinations/delhi" replace />} />
+      <Route path="/karnal" element={<Navigate to="/destinations/karnal" replace />} />
+      <Route path="/panipat" element={<Navigate to="/destinations/panipat" replace />} />
+      <Route path="/yamunanagar" element={<Navigate to="/destinations/yamunanagar" replace />} />
+      <Route path="/kaithal" element={<Navigate to="/destinations/kaithal" replace />} />
+      <Route path="/chandigarh" element={<Navigate to="/destinations/chandigarh" replace />} />
       <Route path="/packages" element={<PublicLayout><Packages /></PublicLayout>} />
       <Route path="/packages/:slug" element={<PublicLayout><PackageDetails /></PublicLayout>} />
       <Route path="/booking/:packageId" element={<PublicLayout><Booking /></PublicLayout>} />

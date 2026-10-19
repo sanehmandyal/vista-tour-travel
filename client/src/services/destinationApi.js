@@ -130,7 +130,19 @@ const getLocalDestinations = () => {
     if (saved) {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed.map(enrichDestinationWithExactImage);
+        // Discard legacy himachal or outdated schema with string attractions
+        const isOutdated = parsed.some(d =>
+          d.name?.toLowerCase().includes('manali') ||
+          d.name?.toLowerCase().includes('shimla') ||
+          d.state?.toLowerCase().includes('himachal') ||
+          (Array.isArray(d.attractions) && typeof d.attractions[0] === 'string') ||
+          !d.shortDescription
+        );
+        if (!isOutdated) {
+          return parsed.map(enrichDestinationWithExactImage);
+        } else {
+          localStorage.removeItem(STORAGE_KEY);
+        }
       }
     }
   } catch (e) {
@@ -226,39 +238,46 @@ export const destinationApi = {
   },
 
   getBySlug: async (slug) => {
+    const cleanSlug = (slug || '').toLowerCase().trim();
+    const list = getLocalDestinations();
+    const defaultMatch = list.find(d =>
+      (d.slug || '').toLowerCase() === cleanSlug ||
+      (d._id || '').toLowerCase() === cleanSlug ||
+      (d.name || '').toLowerCase() === cleanSlug
+    );
+
     try {
       const res = await axiosClient.get(`/destinations/${slug}`);
       if (res && res.success && res.data) {
-        const local = getLocalDestinations();
-        const localMatch = local.find(l => l._id === res.data._id || l.slug === res.data.slug);
-        const item = localMatch ? { ...res.data, ...localMatch } : res.data;
+        const item = defaultMatch ? { ...defaultMatch, ...res.data } : res.data;
         return { success: true, data: enrichDestinationWithExactImage(item) };
       }
     } catch (err) {}
 
-    const list = getLocalDestinations();
-    const found = list.find(d => d.slug === slug || d._id === slug);
-    if (found) {
-      return { success: true, data: enrichDestinationWithExactImage(found) };
+    if (defaultMatch) {
+      return { success: true, data: enrichDestinationWithExactImage(defaultMatch) };
     }
     return { success: false, message: 'Destination not found' };
   },
 
   getById: async (id) => {
+    const cleanId = (id || '').toLowerCase().trim();
+    const list = getLocalDestinations();
+    const defaultMatch = list.find(d =>
+      (d._id || '').toLowerCase() === cleanId ||
+      (d.slug || '').toLowerCase() === cleanId
+    );
+
     try {
       const res = await axiosClient.get(`/destinations/${id}`);
       if (res && res.success && res.data) {
-        const local = getLocalDestinations();
-        const localMatch = local.find(l => l._id === res.data._id || l.slug === res.data.slug);
-        const item = localMatch ? { ...res.data, ...localMatch } : res.data;
+        const item = defaultMatch ? { ...defaultMatch, ...res.data } : res.data;
         return { success: true, data: enrichDestinationWithExactImage(item) };
       }
     } catch (err) {}
 
-    const list = getLocalDestinations();
-    const found = list.find(d => d._id === id || d.slug === id);
-    if (found) {
-      return { success: true, data: enrichDestinationWithExactImage(found) };
+    if (defaultMatch) {
+      return { success: true, data: enrichDestinationWithExactImage(defaultMatch) };
     }
     return { success: false, message: 'Destination not found' };
   },

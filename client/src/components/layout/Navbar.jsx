@@ -90,23 +90,23 @@ export const Navbar = () => {
 
   // Dropdown data definitions
   const destinationDropdownItems = [
-    { name: 'Kurukshetra', desc: 'Brahma Sarovar, Jyotisar & Mahabharata heritage', path: '/destinations', icon: Star },
-    { name: 'Ambala', desc: 'Historic Gurdwaras & Asia’s largest cloth market', path: '/destinations', icon: Compass },
-    { name: 'Delhi & NCR', desc: 'Monuments, shopping & 24/7 IGI Airport cab drops', path: '/destinations', icon: Plane },
-    { name: 'Karnal', desc: 'Karna Lake, heritage tower & Kalpana Chawla planetarium', path: '/destinations', icon: MapPin },
-    { name: 'Panipat', desc: 'Historic battles, Kala Amb & weaver textile hub', path: '/destinations', icon: Sparkles },
-    { name: 'Yamunanagar', desc: 'Kalesar National Park & Hathni Kund Barrage', path: '/destinations', icon: Trees },
-    { name: 'Kaithal', desc: 'Hanuman birthplace, Anjani Tirth & historic forts', path: '/destinations', icon: Heart },
-    { name: 'Chandigarh', desc: 'Rock Garden, Sukhna Lake & Elante luxury shopping', path: '/destinations', icon: Compass }
+    { name: 'Kurukshetra', desc: 'Brahma Sarovar, Jyotisar & Mahabharata heritage', path: '/destinations/kurukshetra', icon: Star },
+    { name: 'Ambala', desc: 'Historic Gurdwaras & Asia’s largest cloth market', path: '/destinations/ambala', icon: Compass },
+    { name: 'Delhi & NCR', desc: 'Monuments, shopping & 24/7 IGI Airport cab drops', path: '/destinations/delhi', icon: Plane },
+    { name: 'Karnal', desc: 'Karna Lake, heritage tower & Kalpana Chawla planetarium', path: '/destinations/karnal', icon: MapPin },
+    { name: 'Panipat', desc: 'Historic battles, Kala Amb & weaver textile hub', path: '/destinations/panipat', icon: Sparkles },
+    { name: 'Yamunanagar', desc: 'Kalesar National Park & Hathni Kund Barrage', path: '/destinations/yamunanagar', icon: Trees },
+    { name: 'Kaithal', desc: 'Hanuman birthplace, Anjani Tirth & historic forts', path: '/destinations/kaithal', icon: Heart },
+    { name: 'Chandigarh', desc: 'Rock Garden, Sukhna Lake & Elante luxury shopping', path: '/destinations/chandigarh', icon: Compass }
   ];
 
   const packagesDropdownItems = [
-    { name: 'Kurukshetra Mahabharata Spiritual Tour', desc: 'Brahma Sarovar, Jyotisar & museum day tour', path: '/packages', icon: Star },
-    { name: 'Haryana Golden Belt (Kurukshetra-Karnal-Panipat)', desc: '2D/1N historic battles & lake getaway', path: '/packages', icon: PackageIcon },
-    { name: 'Chandigarh City & Sukhna Lake Tour', desc: '2D/1N weekend getaway with luxury cab', path: '/packages', icon: Sparkles },
-    { name: 'Yamunanagar & Kalesar Wildlife Safari', desc: 'Nature, wildlife & Hathni Kund riverfront tour', path: '/packages', icon: Clock },
-    { name: 'Delhi NCR Heritage & Shopping Tour', desc: 'Full-day door-to-door capital city excursion', path: '/packages', icon: Plane },
-    { name: 'Haryana Shaktipeeth & Pehowa Darshan', desc: 'Divine 2D/1N family temple yatra', path: '/packages', icon: Users }
+    { name: 'Kurukshetra Mahabharata Spiritual Tour', desc: 'Brahma Sarovar, Jyotisar & museum day tour', path: '/packages/kurukshetra-mahabharata-gita-spiritual-yatra', icon: Star },
+    { name: 'Haryana Golden Belt (Kurukshetra-Karnal-Panipat)', desc: '2D/1N historic battles & lake getaway', path: '/packages/haryana-gt-road-karnal-panipat-getaway', icon: PackageIcon },
+    { name: 'Chandigarh City & Sukhna Lake Tour', desc: '2D/1N weekend getaway with luxury cab', path: '/packages/chandigarh-rock-garden-sukhna-weekend-escape', icon: Sparkles },
+    { name: 'Yamunanagar & Kalesar Wildlife Safari', desc: 'Nature, wildlife & Hathni Kund riverfront tour', path: '/packages/kalesar-jungle-safari-hathni-kund-tour', icon: Clock },
+    { name: 'Delhi NCR Heritage & Shopping Tour', desc: 'Full-day door-to-door capital city excursion', path: '/packages/delhi-ncr-capital-heritage-tour', icon: Plane },
+    { name: 'Kaithal Hanuman Birthplace & Pehowa', desc: 'Divine family temple & holy sarovar yatra', path: '/packages/kaithal-hanuman-birthplace-pehowa-yatra', icon: Users }
   ];
 
   const servicesDropdownItems = [

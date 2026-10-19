@@ -67,8 +67,12 @@ export const Destinations = () => {
       <div className="bg-navy-950 text-white py-16 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img
-            src="https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920"
+            src="/assets/images/hero-haryana-kurukshetra.jpg"
             alt="Haryana Destinations Header"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920";
+            }}
             className="w-full h-full object-cover"
           />
         </div>
