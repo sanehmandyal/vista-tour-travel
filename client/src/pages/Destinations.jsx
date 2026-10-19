@@ -163,10 +163,10 @@ export const Destinations = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {destinations.map((dest) => {
                 const exact = getExactDestinationImages(dest.name, dest.slug);
-                const isInvalid = (url) => !url || typeof url !== 'string' || url.includes('unsplash.com') || url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14');
-                const destImg = isInvalid(dest.featuredImage)
-                  ? (isInvalid(dest.heroImage) ? exact.featuredImage : dest.heroImage)
-                  : dest.featuredImage;
+                const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('unsplash.com') || url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14') || url.includes('Dharamshala_stadium');
+                const destImg = !isInvalid(dest.heroImage)
+                  ? dest.heroImage
+                  : (!isInvalid(dest.featuredImage) ? dest.featuredImage : exact.featuredImage);
                 return (
                   <Link
                     key={dest._id}

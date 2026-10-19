@@ -76,11 +76,16 @@ export const DestinationDetails = () => {
   const isInvalid = (url) =>
     !url ||
     typeof url !== 'string' ||
-    url.trim() === '';
+    url.trim() === '' ||
+    url.includes('unsplash.com') ||
+    url.includes('photo-15') ||
+    url.includes('photo-16') ||
+    url.includes('photo-14') ||
+    url.includes('Dharamshala_stadium');
 
-  const heroImg = isInvalid(destination.heroImage)
-    ? (isInvalid(destination.featuredImage) ? exact.heroImage : destination.featuredImage)
-    : destination.heroImage;
+  const heroImg = !isInvalid(destination.heroImage)
+    ? destination.heroImage
+    : (!isInvalid(destination.featuredImage) ? destination.featuredImage : exact.heroImage);
 
   const cleanPhone = '9068888578';
   const waMessage = encodeURIComponent(

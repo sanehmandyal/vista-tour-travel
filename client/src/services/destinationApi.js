@@ -100,20 +100,30 @@ const enrichDestinationWithExactImage = (dest) => {
   const exact = getExactDestinationImages(dest.name, dest.slug);
   const isGenericOrUnmatched = (url) => !url || 
     typeof url !== 'string' || 
+    url.trim() === '' ||
     url.includes('images.unsplash.com') || 
     url.includes('photo-15') || 
     url.includes('photo-16') || 
     url.includes('photo-14') ||
+    url.includes('Dharamshala_stadium') ||
     (!url.startsWith('http') && !url.startsWith('data:') && !url.startsWith('/'));
 
-  const heroImage = isGenericOrUnmatched(dest.heroImage) ? exact.heroImage : (dest.heroImage || exact.heroImage);
-  const featuredImage = isGenericOrUnmatched(dest.featuredImage) ? exact.featuredImage : (dest.featuredImage || exact.featuredImage);
-  const images = Array.isArray(dest.images) && dest.images.length > 0 && !dest.images.some(isGenericOrUnmatched)
-    ? dest.images
-    : exact.images;
-  const gallery = Array.isArray(dest.gallery) && dest.gallery.length > 0 && !dest.gallery.some(isGenericOrUnmatched)
-    ? dest.gallery
-    : exact.images;
+  // Prioritize custom valid images uploaded by admin
+  const validHero = !isGenericOrUnmatched(dest.heroImage) ? dest.heroImage : null;
+  const validFeatured = !isGenericOrUnmatched(dest.featuredImage) ? dest.featuredImage : null;
+
+  const heroImage = validHero || validFeatured || exact.heroImage;
+  const featuredImage = validFeatured || validHero || exact.featuredImage;
+
+  const validImages = Array.isArray(dest.images)
+    ? dest.images.filter(img => !isGenericOrUnmatched(img))
+    : [];
+  const images = validImages.length > 0 ? validImages : exact.images;
+
+  const validGallery = Array.isArray(dest.gallery)
+    ? dest.gallery.filter(img => !isGenericOrUnmatched(img))
+    : [];
+  const gallery = validGallery.length > 0 ? validGallery : (validImages.length > 0 ? validImages : exact.images);
 
   return {
     ...dest,
@@ -329,6 +339,8 @@ export const destinationApi = {
       region: data.region && VALID_REGIONS.includes(data.region) ? data.region : (data.region ? 'North India' : undefined)
     };
     if (payload.startingPrice !== undefined) payload.startingPrice = Number(payload.startingPrice) || 1999;
+    if (payload.heroImage && !payload.featuredImage) payload.featuredImage = payload.heroImage;
+    if (payload.featuredImage && !payload.heroImage) payload.heroImage = payload.featuredImage;
 
     try {
       const res = await axiosClient.put(`/destinations/${id}`, payload);
@@ -337,6 +349,9 @@ export const destinationApi = {
       }
     } catch (e) {
       console.warn('Direct server update error, updating locally:', e.message);
+      if (e.status === 401 || e.status === 403) {
+        throw new Error(e.message || 'You must be signed in as administrator to update destinations.');
+      }
     }
 
     const list = getLocalDestinations();

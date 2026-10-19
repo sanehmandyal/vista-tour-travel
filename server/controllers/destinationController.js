@@ -101,24 +101,26 @@ const normalizeDestination = (dest) => {
   const exact = getExactDestinationImages(doc.name, doc.slug);
   const isGeneric = (url) => !url || 
     typeof url !== 'string' ||
+    url.trim() === '' ||
     url.includes('unsplash.com') ||
     url.includes('photo-15') ||
     url.includes('photo-16') ||
     url.includes('photo-14') ||
+    url.includes('Dharamshala_stadium') ||
     (!url.startsWith('http') && !url.startsWith('data:') && !url.startsWith('/'));
 
-  if (isGeneric(doc.heroImage)) {
-    doc.heroImage = exact.heroImage;
-  }
-  if (isGeneric(doc.featuredImage)) {
-    doc.featuredImage = exact.featuredImage;
-  }
-  if (!Array.isArray(doc.images) || doc.images.length === 0 || doc.images.some(isGeneric)) {
-    doc.images = exact.images;
-  }
-  if (!Array.isArray(doc.gallery) || doc.gallery.length === 0 || doc.gallery.some(isGeneric)) {
-    doc.gallery = exact.images;
-  }
+  const validHero = !isGeneric(doc.heroImage) ? doc.heroImage : null;
+  const validFeatured = !isGeneric(doc.featuredImage) ? doc.featuredImage : null;
+
+  doc.heroImage = validHero || validFeatured || exact.heroImage;
+  doc.featuredImage = validFeatured || validHero || exact.featuredImage;
+
+  const validImages = Array.isArray(doc.images) ? doc.images.filter(img => !isGeneric(img)) : [];
+  doc.images = validImages.length > 0 ? validImages : exact.images;
+
+  const validGallery = Array.isArray(doc.gallery) ? doc.gallery.filter(img => !isGeneric(img)) : [];
+  doc.gallery = validGallery.length > 0 ? validGallery : (validImages.length > 0 ? validImages : exact.images);
+
   return doc;
 };
 
@@ -296,6 +298,13 @@ export const updateDestination = async (req, res, next) => {
     const isId = mongoose.isValidObjectId(id);
     const filter = isId ? { _id: id } : { $or: [{ slug: id }, { name: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }] };
 
+    if (req.body.heroImage && !req.body.featuredImage) {
+      req.body.featuredImage = req.body.heroImage;
+    }
+    if (req.body.featuredImage && !req.body.heroImage) {
+      req.body.heroImage = req.body.featuredImage;
+    }
+
     const destination = await Destination.findOneAndUpdate(filter, req.body, {
       new: true,
       runValidators: false,
@@ -306,7 +315,7 @@ export const updateDestination = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: 'Destination updated in database successfully',
-      data: destination
+      data: normalizeDestination(destination)
     });
   } catch (error) {
     next(error);

@@ -98,7 +98,7 @@ export const DestinationForm = () => {
 
     try {
       setUploading(true);
-      const dataUri = await processDeviceImage(file);
+      const dataUri = await processDeviceImage(file, 1000, 750, 0.8);
       setFormData(prev => ({
         ...prev,
         heroImage: dataUri,
@@ -121,7 +121,7 @@ export const DestinationForm = () => {
       setUploading(true);
       const processed = [];
       for (const file of files) {
-        const uri = await processDeviceImage(file);
+        const uri = await processDeviceImage(file, 1000, 750, 0.8);
         processed.push(uri);
       }
       setFormData(prev => ({

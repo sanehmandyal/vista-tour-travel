@@ -1,11 +1,11 @@
-﻿/**
+/**
  * Client-side image processor for admin uploads.
  * Reads image files directly from device (phone, laptop, tablet),
  * scales them to optimal web dimensions, compresses them, and
  * outputs a clean base64 Data URI that persists reliably in MongoDB
  * without depending on ephemeral server file systems or external storage.
  */
-export const processDeviceImage = (file, maxWidth = 1600, maxHeight = 1200, quality = 0.82) => {
+export const processDeviceImage = (file, maxWidth = 1200, maxHeight = 900, quality = 0.8) => {
   return new Promise((resolve, reject) => {
     if (!file) {
       return reject(new Error('No file selected.'));
