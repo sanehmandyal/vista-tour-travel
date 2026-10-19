@@ -30,7 +30,7 @@ export const PackageForm = () => {
     description: '',
     inclusions: '4-Star Resort Stay, Daily Breakfast & Dinner, Private Sanitized Cab, Sightseeing Tours',
     exclusions: 'Airfare, Personal Expenses, Adventure activity fees',
-    hotels: 'Verified 3-Star & 4-Star Resort Stays with mountain/valley views',
+    hotels: 'Verified 3-Star & 4-Star Deluxe Stays & Highway Resorts with modern amenities',
     transport: 'Private Chauffeur AC Sedan / SUV for transfers and tours',
     featured: false,
     status: 'published',
@@ -208,7 +208,7 @@ export const PackageForm = () => {
                 value={formData.title}
                 onChange={handleChange}
                 required
-                placeholder="e.g. Manali Escape – Himalayan Retreat"
+                placeholder="e.g. Kurukshetra Mahabharata Spiritual Tour"
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
             </div>
@@ -376,7 +376,7 @@ export const PackageForm = () => {
                       type="text"
                       value={day.title}
                       onChange={(e) => handleItineraryChange(idx, 'title', e.target.value)}
-                      placeholder="Day Title (e.g. Solang Valley Adventure)"
+                      placeholder="Day Title (e.g. Brahma Sarovar & Jyotisar Heritage Tour)"
                       className="w-full text-xs font-bold rounded-xl border border-slate-200 px-3 py-2 bg-white"
                     />
                   </div>
@@ -403,7 +403,7 @@ export const PackageForm = () => {
                       type="text"
                       value={day.hotel}
                       onChange={(e) => handleItineraryChange(idx, 'hotel', e.target.value)}
-                      placeholder="Hotel / Stay (e.g. Snow Valley Resort)"
+                      placeholder="Hotel / Stay (e.g. Hotel Saffron Kurukshetra)"
                       className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 bg-white"
                     />
                   </div>

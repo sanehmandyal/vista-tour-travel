@@ -9,14 +9,14 @@ export const defaultFaqs = [
   {
     _id: 'faq-2',
     question: 'Which areas and airports do you cover for pickups?',
-    answer: 'We provide door-to-door cab pickups and drops across Mohali, Chandigarh Tricity, Punjab, Himachal Pradesh, and neighboring states. Major pickup hubs include Mohali (Sector 73 / 119), Chandigarh International Airport (IXC), Chandigarh Railway Station, Panchkula, Kangra / Gaggal Airport (DHM), Pathankot, and New Delhi NCR.',
+    answer: 'We provide door-to-door cab pickups and drops across Nawarsi Bazar Ladwa, Kurukshetra, Ambala, Karnal, Panipat, Yamunanagar, Kaithal, Chandigarh Tricity, and Delhi NCR. Major pickup hubs include New Delhi IGI Airport (DEL - T1, T2, T3), Chandigarh International Airport (IXC), Kurukshetra Junction, and Ambala Cantt Railway Station.',
     category: 'Transportation',
     order: 2
   },
   {
     _id: 'faq-3',
-    question: 'Are your cabs and chauffeurs certified for mountain hill roads?',
-    answer: 'Yes, 100%. All vehicles in our fleet are licensed commercial vehicles with valid hill permits and comprehensive insurance. Our drivers are police-verified local mountain experts with a minimum of 8+ years driving across steep Himalayan inclines, snow, and rain.',
+    question: 'Are your cabs and chauffeurs licensed and verified for highway travel?',
+    answer: 'Yes, 100%. All vehicles in our fleet are licensed commercial vehicles with valid tourist permits and comprehensive insurance. Our drivers are police-verified courteous highway experts with a minimum of 8+ years driving across Grand Trunk Road (NH-44), expressways, and urban corridors.',
     category: 'General',
     order: 3
   },
@@ -43,8 +43,8 @@ export const defaultFaqs = [
   },
   {
     _id: 'faq-7',
-    question: 'Do you arrange hotel bookings and adventure permits like Bir Billing Paragliding?',
-    answer: 'Yes. In addition to chauffeur cab services, we arrange complete holiday packages including verified 3/4/5-star mountain resort stays, government-authorized tandem paragliding at Bir Billing with GoPro video, Atal Tunnel / Rohtang permits, and river rafting.',
+    question: 'Do you arrange hotel bookings and customized tour itineraries for Kurukshetra and Delhi NCR?',
+    answer: 'Yes! In addition to chauffeur cab services, we arrange complete travel packages including verified 3/4/5-star AC hotel stays, Kurukshetra Jyotisar light & sound show tickets, Brahma Sarovar spiritual yatras, Ambala textile shopping guides, and Delhi heritage tours.',
     category: 'Packages',
     order: 7
   },

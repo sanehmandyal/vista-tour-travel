@@ -36,7 +36,7 @@ export const getExactCarImage = (name = '') => {
     return 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800';
   }
   if (n.includes('tempo') || n.includes('traveller')) {
-    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800';
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800';
   }
   return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800';
 };
@@ -47,6 +47,7 @@ const enrichCarWithExactImage = (car) => {
   const isOldGenericImage = !car.image || 
     car.image.includes('images.unsplash.com') || 
     car.image.includes('2018_Maruti_Suzuki_Dzire') ||
+    car.image.includes('Leh-Manali') ||
     car.image.includes('2019_Maruti_Suzuki_Wagon');
   return {
     ...car,
@@ -60,6 +61,10 @@ const getLocalCars = () => {
     if (saved) {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed) && parsed.length > 0) {
+        if (parsed.some(c => c.description?.includes('Kangra') || c.description?.includes('Himachal') || c.description?.includes('Manali') || c.image?.includes('Leh-Manali'))) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultCars));
+          return defaultCars;
+        }
         return parsed.map(enrichCarWithExactImage);
       }
     }

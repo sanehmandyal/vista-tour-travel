@@ -9,6 +9,10 @@ const getLocalGallery = () => {
     if (saved) {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed) && parsed.length > 0) {
+        if (parsed.some(p => p.location?.includes('Himachal') || p.category === 'Mountains' || p.title?.includes('Kangra') || p.title?.includes('Solang'))) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultGalleryPhotos));
+          return defaultGalleryPhotos;
+        }
         return parsed;
       }
     }

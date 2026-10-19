@@ -50,13 +50,13 @@ export const Booking = () => {
 
   const defaultBookingTarget = {
     _id: 'custom-tour-booking',
-    title: searchParams.get('to') ? `${searchParams.get('to')} Tour & Cab Booking` : 'Himachal Chauffeur Cab & Tour Booking',
+    title: searchParams.get('to') ? `${searchParams.get('to')} Tour & Cab Booking` : 'Haryana & Delhi NCR Chauffeur Cab & Tour Booking',
     duration: 'Customized Itinerary',
-    featuredImage: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    description: 'Personalized door-to-door mountain travel with licensed commercial cabs and experienced local hill chauffeurs.',
+    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
+    description: 'Personalized door-to-door travel with licensed commercial cabs and experienced professional highway chauffeurs.',
     inclusions: [
       'Sanitized Commercial Chauffeur Cab',
-      'Experienced Hill-Certified Driver',
+      'Experienced Verified Driver',
       'All Fuel, Toll Taxes & State Border Permits Included',
       '24/7 On-Road Assistance'
     ]
@@ -125,7 +125,7 @@ export const Booking = () => {
         children: childCount,
         pickupLocation: formData.pickupLocation,
         vehicleType: formData.vehicleType,
-        service: pkg?.title || 'Himachal Tour & Cab Booking',
+        service: pkg?.title || 'Haryana & Delhi NCR Tour & Cab Booking',
         specialRequirements: `${formData.specialRequirements} [Preferred Cab: ${formData.vehicleType}]`
       };
 
@@ -342,7 +342,7 @@ export const Booking = () => {
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
-                        placeholder="e.g. Kangra, Chandigarh, Delhi"
+                        placeholder="e.g. Kurukshetra, Ladwa, Ambala, Delhi"
                         className="w-full text-sm rounded-xl border border-slate-200 pl-10 pr-3.5 py-2.5 focus:outline-none focus:border-brand-500"
                       />
                     </div>
@@ -388,7 +388,7 @@ export const Booking = () => {
                         name="pickupLocation"
                         value={formData.pickupLocation}
                         onChange={handleChange}
-                        placeholder="Kangra / Gaggal Airport / Railway Station / Hotel"
+                        placeholder="Ladwa / Kurukshetra / Chandigarh / Delhi Airport / Railway Station"
                         className="w-full text-sm rounded-xl border border-slate-200 pl-10 pr-3.5 py-2.5 focus:outline-none focus:border-brand-500"
                       />
                     </div>
@@ -455,7 +455,7 @@ export const Booking = () => {
                       name="specialRequirements"
                       value={formData.specialRequirements}
                       onChange={handleChange}
-                      placeholder="e.g. Need baby seat, specific hotel tier preference, additional sightseeing spots in Dharamshala..."
+                      placeholder="e.g. Need baby seat, specific hotel tier preference, additional sightseeing spots in Kurukshetra / Delhi..."
                       className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
                     />
                   </div>
@@ -484,18 +484,18 @@ export const Booking = () => {
               {/* Package preview */}
               <div className="flex items-center gap-3">
                 <img
-                  src={currentPkg.featuredImage || 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=150&q=80'}
+                  src={currentPkg.featuredImage && !currentPkg.featuredImage.includes('unsplash') ? currentPkg.featuredImage : 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=400'}
                   alt={currentPkg.title}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=150&q=80';
+                    e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=400';
                   }}
                   className="w-16 h-16 rounded-xl object-cover"
                 />
                 <div>
                   <h4 className="text-sm font-bold text-navy-900 line-clamp-1">{currentPkg.title}</h4>
                   <p className="text-xs text-brand-600 font-bold">{currentPkg.duration}</p>
-                  <p className="text-[11px] text-slate-400">{currentPkg.destinationName || 'Himachal'}</p>
+                  <p className="text-[11px] text-slate-400">{currentPkg.destinationName || 'Haryana & NCR'}</p>
                 </div>
               </div>
 
@@ -503,7 +503,7 @@ export const Booking = () => {
               <div className="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>Sanitized AC Cab with Mountain Chauffeur</span>
+                  <span>Sanitized AC Cab with Professional Chauffeur</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
@@ -540,7 +540,7 @@ export const Booking = () => {
                   <Star className="w-4 h-4 fill-amber-400 text-amber-400" /> 5.0 Rated on Google
                 </div>
                 <p className="text-[11px] leading-relaxed text-slate-600">
-                  Over 50+ verified reviews for reliable taxi service across Mohali, Chandigarh, and all Himachal Pradesh.
+                  Over 50+ verified reviews for reliable taxi service across Kurukshetra, Ladwa, Ambala, Chandigarh, and Delhi NCR.
                 </p>
               </div>
             </div>

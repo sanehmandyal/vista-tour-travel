@@ -12,7 +12,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     tagline: {
       type: String,
-      default: '5.0 ★ Rated Himachal Tours & Luxury Cabs'
+      default: '5.0 ★ Rated Haryana & Delhi NCR Luxury Cabs'
     },
     heroTitle: {
       type: String,
@@ -20,11 +20,11 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     heroSubtitle: {
       type: String,
-      default: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Himachal Pradesh. Clean commercial cabs, hill-certified chauffeurs, and customized holiday packages.'
+      default: 'Top-rated 5.0★ Google Verified Tour & Luxury Cab Service in Haryana & Delhi NCR. Clean commercial cabs, verified chauffeurs, and customized travel packages.'
     },
     heroImage: {
       type: String,
-      default: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80'
+      default: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920'
     },
     logo: {
       type: String,

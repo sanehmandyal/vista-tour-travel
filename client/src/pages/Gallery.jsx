@@ -12,13 +12,12 @@ export const Gallery = () => {
 
   const categories = [
     'All',
-    'Mountains',
-    'Beaches',
-    'Adventure',
-    'Hotels',
-    'Road Trips',
-    'Culture',
-    'Honeymoon'
+    'Kurukshetra Heritage',
+    'Chandigarh & City',
+    'GT Road Trips',
+    'Wildlife & Nature',
+    'Delhi NCR',
+    'Cab Fleet & Expressways'
   ];
 
   const fetchPhotos = async () => {
@@ -71,7 +70,7 @@ export const Gallery = () => {
             Travel Photo Gallery
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-            Real snaps from Himalayan snow peaks, Goan sunsets, Kerala backwaters, and traveler journeys.
+            Real snaps from Kurukshetra sacred sarovars, Chandigarh gardens, historic battlefields, and happy traveler journeys across Haryana.
           </p>
         </div>
       </div>

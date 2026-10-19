@@ -115,8 +115,8 @@ export const Packages = () => {
       <div className="bg-navy-950 text-white py-16 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img
-            src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1920&q=80"
-            alt="Packages Header"
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920"
+            alt="Haryana Tour Packages Header"
             className="w-full h-full object-cover"
           />
         </div>

@@ -344,7 +344,7 @@ export const WebsiteSettings = () => {
                 name="googleReviewsUrl"
                 value={form.googleReviewsUrl || ''}
                 onChange={handleChange}
-                placeholder="https://www.google.com/search?q=Kangra+Taxi+Service..."
+                placeholder="https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
             </div>

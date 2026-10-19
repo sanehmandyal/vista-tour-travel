@@ -38,7 +38,7 @@ export const GalleryPreview = () => {
               Travel Gallery
             </h2>
             <p className="text-slate-500 mt-2 text-base max-w-xl">
-              Glimpses of breathtaking landscapes, mountain sunrises, and happy traveler memories.
+              Glimpses of historic Haryana landmarks, scenic GT Road expressways, and memorable traveler journeys.
             </p>
           </div>
           <Link
@@ -58,11 +58,11 @@ export const GalleryPreview = () => {
               className="group relative h-48 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all"
             >
               <img
-                src={item.imageUrl || 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80'}
+                src={item.imageUrl && !item.imageUrl.includes('unsplash') ? item.imageUrl : 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800'}
                 alt={item.title || 'Travel photo'}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80';
+                  e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800';
                 }}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"

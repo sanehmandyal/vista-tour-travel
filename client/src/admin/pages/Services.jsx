@@ -44,9 +44,9 @@ export const Services = ({ defaultTab }) => {
         'Dual AC & Climate Control',
         'Roof Carrier for Extra Luggage',
         'Pushback Recliner Seats',
-        'Experienced Mountain Driver'
+        'Experienced Highway & City Chauffeur'
       ],
-      description: 'Premier luxury SUV for Himachal hill stations and family vacations. High safety rating and comfortable ride.',
+      description: 'Premier luxury SUV for Kurukshetra yatras, Delhi airport transfers, and family functions. High safety rating and comfortable ride.',
       isAvailable: true
     },
     {
@@ -61,9 +61,9 @@ export const Services = ({ defaultTab }) => {
         'Ottoman Recliner Captain Seats',
         'Dual Zone Chilled Climate Control',
         'Panoramic Sunroof Experience',
-        'Silent Hybrid Hill Cruise'
+        'Silent Hybrid Expressway Cruise'
       ],
-      description: 'Ultra-luxurious hybrid cruiser for VIPs, executives, and luxury family holidays across Himachal.',
+      description: 'Ultra-luxurious hybrid cruiser for VIPs, executives, and luxury family holidays across Haryana and Delhi NCR.',
       isAvailable: true
     },
     {
@@ -77,10 +77,10 @@ export const Services = ({ defaultTab }) => {
       features: [
         'Chilled AC with Rear Vents',
         'Comfortable 3-Row Seating',
-        'Smooth Hill Suspension',
+        'Smooth Highway Suspension',
         'Certified Chauffeur'
       ],
-      description: 'Budget-friendly yet remarkably spacious. Great for small families and airport transfers.',
+      description: 'Budget-friendly yet remarkably spacious. Great for small families, local temple circuits, and airport transfers.',
       isAvailable: true
     },
     {
@@ -111,7 +111,7 @@ export const Services = ({ defaultTab }) => {
       features: [
         'Extra Legroom & Shoulder Room',
         'Huge 595L Boot Space',
-        'Powerful Mountain AC',
+        'Chilled Dual-Zone AC',
         'Chauffeur Driven'
       ],
       description: 'Remarkably roomy sedan renowned for rugged reliability and generous luggage room.',
@@ -126,12 +126,12 @@ export const Services = ({ defaultTab }) => {
       fuelType: 'Petrol',
       image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
       features: [
-        'Compact & Nimble on Mountain Roads',
-        'Chilled AC & Hill Heater',
+        'Compact & Nimble on City & Rural Roads',
+        'Chilled AC & Cabin Heater',
         'Most Economical Budget Rates',
-        'Local Kangra Driver'
+        'Experienced Local Chauffeur'
       ],
-      description: 'Agile and budget-friendly. Navigates narrow mountain lanes and temple roads with ease.',
+      description: 'Agile and budget-friendly. Navigates busy bazaar lanes and local temple circuits with ease.',
       isAvailable: true
     },
     {
@@ -143,12 +143,12 @@ export const Services = ({ defaultTab }) => {
       fuelType: 'Diesel',
       image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
       features: [
-        '4x4 High Ground Clearance',
-        'Rugged All-Terrain Hill Tires',
+        'High Ground Clearance & Sturdy Build',
+        'Rugged All-Terrain Tires',
         'Roof Luggage Rack',
-        'Snow Chain Equipped'
+        'Emergency Kit & Tool Equipped'
       ],
-      description: 'Built tough for rough Himalayan terrains. Best suited for high-altitude Spiti expeditions.',
+      description: 'Built tough for expressways and rural terrain. Ideal for family events, VIP escorts, and outstation tours.',
       isAvailable: true
     },
     {
@@ -160,12 +160,12 @@ export const Services = ({ defaultTab }) => {
       fuelType: 'Diesel',
       image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800',
       features: [
-        '4x4 High-Torque Mountain Engine',
+        'High-Torque Performance Engine',
         'Plush Leather Interior',
-        'Extreme Off-Road Capability',
-        'VIP Hill Escort Service'
+        'Extreme Comfort & Power',
+        'VIP Chauffeur & Escort Service'
       ],
-      description: 'The ultimate beast for luxury travel, mountain passes, and snowy winter expeditions.',
+      description: 'The ultimate beast for luxury highway travel, VIP family functions, and prestigious weddings.',
       isAvailable: true
     },
     {
@@ -192,14 +192,14 @@ export const Services = ({ defaultTab }) => {
       seatingCapacity: '12 + 1 Passengers',
       luggageCapacity: 'Rear Boot + Heavy Roof Carrier',
       fuelType: 'Diesel',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         'Reclining Pushback Seats',
         'Individual AC Vents',
         'Music Surround Sound',
         'High Roof Stand-up Interior'
       ],
-      description: 'First-class group luxury. Perfect for joint families and group tours across Himachal.',
+      description: 'First-class group luxury. Perfect for joint families and group tours across Haryana and Delhi NCR.',
       isAvailable: true
     },
     {
@@ -226,14 +226,14 @@ export const Services = ({ defaultTab }) => {
       seatingCapacity: '26 + 1 Passengers',
       luggageCapacity: 'Massive Roof Carrier + Rear Space',
       fuelType: 'Diesel',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         '2x2 Pushback Maharaja Seats',
         'Twin High-Powered Cooling Units',
         'LCD TV with Sound System',
-        'Senior Mountain Chauffeur'
+        'Senior Verified Chauffeur'
       ],
-      description: 'The ultimate group carrier for weddings, school excursions, and grand Himachal temple pilgrimages.',
+      description: 'The ultimate group carrier for weddings, family functions, and grand Kurukshetra temple pilgrimages.',
       isAvailable: true
     }
   ];
@@ -374,8 +374,8 @@ export const Services = ({ defaultTab }) => {
         luggageCapacity: '4 Large Bags',
         fuelType: 'Diesel',
         image: getExactCarImage('Toyota Innova Crysta'),
-        features: 'Dual AC & Climate Control, Roof Carrier for Luggage, Pushback Recliner Seats, Experienced Mountain Driver, Sanitized Daily',
-        description: 'Premier luxury SUV for Himachal hill stations and family vacations. High safety rating and comfortable ride.',
+        features: 'Dual AC & Climate Control, Roof Carrier for Extra Luggage, Pushback Recliner Seats, Experienced Highway Chauffeur, Sanitized Daily',
+        description: 'Premier luxury SUV for Kurukshetra yatras, Delhi airport transfers, and family functions. High safety rating and comfortable ride.',
         isAvailable: true
       });
     } else if (type === 'hycross') {
@@ -386,8 +386,8 @@ export const Services = ({ defaultTab }) => {
         luggageCapacity: '4 Large Bags',
         fuelType: 'Hybrid / Petrol',
         image: getExactCarImage('Toyota Innova Hycross'),
-        features: 'Ottoman Recliner Captain Seats, Dual Zone Climate Control, Panoramic Sunroof, Silent Hybrid Hill Cruise',
-        description: 'Ultra-luxurious hybrid cruiser for VIPs, corporate executives, and luxury family holidays across Himachal.',
+        features: 'Ottoman Recliner Captain Seats, Dual Zone Climate Control, Panoramic Sunroof, Silent Hybrid Cruise',
+        description: 'Ultra-luxurious hybrid cruiser for VIPs, corporate executives, and luxury family holidays across Haryana and Delhi NCR.',
         isAvailable: true
       });
     } else if (type === 'ertiga') {
@@ -398,8 +398,8 @@ export const Services = ({ defaultTab }) => {
         luggageCapacity: '3 Large Bags',
         fuelType: 'Petrol / Hybrid',
         image: getExactCarImage('Maruti Suzuki Ertiga'),
-        features: 'Chilled AC with Rear Vents, Comfortable 3-Row Seating, Smooth Hill Suspension, Certified Chauffeur, USB Ports',
-        description: 'Budget-friendly yet remarkably spacious. Great for small families, local Kangra temple circuits, and airport transfers.',
+        features: 'Chilled AC with Rear Vents, Comfortable 3-Row Seating, Smooth Highway Suspension, Certified Chauffeur, USB Ports',
+        description: 'Budget-friendly yet remarkably spacious. Great for small families, local temple circuits, and airport transfers.',
         isAvailable: true
       });
     } else if (type === 'dzire') {
@@ -411,7 +411,7 @@ export const Services = ({ defaultTab }) => {
         fuelType: 'Petrol',
         image: getExactCarImage('Maruti Suzuki Swift Dzire'),
         features: 'AC & Cabin Heating, Deep Boot Space, Smooth Highway Ride, Sanitized Daily, Economical & Fast',
-        description: 'Most popular and economical choice for couples, solo travelers, and city tours across Kangra and Dharamshala.',
+        description: 'Most popular and economical choice for couples, solo travelers, and city tours across Haryana, Chandigarh, and Delhi NCR.',
         isAvailable: true
       });
     } else if (type === 'alto') {
@@ -422,8 +422,8 @@ export const Services = ({ defaultTab }) => {
         luggageCapacity: '2 Medium Bags',
         fuelType: 'Petrol',
         image: getExactCarImage('Maruti Suzuki Alto K10'),
-        features: 'Compact & Nimble on Mountain Roads, Chilled AC & Hill Heater, Most Economical Rates, Local Kangra Driver',
-        description: 'Agile, economical, and swift through narrow mountain turns and steep hillside temple ascents.',
+        features: 'Compact & Nimble on City Roads, Chilled AC & Heater, Most Economical Rates, Experienced Local Driver',
+        description: 'Agile, economical, and swift through bustling town markets and local Haryana temple routes.',
         isAvailable: true
       });
     } else if (type === 'scorpio') {
@@ -434,8 +434,8 @@ export const Services = ({ defaultTab }) => {
         luggageCapacity: '4 Large Bags',
         fuelType: 'Diesel',
         image: getExactCarImage('Mahindra Scorpio'),
-        features: '4x4 High Ground Clearance, Rugged All-Terrain Hill Tires, Roof Luggage Rack, Snow Chain Equipped',
-        description: 'Heavy-duty 4x4 high ground clearance SUV built tough for high-altitude Spiti expeditions and winter snow.',
+        features: 'High Ground Clearance, Rugged All-Terrain Tires, Roof Luggage Rack, Advanced Safety Features',
+        description: 'Heavy-duty high ground clearance SUV built tough for long-distance highway travel and family outstation trips.',
         isAvailable: true
       });
     } else if (type === 'urbania') {
@@ -459,7 +459,7 @@ export const Services = ({ defaultTab }) => {
         fuelType: 'Diesel',
         image: getExactCarImage('Force Tempo Traveller 12'),
         features: 'Reclining Pushback Seats, Individual AC Vents, Music Surround Sound, High Roof Stand-up Interior, Senior Chauffeur',
-        description: 'First-class group luxury. Perfect for joint families, corporate offsites, and wedding guest transfers across Himachal.',
+        description: 'First-class group luxury. Perfect for joint families, corporate offsites, and wedding guest transfers across Haryana and Delhi NCR.',
         isAvailable: true
       });
     } else if (type === 'tempo17') {
@@ -1121,7 +1121,7 @@ export const Services = ({ defaultTab }) => {
               type="text"
               value={carForm.features}
               onChange={(e) => setCarForm({ ...carForm, features: e.target.value })}
-              placeholder="Dual AC, Roof Carrier, Pushback Seats, Hill Specialist Chauffeur"
+              placeholder="Dual AC, Roof Carrier, Pushback Seats, Experienced Chauffeur"
               className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500 font-medium"
             />
           </div>
@@ -1132,7 +1132,7 @@ export const Services = ({ defaultTab }) => {
               rows="3"
               value={carForm.description}
               onChange={(e) => setCarForm({ ...carForm, description: e.target.value })}
-              placeholder="Ideal for Himachal hill travel, comfortable seating, reliable performance..."
+              placeholder="Ideal for Haryana and Delhi NCR highway travel, comfortable seating, reliable performance..."
               className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500 font-medium"
             ></textarea>
           </div>

@@ -182,7 +182,7 @@ export const Services = () => {
       seatingCapacity: '12 + 1 Passengers',
       luggageCapacity: 'Rear Boot + Heavy Roof Carrier',
       fuelType: 'Diesel',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         '1x1 & 2x1 Reclining Pushback Seats',
         'Individual AC Vents & Reading Lights',
@@ -214,7 +214,7 @@ export const Services = () => {
       seatingCapacity: '26 + 1 Passengers',
       luggageCapacity: 'Massive Roof Carrier + Rear Space',
       fuelType: 'Diesel',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         '2x2 Pushback Maharaja Seats',
         'Twin High-Powered Cooling Units',
@@ -267,7 +267,7 @@ export const Services = () => {
     },
     {
       title: 'Honeymoon & Romantic Getaways',
-      desc: 'Romantic escapes to Udaipur, Jaipur, Shimla, or Agra featuring luxury stays and private chauffeur cars.',
+      desc: 'Romantic escapes across Haryana heritage resorts, Chandigarh luxury stays, Jaipur, or Agra featuring private chauffeur cars.',
       icon: Heart,
       features: ['Romantic Candlelit Dinners', 'Luxury Hotel Upgrades', 'Complimentary Honeymoon Cake']
     },

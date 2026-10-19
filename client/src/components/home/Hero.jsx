@@ -41,8 +41,8 @@ export const Hero = () => {
   };
 
   const handleWhatsAppInstantQuote = () => {
-    const pickup = fromLocation || 'Mohali / Chandigarh / Himachal';
-    const drop = destination || 'Sightseeing / Tour';
+    const pickup = fromLocation || 'Ladwa / Kurukshetra / Haryana';
+    const drop = destination || 'Sightseeing / Tour / Airport Drop';
     const cleanWa = (settings.whatsapp || '919068888578').replace(/[^0-9]/g, '');
     const text = encodeURIComponent(
       `Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to get an instant cab/travel quote:\n` +
@@ -51,7 +51,7 @@ export const Hero = () => {
       `• Date: ${date || 'Upcoming'}\n` +
       `• Vehicle: ${vehicleType !== 'all' ? vehicleType : 'Best Available'}\n` +
       `• Passengers: ${travelers}\n` +
-      `Please share availability and best hill cab rates.`
+      `Please share availability and best Haryana & GT Road cab rates.`
     );
     window.open(`https://wa.me/${cleanWa}?text=${text}`, '_blank');
   };
@@ -61,11 +61,11 @@ export const Hero = () => {
       {/* Background Photography with Soft Deep-Navy Gradient */}
       <div className="absolute inset-0 z-0">
         <img
-          src={settings.heroImage || "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"}
-          alt="Vista Tour and Travels - Mohali, Chandigarh & Himachal Tour & Luxury Cabs"
+          src={settings.heroImage && !settings.heroImage.includes('unsplash') ? settings.heroImage : "https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920"}
+          alt="Vista Tour and Travels - Ladwa, Kurukshetra & Haryana Tour & Luxury Cabs"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80';
+            e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920';
           }}
           className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
           loading="eager"

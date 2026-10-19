@@ -23,7 +23,7 @@ import {
   MessageCircle,
   Sparkles,
   Plane,
-  Mountain,
+  Trees,
   Heart,
   Users,
   Clock
@@ -95,7 +95,7 @@ export const Navbar = () => {
     { name: 'Delhi & NCR', desc: 'Monuments, shopping & 24/7 IGI Airport cab drops', path: '/destinations', icon: Plane },
     { name: 'Karnal', desc: 'Karna Lake, heritage tower & Kalpana Chawla planetarium', path: '/destinations', icon: MapPin },
     { name: 'Panipat', desc: 'Historic battles, Kala Amb & weaver textile hub', path: '/destinations', icon: Sparkles },
-    { name: 'Yamunanagar', desc: 'Kalesar National Park & Hathni Kund Barrage', path: '/destinations', icon: Mountain },
+    { name: 'Yamunanagar', desc: 'Kalesar National Park & Hathni Kund Barrage', path: '/destinations', icon: Trees },
     { name: 'Kaithal', desc: 'Hanuman birthplace, Anjani Tirth & historic forts', path: '/destinations', icon: Heart },
     { name: 'Chandigarh', desc: 'Rock Garden, Sukhna Lake & Elante luxury shopping', path: '/destinations', icon: Compass }
   ];

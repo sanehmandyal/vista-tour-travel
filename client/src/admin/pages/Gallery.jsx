@@ -19,13 +19,13 @@ export const Gallery = () => {
 
   const [form, setForm] = useState({
     title: '',
-    category: 'Mountains',
+    category: 'Kurukshetra Heritage',
     location: '',
     imageUrl: '',
     description: ''
   });
 
-  const categories = ['All', 'Mountains', 'Beaches', 'Adventure', 'Hotels', 'Road Trips', 'Culture', 'Honeymoon'];
+  const categories = ['All', 'Kurukshetra Heritage', 'Chandigarh & City', 'GT Road Trips', 'Wildlife & Nature', 'Delhi NCR', 'Cab Fleet & Expressways'];
 
   const fetchGallery = async () => {
     setLoading(true);
@@ -76,7 +76,7 @@ export const Gallery = () => {
       if (res.success) {
         toast.success('Photo added to gallery!');
         setIsModalOpen(false);
-        setForm({ title: '', category: 'Mountains', location: '', imageUrl: '', description: '' });
+        setForm({ title: '', category: 'Kurukshetra Heritage', location: '', imageUrl: '', description: '' });
         fetchGallery();
       }
     } catch (err) {
@@ -217,7 +217,7 @@ export const Gallery = () => {
                 type="text"
                 value={form.location}
                 onChange={(e) => setForm({ ...form, location: e.target.value })}
-                placeholder="e.g. Manali, Himachal"
+                placeholder="e.g. Kurukshetra, Haryana"
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
             </div>
@@ -231,7 +231,7 @@ export const Gallery = () => {
                 value={form.imageUrl}
                 onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
                 required
-                placeholder="https://images.unsplash.com/... or click Upload"
+                placeholder="https://commons.wikimedia.org/... or click Upload"
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
               <label

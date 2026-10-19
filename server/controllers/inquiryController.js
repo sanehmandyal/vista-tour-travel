@@ -22,7 +22,7 @@ export const createInquiry = async (req, res, next) => {
       `👤 *Customer:* ${name}\n` +
       `📞 *Phone:* ${phone}\n` +
       `✉️ *Email:* ${email}\n` +
-      `📍 *Subject / Destination:* ${subject || destination || 'General Himachal Tour'}\n` +
+      `📍 *Subject / Destination:* ${subject || destination || 'General Haryana & NCR Tour / Cab Inquiry'}\n` +
       `💬 *Message:* ${message}`
     )}`;
 

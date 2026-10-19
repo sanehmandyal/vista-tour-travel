@@ -18,9 +18,9 @@ export const DestinationForm = () => {
 
   const [formData, setFormData] = useState({
     name: '',
-    state: 'Himachal Pradesh',
+    state: 'Haryana',
     country: 'India',
-    region: 'Himalayas',
+    region: 'Kurukshetra / GT Road',
     shortDescription: '',
     description: '',
     heroImage: '',
@@ -61,9 +61,9 @@ export const DestinationForm = () => {
           if (current) {
             setFormData({
               name: current.name || '',
-              state: current.state || 'Himachal Pradesh',
+              state: current.state || 'Haryana',
               country: current.country || 'India',
-              region: current.region || 'Himalayas',
+              region: current.region || 'Kurukshetra / GT Road',
               shortDescription: current.shortDescription || '',
               description: current.description || '',
               heroImage: current.heroImage || '',
@@ -271,7 +271,7 @@ export const DestinationForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="e.g. Manali & Solang Valley"
+              placeholder="e.g. Kurukshetra"
               className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
             />
           </div>
@@ -284,7 +284,7 @@ export const DestinationForm = () => {
               value={formData.state}
               onChange={handleChange}
               required
-              placeholder="Himachal Pradesh"
+              placeholder="Haryana"
               className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
             />
           </div>
@@ -297,7 +297,11 @@ export const DestinationForm = () => {
               onChange={handleChange}
               className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-slate-50 focus:outline-none focus:border-brand-500"
             >
-              <option value="Himalayas">Himalayas (Himachal Pradesh)</option>
+              <option value="Kurukshetra / GT Road">Kurukshetra / GT Road (Haryana)</option>
+              <option value="Ambala Division">Ambala Division</option>
+              <option value="National Capital Region">National Capital Region (NCR)</option>
+              <option value="Chandigarh Tricity">Chandigarh Tricity</option>
+              <option value="Shivalik Foothills">Shivalik Foothills (Yamunanagar)</option>
               <option value="North India">North India</option>
               <option value="South India">South India</option>
               <option value="West India">West India</option>
@@ -461,7 +465,7 @@ export const DestinationForm = () => {
             value={formData.description}
             onChange={handleChange}
             required
-            placeholder="Comprehensive description of the destination, climate, history, and hill experiences..."
+            placeholder="Comprehensive description of the destination, heritage, monuments, culture, and travel connectivity..."
             className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
           />
         </div>
@@ -475,7 +479,7 @@ export const DestinationForm = () => {
               type="text"
               value={newAttraction.title}
               onChange={(e) => setNewAttraction(prev => ({ ...prev, title: e.target.value }))}
-              placeholder="Attraction Title (e.g. Rohtang Pass)"
+              placeholder="Attraction Title (e.g. Brahma Sarovar)"
               className="text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white"
             />
             <input

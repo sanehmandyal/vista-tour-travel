@@ -124,7 +124,7 @@ export const BlogForm = () => {
             value={formData.title}
             onChange={handleChange}
             required
-            placeholder="e.g. Top 10 Things to Do in Manali This Winter"
+            placeholder="e.g. Top 7 Historic Sites You Must Visit in Kurukshetra"
             className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
           />
         </div>

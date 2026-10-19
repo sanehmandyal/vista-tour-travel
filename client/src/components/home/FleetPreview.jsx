@@ -141,7 +141,7 @@ const fallbackFleet = [
     seatingCapacity: '17 + 1 Chauffeur',
     luggageCapacity: 'Extra Heavy Overhead Carrier',
     fuelType: 'Diesel',
-    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
     features: [
       'Wide 2x1 Reclining Luxury Seats',
       'Dual High-Capacity AC Units',

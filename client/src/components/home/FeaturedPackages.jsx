@@ -75,11 +75,11 @@ export const FeaturedPackages = () => {
                   {/* Image Container */}
                   <div className="relative h-56 w-full overflow-hidden bg-slate-200">
                     <img
-                      src={pkg.featuredImage || 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80'}
+                      src={pkg.featuredImage && !pkg.featuredImage.includes('unsplash') ? pkg.featuredImage : 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800'}
                       alt={pkg.title}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80';
+                        e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800';
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"

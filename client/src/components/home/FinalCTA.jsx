@@ -17,11 +17,11 @@ export const FinalCTA = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 opacity-20">
         <img
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80"
-          alt="Adventure Background"
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920"
+          alt="Haryana Heritage Background"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80';
+            e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920';
           }}
           className="w-full h-full object-cover"
         />
@@ -34,11 +34,11 @@ export const FinalCTA = () => {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-4 leading-tight">
-            Your next adventure is waiting.
+            Experience the True Spirit of Haryana & Beyond
           </h2>
 
           <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
-            From tranquil Kashmir houseboats to sun-drenched Goan beaches and snow peaks in Himachal — let our destination experts tailor your perfect journey from Ladwa, Haryana.
+            From sacred Brahma Sarovar & Jyotisar tirthas in Kurukshetra to vibrant Delhi NCR shopping and scenic Chandigarh getaways — travel across Haryana & North India in premium AC cabs with authentic Haryanvi hospitality.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">

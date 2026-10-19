@@ -1,56 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Users, Heart, Mountain, Sparkles, Coffee, Users2 } from 'lucide-react';
+import { Compass, Users, Sparkles, Coffee, Users2, Landmark } from 'lucide-react';
 
 export const Experiences = () => {
   const experiences = [
     {
-      title: 'Family Trips',
-      category: 'Family Trips',
-      count: '15+ Packages',
-      image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80',
-      icon: Users,
-      description: 'Comfortable family-friendly stays, private vehicles, and kid-approved itineraries.'
-    },
-    {
-      title: 'Honeymoon Specials',
-      category: 'Honeymoon',
-      count: '12+ Packages',
-      image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=600&q=80',
-      icon: Heart,
-      description: 'Intimate candlelit dinners, lakeview balconies, flower decor, and scenic tranquility.'
-    },
-    {
-      title: 'High Adventure',
-      category: 'Adventure',
-      count: '10+ Packages',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
-      icon: Mountain,
-      description: 'Rohtang Pass expeditions, paragliding, river rafting, and high-altitude treks.'
-    },
-    {
-      title: 'Weekend Getaways',
-      category: 'Weekend Getaways',
+      title: 'Mahabharata & Holy Tirthas',
+      category: 'Spiritual Yatras',
       count: '8+ Packages',
-      image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=600&q=80',
-      icon: Coffee,
-      description: 'Quick 2 to 3 day rejuvenating road trips to Shimla, Kasauli, and Dharamshala.'
-    },
-    {
-      title: 'Luxury Stays',
-      category: 'Luxury Travel',
-      count: '6+ Packages',
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=600',
       icon: Sparkles,
-      description: '5-star heritage palaces, private houseboats, and exclusive mountain chalets.'
+      description: 'Sacred darshan at Brahma Sarovar, Jyotisar Geeta Updesh Sthal, Sheikh Chilli Tomb & Pehowa.'
     },
     {
-      title: 'Group & Corporate Tours',
+      title: 'Chandigarh City & Gardens',
+      category: 'Weekend Getaways',
+      count: '6+ Packages',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=600',
+      icon: Compass,
+      description: 'Nek Chand Rock Garden, Sukhna Lake sunset boating, and Rose Garden leisure tours.'
+    },
+    {
+      title: 'GT Road Heritage & Food Trails',
+      category: 'Heritage & History',
+      count: '10+ Packages',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=600',
+      icon: Landmark,
+      description: 'Panipat historic battlegrounds, Kala Amb, iconic highway dhabas, and Karnal lake retreats.'
+    },
+    {
+      title: 'Kalesar Wildlife & Riverfront',
+      category: 'Weekend Getaways',
+      count: '5+ Packages',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=600',
+      icon: Coffee,
+      description: 'Lush sal forest safaris at Kalesar National Park and Hathni Kund Yamuna riverfront retreats.'
+    },
+    {
+      title: 'Delhi NCR Shopping & City Drops',
+      category: 'Delhi NCR & Airport',
+      count: '12+ Packages',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=600',
+      icon: Users,
+      description: 'Capital city monument tours, wholesale shopping, Aerocity hotel drops, and 24/7 IGI airport cabs.'
+    },
+    {
+      title: 'Family & Wedding Chauffeur Fleet',
       category: 'Group Tours',
       count: '14+ Packages',
-      image: 'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=600&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=600',
       icon: Users2,
-      description: 'Tempo Travellers and luxury coaches for college unions, friends, and corporate offsites.'
+      description: 'Innova Crysta, Ertiga, and luxury Tempo Travellers for joint family functions, weddings, and yatras.'
     }
   ];
 
@@ -63,10 +63,10 @@ export const Experiences = () => {
             <Compass className="w-3.5 h-3.5" /> Curated Vacation Types
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
-            Travel Experiences
+            Haryana & Regional Travel Experiences
           </h2>
           <p className="text-slate-500 mt-2 text-base">
-            Choose your journey style — tailored for couples, thrill-seekers, families, and corporate groups.
+            Curated journeys across Haryana, Delhi NCR, and Chandigarh — crafted for families, pilgrims, corporate groups, and travelers.
           </p>
         </div>
 
@@ -82,11 +82,11 @@ export const Experiences = () => {
               >
                 {/* Image */}
                 <img
-                  src={exp.image || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'}
+                  src={exp.image || 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=600'}
                   alt={exp.title}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80';
+                    e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=600';
                   }}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />

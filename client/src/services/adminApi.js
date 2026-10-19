@@ -20,8 +20,8 @@ const sanitizeSettings = (data) => {
   if (!s.address || s.address.includes('Amb') || s.address.includes('Una') || s.address.includes('Mohali')) {
     s.address = 'Nawarsi Bazar, Ladwa, Haryana 136132, India';
   }
-  if (!s.areasServed || s.areasServed.includes('Amb') || s.areasServed.includes('Mohali')) {
-    s.areasServed = 'Nawarsi Bazar, Ladwa, Kurukshetra, Pipli, Shahbad, Yamunanagar, Karnal, Ambala, Chandigarh, Delhi NCR, and All Himachal (Shimla, Manali, Dharamshala, Dalhousie)';
+  if (!s.areasServed || s.areasServed.includes('Amb') || s.areasServed.includes('Mohali') || s.areasServed.includes('Himachal')) {
+    s.areasServed = 'Nawarsi Bazar, Ladwa, Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh';
   }
   if (!s.serviceName || s.serviceName.includes('Ravi') || s.serviceName.includes('Rinku')) {
     s.serviceName = 'Vista Tour and Travels';

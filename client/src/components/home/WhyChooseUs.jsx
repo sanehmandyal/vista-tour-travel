@@ -43,7 +43,7 @@ export const WhyChooseUs = () => {
     {
       icon: ShieldCheck,
       title: 'Safe & Comfortable Travel',
-      description: 'Commercial-licensed sanitized vehicles driven by polite, police-verified mountain chauffeurs.'
+      description: 'Commercial-licensed sanitized vehicles driven by polite, police-verified professional highway and city chauffeurs.'
     }
   ];
 
@@ -63,7 +63,7 @@ export const WhyChooseUs = () => {
             Why Choose Vista Tour and Travels
           </h2>
           <p className="text-slate-500 mt-3 text-base">
-            Backed by 50+ five-star Google reviews, Vista Tour and Travels delivers sanitized cabs, expert hill chauffeurs, and customized itineraries across Ladwa, Kurukshetra, Haryana, Chandigarh, Himachal and North India.
+            Backed by 50+ five-star Google reviews, Vista Tour and Travels delivers sanitized cabs, courteous highway chauffeurs, and customized itineraries across Ladwa, Kurukshetra, Ambala, Karnal, Panipat, Delhi NCR, Chandigarh and all of Haryana.
           </p>
         </div>
 

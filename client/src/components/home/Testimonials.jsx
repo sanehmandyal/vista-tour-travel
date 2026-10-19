@@ -148,17 +148,17 @@ export const Testimonials = () => {
   const filteredTestimonials = testimonials.filter((t) => {
     if (activeFilter === 'All') return true;
     if (activeFilter === '5 Stars') return (t.rating || 5) === 5;
-    if (activeFilter === 'Dharamshala & Kangra') {
-      return /dharamshala|mcleod|kangra/i.test(t.destination || '');
+    if (activeFilter === 'Kurukshetra & Pilgrimage') {
+      return /kurukshetra|brahma|jyotisar|pehowa|temple|tirth/i.test(t.destination || '');
     }
-    if (activeFilter === 'Manali & Rohtang') {
-      return /manali|rohtang|solang/i.test(t.destination || '');
+    if (activeFilter === 'Delhi NCR & Airport') {
+      return /delhi|ncr|airport|igi|gurgaon|noida/i.test(t.destination || '');
     }
-    if (activeFilter === 'Temple Yatras') {
-      return /devi|temple|yatra|jawalaji|chamunda|chintpurni/i.test(t.destination || '');
+    if (activeFilter === 'Chandigarh & Ambala') {
+      return /chandigarh|sukhna|ambala/i.test(t.destination || '');
     }
-    if (activeFilter === 'Dalhousie') {
-      return /dalhousie|khajjiar/i.test(t.destination || '');
+    if (activeFilter === 'Karnal & Panipat') {
+      return /karnal|panipat|karna|kala amb/i.test(t.destination || '');
     }
     return true;
   });
@@ -196,7 +196,7 @@ export const Testimonials = () => {
               Real Stories from Real Travelers
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-2xl font-medium">
-              Verified experiences from families, honeymooners, and traveler groups who explored Mohali, Chandigarh, and Himachal Pradesh with Vista Tour and Travels.
+              Verified experiences from families, business travelers, and pilgrim groups who traveled across Ladwa, Kurukshetra, Haryana, Delhi NCR, and Chandigarh with Vista Tour and Travels.
             </p>
           </div>
 
@@ -230,10 +230,10 @@ export const Testimonials = () => {
             {[
               'All',
               '5 Stars',
-              'Dharamshala & Kangra',
-              'Manali & Rohtang',
-              'Temple Yatras',
-              'Dalhousie'
+              'Kurukshetra & Pilgrimage',
+              'Delhi NCR & Airport',
+              'Chandigarh & Ambala',
+              'Karnal & Panipat'
             ].map((filter) => (
               <button
                 key={filter}
@@ -374,7 +374,7 @@ export const Testimonials = () => {
               Traveled with Vista Tour and Travels Recently?
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-              Tell other wanderers about your driver, hill driving safety, and journey highlights. Your review helps us continuously maintain 5.0★ service!
+              Tell other wanderers about your driver, highway driving safety, and journey highlights. Your review helps us continuously maintain 5.0★ service!
             </p>
           </div>
 
@@ -474,7 +474,7 @@ export const Testimonials = () => {
                   value={formData.destination}
                   onChange={handleInputChange}
                   required
-                  placeholder="e.g. Manali & Solang Valley, 5 Devi Darshan, Dharamshala..."
+                  placeholder="e.g. Kurukshetra Brahma Sarovar, Delhi IGI Airport Drop, Chandigarh Sightseeing..."
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500 text-sm font-medium"
                 />
               </div>
@@ -505,7 +505,7 @@ export const Testimonials = () => {
                   value={formData.review}
                   onChange={handleInputChange}
                   required
-                  placeholder="Tell us about the chauffeur, vehicle condition, punctuality, hill road safety, and memorable spots..."
+                  placeholder="Tell us about the chauffeur, vehicle condition, punctuality, highway driving safety, and memorable journey highlights..."
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500 text-sm font-medium"
                 />
               </div>

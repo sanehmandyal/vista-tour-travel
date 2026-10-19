@@ -60,11 +60,11 @@ export const About = () => {
 
           <div className="relative rounded-2xl overflow-hidden shadow-xl border border-white/60">
             <img
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
-              alt="Himalayan travel story"
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1000"
+              alt="Vista Tour and Travels - Ladwa, Kurukshetra & Haryana Journeys"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80';
+                e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1000';
               }}
               className="w-full h-96 object-cover"
             />

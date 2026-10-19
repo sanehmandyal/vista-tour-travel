@@ -197,7 +197,7 @@ const seedCars = async () => {
       fuelType: 'Diesel',
       ratePerKm: 22,
       rateDaily: 6000,
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         'Wide Reclining Luxury Seats',
         'Dual High-Capacity AC Units',

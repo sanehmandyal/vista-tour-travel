@@ -2,27 +2,27 @@ export const defaultServices = [
   {
     _id: 'srv-1',
     title: 'Chauffeur Cab & Luxury Taxi Services',
-    shortDescription: 'Sanitized AC sedans, SUVs, and luxury Tempo Travellers driven by polite, experienced hill-certified chauffeurs.',
-    description: 'Premier taxi service covering Kangra, Dharamshala, McLeodGanj, Dalhousie, Manali, Shimla, and all North India routes. Punctual doorstep pickups, transparent billing, and zero surge pricing.',
+    shortDescription: 'Sanitized AC sedans, SUVs, and luxury Tempo Travellers driven by polite, verified commercial chauffeurs.',
+    description: 'Premier taxi service covering Kurukshetra, Ambala, Delhi NCR, Karnal, Panipat, Yamunanagar, Kaithal, Chandigarh, and all GT Road routes. Punctual doorstep pickups, transparent billing, and zero surge pricing.',
     icon: 'Car',
     features: [
       'Fixed Transparent Fares without Hidden Charges',
       'Zero Cancellation Surcharges',
       'Punctual Doorstep & Hotel Pickups',
-      'Police-Verified Mountain Expert Chauffeurs'
+      'Police-Verified Courteous Chauffeurs'
     ],
     order: 1
   },
   {
     _id: 'srv-2',
-    title: 'Customized Himachal Tour Itineraries',
-    shortDescription: 'Bespoke holiday plans personalized to your travel pace, family size, dates, and budget.',
-    description: 'From 3-day weekend Dharamshala getaways to 10-day Grand Himachal circuits (Shimla, Manali, Rohtang, Dalhousie, Kangra Valley), our local tour architects craft seamless itineraries with scenic stopovers.',
+    title: 'Customized Haryana & Delhi NCR Tour Itineraries',
+    shortDescription: 'Bespoke travel plans personalized to your family size, pilgrimage dates, shopping needs, and budget.',
+    description: 'From 1-day Kurukshetra Mahabharata circuits to multi-day Haryana heritage and Delhi NCR monument tours, our local travel architects craft seamless itineraries with comfortable stopovers.',
     icon: 'Compass',
     features: [
       '100% Tailored Day-by-Day Route Itineraries',
-      'Handpicked Scenic Mountain Viewpoints',
-      'Flexible Stopping Times for Photography & Tea',
+      'Handpicked Historical & Spiritual Landmarks',
+      'Flexible Stopping Times for Food Trails & Dhabas',
       'Dedicated 24/7 On-Road Tour Assistant'
     ],
     order: 2
@@ -30,67 +30,67 @@ export const defaultServices = [
   {
     _id: 'srv-3',
     title: 'Airport & Railway Station Transfers',
-    shortDescription: 'Punctual meet-and-greet transfers for Gaggal (Kangra) Airport, Pathankot, Amritsar, and Chandigarh.',
-    description: 'Reliable flight and train tracking ensures your chauffeur is stationed at the terminal well before your arrival. Hassle-free luggage assistance and direct drop to your hotel or resort.',
+    shortDescription: 'Punctual 24/7 meet-and-greet transfers for Delhi IGI Airport (DEL), Chandigarh Airport (IXC), and major railway junctions.',
+    description: 'Reliable flight and train tracking ensures your chauffeur is stationed at the terminal well before your arrival. Hassle-free luggage assistance and direct drops to Ladwa, Kurukshetra, Ambala, or your hotel.',
     icon: 'Plane',
     features: [
       'Live Flight & Train Tracking Included',
       'Courteous Chauffeur with Nameplate at Arrival Gate',
       'Luggage Handling Assistance',
-      'Zero Surge Pricing during Peak Flight Times'
+      'Zero Surge Pricing during Peak Hours'
     ],
     order: 3
   },
   {
     _id: 'srv-4',
-    title: 'Hotel & Resort Booking Assistance',
-    shortDescription: 'Special negotiated rates at verified family resorts, mountain chalets, and heritage boutique stays.',
-    description: 'We partner directly with top-rated mountain hotels across Himachal Pradesh to secure clean, sanitized rooms with panoramic Himalayan views, running hot water, and delicious organic local cuisine.',
+    title: 'Hotel & Heritage Resort Booking Assistance',
+    shortDescription: 'Special negotiated rates at verified family hotels, GT Road highway resorts, and heritage stays.',
+    description: 'We partner directly with top-rated hotels and resorts across Kurukshetra, Karnal, Chandigarh, and Delhi NCR to secure clean, sanitized rooms with modern amenities, running hot water, and delicious local cuisine.',
     icon: 'Hotel',
     features: [
-      'Verified Cleanliness, Hygiene & Running Hot Water',
-      'Complimentary Mountain-View Upgrades when Available',
+      'Verified Cleanliness & Hygiene',
+      'Complimentary Room Upgrades when Available',
       'Breakfast Inclusions & Flexible Check-in Support',
-      'Prime Scenic Locations close to Attractions'
+      'Prime Locations close to Attractions'
     ],
     order: 4
   },
   {
     _id: 'srv-5',
-    title: 'Adventure Expeditions & Paragliding',
-    shortDescription: 'Authorized bookings for Bir Billing paragliding, Solang skiing, Beas rafting, and mountain passes.',
-    description: 'Experience heart-pounding Himalayan adventure with safety-first protocols. Certified tandem paragliding pilots at world-famous Bir Billing, snow activities at Solang Valley, and river rafting at Kullu.',
+    title: 'Wildlife & Nature Expeditions (Kalesar & Yamuna)',
+    shortDescription: 'Authorized jungle safari cab transfers to Kalesar National Park, Hathni Kund Barrage, and Shivalik foothills.',
+    description: 'Experience Haryana’s lush nature and biodiversity with safety-first protocols. Open jeep jungle safari transfers at Kalesar National Park, wetland birdwatching, and riverside leisure at Hathni Kund Barrage.',
     icon: 'Sparkles',
     features: [
-      'Authorized Government Safety Permit Assistance',
-      'Certified International Safety Harnesses & Helmets',
-      'GoPro High-Definition Video Recording Support',
-      'Experienced Local Mountain Guides'
+      'Direct Doorstep Safari Pickup & Drop',
+      'Experienced Local Wildlife Drivers',
+      'Scenic Shivalik Foothill Routes',
+      'Customized Family Day Picnic Stops'
     ],
     order: 5
   },
   {
     _id: 'srv-6',
-    title: 'Honeymoon Special Packages',
-    shortDescription: 'Romantic escapes in Manali, Dharamshala, Dalhousie, and Shimla featuring special floral setups and candlelit dinners.',
-    description: 'Celebrate your new beginnings amidst snow-dusted pine forests and quiet mountain valleys. Includes private luxury sedan or SUV, honeymoon cake, flower bed decoration, and private candlelit dinners.',
+    title: 'Wedding Fleet & VIP Delegation Travel',
+    shortDescription: 'Decorated luxury Innova Crystas, Hycross, Fortuners, and Urbania vans for baraat and guest logistics.',
+    description: 'Seamless ground transportation for weddings, corporate executives, and VIP guests across Haryana, Punjab, and Delhi NCR. Punctual, uniformed chauffeurs with immaculate luxury vehicles.',
     icon: 'Heart',
     features: [
-      'Romantic Candlelit Dinners & Scenic Balconies',
-      'Complimentary Honeymoon Cake & Welcome Drinks',
-      'Private Chauffeur-Driven Luxury Car throughout Trip',
-      'Personalized Romantic Sunset Itineraries'
+      'Uniformed & Courteous Professional Drivers',
+      'Dedicated Fleet Coordinator for Events',
+      'Spotless Luxury SUVs & Executive Tempo Travellers',
+      'Flexible Hourly & Full-Day Wedding Packages'
     ],
     order: 6
   },
   {
     _id: 'srv-7',
-    title: 'Corporate Retreats & MICE Logistics',
-    shortDescription: 'Hassle-free corporate conferences, team offsites, executive retreats, and delegation ground transport.',
-    description: 'End-to-end ground transportation for corporate delegates, board meetings, and team outings in the tranquility of Dharamshala, Kasauli, and Shimla. Complete with GST invoicing and dedicated fleet manager.',
+    title: 'Corporate Travel & MICE Logistics',
+    shortDescription: 'Hassle-free corporate conferences, business delegations, factory visits, and executive city transfers.',
+    description: 'End-to-end ground transportation for corporate delegates, board meetings, and industrial visits across Gurugram, Delhi NCR, Panipat, Karnal, and Chandigarh. Complete with GST invoicing and dedicated fleet manager.',
     icon: 'Briefcase',
     features: [
-      'Dedicated Account Coordinator on Site',
+      'Dedicated Account Coordinator',
       'Full GST Invoicing & Corporate Compliance',
       'Executive Urbania and Innova Hycross Fleet',
       'Airport Shuttle Coordination for Large Teams'
@@ -99,15 +99,15 @@ export const defaultServices = [
   },
   {
     _id: 'srv-8',
-    title: 'Pilgrim Yatras & Group Temple Circuits',
-    shortDescription: 'Spacious 12 to 26-seater Tempo Travellers for joint families visiting Kangra Brajeshwari, Chamunda Devi, and Jawalaji.',
-    description: 'Devotional journeys crafted with immense respect, regular elder-friendly rest stops, and senior mountain chauffeurs. Special circuits for 5 Devi Darshan, Baijnath Temple, and Chintpurni.',
+    title: 'Pilgrim Yatras & 48 Kos Kurukshetra Parikrama',
+    shortDescription: 'Spacious 12 to 26-seater Tempo Travellers for joint families and pilgrim groups visiting sacred tirthas.',
+    description: 'Devotional journeys crafted with immense respect, regular elder-friendly rest stops, and senior verified chauffeurs. Special circuits for 48 Kos Kurukshetra Parikrama, Jyotisar, Brahma Sarovar, and Pehowa.',
     icon: 'Users',
     features: [
       'Wide Reclining Pushback Seats for Senior Comfort',
       'Elder-Friendly Smooth Boarding & Luggage Support',
-      'Flexible Multiple Temple Stops with VIP Line Assistance',
-      'Experienced Chauffeurs aware of Temple Timing & Parking'
+      'Flexible Multiple Tirtha Stops with Darshan Assistance',
+      'Experienced Chauffeurs aware of Temple Timings & Parking'
     ],
     order: 8
   }

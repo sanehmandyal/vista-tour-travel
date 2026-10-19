@@ -1,130 +1,116 @@
 export const defaultGalleryPhotos = [
   {
     _id: 'gal-1',
-    title: 'Snow-Draped Dhauladhar Peaks',
-    category: 'Mountains',
-    location: 'Kangra Valley, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80',
-    description: 'Breathtaking sunrise illuminating the snowline above Dharamshala.'
+    title: 'Holy Dip at Brahma Sarovar',
+    category: 'Kurukshetra Heritage',
+    location: 'Kurukshetra, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1000',
+    description: 'Asia’s largest sacred man-made water tank and the spiritual heart of Kurukshetra.'
   },
   {
     _id: 'gal-2',
-    title: 'Solang Valley Winter Snow Point',
-    category: 'Mountains',
-    location: 'Manali, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=80',
-    description: 'Fresh powder snow and cedar trees in Solang Valley.'
+    title: 'Sheikh Chilli Tomb Marble Mausoleum',
+    category: 'Kurukshetra Heritage',
+    location: 'Kurukshetra, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=1000',
+    description: 'Stunning Mughal-era marble mausoleum surrounded by manicured Persian gardens.'
   },
   {
     _id: 'gal-3',
-    title: 'Scenic Himalayan Mountain Drive',
-    category: 'Road Trips',
-    location: 'Kullu-Manali Highway',
-    imageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1000&q=80',
-    description: 'Chauffeur-driven luxury cab along the scenic Beas River route.'
+    title: 'Nek Chand Rock Garden',
+    category: 'Chandigarh & City',
+    location: 'Chandigarh',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1000',
+    description: 'World-renowned 40-acre wonderland of sculptures created from recycled ceramic and industrial materials.'
   },
   {
     _id: 'gal-4',
-    title: 'Paragliding Tandem Flight',
-    category: 'Adventure',
-    location: 'Bir Billing, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80',
-    description: 'Soaring high above the lush tea gardens and terraced valleys of Kangra.'
+    title: 'Sukhna Lake Sunset Promenade',
+    category: 'Chandigarh & City',
+    location: 'Chandigarh',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=1000',
+    description: 'Serene lakeside promenade with solar boating and beautiful evening views at the foot of Shivalik hills.'
   },
   {
     _id: 'gal-5',
-    title: 'Historic Kangra Fort Citadel',
-    category: 'Culture',
-    location: 'Kangra, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1000&q=80',
-    description: 'Ancient 1,000-year-old fort ramparts overlooking Banganga river.'
+    title: 'Karna Lake Promenade & Resort',
+    category: 'GT Road Trips',
+    location: 'Karnal, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1000',
+    description: 'Famous GT Road lakeside retreat named after the legendary Mahabharata warrior Karna.'
   },
   {
     _id: 'gal-6',
-    title: 'Khajjiar Meadow & Deodar Woods',
-    category: 'Honeymoon',
-    location: 'Dalhousie, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1000&q=80',
-    description: 'The emerald meadows of Mini Switzerland surrounded by dense pines.'
+    title: 'Historic Kabuli Bagh Mosque',
+    category: 'GT Road Trips',
+    location: 'Panipat, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1000',
+    description: 'Centuries-old historic mosque built by Babur to commemorate the First Battle of Panipat in 1526.'
   },
   {
     _id: 'gal-7',
-    title: 'Key Monastery on High Cliff',
-    category: 'Culture',
-    location: 'Spiti Valley, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80',
-    description: 'Iconic eleventh-century Buddhist monastery perched above Spiti River.'
+    title: 'Hathni Kund Barrage & Wetlands',
+    category: 'Wildlife & Nature',
+    location: 'Yamunanagar, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1000',
+    description: 'Magnificent Yamuna riverfront barrage, bird sanctuary, and eco-tourism destination.'
   },
   {
     _id: 'gal-8',
-    title: 'Luxury Mountain Valley Resort',
-    category: 'Hotels',
-    location: 'Dharamshala, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1000&q=80',
-    description: 'Serene mountain stay with private balconies facing the snowy Dhauladhars.'
+    title: 'Kalesar National Park Wildlife Trails',
+    category: 'Wildlife & Nature',
+    location: 'Yamunanagar, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1000',
+    description: 'Lush sal forest sanctuary home to leopards, barking deer, and exotic flora along the Yamuna.'
   },
   {
     _id: 'gal-9',
-    title: 'Atal Tunnel North Portal & Sissu',
-    category: 'Road Trips',
-    location: 'Lahaul Valley, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80',
-    description: 'Crossing into wonderland through the world-famous Atal Rohtang Tunnel.'
+    title: 'India Gate & Central Vista',
+    category: 'Delhi NCR',
+    location: 'New Delhi',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1000',
+    description: 'Grand national war memorial with illuminated fountains and evening lawns in the heart of Delhi.'
   },
   {
     _id: 'gal-10',
-    title: 'Triund Hilltop Ridge & Dhauladhars',
-    category: 'Adventure',
-    location: 'McLeodGanj, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80',
-    description: 'Glorious ridge camp with close-up panoramic views of snow walls.'
+    title: 'Qutub Minar Architectural Marvel',
+    category: 'Delhi NCR',
+    location: 'New Delhi',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=1000',
+    description: 'UNESCO World Heritage 73-meter victory tower with intricate red sandstone carvings.'
   },
   {
     _id: 'gal-11',
-    title: 'Dalai Lama Main Temple Complex',
-    category: 'Culture',
-    location: 'McLeodGanj, Dharamshala',
-    imageUrl: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1000&q=80',
-    description: 'Prayer wheels, peaceful chanting, and serene Buddhist monasteries.'
+    title: 'Toyota Innova Crysta Luxury Chauffeur Cab',
+    category: 'Cab Fleet & Expressways',
+    location: 'Ladwa & GT Road, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=1000',
+    description: 'Pristine, commercial-licensed luxury SUV for VIP tours, airport transfers, and family travel.'
   },
   {
     _id: 'gal-12',
-    title: 'Shimla Ridge & Heritage Church',
-    category: 'Honeymoon',
-    location: 'Shimla, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80',
-    description: 'Evening lights and romantic Victorian lamps along the historic Ridge.'
+    title: 'Force Luxury Tempo Traveller for Group Tours',
+    category: 'Cab Fleet & Expressways',
+    location: 'Kurukshetra & Haryana Expressways',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=1000',
+    description: 'Executive pushback seats, dual AC, and maximum comfort for wedding convoys and group pilgrimages.'
   },
   {
     _id: 'gal-13',
-    title: '4x4 Cab Crossing Himalayan Stream',
-    category: 'Road Trips',
-    location: 'Spiti-Lahaul Mountain Pass',
-    imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80',
-    description: 'Rugged Scorpio & Innova mountain rides driven by hill veterans.'
+    title: 'Ancient Kaithal Fort Ramparts',
+    category: 'Kurukshetra Heritage',
+    location: 'Kaithal, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1000',
+    description: 'Historic 18th-century Bhai Uday Singh Fort overlooking scenic Bidkyar Lake in Kaithal.'
   },
   {
     _id: 'gal-14',
-    title: 'Chaugan Tea Estates & Sunset',
-    category: 'Mountains',
-    location: 'Palampur, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80',
-    description: 'Rolling green tea bushes under glowing orange Himalayan twilight.'
-  },
-  {
-    _id: 'gal-15',
-    title: 'Wooden Cottage by Parvati River',
-    category: 'Hotels',
-    location: 'Kasol & Jibhi, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1000&q=80',
-    description: 'Cozy pinewood riverside cottage with private bonfire lawn.'
-  },
-  {
-    _id: 'gal-16',
-    title: 'Sacred Mata Chamunda Devi Temple',
-    category: 'Culture',
-    location: 'Kangra, Himachal Pradesh',
-    imageUrl: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1000&q=80',
-    description: 'Holy shrine nestled against the rushing waters of Baner River.'
+    title: 'Historic Ambala Cantt Sacred Shrine',
+    category: 'GT Road Trips',
+    location: 'Ambala, Haryana',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1000',
+    description: 'Historic British-era architectural landmark and Gurudwaras of Ambala division.'
   }
 ];
+
+export default defaultGalleryPhotos;

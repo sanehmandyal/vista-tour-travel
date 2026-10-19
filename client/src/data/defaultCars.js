@@ -11,9 +11,9 @@ export const defaultCars = [
       'Dual Front & Rear Chill AC',
       'Plush Reclining Captain Seats',
       'Generous Legroom for Long Journeys',
-      'Certified Mountain-Expert Chauffeur'
+      'Certified Professional Highway Chauffeur'
     ],
-    description: 'The undisputed monarch of hill road trips. Outstanding suspension and power for Manali, Spiti, Dharamshala, and Shimla circuits.',
+    description: 'The undisputed monarch of highway road trips. Outstanding suspension and power for Kurukshetra, Delhi NCR, Chandigarh, and all-Haryana circuits.',
     isAvailable: true
   },
   {
@@ -30,7 +30,7 @@ export const defaultCars = [
       'First Class Ottoman Lounge Seating',
       'Phone Fast Charging & High-End Audio'
     ],
-    description: 'Next-generation luxury for VIP tours, executive delegates, and family holidays requiring supreme road refinement.',
+    description: 'Next-generation luxury for VIP tours, executive airport drops, and family holidays requiring supreme road refinement along GT Road.',
     isAvailable: true
   },
   {
@@ -44,10 +44,10 @@ export const defaultCars = [
     features: [
       'Roof Mounted AC Blower Vents',
       'Modular 3-Row Foldable Seating',
-      'Smooth Hill Highway Ride',
+      'Smooth Highway & Expressway Ride',
       'USB Ports in All Rows'
     ],
-    description: 'The preferred family choice offering unbeatable value, high mileage, and spacious legroom for Kangra Valley and temple yatras.',
+    description: 'The preferred family choice offering unbeatable value, high mileage, and spacious legroom for Kurukshetra, Ambala, and temple yatras.',
     isAvailable: true
   },
   {
@@ -62,9 +62,9 @@ export const defaultCars = [
       'Effective Auto Climate Control',
       'Deep 378L Boot Trunk Capacity',
       'Bluetooth Music System',
-      'Ideal for Couples & Small Families'
+      'Ideal for Couples & Airport Drops'
     ],
-    description: 'Comfortable, compact sedan for quick airport transfers from Gaggal, Amritsar, Pathankot, and local Dharamshala day tours.',
+    description: 'Comfortable, compact sedan for quick airport transfers to Delhi IGI Airport, Chandigarh Airport, and local Ladwa & Kurukshetra day trips.',
     isAvailable: true
   },
   {
@@ -78,7 +78,7 @@ export const defaultCars = [
     features: [
       'Massive 595L Cargo Trunk',
       'Exceptional Rear Seat Legroom',
-      'High Ground Clearance for Mountain Roads',
+      'Comfortable Suspension for Highway Corridors',
       'Proven Toyota Durability'
     ],
     description: 'Unmatched boot space for luggage-heavy travelers, outstation round trips, and multi-day North India tours.',
@@ -86,41 +86,41 @@ export const defaultCars = [
   },
   {
     _id: 'car-alto-wagonr',
-    name: 'Maruti Alto K10 / WagonR (Compact Hill Taxi)',
+    name: 'Maruti WagonR / Celerio (Compact City Taxi)',
     category: 'Hatchback',
     seatingCapacity: '4 + 1 Chauffeur',
     luggageCapacity: '2 Medium Bags',
     fuelType: 'Petrol',
     image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
     features: [
-      'Ultra Agile in Tight Mountain Bends',
-      'Effective Chilled AC & Hill Heater',
+      'Agile Navigation in Town Markets',
+      'Effective Chilled AC',
       'Most Economical Per-KM Travel Rates',
-      'Native Kangra Hill Driver'
+      'Experienced Local Chauffeur'
     ],
-    description: 'Economical city and local hill explorer. Effortlessly navigates narrow hillside streets, temple parking, and short excursions.',
+    description: 'Economical city explorer. Effortlessly navigates local markets, family errands, and short inter-district trips.',
     isAvailable: true
   },
   {
     _id: 'car-scorpio',
-    name: 'Mahindra Scorpio-N (4x4 Snow King)',
-    category: '4x4 Off-Road',
+    name: 'Mahindra Scorpio-N (Commanding SUV)',
+    category: 'SUV',
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '3 Large Bags + Heavy Roof Carrier',
     fuelType: 'Diesel',
     image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
     features: [
-      'Electronic 4x4 Shift-on-Fly Terrain Modes',
+      'Electronic Terrain Modes',
       'High Ground Clearance (200mm)',
-      'Snow-Chains & High Torque Power',
-      'Pothole & Rough Terrain Armor'
+      'Heavy-Duty Road Presence',
+      'Spacious Cargo & Passenger Comfort'
     ],
-    description: 'Built for extreme Himalayas. The #1 recommendation for Atal Tunnel snow conditions, Spiti Valley crossing, and Jalori Pass.',
+    description: 'Built tough for expressways and rural Haryana routes. The top choice for family road trips, weddings, and long-distance travel.',
     isAvailable: true
   },
   {
     _id: 'car-fortuner',
-    name: 'Toyota Fortuner (4x4 Luxury Beast)',
+    name: 'Toyota Fortuner (VIP Luxury SUV)',
     category: 'Luxury',
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '4 Large Bags + Rooftop Carrier',
@@ -128,11 +128,11 @@ export const defaultCars = [
     image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800',
     features: [
       'Commanding Road Presence & VIP Security',
-      'Heavy-Duty 4x4 Terrain Management',
+      'Heavy-Duty Highway Comfort',
       'Ventilated Premium Leather Seating',
       'JBL Premium Acoustic System'
     ],
-    description: 'The pinnacle of luxury expedition vehicles. Tailored for VIP dignitaries, luxury wedding escorts, and high-altitude luxury.',
+    description: 'The pinnacle of luxury travel. Tailored for VIP dignitaries, luxury wedding convoys, and executive travel across Haryana & Delhi NCR.',
     isAvailable: true
   },
   {
@@ -149,7 +149,7 @@ export const defaultCars = [
       'USB Rapid Chargers at Every Seat',
       'European Monocoque Safety Architecture'
     ],
-    description: 'The elite European-standard luxury passenger van. Unrivaled noise insulation, wide aisles, and individual bucket seating.',
+    description: 'The elite European-standard luxury passenger van. Unrivaled noise insulation, wide aisles, and individual bucket seating for Haryana executive groups.',
     isAvailable: true
   },
   {
@@ -159,14 +159,14 @@ export const defaultCars = [
     seatingCapacity: '12 + 1 Chauffeur',
     luggageCapacity: 'Spacious Rear Boot + Heavy Carrier',
     fuelType: 'Diesel',
-    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
     features: [
       '1x1 Individual Pushback Plush Seats',
       'Powerful Dual Air-Conditioning Units',
       'High-Roof Stand-up Cabin Height',
       'Surround Sound Stereo & LED TV'
     ],
-    description: 'The gold standard of luxury group travel in Himachal. Unmatched ride smoothness, quietness, and high-roof cabin space.',
+    description: 'The gold standard of luxury group travel in Haryana. Unmatched ride smoothness, quietness, and high-roof cabin space for Kurukshetra yatras.',
     isAvailable: true
   },
   {
@@ -181,9 +181,9 @@ export const defaultCars = [
       'Wide 2x1 Reclining Luxury Seats',
       'Dual High-Capacity AC Units',
       'High-Roof Stand-up Cabin Height',
-      'Senior Mountain Chauffeur'
+      'Senior Verified Highway Chauffeur'
     ],
-    description: 'Maximum capacity with supreme comfort for large pilgrim groups, family get-togethers, and multi-day Himachal temple yatras.',
+    description: 'Maximum capacity with supreme comfort for large pilgrim groups, family get-togethers, and wedding parties across Haryana & GT Road.',
     isAvailable: true
   },
   {
@@ -193,14 +193,14 @@ export const defaultCars = [
     seatingCapacity: '26 + 1 Chauffeur',
     luggageCapacity: 'Massive Roof Carrier + Rear Cargo Bay',
     fuelType: 'Diesel',
-    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
     features: [
       '2x2 High-Comfort Pushback Seats',
       'Twin High-Powered AC & Heating System',
       'LCD TV with Surround Sound Setup',
-      'Emergency Exit & Certified Mountain Driver'
+      'Emergency Exit & Certified Highway Driver'
     ],
-    description: 'The ultimate group carrier for weddings, school excursions, corporate offsites, and grand Himachal temple pilgrimages.',
+    description: 'The ultimate group carrier for weddings, school excursions, corporate offsites, and Kurukshetra 48 Kos religious pilgrimages.',
     isAvailable: true
   }
 ];

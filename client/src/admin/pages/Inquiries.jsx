@@ -157,7 +157,7 @@ export const Inquiries = () => {
               <tbody className="divide-y divide-slate-100">
                 {inquiries.map((inq) => {
                   const cleanPhone = (inq.phone || '').replace(/[^0-9]/g, '');
-                  const replyText = `Hello ${inq.name || 'Traveler'}, Vista Tour and Travels here regarding your inquiry about "${inq.subject || inq.message || 'Himachal tour'}". How can we assist you today?`;
+                  const replyText = `Hello ${inq.name || 'Traveler'}, Vista Tour and Travels here regarding your inquiry about "${inq.subject || inq.message || 'tour or cab inquiry'}". How can we assist you today?`;
 
                   return (
                     <tr key={inq._id} className="hover:bg-slate-50/60 transition-colors">

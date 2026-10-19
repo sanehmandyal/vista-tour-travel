@@ -282,7 +282,7 @@ export const Dashboard = () => {
           <div>
             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Destinations</p>
             <h3 className="text-2xl font-black text-navy-900">{metrics.totalDestinations}</h3>
-            <p className="text-[10px] text-slate-500 mt-1">Himachal circuits</p>
+            <p className="text-[10px] text-slate-500 mt-1">Haryana & NCR hubs</p>
           </div>
         </div>
 
@@ -332,7 +332,7 @@ export const Dashboard = () => {
                   Season 2026
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-0.5">Monthly booking demand and revenue generated across Himachal circuits</p>
+              <p className="text-xs text-slate-400 mt-0.5">Monthly booking demand and revenue generated across Haryana & NCR circuits</p>
             </div>
             <div className="flex items-center gap-4 text-xs">
               <span className="flex items-center gap-1.5 font-medium text-slate-600">
