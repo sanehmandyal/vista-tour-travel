@@ -88,19 +88,12 @@ export const carApi = {
     try {
       const res = await axiosClient.get('/cars', { params });
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        // If local storage has admin modifications, merge them so custom edits are preserved
-        const local = getLocalCars();
-        // Keep any custom created cars that may not exist in backend
-        const extraLocal = local.filter(c => !res.data.some(b => b._id === c._id));
-        const merged = [...res.data.map(b => {
-          const localMatch = local.find(l => l._id === b._id);
-          const item = localMatch ? { ...b, ...localMatch } : b;
-          return enrichCarWithExactImage(item);
-        }), ...extraLocal.map(enrichCarWithExactImage)];
-        return { success: true, data: merged };
+        const enriched = res.data.map(enrichCarWithExactImage);
+        saveLocalCars(enriched);
+        return { success: true, data: enriched };
       }
     } catch (err) {
-      // Backend unreachable or offline - use resilient local data
+      console.warn('Backend unavailable, using cached cars:', err.message);
     }
 
     let list = getLocalCars();
@@ -136,8 +129,18 @@ export const carApi = {
   },
 
   create: async (data) => {
+    let savedItem = null;
+    try {
+      const res = await axiosClient.post('/cars', data);
+      if (res && res.success && res.data) {
+        savedItem = res.data;
+      }
+    } catch (e) {
+      console.warn('Direct server create failed, saving locally:', e.message);
+    }
+
     const list = getLocalCars();
-    const newCar = {
+    const newCar = savedItem ? enrichCarWithExactImage(savedItem) : {
       ...data,
       _id: `car-custom-${Date.now()}`,
       isAvailable: data.isAvailable !== undefined ? data.isAvailable : true,
@@ -146,21 +149,26 @@ export const carApi = {
         : (typeof data.features === 'string' ? data.features.split(',').map(s => s.trim()).filter(Boolean) : []),
       createdAt: new Date().toISOString()
     };
-    const updated = [newCar, ...list];
+    const updated = [newCar, ...list.filter(c => c._id !== newCar._id && c.name !== newCar.name)];
     saveLocalCars(updated);
-
-    try {
-      await axiosClient.post('/cars', data);
-    } catch (e) {
-      // Local save preserved
-    }
     return { success: true, data: newCar };
   },
 
   update: async (id, data) => {
+    let updatedItem = null;
+    try {
+      const res = await axiosClient.put(`/cars/${id}`, data);
+      if (res && res.success && res.data) {
+        updatedItem = res.data;
+      }
+    } catch (e) {
+      console.warn('Direct server update failed, updating locally:', e.message);
+    }
+
     const list = getLocalCars();
     const updated = list.map(c => {
-      if (c._id === id) {
+      if (c._id === id || c.name?.toLowerCase() === id?.toLowerCase()) {
+        if (updatedItem) return enrichCarWithExactImage(updatedItem);
         const features = Array.isArray(data.features)
           ? data.features
           : (typeof data.features === 'string' ? data.features.split(',').map(s => s.trim()).filter(Boolean) : c.features);
@@ -169,26 +177,20 @@ export const carApi = {
       return c;
     });
     saveLocalCars(updated);
-
-    try {
-      await axiosClient.put(`/cars/${id}`, data);
-    } catch (e) {
-      // Local update preserved
-    }
-    const updatedItem = updated.find(c => c._id === id);
-    return { success: true, data: updatedItem };
+    const resultItem = updated.find(c => c._id === id || c.name?.toLowerCase() === id?.toLowerCase()) || (updatedItem ? enrichCarWithExactImage(updatedItem) : null);
+    return { success: true, data: resultItem };
   },
 
   delete: async (id) => {
-    const list = getLocalCars();
-    const filtered = list.filter(c => c._id !== id);
-    saveLocalCars(filtered);
-
     try {
       await axiosClient.delete(`/cars/${id}`);
     } catch (e) {
-      // Local delete preserved
+      console.warn('Direct server delete failed, removing locally:', e.message);
     }
+
+    const list = getLocalCars();
+    const filtered = list.filter(c => c._id !== id);
+    saveLocalCars(filtered);
     return { success: true, message: 'Vehicle removed from fleet' };
   }
 };

@@ -194,23 +194,14 @@ export const destinationApi = {
     try {
       const res = await axiosClient.get('/destinations', { params });
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const local = getLocalDestinations();
-        // Merge backend data with local admin modifications
-        const customItems = local.filter(d => String(d._id).startsWith('custom-dest-'));
-        const merged = [
-          ...customItems,
-          ...res.data.map(b => {
-            const localMatch = local.find(l => l._id === b._id || l.slug === b.slug);
-            const item = localMatch ? { ...b, ...localMatch } : b;
-            return enrichDestinationWithExactImage(item);
-          })
-        ];
-        const unique = Array.from(new Map(merged.map(item => [item.slug || item._id, item])).values());
+        const enriched = res.data.map(enrichDestinationWithExactImage);
+        // Sync local cache with global server catalog
+        saveLocalDestinations(enriched);
         return {
           success: true,
-          data: unique,
-          pagination: {
-            total: unique.length,
+          data: enriched,
+          pagination: res.pagination || {
+            total: enriched.length,
             page: params.page || 1,
             totalPages: 1,
             limit: params.limit || 50
@@ -218,8 +209,9 @@ export const destinationApi = {
         };
       }
     } catch (err) {
-      // Remote backend unreachable or returning 404 - fallback to rich local data
+      console.warn('Backend unavailable, using cached destinations:', err.message);
     }
+
     const filtered = filterDestinationsLocally(params);
     return {
       success: true,
@@ -279,8 +271,18 @@ export const destinationApi = {
   },
 
   create: async (data) => {
+    let savedItem = null;
+    try {
+      const res = await axiosClient.post('/destinations', data);
+      if (res && res.success && res.data) {
+        savedItem = res.data;
+      }
+    } catch (e) {
+      console.warn('Direct server create failed, saving locally:', e.message);
+    }
+
     const list = getLocalDestinations();
-    const newDest = {
+    const newDest = savedItem ? enrichDestinationWithExactImage(savedItem) : {
       ...data,
       _id: `custom-dest-${Date.now()}`,
       slug: data.slug || data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
@@ -290,41 +292,45 @@ export const destinationApi = {
       isFeatured: data.featured !== undefined ? data.featured : true,
       createdAt: new Date().toISOString()
     };
-    const updated = [newDest, ...list];
-    saveLocalDestinations(updated);
 
-    try {
-      await axiosClient.post('/destinations', data);
-    } catch (e) {
-      // API call failed, local save succeeded
-    }
+    const updated = [newDest, ...list.filter(d => d._id !== newDest._id && d.slug !== newDest.slug)];
+    saveLocalDestinations(updated);
     return { success: true, data: newDest };
   },
 
   update: async (id, data) => {
-    const list = getLocalDestinations();
-    const updated = list.map(d => (d._id === id || d.slug === id ? { ...d, ...data } : d));
-    saveLocalDestinations(updated);
-
+    let updatedItem = null;
     try {
-      await axiosClient.put(`/destinations/${id}`, data);
+      const res = await axiosClient.put(`/destinations/${id}`, data);
+      if (res && res.success && res.data) {
+        updatedItem = res.data;
+      }
     } catch (e) {
-      // Local updated
+      console.warn('Direct server update failed, updating locally:', e.message);
     }
-    const updatedItem = updated.find(d => d._id === id || d.slug === id);
-    return { success: true, data: updatedItem };
+
+    const list = getLocalDestinations();
+    const updated = list.map(d => {
+      if (d._id === id || d.slug === id) {
+        return updatedItem ? enrichDestinationWithExactImage(updatedItem) : { ...d, ...data };
+      }
+      return d;
+    });
+    saveLocalDestinations(updated);
+    const resultItem = updated.find(d => d._id === id || d.slug === id) || (updatedItem ? enrichDestinationWithExactImage(updatedItem) : null);
+    return { success: true, data: resultItem };
   },
 
   delete: async (id) => {
-    const list = getLocalDestinations();
-    const filtered = list.filter(d => d._id !== id && d.slug !== id);
-    saveLocalDestinations(filtered);
-
     try {
       await axiosClient.delete(`/destinations/${id}`);
     } catch (e) {
-      // Local deleted
+      console.warn('Direct server delete failed, removing locally:', e.message);
     }
+
+    const list = getLocalDestinations();
+    const filtered = list.filter(d => d._id !== id && d.slug !== id);
+    saveLocalDestinations(filtered);
     return { success: true, message: 'Destination deleted successfully' };
   }
 };

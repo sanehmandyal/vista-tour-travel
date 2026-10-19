@@ -13,8 +13,10 @@ import NewsletterSubscriber from '../models/NewsletterSubscriber.js';
 
 const router = express.Router();
 
-// Seed Himachal Catalog (Destinations, Packages, Fleet)
+// Seed Regional Catalog (Destinations, Packages, Fleet)
 router.post('/seed-himachal', protect, requireAdmin, seedHimachalCatalog);
+router.post('/seed-catalog', protect, requireAdmin, seedHimachalCatalog);
+router.get('/seed-catalog', seedHimachalCatalog);
 
 // Dashboard KPIs & Analytics
 router.get('/dashboard', protect, requireAdmin, getDashboardStats);

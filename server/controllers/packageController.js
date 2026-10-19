@@ -163,15 +163,22 @@ export const createPackage = async (req, res, next) => {
       }
     }
 
-    const pkg = await Package.create({
-      ...req.body,
-      slug,
-      destinationName
-    });
+    // If exists with this slug or title, update smoothly
+    let pkg = await Package.findOne({ $or: [{ slug }, { title: new RegExp('^' + title.trim() + '$', 'i') }] });
+    if (pkg) {
+      Object.assign(pkg, req.body, { slug, destinationName });
+      await pkg.save();
+    } else {
+      pkg = await Package.create({
+        ...req.body,
+        slug,
+        destinationName
+      });
+    }
 
     res.status(201).json({
       success: true,
-      message: 'Package created successfully',
+      message: 'Package saved to database successfully',
       data: pkg
     });
   } catch (error) {
@@ -200,23 +207,18 @@ export const updatePackage = async (req, res, next) => {
     }
 
     const isId = mongoose.isValidObjectId(id);
-    const filter = isId ? { _id: id } : { slug: id };
+    const filter = isId ? { _id: id } : { $or: [{ slug: id }, { title: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }] };
 
     const pkg = await Package.findOneAndUpdate(filter, req.body, {
       new: true,
-      runValidators: true
+      runValidators: false,
+      upsert: true,
+      setDefaultsOnInsert: true
     });
-
-    if (!pkg) {
-      return res.status(404).json({
-        success: false,
-        message: 'Package not found'
-      });
-    }
 
     res.status(200).json({
       success: true,
-      message: 'Package updated successfully',
+      message: 'Package updated in database successfully',
       data: pkg
     });
   } catch (error) {

@@ -261,23 +261,21 @@ export const createDestination = async (req, res, next) => {
     const { name } = req.body;
     const slug = req.body.slug || createSlug(name);
 
-    // Check slug collision
-    const existing = await Destination.findOne({ slug });
-    if (existing) {
-      return res.status(400).json({
-        success: false,
-        message: 'A destination with this slug or name already exists'
+    // If exists with this slug or name, update smoothly instead of erroring
+    let destination = await Destination.findOne({ $or: [{ slug }, { name: new RegExp('^' + name.trim() + '$', 'i') }] });
+    if (destination) {
+      Object.assign(destination, req.body, { slug });
+      await destination.save();
+    } else {
+      destination = await Destination.create({
+        ...req.body,
+        slug
       });
     }
 
-    const destination = await Destination.create({
-      ...req.body,
-      slug
-    });
-
     res.status(201).json({
       success: true,
-      message: 'Destination created successfully',
+      message: 'Destination saved to database successfully',
       data: destination
     });
   } catch (error) {
@@ -296,23 +294,18 @@ export const updateDestination = async (req, res, next) => {
     }
 
     const isId = mongoose.isValidObjectId(id);
-    const filter = isId ? { _id: id } : { slug: id };
+    const filter = isId ? { _id: id } : { $or: [{ slug: id }, { name: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }] };
 
     const destination = await Destination.findOneAndUpdate(filter, req.body, {
       new: true,
-      runValidators: true
+      runValidators: false,
+      upsert: true,
+      setDefaultsOnInsert: true
     });
-
-    if (!destination) {
-      return res.status(404).json({
-        success: false,
-        message: 'Destination not found'
-      });
-    }
 
     res.status(200).json({
       success: true,
-      message: 'Destination updated successfully',
+      message: 'Destination updated in database successfully',
       data: destination
     });
   } catch (error) {

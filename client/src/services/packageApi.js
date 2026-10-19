@@ -81,20 +81,12 @@ export const packageApi = {
     try {
       const res = await axiosClient.get('/packages', { params });
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const local = getLocalPackages();
-        const customItems = local.filter(p => !res.data.some(b => b._id === p._id || b.slug === p.slug));
-        const merged = [
-          ...customItems,
-          ...res.data.map(b => {
-            const localMatch = local.find(l => l._id === b._id || l.slug === b.slug);
-            return localMatch ? { ...b, ...localMatch } : b;
-          })
-        ];
+        saveLocalPackages(res.data);
         return {
           success: true,
-          data: merged,
+          data: res.data,
           pagination: res.pagination || {
-            total: merged.length,
+            total: res.data.length,
             page: params.page || 1,
             totalPages: 1,
             limit: params.limit || 50
@@ -102,7 +94,7 @@ export const packageApi = {
         };
       }
     } catch (err) {
-      // Remote backend fallback to client regional packages
+      console.warn('Backend unavailable, using cached packages:', err.message);
     }
 
     const filtered = filterPackagesLocally(params);
@@ -137,8 +129,18 @@ export const packageApi = {
   },
 
   create: async (data) => {
+    let savedItem = null;
+    try {
+      const res = await axiosClient.post('/packages', data);
+      if (res && res.success && res.data) {
+        savedItem = res.data;
+      }
+    } catch (e) {
+      console.warn('Direct server create failed, saving locally:', e.message);
+    }
+
     const list = getLocalPackages();
-    const newPkg = {
+    const newPkg = savedItem || {
       ...data,
       _id: `custom-pkg-${Date.now()}`,
       slug: data.slug || data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
@@ -147,35 +149,44 @@ export const packageApi = {
       status: 'published',
       createdAt: new Date().toISOString()
     };
-    const updated = [newPkg, ...list];
+    const updated = [newPkg, ...list.filter(p => p._id !== newPkg._id && p.slug !== newPkg.slug)];
     saveLocalPackages(updated);
-
-    try {
-      await axiosClient.post('/packages', data);
-    } catch (e) {}
     return { success: true, data: newPkg };
   },
 
   update: async (id, data) => {
-    const list = getLocalPackages();
-    const updated = list.map(p => (p._id === id || p.slug === id ? { ...p, ...data } : p));
-    saveLocalPackages(updated);
-
+    let updatedItem = null;
     try {
-      await axiosClient.put(`/packages/${id}`, data);
-    } catch (e) {}
-    const updatedItem = updated.find(p => p._id === id || p.slug === id);
-    return { success: true, data: updatedItem };
+      const res = await axiosClient.put(`/packages/${id}`, data);
+      if (res && res.success && res.data) {
+        updatedItem = res.data;
+      }
+    } catch (e) {
+      console.warn('Direct server update failed, updating locally:', e.message);
+    }
+
+    const list = getLocalPackages();
+    const updated = list.map(p => {
+      if (p._id === id || p.slug === id) {
+        return updatedItem ? { ...p, ...updatedItem } : { ...p, ...data };
+      }
+      return p;
+    });
+    saveLocalPackages(updated);
+    const resultItem = updated.find(p => p._id === id || p.slug === id) || updatedItem;
+    return { success: true, data: resultItem };
   },
 
   delete: async (id) => {
+    try {
+      await axiosClient.delete(`/packages/${id}`);
+    } catch (e) {
+      console.warn('Direct server delete failed, removing locally:', e.message);
+    }
+
     const list = getLocalPackages();
     const filtered = list.filter(p => p._id !== id && p.slug !== id);
     saveLocalPackages(filtered);
-
-    try {
-      await axiosClient.delete(`/packages/${id}`);
-    } catch (e) {}
     return { success: true, message: 'Package deleted successfully' };
   }
 };

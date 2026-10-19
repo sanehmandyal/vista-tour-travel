@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import User from '../models/User.js';
 import WebsiteSetting from '../models/WebsiteSetting.js';
+import Destination from '../models/Destination.js';
+import Package from '../models/Package.js';
+import Car from '../models/Car.js';
+import { destinationsData, getRegionalPackagesData, carsData } from '../data/regionalCatalogData.js';
 
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) {
@@ -99,6 +103,28 @@ const connectDB = async () => {
       }
     } catch (settingErr) {
       console.warn('[MongoDB] WebsiteSetting migration warning:', settingErr.message);
+    }
+
+    // Auto-seed Regional Catalog (Destinations, Packages, Cars) if collections are empty in MongoDB Atlas
+    try {
+      const destCount = await Destination.countDocuments();
+      if (destCount === 0) {
+        const destinations = await Destination.insertMany(destinationsData);
+        console.log(`[MongoDB] Initialized ${destinations.length} Regional Destinations in MongoDB Atlas.`);
+
+        const destMap = {};
+        destinations.forEach(d => { destMap[d.slug] = d; });
+        const packages = await Package.insertMany(getRegionalPackagesData(destMap));
+        console.log(`[MongoDB] Initialized ${packages.length} Regional Tour Packages in MongoDB Atlas.`);
+      }
+
+      const carCount = await Car.countDocuments();
+      if (carCount === 0) {
+        const cars = await Car.insertMany(carsData);
+        console.log(`[MongoDB] Initialized ${cars.length} Car Fleet Models in MongoDB Atlas.`);
+      }
+    } catch (catalogErr) {
+      console.warn('[MongoDB] Catalog auto-seed warning:', catalogErr.message);
     }
   } catch (error) {
     console.error(`[MongoDB] Connection error: ${error.message}`);

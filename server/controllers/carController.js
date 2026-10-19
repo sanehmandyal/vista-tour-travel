@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Car from '../models/Car.js';
 
 const getExactCarImage = (name = '') => {
@@ -100,10 +101,18 @@ export const getCarById = async (req, res, next) => {
 // @access  Private/Admin
 export const createCar = async (req, res, next) => {
   try {
-    const car = await Car.create(req.body);
+    const { name } = req.body;
+    let car = await Car.findOne({ name: new RegExp('^' + (name || '').trim() + '$', 'i') });
+    if (car) {
+      Object.assign(car, req.body);
+      await car.save();
+    } else {
+      car = await Car.create(req.body);
+    }
+
     res.status(201).json({
       success: true,
-      message: 'Car model added to fleet successfully',
+      message: 'Car model saved to fleet successfully',
       data: car
     });
   } catch (error) {
@@ -117,13 +126,19 @@ export const createCar = async (req, res, next) => {
 export const updateCar = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const car = await Car.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
-    if (!car) {
-      return res.status(404).json({ success: false, message: 'Car model not found' });
-    }
+    const isId = mongoose.isValidObjectId(id);
+    const filter = isId ? { _id: id } : { $or: [{ _id: id }, { name: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }] };
+
+    const car = await Car.findOneAndUpdate(filter, req.body, {
+      new: true,
+      runValidators: false,
+      upsert: true,
+      setDefaultsOnInsert: true
+    });
+
     res.status(200).json({
       success: true,
-      message: 'Car model updated successfully',
+      message: 'Car model updated in database successfully',
       data: car
     });
   } catch (error) {
@@ -137,13 +152,13 @@ export const updateCar = async (req, res, next) => {
 export const deleteCar = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const car = await Car.findByIdAndDelete(id);
-    if (!car) {
-      return res.status(404).json({ success: false, message: 'Car model not found' });
-    }
+    const isId = mongoose.isValidObjectId(id);
+    const filter = isId ? { _id: id } : { $or: [{ _id: id }, { name: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }] };
+    const car = await Car.findOneAndDelete(filter);
+
     res.status(200).json({
       success: true,
-      message: 'Car model deleted from fleet successfully'
+      message: 'Car model removed from fleet successfully'
     });
   } catch (error) {
     next(error);

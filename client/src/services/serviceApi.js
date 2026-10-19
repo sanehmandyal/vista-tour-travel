@@ -32,15 +32,12 @@ export const serviceApi = {
     try {
       const res = await axiosClient.get('/services', { params });
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const local = getLocalServices();
-        const extraLocal = local.filter(s => !res.data.some(b => b._id === s._id));
-        const merged = [...res.data.map(b => {
-          const localMatch = local.find(l => l._id === b._id);
-          return localMatch ? { ...b, ...localMatch } : b;
-        }), ...extraLocal];
-        return { success: true, data: merged };
+        saveLocalServices(res.data);
+        return { success: true, data: res.data };
       }
-    } catch (err) {}
+    } catch (err) {
+      console.warn('Backend unavailable, using cached services:', err.message);
+    }
 
     const list = getLocalServices();
     return { success: true, data: list };
@@ -61,8 +58,18 @@ export const serviceApi = {
   },
 
   create: async (data) => {
+    let savedItem = null;
+    try {
+      const res = await axiosClient.post('/services', data);
+      if (res && res.success && res.data) {
+        savedItem = res.data;
+      }
+    } catch (e) {
+      console.warn('Direct server create failed, saving locally:', e.message);
+    }
+
     const list = getLocalServices();
-    const newService = {
+    const newService = savedItem || {
       ...data,
       _id: `srv-custom-${Date.now()}`,
       features: Array.isArray(data.features)
@@ -71,19 +78,26 @@ export const serviceApi = {
       order: list.length + 1,
       createdAt: new Date().toISOString()
     };
-    const updated = [newService, ...list];
+    const updated = [newService, ...list.filter(s => s._id !== newService._id)];
     saveLocalServices(updated);
-
-    try {
-      await axiosClient.post('/services', data);
-    } catch (e) {}
     return { success: true, data: newService };
   },
 
   update: async (id, data) => {
+    let updatedItem = null;
+    try {
+      const res = await axiosClient.put(`/services/${id}`, data);
+      if (res && res.success && res.data) {
+        updatedItem = res.data;
+      }
+    } catch (e) {
+      console.warn('Direct server update failed, updating locally:', e.message);
+    }
+
     const list = getLocalServices();
     const updated = list.map(s => {
       if (s._id === id) {
+        if (updatedItem) return updatedItem;
         const features = Array.isArray(data.features)
           ? data.features
           : (typeof data.features === 'string' ? data.features.split(',').map(str => str.trim()).filter(Boolean) : s.features);
@@ -92,22 +106,20 @@ export const serviceApi = {
       return s;
     });
     saveLocalServices(updated);
-
-    try {
-      await axiosClient.put(`/services/${id}`, data);
-    } catch (e) {}
-    const updatedItem = updated.find(s => s._id === id);
-    return { success: true, data: updatedItem };
+    const resultItem = updated.find(s => s._id === id) || updatedItem;
+    return { success: true, data: resultItem };
   },
 
   delete: async (id) => {
+    try {
+      await axiosClient.delete(`/services/${id}`);
+    } catch (e) {
+      console.warn('Direct server delete failed, removing locally:', e.message);
+    }
+
     const list = getLocalServices();
     const filtered = list.filter(s => s._id !== id);
     saveLocalServices(filtered);
-
-    try {
-      await axiosClient.delete(`/services/${id}`);
-    } catch (e) {}
     return { success: true, message: 'Service deleted successfully' };
   }
 };
