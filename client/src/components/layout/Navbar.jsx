@@ -214,32 +214,32 @@ export const Navbar = () => {
             : 'bg-white/95 backdrop-blur-2xl border-b border-slate-200/60 shadow-xs py-3.5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-2" ref={navContainerRef}>
+        <div className="max-w-7xl mx-auto px-2 min-[360px]:px-4 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-2" ref={navContainerRef}>
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group shrink-0">
+          <Link to="/" className="flex items-center gap-1.5 min-[360px]:gap-2.5 group shrink-0">
             <img
               src={settings.logo || "/logo.jpg"}
               alt="Vista Tour and Travels"
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover shadow-sm border border-amber-400/30 group-hover:scale-105 transition-transform shrink-0"
+              className="w-8 h-8 min-[360px]:w-10 min-[360px]:h-10 sm:w-12 sm:h-12 rounded-full object-cover shadow-sm border border-amber-400/30 group-hover:scale-105 transition-transform shrink-0"
             />
-            <div>
-              <div className="flex items-center gap-1.5 leading-tight">
-                <span className="text-lg sm:text-xl font-black tracking-tight text-navy-900">
+            <div className="min-w-0">
+              <div className="flex items-center gap-1 leading-tight">
+                <span className="text-sm min-[360px]:text-base sm:text-xl font-black tracking-tight text-navy-900 truncate">
                   Vista <span className="text-brand-600">Travels</span>
                 </span>
               </div>
-              <p className="text-[10px] uppercase tracking-wider font-bold text-slate-500">
+              <p className="hidden min-[380px]:block text-[10px] uppercase tracking-wider font-bold text-slate-500 truncate">
                 Ladwa • Tours & Luxury Cabs
               </p>
             </div>
           </Link>
 
           {/* Desktop Navigation Links with Interactive Dropdowns */}
-          <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5">
+          <nav className="hidden lg:flex items-center gap-0.5 2xl:gap-1.5">
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive && location.pathname === '/' && !location.hash
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -257,7 +257,7 @@ export const Navbar = () => {
             >
               <button
                 onClick={() => setOpenDropdown(openDropdown === 'destinations' ? null : 'destinations')}
-                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/destinations') || openDropdown === 'destinations'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -327,7 +327,7 @@ export const Navbar = () => {
               <Link
                 to="/cars"
                 onClick={() => setOpenDropdown(null)}
-                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname === '/cars' || openDropdown === 'cars'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -397,7 +397,7 @@ export const Navbar = () => {
               <Link
                 to="/packages"
                 onClick={() => setOpenDropdown(null)}
-                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/packages') || openDropdown === 'packages'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -467,7 +467,7 @@ export const Navbar = () => {
               <Link
                 to="/locations"
                 onClick={() => setOpenDropdown(null)}
-                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/locations') || openDropdown === 'locations'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -536,7 +536,7 @@ export const Navbar = () => {
             >
               <button
                 onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}
-                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/services') || location.pathname.startsWith('/cars') || openDropdown === 'services'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -607,7 +607,7 @@ export const Navbar = () => {
             <NavLink
               to="/#reviews"
               className={() =>
-                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   location.hash === '#reviews'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -620,7 +620,7 @@ export const Navbar = () => {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `hidden xl:inline-flex px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -633,7 +633,7 @@ export const Navbar = () => {
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `px-1.5 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -645,24 +645,24 @@ export const Navbar = () => {
           </nav>
 
           {/* Right Action buttons */}
-          <div className="hidden xl:flex items-center gap-1.5 2xl:gap-2.5 shrink-0">
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 2xl:gap-2.5 shrink-0">
             {/* Direct WhatsApp Pill */}
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour & Travels! I want to inquire about a cab / holiday package.')}`}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1.5 px-2.5 2xl:px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition-all shadow-sm whitespace-nowrap"
+              className="flex items-center gap-1.5 px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition-all shadow-sm whitespace-nowrap"
               title="Chat on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
               <span className="hidden 2xl:inline">WhatsApp: 90688 88578</span>
-              <span className="2xl:hidden">WhatsApp</span>
+              <span className="hidden xl:inline 2xl:hidden">WhatsApp</span>
             </a>
 
             {/* Direct Call Button */}
             <a
               href={`tel:${cleanPhone}`}
-              className="flex items-center gap-1.5 px-2.5 2xl:px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-300 text-navy-900 text-xs font-bold transition-all whitespace-nowrap"
+              className="flex items-center gap-1.5 px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-300 text-navy-900 text-xs font-bold transition-all whitespace-nowrap"
             >
               <Phone className="w-3.5 h-3.5 text-brand-600 shrink-0" />
               <span>Call Now</span>
@@ -672,7 +672,7 @@ export const Navbar = () => {
               <div className="flex items-center gap-1.5">
                 <Link
                   to="/admin/dashboard"
-                  className="px-2.5 2xl:px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
+                  className="px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
                 >
                   <ShieldAlert className="w-3.5 h-3.5 shrink-0" /> Dashboard
                 </Link>
@@ -689,7 +689,7 @@ export const Navbar = () => {
                 variant="accent"
                 size="sm"
                 onClick={() => navigate('/contact')}
-                className="shadow-sm font-bold text-xs py-1.5 px-2.5 2xl:px-3.5 whitespace-nowrap"
+                className="shadow-sm font-bold text-xs py-1.5 px-2.5 xl:px-3.5 whitespace-nowrap"
               >
                 Get Quote
               </Button>
@@ -697,12 +697,12 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile hamburger & Call icon */}
-          <div className="xl:hidden flex items-center gap-2 shrink-0">
+          <div className="lg:hidden flex items-center gap-1.5 min-[340px]:gap-2 shrink-0">
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour & Travels! I want to inquire about a cab / tour package.')}`}
               target="_blank"
               rel="noreferrer"
-              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center gap-1.5"
+              className="hidden min-[420px]:flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200"
               aria-label="WhatsApp"
               title="WhatsApp Vista Travels"
             >
@@ -711,7 +711,7 @@ export const Navbar = () => {
             </a>
             <a
               href={`tel:${cleanPhone}`}
-              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-brand-50 text-brand-600 border border-brand-200 flex items-center gap-1.5"
+              className="hidden min-[340px]:flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl bg-brand-50 text-brand-600 border border-brand-200"
               aria-label="Call Now"
               title="Call Vista Tour and Travels"
             >
@@ -720,7 +720,7 @@ export const Navbar = () => {
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 focus:outline-none"
+              className="p-1.5 min-[340px]:p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 focus:outline-none"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -730,7 +730,7 @@ export const Navbar = () => {
 
         {/* Mobile menu dropdown with Collapsible Accordions */}
         {mobileMenuOpen && (
-          <div className="xl:hidden glass-dropdown border-b border-white/70 px-4 pt-3 pb-8 pb-safe mt-2.5 shadow-2xl animate-in slide-in-from-top duration-200 max-h-[82vh] overflow-y-auto no-scrollbar overscroll-contain">
+          <div className="lg:hidden glass-dropdown border-b border-white/70 px-4 pt-3 pb-8 pb-safe mt-2.5 shadow-2xl animate-in slide-in-from-top duration-200 max-h-[82vh] overflow-y-auto no-scrollbar overscroll-contain">
             {/* Direct quick-call & WhatsApp banner on mobile */}
             <div className="mb-3 p-3 rounded-2xl bg-gradient-to-r from-brand-600 to-navy-900 text-white flex items-center justify-between shadow-sm">
               <div>

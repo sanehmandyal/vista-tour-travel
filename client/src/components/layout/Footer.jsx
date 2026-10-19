@@ -45,22 +45,22 @@ export const Footer = () => {
 
   return (
     <footer className="bg-navy-950 text-slate-300 pt-16 pb-8 border-t border-navy-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-2.5 min-[360px]:px-4 sm:px-6">
         {/* Main Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 pb-12 border-b border-navy-800/80">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-5">
-            <Link to="/" className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-2.5 sm:gap-3">
               <img
                 src={settings.logo || "/logo.jpg"}
                 alt="Vista Tour and Travels"
-                className="w-12 h-12 rounded-full object-cover shadow-md border border-amber-400/40 shrink-0"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover shadow-md border border-amber-400/40 shrink-0"
               />
-              <div>
-                <span className="text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+              <div className="min-w-0">
+                <span className="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-1.5 truncate">
                   Vista <span className="text-brand-400">Travels</span>
                 </span>
-                <span className="text-xs text-amber-400 font-semibold block -mt-1">
+                <span className="text-xs text-amber-400 font-semibold block -mt-0.5 truncate">
                   Haryana, Delhi NCR & Chandigarh Cabs & Tours
                 </span>
               </div>
@@ -71,9 +71,9 @@ export const Footer = () => {
             </p>
 
             {/* Google Rating Showcase Box (Glassmorphism) */}
-            <div className="p-3.5 rounded-2xl glass-dark border border-white/10 flex items-center justify-between gap-4 max-w-sm shadow-glass">
+            <div className="p-3 sm:p-3.5 rounded-2xl glass-dark border border-white/10 flex flex-col min-[340px]:flex-row items-start min-[340px]:items-center justify-between gap-3 max-w-sm shadow-glass">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center font-black text-sm">
+                <div className="w-9 h-9 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center font-black text-sm shrink-0">
                   5.0
                 </div>
                 <div>
@@ -89,14 +89,14 @@ export const Footer = () => {
                 href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"}
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs font-bold text-brand-400 hover:text-white flex items-center gap-1 transition-colors"
+                className="text-xs font-bold text-brand-400 hover:text-white flex items-center gap-1 transition-colors self-end min-[340px]:self-auto"
               >
                 View on Google <ExternalLink className="w-3 h-3" />
               </a>
             </div>
 
             {/* Trust Badges */}
-            <div className="flex items-center gap-4 text-xs text-slate-400 pt-1">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 pt-1">
               <span className="flex items-center gap-1.5 text-slate-300 font-medium">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" /> Govt. Approved Cabs
               </span>

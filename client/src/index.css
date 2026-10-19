@@ -3,10 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     width: 100%;
+    max-width: 100vw;
     -webkit-text-size-adjust: 100%;
   }
   body {
@@ -15,10 +20,27 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     overflow-x: hidden;
     width: 100%;
+    max-width: 100vw;
     position: relative;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* Safe word-breaking for ultra-narrow devices (e.g. 240px+) */
+  p, h1, h2, h3, h4, h5, h6, span, a, label {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   
   /* Prevent iOS Safari auto-zoom on form inputs */

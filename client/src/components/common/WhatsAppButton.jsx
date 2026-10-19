@@ -21,10 +21,10 @@ export const WhatsAppButton = () => {
   const waUrl = `https://wa.me/${targetPhone}?text=${defaultMessage}`;
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bottom-safe z-50 flex flex-col items-end print:hidden">
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 bottom-safe z-50 flex flex-col items-end print:hidden">
       {/* Interactive Tooltip Card (Glassmorphism) */}
       {showTooltip && (
-        <div className="mb-3 w-72 max-w-[calc(100vw-2.5rem)] glass-dropdown rounded-2xl shadow-glass-hover border border-white/85 p-4 animate-in fade-in slide-in-from-bottom-3 duration-200">
+        <div className="mb-3 w-72 max-w-[calc(100vw-1.5rem)] glass-dropdown rounded-2xl shadow-glass-hover border border-white/85 p-3.5 sm:p-4 animate-in fade-in slide-in-from-bottom-3 duration-200">
           <div className="flex items-start justify-between gap-2 border-b border-slate-100 pb-2 mb-2">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs">
@@ -69,10 +69,10 @@ export const WhatsAppButton = () => {
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setShowTooltip(true)}
-          className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 hover:scale-110 active:scale-95 transition-all duration-200"
+          className="flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 hover:scale-110 active:scale-95 transition-all duration-200"
           aria-label="Chat on WhatsApp"
         >
-          <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 fill-white" />
+          <MessageCircle className="w-5 h-5 sm:w-7 sm:h-7 fill-white" />
         </a>
 
         {/* Pulse Ring */}

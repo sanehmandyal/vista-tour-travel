@@ -82,7 +82,7 @@ export const Hero = () => {
       <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-400/20 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Hero Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-3.5 sm:px-6 py-8 sm:py-10 lg:py-12 2xl:py-16 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-2.5 min-[360px]:px-4 sm:px-6 py-8 sm:py-10 lg:py-12 2xl:py-16 flex flex-col items-center text-center">
         {/* Google 5.0 Rating Badge */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-3.5 sm:mb-4">
           <a
@@ -92,7 +92,8 @@ export const Hero = () => {
             className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-amber-400/25 border border-amber-300/50 text-amber-300 text-[11px] sm:text-xs md:text-sm font-bold backdrop-blur-xl hover:bg-amber-400/35 transition-all shadow-lg shadow-amber-500/20"
           >
             <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400 shrink-0" />
-            <span>5.0 ★ Google Rated • 50+ Verified Reviews</span>
+            <span className="hidden min-[380px]:inline">5.0 ★ Google Rated • 50+ Verified Reviews</span>
+            <span className="min-[380px]:hidden">5.0 ★ (50+ Google Reviews)</span>
           </a>
           <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/25 border border-emerald-300/50 text-emerald-300 text-xs font-semibold backdrop-blur-xl">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Ladwa, Kurukshetra & NCR Specialists
@@ -100,7 +101,7 @@ export const Hero = () => {
         </div>
 
         {/* Headline */}
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-black tracking-tight text-white max-w-4xl leading-[1.15] mb-3 sm:mb-4 drop-shadow-md">
+        <h1 className="text-xl min-[360px]:text-2xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-black tracking-tight text-white max-w-4xl leading-[1.15] mb-3 sm:mb-4 drop-shadow-md break-words">
           {settings.heroTitle || 'Experience Seamless Journeys with Vista Tour and Travels'}
         </h1>
 
@@ -113,7 +114,7 @@ export const Hero = () => {
         <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8 w-full max-w-xl sm:max-w-none">
           <a
             href={`tel:${settings.phone || '9068888578'}`}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95 whitespace-nowrap"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95 sm:whitespace-nowrap"
           >
             <Phone className="w-4 h-4 text-slate-950 shrink-0" /> Call {settings.phone || '+91 90688 88578'}
           </a>
@@ -122,7 +123,7 @@ export const Hero = () => {
             href={`https://wa.me/${(settings.whatsapp || '919068888578').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about cab booking and custom Haryana/Delhi/Chandigarh tour itineraries.`)}`}
             target="_blank"
             rel="noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95 whitespace-nowrap"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95 sm:whitespace-nowrap"
           >
             <MessageCircle className="w-4 h-4 text-white shrink-0" /> Instant WhatsApp Quote
           </a>
@@ -131,7 +132,7 @@ export const Hero = () => {
             size="lg"
             variant="white"
             onClick={() => navigate('/destinations')}
-            className="w-full sm:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 shadow-lg justify-center whitespace-nowrap"
+            className="w-full sm:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-3.5 sm:px-5 shadow-lg justify-center sm:whitespace-nowrap"
           >
             <Compass className="w-4 h-4 mr-1.5 text-brand-600 shrink-0" /> Explore Destinations
           </Button>
@@ -140,18 +141,18 @@ export const Hero = () => {
             size="lg"
             variant="outline"
             onClick={() => navigate('/cars')}
-            className="w-full sm:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 text-white border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-sm justify-center whitespace-nowrap"
+            className="w-full sm:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-3.5 sm:px-5 text-white border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-sm justify-center sm:whitespace-nowrap"
           >
             <Car className="w-4 h-4 mr-1.5 text-amber-400 shrink-0" /> View Fleet
           </Button>
         </div>
 
         {/* Cab Booking & Travel Search Card (Glassmorphism) */}
-        <div className="w-full max-w-5xl glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl border border-white/85 text-left text-navy-900">
+        <div className="w-full max-w-5xl glass-panel rounded-xl sm:rounded-3xl p-3 sm:p-6 shadow-2xl border border-white/85 text-left text-navy-900">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200/80">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-brand-50/90 text-brand-600 text-xs font-bold border border-brand-200/50">
-                <Car className="w-4 h-4" /> Book Chauffeur Cab / Sightseeing
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-brand-50/90 text-brand-600 text-xs font-bold border border-brand-200/50">
+                <Car className="w-4 h-4 shrink-0" /> <span className="text-[11px] sm:text-xs">Book Cab / Sightseeing</span>
               </span>
             </div>
             <span className="hidden sm:inline-block text-xs text-slate-500 font-semibold">
@@ -159,7 +160,7 @@ export const Hero = () => {
             </span>
           </div>
 
-          <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 items-end">
+          <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-3.5 items-end">
             {/* Field 1: Pickup Point */}
             <div className="space-y-1">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
