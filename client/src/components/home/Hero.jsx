@@ -57,7 +57,7 @@ export const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-[640px] lg:min-h-[720px] flex items-center justify-center bg-navy-950 overflow-hidden">
+    <div className="relative min-h-[560px] sm:min-h-[600px] 2xl:min-h-[700px] flex items-center justify-center bg-navy-950 overflow-hidden">
       {/* Background Photography with Vibrant Golden Hour Atmosphere */}
       <div className="absolute inset-0 z-0">
         <img
@@ -82,9 +82,9 @@ export const Hero = () => {
       <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-400/20 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Hero Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-3.5 sm:px-6 py-10 sm:py-20 lg:py-28 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-3.5 sm:px-6 py-8 sm:py-10 lg:py-12 2xl:py-16 flex flex-col items-center text-center">
         {/* Google 5.0 Rating Badge */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-5 sm:mb-6">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-3.5 sm:mb-4">
           <a
             href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"}
             target="_blank"
@@ -100,20 +100,20 @@ export const Hero = () => {
         </div>
 
         {/* Headline */}
-        <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.15] mb-4 sm:mb-5 drop-shadow-md">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-black tracking-tight text-white max-w-4xl leading-[1.15] mb-3 sm:mb-4 drop-shadow-md">
           {settings.heroTitle || 'Experience Seamless Journeys with Vista Tour and Travels'}
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-slate-100 max-w-2xl leading-relaxed mb-6 sm:mb-8 font-medium drop-shadow-sm px-2">
+        <p className="text-xs sm:text-sm lg:text-base text-slate-100 max-w-2xl leading-relaxed mb-5 sm:mb-6 font-medium drop-shadow-sm px-2">
           {settings.heroSubtitle || 'Haryana’s top-rated luxury cab service and travel provider. Clean commercial cabs, verified professional chauffeurs, and transparent all-inclusive quotes.'}
         </p>
 
         {/* Action Buttons: Phone, WhatsApp, Destinations */}
-        <div className="flex flex-col xs:flex-row flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-8 sm:mb-12 w-full max-w-xl sm:max-w-none">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8 w-full max-w-xl sm:max-w-none">
           <a
             href={`tel:${settings.phone || '9068888578'}`}
-            className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95 whitespace-nowrap"
           >
             <Phone className="w-4 h-4 text-slate-950 shrink-0" /> Call {settings.phone || '+91 90688 88578'}
           </a>
@@ -122,7 +122,7 @@ export const Hero = () => {
             href={`https://wa.me/${(settings.whatsapp || '919068888578').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about cab booking and custom Haryana/Delhi/Chandigarh tour itineraries.`)}`}
             target="_blank"
             rel="noreferrer"
-            className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95 whitespace-nowrap"
           >
             <MessageCircle className="w-4 h-4 text-white shrink-0" /> Instant WhatsApp Quote
           </a>
@@ -131,7 +131,7 @@ export const Hero = () => {
             size="lg"
             variant="white"
             onClick={() => navigate('/destinations')}
-            className="w-full xs:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 shadow-lg justify-center"
+            className="w-full sm:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 shadow-lg justify-center whitespace-nowrap"
           >
             <Compass className="w-4 h-4 mr-1.5 text-brand-600 shrink-0" /> Explore Destinations
           </Button>
@@ -140,7 +140,7 @@ export const Hero = () => {
             size="lg"
             variant="outline"
             onClick={() => navigate('/cars')}
-            className="w-full xs:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 text-white border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-sm justify-center"
+            className="w-full sm:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 text-white border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-sm justify-center whitespace-nowrap"
           >
             <Car className="w-4 h-4 mr-1.5 text-amber-400 shrink-0" /> View Fleet
           </Button>

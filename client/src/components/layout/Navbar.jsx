@@ -235,11 +235,11 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation Links with Interactive Dropdowns */}
-          <nav className="hidden xl:flex items-center gap-1 xl:gap-1.5">
+          <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5">
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive && location.pathname === '/' && !location.hash
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -257,7 +257,7 @@ export const Navbar = () => {
             >
               <button
                 onClick={() => setOpenDropdown(openDropdown === 'destinations' ? null : 'destinations')}
-                className={`px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/destinations') || openDropdown === 'destinations'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -327,7 +327,7 @@ export const Navbar = () => {
               <Link
                 to="/cars"
                 onClick={() => setOpenDropdown(null)}
-                className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname === '/cars' || openDropdown === 'cars'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -397,7 +397,7 @@ export const Navbar = () => {
               <Link
                 to="/packages"
                 onClick={() => setOpenDropdown(null)}
-                className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/packages') || openDropdown === 'packages'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -467,7 +467,7 @@ export const Navbar = () => {
               <Link
                 to="/locations"
                 onClick={() => setOpenDropdown(null)}
-                className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/locations') || openDropdown === 'locations'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -536,7 +536,7 @@ export const Navbar = () => {
             >
               <button
                 onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}
-                className={`px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                className={`px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/services') || location.pathname.startsWith('/cars') || openDropdown === 'services'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -607,7 +607,7 @@ export const Navbar = () => {
             <NavLink
               to="/#reviews"
               className={() =>
-                `px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   location.hash === '#reviews'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -620,7 +620,7 @@ export const Navbar = () => {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -633,7 +633,7 @@ export const Navbar = () => {
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                `px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors whitespace-nowrap ${
+                `px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-colors whitespace-nowrap ${
                   isActive
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -645,23 +645,24 @@ export const Navbar = () => {
           </nav>
 
           {/* Right Action buttons */}
-          <div className="hidden xl:flex items-center gap-2 xl:gap-2.5 shrink-0">
+          <div className="hidden xl:flex items-center gap-1.5 2xl:gap-2.5 shrink-0">
             {/* Direct WhatsApp Pill */}
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour & Travels! I want to inquire about a cab / holiday package.')}`}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition-all shadow-sm whitespace-nowrap"
+              className="flex items-center gap-1.5 px-2.5 2xl:px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition-all shadow-sm whitespace-nowrap"
               title="Chat on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
-              <span>WhatsApp: 90688 88578</span>
+              <span className="hidden 2xl:inline">WhatsApp: 90688 88578</span>
+              <span className="2xl:hidden">WhatsApp</span>
             </a>
 
             {/* Direct Call Button */}
             <a
               href={`tel:${cleanPhone}`}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-300 text-navy-900 text-xs font-bold transition-all whitespace-nowrap"
+              className="flex items-center gap-1.5 px-2.5 2xl:px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-300 text-navy-900 text-xs font-bold transition-all whitespace-nowrap"
             >
               <Phone className="w-3.5 h-3.5 text-brand-600 shrink-0" />
               <span>Call Now</span>
@@ -671,7 +672,7 @@ export const Navbar = () => {
               <div className="flex items-center gap-1.5">
                 <Link
                   to="/admin/dashboard"
-                  className="px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
+                  className="px-2.5 2xl:px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
                 >
                   <ShieldAlert className="w-3.5 h-3.5 shrink-0" /> Dashboard
                 </Link>
@@ -688,7 +689,7 @@ export const Navbar = () => {
                 variant="accent"
                 size="sm"
                 onClick={() => navigate('/contact')}
-                className="shadow-sm font-bold text-xs py-1.5 px-3.5 whitespace-nowrap"
+                className="shadow-sm font-bold text-xs py-1.5 px-2.5 2xl:px-3.5 whitespace-nowrap"
               >
                 Get Quote
               </Button>
