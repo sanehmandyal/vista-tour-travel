@@ -23,6 +23,7 @@ import serviceRoutes from './routes/serviceRoutes.js';
 import carRoutes from './routes/carRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import pageRoutes from './routes/pageRoutes.js';
 import validateEnv from './config/validateEnv.js';
 
 dotenv.config();
@@ -112,6 +113,7 @@ const mountRoutes = (prefix = '') => {
   app.use(`${prefix}/fleet`, carRoutes);
   app.use(`${prefix}/users`, userRoutes);
   app.use(`${prefix}/admin`, adminRoutes);
+  app.use(`${prefix}/pages`, pageRoutes);
 };
 
 mountRoutes('/api');

@@ -67,7 +67,11 @@ export const Footer = () => {
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              <strong>Vista Tour and Travels</strong> is the top-rated 5.0★ Google verified tour agency and luxury cab service based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Offering reliable commercial cabs, experienced polite chauffeurs, and customized tour packages across Kurukshetra, Ambala, Delhi, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh.
+              {settings.footerText || (
+                <>
+                  <strong>Vista Tour and Travels</strong> is the top-rated 5.0★ Google verified tour agency and luxury cab service based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Offering reliable commercial cabs, experienced polite chauffeurs, and customized tour packages across Kurukshetra, Ambala, Delhi, Karnal, Panipat, Yamunanagar, Kaithal & Chandigarh.
+                </>
+              )}
             </p>
 
             {/* Google Rating Showcase Box (Glassmorphism) */}
@@ -218,7 +222,7 @@ export const Footer = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 pb-12 sm:pb-0 text-center sm:text-left">
-          <p>© {new Date().getFullYear()} Vista Tour and Travels. All rights reserved.</p>
+          <p>{settings.copyrightText || `© ${new Date().getFullYear()} Vista Tour and Travels. All rights reserved.`}</p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2">
             <Link to="/faq" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
             <Link to="/faq" className="hover:text-slate-400 transition-colors">Terms of Service</Link>

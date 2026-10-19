@@ -105,6 +105,29 @@ const websiteSettingSchema = new mongoose.Schema(
     supportHours: {
       type: String,
       default: '24/7'
+    },
+    navigation: [
+      {
+        label: { type: String, required: true },
+        path: { type: String, required: true },
+        isEnabled: { type: Boolean, default: true },
+        order: { type: Number, default: 0 },
+        isExternal: { type: Boolean, default: false }
+      }
+    ],
+    announcementBar: {
+      isEnabled: { type: Boolean, default: false },
+      text: { type: String, default: 'Special Offer: 10% OFF on all Kurukshetra, Ambala & Delhi NCR tour bookings!' },
+      link: { type: String, default: '/packages' },
+      linkText: { type: String, default: 'Book Now' }
+    },
+    footerText: {
+      type: String,
+      default: 'Premier 5.0★ Google verified tour operator and 24/7 luxury commercial cab provider based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana).'
+    },
+    copyrightText: {
+      type: String,
+      default: '© 2026 Vista Tour and Travels. All rights reserved. Registered commercial travel operator in Haryana, India.'
     }
   },
   { timestamps: true }

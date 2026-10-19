@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWebsite } from '../../context/WebsiteContext';
+import { pageApi } from '../../services/pageApi';
 import { PhoneCall, Compass, ArrowRight, MessageCircle } from 'lucide-react';
 import Button from '../common/Button';
 
 export const FinalCTA = () => {
   const { settings } = useWebsite();
   const navigate = useNavigate();
+  const [pageData, setPageData] = useState(null);
+
+  useEffect(() => {
+    const fetchPage = async () => {
+      try {
+        const res = await pageApi.getBySlug('home');
+        if (res.success && res.data) {
+          setPageData(res.data);
+        }
+      } catch (err) {
+        console.warn('Home page CTA fallback');
+      }
+    };
+    fetchPage();
+  }, []);
+
+  const ctaSection = pageData?.sections?.find(s => s.sectionId === 'cta-banner' || s.sectionId === 'final-cta');
+  if (ctaSection && ctaSection.isEnabled === false) {
+    return null;
+  }
 
   return (
     <section className="py-20 bg-navy-950 text-white relative overflow-hidden">
@@ -17,7 +38,7 @@ export const FinalCTA = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 opacity-20">
         <img
-          src="/assets/images/hero-haryana-kurukshetra.jpg"
+          src={ctaSection?.image || "/assets/images/hero-haryana-kurukshetra.jpg"}
           alt="Haryana Heritage Background"
           onError={(e) => {
             e.target.onerror = null;
@@ -34,11 +55,11 @@ export const FinalCTA = () => {
           </div>
 
           <h2 className="text-2xl sm:text-5xl font-black tracking-tight mb-4 leading-tight break-words">
-            Experience the True Spirit of Haryana & Beyond
+            {ctaSection?.title || 'Experience the True Spirit of Haryana & Beyond'}
           </h2>
 
           <p className="text-slate-300 text-xs sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed font-normal">
-            From sacred Brahma Sarovar & Jyotisar tirthas in Kurukshetra to vibrant Delhi NCR shopping and scenic Chandigarh getaways — travel across Haryana & North India in premium AC cabs with authentic Haryanvi hospitality.
+            {ctaSection?.description || ctaSection?.subtitle || 'From sacred Brahma Sarovar & Jyotisar tirthas in Kurukshetra to vibrant Delhi NCR shopping and scenic Chandigarh getaways — travel across Haryana & North India in premium AC cabs with authentic Haryanvi hospitality.'}
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { destinationApi, getExactDestinationImages } from '../../services/destinationApi';
 import { processDeviceImage } from '../../utils/imageUpload';
-import { ArrowLeft, Upload, Save, Sparkles, MapPin, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, Upload, Save, Sparkles, MapPin, Image as ImageIcon, Plus, Trash2, Camera, Compass } from 'lucide-react';
 import Button from '../../components/common/Button';
 import Loader from '../../components/common/Loader';
 import toast from 'react-hot-toast';
@@ -24,10 +24,19 @@ export const DestinationForm = () => {
     shortDescription: '',
     description: '',
     heroImage: '',
+    gallery: [],
+    attractions: [],
+    thingsToDo: [],
+    travelTips: [],
     bestTimeToVisit: 'September to March',
     featured: false,
     status: 'active'
   });
+
+  const [newAttraction, setNewAttraction] = useState({ title: '', description: '', image: '' });
+  const [newThing, setNewThing] = useState({ title: '', description: '', icon: 'Compass' });
+  const [newTip, setNewTip] = useState('');
+  const [newGalleryUrl, setNewGalleryUrl] = useState('');
 
   useEffect(() => {
     if (isEdit) {
@@ -44,6 +53,10 @@ export const DestinationForm = () => {
               shortDescription: current.shortDescription || '',
               description: current.description || '',
               heroImage: current.heroImage || current.featuredImage || '',
+              gallery: Array.isArray(current.gallery) && current.gallery.length > 0 ? current.gallery : (current.heroImage ? [current.heroImage] : []),
+              attractions: Array.isArray(current.attractions) ? current.attractions : [],
+              thingsToDo: Array.isArray(current.thingsToDo) ? current.thingsToDo : [],
+              travelTips: Array.isArray(current.travelTips) ? current.travelTips : [],
               bestTimeToVisit: current.bestTimeToVisit || 'September to March',
               featured: Boolean(current.featured || current.isFeatured),
               status: current.status || 'active'
@@ -76,7 +89,11 @@ export const DestinationForm = () => {
     try {
       setUploading(true);
       const dataUri = await processDeviceImage(file);
-      setFormData(prev => ({ ...prev, heroImage: dataUri }));
+      setFormData(prev => ({
+        ...prev,
+        heroImage: dataUri,
+        gallery: prev.gallery.length === 0 ? [dataUri] : prev.gallery
+      }));
       toast.success('Photo loaded successfully from device!');
     } catch (err) {
       toast.error(err.message || 'Image processing failed');
@@ -84,6 +101,120 @@ export const DestinationForm = () => {
       setUploading(false);
       if (e.target) e.target.value = '';
     }
+  };
+
+  const handleGalleryFileUpload = async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    try {
+      setUploading(true);
+      const processed = [];
+      for (const file of files) {
+        const uri = await processDeviceImage(file);
+        processed.push(uri);
+      }
+      setFormData(prev => ({
+        ...prev,
+        gallery: [...prev.gallery, ...processed]
+      }));
+      toast.success(`${processed.length} gallery photo(s) added from device!`);
+    } catch (err) {
+      toast.error(err.message || 'Gallery image processing failed');
+    } finally {
+      setUploading(false);
+      if (e.target) e.target.value = '';
+    }
+  };
+
+  const handleAddGalleryUrl = () => {
+    if (!newGalleryUrl.trim()) return;
+    setFormData(prev => ({
+      ...prev,
+      gallery: [...prev.gallery, newGalleryUrl.trim()]
+    }));
+    setNewGalleryUrl('');
+    toast.success('Gallery photo URL added!');
+  };
+
+  const handleRemoveGalleryImage = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      gallery: prev.gallery.filter((_, idx) => idx !== index)
+    }));
+  };
+
+  const handleAttractionImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setUploading(true);
+      const dataUri = await processDeviceImage(file, 800, 600, 0.85);
+      setNewAttraction(prev => ({ ...prev, image: dataUri }));
+      toast.success('Attraction photo uploaded!');
+    } catch (err) {
+      toast.error(err.message || 'Attraction photo upload failed');
+    } finally {
+      setUploading(false);
+      if (e.target) e.target.value = '';
+    }
+  };
+
+  const handleAddAttraction = () => {
+    if (!newAttraction.title.trim()) {
+      toast.error('Attraction title is required');
+      return;
+    }
+    setFormData(prev => ({
+      ...prev,
+      attractions: [...prev.attractions, { ...newAttraction }]
+    }));
+    setNewAttraction({ title: '', description: '', image: '' });
+    toast.success('Attraction added!');
+  };
+
+  const handleRemoveAttraction = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      attractions: prev.attractions.filter((_, idx) => idx !== index)
+    }));
+  };
+
+  const handleAddThing = () => {
+    if (!newThing.title.trim()) {
+      toast.error('Activity title is required');
+      return;
+    }
+    setFormData(prev => ({
+      ...prev,
+      thingsToDo: [...prev.thingsToDo, { ...newThing }]
+    }));
+    setNewThing({ title: '', description: '', icon: 'Compass' });
+    toast.success('Experience activity added!');
+  };
+
+  const handleRemoveThing = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      thingsToDo: prev.thingsToDo.filter((_, idx) => idx !== index)
+    }));
+  };
+
+  const handleAddTip = () => {
+    if (!newTip.trim()) return;
+    setFormData(prev => ({
+      ...prev,
+      travelTips: [...prev.travelTips, newTip.trim()]
+    }));
+    setNewTip('');
+  };
+
+  const handleRemoveTip = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      travelTips: prev.travelTips.filter((_, idx) => idx !== index)
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -99,6 +230,9 @@ export const DestinationForm = () => {
       // Auto-assign authentic image if left empty
       const exact = getExactDestinationImages(formData.name);
       const finalImage = formData.heroImage.trim() || exact.heroImage;
+      const galleryList = Array.isArray(formData.gallery) && formData.gallery.length > 0
+        ? formData.gallery
+        : [finalImage];
 
       const payload = {
         ...formData,
@@ -107,8 +241,11 @@ export const DestinationForm = () => {
         bestTimeToVisit: formData.bestTimeToVisit || 'September to March',
         heroImage: finalImage,
         featuredImage: finalImage,
-        images: [finalImage],
-        gallery: [finalImage],
+        images: galleryList,
+        gallery: galleryList,
+        attractions: formData.attractions,
+        thingsToDo: formData.thingsToDo,
+        travelTips: formData.travelTips,
         shortDescription: formData.shortDescription.trim() || `${formData.name} tour and 24/7 commercial cab packages from Ladwa & Kurukshetra, Haryana.`,
         description: formData.description.trim() || `Explore ${formData.name} in comfortable sanitized cabs with verified professional chauffeurs from Vista Tour and Travels.`,
         state: formData.state.trim() || 'Haryana'
@@ -326,6 +463,253 @@ export const DestinationForm = () => {
                 className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 font-medium bg-white"
               />
             </div>
+          </div>
+        </div>
+
+        {/* 2. Multi-Photo Gallery Manager */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                <Camera className="w-3.5 h-3.5 text-brand-600" /> Photo Gallery ({formData.gallery.length} Images)
+              </h3>
+              <p className="text-[11px] text-slate-400">Add multiple high-resolution photos displayed in the destination gallery.</p>
+            </div>
+            <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-50 text-brand-700 hover:bg-brand-100 font-bold text-xs cursor-pointer transition-colors border border-brand-200">
+              <Upload className="w-3 h-3" /> Upload Device Photos
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleGalleryFileUpload}
+                disabled={uploading}
+                className="hidden"
+              />
+            </label>
+          </div>
+
+          <div className="flex gap-2">
+            <input
+              type="url"
+              value={newGalleryUrl}
+              onChange={(e) => setNewGalleryUrl(e.target.value)}
+              placeholder="Or paste image URL (https://...)"
+              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
+            />
+            <button
+              type="button"
+              onClick={handleAddGalleryUrl}
+              className="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold transition-colors"
+            >
+              Add URL
+            </button>
+          </div>
+
+          {formData.gallery.length > 0 && (
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+              {formData.gallery.map((imgUrl, idx) => (
+                <div key={idx} className="relative group rounded-xl overflow-hidden aspect-video bg-slate-200 border border-slate-200 shadow-xs">
+                  <img src={imgUrl} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveGalleryImage(idx)}
+                    className="absolute top-1 right-1 bg-rose-600 text-white rounded-full p-1 opacity-80 hover:opacity-100 transition-opacity"
+                    title="Delete Photo"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* 3. Must-Visit Attractions Builder */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
+          <div>
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-brand-600" /> Must-Visit Attractions ({formData.attractions.length})
+            </h3>
+            <p className="text-[11px] text-slate-400">Key monuments, sacred tirthas, or sightseeing landmarks.</p>
+          </div>
+
+          {formData.attractions.length > 0 && (
+            <div className="space-y-2">
+              {formData.attractions.map((attr, idx) => {
+                const title = typeof attr === 'string' ? attr : attr.title;
+                const desc = typeof attr === 'string' ? '' : attr.description;
+                const img = typeof attr === 'object' ? attr.image : '';
+
+                return (
+                  <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      {img && (
+                        <img src={img} alt={title} className="w-12 h-10 rounded-lg object-cover border border-slate-100 shrink-0" />
+                      )}
+                      <div className="truncate">
+                        <p className="text-xs font-bold text-navy-900 truncate">{title}</p>
+                        {desc && <p className="text-[11px] text-slate-500 truncate">{desc}</p>}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveAttraction(idx)}
+                      className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors"
+                      title="Remove Attraction"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-3">
+            <span className="text-[11px] font-bold text-slate-600 block">Add New Attraction</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input
+                type="text"
+                placeholder="Attraction Title (e.g. Brahma Sarovar)"
+                value={newAttraction.title}
+                onChange={(e) => setNewAttraction(prev => ({ ...prev, title: e.target.value }))}
+                className="text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+              />
+              <input
+                type="text"
+                placeholder="Short Description"
+                value={newAttraction.description}
+                onChange={(e) => setNewAttraction(prev => ({ ...prev, description: e.target.value }))}
+                className="text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer">
+                <Upload className="w-3 h-3 text-brand-600" /> Photo from Device
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAttractionImageUpload}
+                  disabled={uploading}
+                  className="hidden"
+                />
+              </label>
+              {newAttraction.image && (
+                <img src={newAttraction.image} alt="Preview" className="w-8 h-8 rounded-md object-cover border border-slate-200" />
+              )}
+              <input
+                type="url"
+                placeholder="Or Image URL"
+                value={newAttraction.image}
+                onChange={(e) => setNewAttraction(prev => ({ ...prev, image: e.target.value }))}
+                className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500"
+              />
+              <button
+                type="button"
+                onClick={handleAddAttraction}
+                className="px-4 py-1.5 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* 4. Top Experiences & Activities */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
+          <div>
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Highlights & Activities ({formData.thingsToDo.length})
+            </h3>
+            <p className="text-[11px] text-slate-400">Special curated experiences for visitors.</p>
+          </div>
+
+          {formData.thingsToDo.length > 0 && (
+            <div className="space-y-2">
+              {formData.thingsToDo.map((thing, idx) => (
+                <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 gap-3">
+                  <div>
+                    <p className="text-xs font-bold text-navy-900">{thing.title}</p>
+                    <p className="text-[11px] text-slate-500">{thing.description}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveThing(idx)}
+                    className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="bg-white p-3 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2">
+            <input
+              type="text"
+              placeholder="Activity Title (e.g. Evening Aarti & Light Show)"
+              value={newThing.title}
+              onChange={(e) => setNewThing(prev => ({ ...prev, title: e.target.value }))}
+              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+            />
+            <input
+              type="text"
+              placeholder="Description"
+              value={newThing.description}
+              onChange={(e) => setNewThing(prev => ({ ...prev, description: e.target.value }))}
+              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+            />
+            <button
+              type="button"
+              onClick={handleAddThing}
+              className="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
+            >
+              Add Activity
+            </button>
+          </div>
+        </div>
+
+        {/* 5. Driver Travel Tips */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
+          <div>
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <Compass className="w-3.5 h-3.5 text-brand-600" /> Local Travel Tips ({formData.travelTips.length})
+            </h3>
+            <p className="text-[11px] text-slate-400">Helpful local advice from chauffeurs and guides.</p>
+          </div>
+
+          {formData.travelTips.length > 0 && (
+            <div className="space-y-1.5">
+              {formData.travelTips.map((tip, idx) => (
+                <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700">
+                  <span>• {tip}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveTip(idx)}
+                    className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="e.g. Best photographed during early morning sunrise."
+              value={newTip}
+              onChange={(e) => setNewTip(e.target.value)}
+              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
+            />
+            <button
+              type="button"
+              onClick={handleAddTip}
+              className="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
+            >
+              Add Tip
+            </button>
           </div>
         </div>
 

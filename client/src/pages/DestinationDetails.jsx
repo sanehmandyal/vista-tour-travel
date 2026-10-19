@@ -76,10 +76,7 @@ export const DestinationDetails = () => {
   const isInvalid = (url) =>
     !url ||
     typeof url !== 'string' ||
-    url.includes('unsplash.com') ||
-    url.includes('photo-15') ||
-    url.includes('photo-16') ||
-    url.includes('photo-14');
+    url.trim() === '';
 
   const heroImg = isInvalid(destination.heroImage)
     ? (isInvalid(destination.featuredImage) ? exact.heroImage : destination.featuredImage)

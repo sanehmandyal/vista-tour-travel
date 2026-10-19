@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWebsite } from '../../context/WebsiteContext';
+import { pageApi } from '../../services/pageApi';
 import {
   Users2,
   BadgePercent,
@@ -13,6 +14,26 @@ import {
 
 export const WhyChooseUs = () => {
   const { settings } = useWebsite();
+  const [pageData, setPageData] = useState(null);
+
+  useEffect(() => {
+    const fetchPage = async () => {
+      try {
+        const res = await pageApi.getBySlug('home');
+        if (res.success && res.data) {
+          setPageData(res.data);
+        }
+      } catch (err) {
+        console.warn('Home page content fallback');
+      }
+    };
+    fetchPage();
+  }, []);
+
+  const section = pageData?.sections?.find(s => s.sectionId === 'why-choose-us');
+  if (section && section.isEnabled === false) {
+    return null;
+  }
 
   const reasons = [
     {
@@ -58,14 +79,14 @@ export const WhyChooseUs = () => {
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200/60 px-3 py-1 rounded-full mb-3 shadow-xs max-w-full">
             <Award className="w-3.5 h-3.5 shrink-0" />
-            <span className="hidden min-[380px]:inline">5.0★ Google Rated Tour & Luxury Cab Service</span>
+            <span className="hidden min-[380px]:inline">{section?.badge || '5.0★ Google Rated Tour & Luxury Cab Service'}</span>
             <span className="min-[380px]:hidden">5.0★ Google Rated Agency</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-navy-900 tracking-tight break-words">
-            Why Choose Vista Tour and Travels
+            {section?.title || 'Why Choose Vista Tour and Travels'}
           </h2>
           <p className="text-slate-500 mt-3 text-sm sm:text-base">
-            Backed by 50+ five-star Google reviews, Vista Tour and Travels delivers sanitized cabs, courteous highway chauffeurs, and customized itineraries across Ladwa, Kurukshetra, Ambala, Karnal, Panipat, Delhi NCR, Chandigarh and all of Haryana.
+            {section?.subtitle || 'Backed by 50+ five-star Google reviews, Vista Tour and Travels delivers sanitized cabs, courteous highway chauffeurs, and customized itineraries across Ladwa, Kurukshetra, Ambala, Karnal, Panipat, Delhi NCR, Chandigarh and all of Haryana.'}
           </p>
         </div>
 

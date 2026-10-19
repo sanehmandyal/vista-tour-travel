@@ -29,7 +29,24 @@ export const defaultSettings = {
   experienceYears: '12+',
   happyTravelers: '10,000+',
   destinationCount: '8 Premier Destinations',
-  supportHours: '24/7'
+  supportHours: '24/7',
+  navigation: [
+    { id: 'nav-home', label: 'Home', path: '/', isEnabled: true, order: 1 },
+    { id: 'nav-destinations', label: 'Destinations', path: '/destinations', isEnabled: true, order: 2 },
+    { id: 'nav-packages', label: 'Tour Packages', path: '/packages', isEnabled: true, order: 3 },
+    { id: 'nav-cars', label: 'Fleet & Cabs', path: '/cars', isEnabled: true, order: 4 },
+    { id: 'nav-services', label: 'Taxi Services', path: '/services', isEnabled: true, order: 5 },
+    { id: 'nav-about', label: 'About Us', path: '/about', isEnabled: true, order: 6 },
+    { id: 'nav-contact', label: 'Contact', path: '/contact', isEnabled: true, order: 7 }
+  ],
+  announcementBar: {
+    isEnabled: false,
+    text: 'Special 10% discount on outstation bookings from Kurukshetra & Ladwa!',
+    linkText: 'Book Now',
+    linkUrl: '/contact'
+  },
+  footerText: 'Premium 24/7 taxi service and customized tour packages based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Verified chauffeurs, sanitized cabs, and transparent rates.',
+  copyrightText: '© 2026 Vista Tour and Travels. All rights reserved. Registered Haryana Travel Operator.'
 };
 
 const getInitialSettings = () => {

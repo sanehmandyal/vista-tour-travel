@@ -2,16 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { adminApi } from '../../services/adminApi';
 import { processDeviceImage } from '../../utils/imageUpload';
 import { useWebsite, defaultSettings } from '../../context/WebsiteContext';
-import { Settings, Save, Upload } from 'lucide-react';
+import { Settings, Save, Upload, Plus, Trash2, ArrowUp, ArrowDown, Eye, EyeOff, Navigation, Bell, ShieldCheck } from 'lucide-react';
 import Button from '../../components/common/Button';
 import Loader from '../../components/common/Loader';
 import toast from 'react-hot-toast';
+
+const defaultNav = [
+  { id: 'nav-home', label: 'Home', path: '/', isEnabled: true, order: 1 },
+  { id: 'nav-destinations', label: 'Destinations', path: '/destinations', isEnabled: true, order: 2 },
+  { id: 'nav-packages', label: 'Tour Packages', path: '/packages', isEnabled: true, order: 3 },
+  { id: 'nav-cars', label: 'Fleet & Cabs', path: '/cars', isEnabled: true, order: 4 },
+  { id: 'nav-services', label: 'Taxi Services', path: '/services', isEnabled: true, order: 5 },
+  { id: 'nav-about', label: 'About Us', path: '/about', isEnabled: true, order: 6 },
+  { id: 'nav-contact', label: 'Contact', path: '/contact', isEnabled: true, order: 7 }
+];
 
 export const WebsiteSettings = () => {
   const { settings, updateSettingsState, refreshSettings } = useWebsite();
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [newNavItem, setNewNavItem] = useState({ label: '', path: '' });
 
   const [form, setForm] = useState(() => ({
     companyName: settings.companyName || defaultSettings.companyName,
@@ -39,7 +50,11 @@ export const WebsiteSettings = () => {
     experienceYears: settings.experienceYears || defaultSettings.experienceYears,
     happyTravelers: settings.happyTravelers || defaultSettings.happyTravelers,
     destinationCount: settings.destinationCount || defaultSettings.destinationCount,
-    supportHours: settings.supportHours || defaultSettings.supportHours
+    supportHours: settings.supportHours || defaultSettings.supportHours,
+    navigation: Array.isArray(settings.navigation) && settings.navigation.length > 0 ? settings.navigation : defaultNav,
+    announcementBar: settings.announcementBar || { isEnabled: false, text: 'Special 10% discount on outstation bookings from Kurukshetra & Ladwa!', linkText: 'Book Now', linkUrl: '/contact' },
+    footerText: settings.footerText || 'Premium 24/7 taxi service and customized tour packages based in Nawarsi Bazar, Ladwa (Kurukshetra, Haryana). Verified chauffeurs, sanitized cabs, and transparent rates.',
+    copyrightText: settings.copyrightText || '© 2026 Vista Tour and Travels. All rights reserved. Registered Haryana Travel Operator.'
   }));
 
   useEffect(() => {
@@ -47,7 +62,15 @@ export const WebsiteSettings = () => {
       try {
         const res = await adminApi.getSettings();
         if (res.success && res.data) {
-          setForm(prev => ({ ...prev, ...res.data }));
+          const d = res.data;
+          setForm(prev => ({
+            ...prev,
+            ...d,
+            navigation: Array.isArray(d.navigation) && d.navigation.length > 0 ? d.navigation : (prev.navigation?.length > 0 ? prev.navigation : defaultNav),
+            announcementBar: d.announcementBar || prev.announcementBar,
+            footerText: d.footerText || prev.footerText,
+            copyrightText: d.copyrightText || prev.copyrightText
+          }));
         }
       } catch (err) {
         // use initial settings
@@ -59,6 +82,74 @@ export const WebsiteSettings = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleToggleNav = (index) => {
+    setForm(prev => {
+      const nav = [...prev.navigation];
+      nav[index] = { ...nav[index], isEnabled: !nav[index].isEnabled };
+      return { ...prev, navigation: nav };
+    });
+  };
+
+  const handleUpdateNav = (index, field, value) => {
+    setForm(prev => {
+      const nav = [...prev.navigation];
+      nav[index] = { ...nav[index], [field]: value };
+      return { ...prev, navigation: nav };
+    });
+  };
+
+  const handleMoveNav = (index, direction) => {
+    setForm(prev => {
+      const nav = [...prev.navigation];
+      const targetIndex = index + direction;
+      if (targetIndex < 0 || targetIndex >= nav.length) return prev;
+      const temp = nav[index];
+      nav[index] = nav[targetIndex];
+      nav[targetIndex] = temp;
+      return { ...prev, navigation: nav };
+    });
+  };
+
+  const handleRemoveNav = (index) => {
+    setForm(prev => ({
+      ...prev,
+      navigation: prev.navigation.filter((_, idx) => idx !== index)
+    }));
+  };
+
+  const handleAddNav = () => {
+    if (!newNavItem.label.trim() || !newNavItem.path.trim()) {
+      toast.error('Navigation label and link path are required');
+      return;
+    }
+    setForm(prev => ({
+      ...prev,
+      navigation: [
+        ...prev.navigation,
+        {
+          id: `nav-${Date.now()}`,
+          label: newNavItem.label.trim(),
+          path: newNavItem.path.trim(),
+          isEnabled: true,
+          order: prev.navigation.length + 1
+        }
+      ]
+    }));
+    setNewNavItem({ label: '', path: '' });
+    toast.success('Navigation link added!');
+  };
+
+  const handleAnnouncementChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({
+      ...prev,
+      announcementBar: {
+        ...prev.announcementBar,
+        [name]: type === 'checkbox' ? checked : value
+      }
+    }));
   };
 
   const handleHeroUpload = async (e) => {
@@ -444,6 +535,196 @@ export const WebsiteSettings = () => {
                 value={form.supportHours}
                 onChange={handleChange}
                 placeholder="24/7"
+                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 5. Navigation Menu Management */}
+        <div className="space-y-4 pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+            <div>
+              <h2 className="text-base font-bold text-navy-900 flex items-center gap-2">
+                <Navigation className="w-4 h-4 text-brand-600" /> 5. Navigation Menu Management
+              </h2>
+              <p className="text-xs text-slate-500">Configure, reorder, or toggle header menu links on the public website.</p>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            {form.navigation.map((item, idx) => (
+              <div
+                key={item.id || idx}
+                className={`p-3.5 rounded-2xl border transition-all flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 ${
+                  item.isEnabled ? 'bg-white border-slate-200 shadow-xs' : 'bg-slate-50 border-slate-200/60 opacity-60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5 flex-1">
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      type="button"
+                      disabled={idx === 0}
+                      onClick={() => handleMoveNav(idx, -1)}
+                      className="p-1 rounded-md text-slate-400 hover:text-navy-900 disabled:opacity-30 transition-colors"
+                      title="Move Up"
+                    >
+                      <ArrowUp className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      disabled={idx === form.navigation.length - 1}
+                      onClick={() => handleMoveNav(idx, 1)}
+                      className="p-1 rounded-md text-slate-400 hover:text-navy-900 disabled:opacity-30 transition-colors"
+                      title="Move Down"
+                    >
+                      <ArrowDown className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 flex-1">
+                    <input
+                      type="text"
+                      value={item.label}
+                      onChange={(e) => handleUpdateNav(idx, 'label', e.target.value)}
+                      placeholder="Menu Label"
+                      className="text-xs font-bold text-navy-900 rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 bg-transparent"
+                    />
+                    <input
+                      type="text"
+                      value={item.path}
+                      onChange={(e) => handleUpdateNav(idx, 'path', e.target.value)}
+                      placeholder="/destinations"
+                      className="text-xs text-slate-600 rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 bg-transparent"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-end gap-2 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => handleToggleNav(idx)}
+                    className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                      item.isEnabled ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
+                    }`}
+                  >
+                    {item.isEnabled ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                    <span>{item.isEnabled ? 'Visible' : 'Hidden'}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveNav(idx)}
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 transition-colors"
+                    title="Delete Menu Link"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Add New Navigation Link */}
+          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row gap-2.5 items-center">
+            <input
+              type="text"
+              placeholder="New Label (e.g. Haryana Heritage)"
+              value={newNavItem.label}
+              onChange={(e) => setNewNavItem(prev => ({ ...prev, label: e.target.value }))}
+              className="flex-1 text-xs rounded-xl border border-slate-200 px-3.5 py-2 bg-white focus:outline-none focus:border-brand-500 w-full"
+            />
+            <input
+              type="text"
+              placeholder="Path (e.g. /destinations/kurukshetra)"
+              value={newNavItem.path}
+              onChange={(e) => setNewNavItem(prev => ({ ...prev, path: e.target.value }))}
+              className="flex-1 text-xs rounded-xl border border-slate-200 px-3.5 py-2 bg-white focus:outline-none focus:border-brand-500 w-full"
+            />
+            <button
+              type="button"
+              onClick={handleAddNav}
+              className="w-full sm:w-auto px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-xs transition-colors shrink-0 flex items-center justify-center gap-1.5"
+            >
+              <Plus className="w-3.5 h-3.5" /> Add Menu Item
+            </button>
+          </div>
+        </div>
+
+        {/* 6. Announcement Bar */}
+        <div className="space-y-4 pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+            <div>
+              <h2 className="text-base font-bold text-navy-900 flex items-center gap-2">
+                <Bell className="w-4 h-4 text-amber-500" /> 6. Announcement Top Alert Banner
+              </h2>
+              <p className="text-xs text-slate-500">Display a dynamic notification strip at the very top of all public pages.</p>
+            </div>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                name="isEnabled"
+                checked={form.announcementBar?.isEnabled || false}
+                onChange={handleAnnouncementChange}
+                className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-slate-300"
+              />
+              <span className="text-xs font-bold text-navy-900">Show Announcement</span>
+            </label>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="sm:col-span-2">
+              <label className="text-xs font-bold text-slate-700 block mb-1">Announcement Message</label>
+              <input
+                type="text"
+                name="text"
+                value={form.announcementBar?.text || ''}
+                onChange={handleAnnouncementChange}
+                placeholder="Special 10% discount on outstation bookings from Kurukshetra & Ladwa!"
+                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
+              />
+            </div>
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-1">Action Button Text</label>
+              <input
+                type="text"
+                name="linkText"
+                value={form.announcementBar?.linkText || ''}
+                onChange={handleAnnouncementChange}
+                placeholder="Book Now"
+                className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 7. Global Footer & Copyright */}
+        <div className="space-y-4 pt-4 border-t border-slate-100">
+          <h2 className="text-base font-bold text-navy-900 border-b border-slate-100 pb-2">
+            7. Global Footer & Copyright Branding
+          </h2>
+
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-1">Footer Brand Summary</label>
+              <textarea
+                rows={2}
+                name="footerText"
+                value={form.footerText}
+                onChange={handleChange}
+                placeholder="Brief agency description displayed in the footer..."
+                className="w-full text-sm rounded-xl border border-slate-200 p-3.5 focus:outline-none focus:border-brand-500 font-normal leading-relaxed"
+              />
+            </div>
+
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-1">Copyright Line</label>
+              <input
+                type="text"
+                name="copyrightText"
+                value={form.copyrightText}
+                onChange={handleChange}
+                placeholder="© 2026 Vista Tour and Travels. All rights reserved."
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
             </div>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useWebsite } from '../context/WebsiteContext';
 import { inquiryApi } from '../services/inquiryApi';
+import { pageApi } from '../services/pageApi';
 import {
   Phone,
   Mail,
@@ -21,6 +22,21 @@ import toast from 'react-hot-toast';
 export const Contact = () => {
   const { settings } = useWebsite();
   const [searchParams] = useSearchParams();
+  const [pageData, setPageData] = useState(null);
+
+  useEffect(() => {
+    const fetchPage = async () => {
+      try {
+        const res = await pageApi.getBySlug('contact');
+        if (res.success && res.data) {
+          setPageData(res.data);
+        }
+      } catch (err) {
+        console.warn('Contact page content fallback');
+      }
+    };
+    fetchPage();
+  }, []);
 
   const adminPhone = settings?.phone || '+91 90688 88578';
   const adminRawPhone = '919068888578';
@@ -107,13 +123,17 @@ export const Contact = () => {
         <div className="absolute -bottom-24 right-1/3 w-96 h-96 bg-amber-500/15 rounded-full blur-[130px] pointer-events-none" />
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-300 uppercase tracking-widest bg-brand-500/20 px-3 py-1 rounded-full mb-3 border border-brand-400/30">
-            <Headphones className="w-3.5 h-3.5" /> Direct Dispatch Hotline Connected
+            <Headphones className="w-3.5 h-3.5" /> {pageData?.hero?.badge || 'Direct Dispatch Hotline Connected'}
           </div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">
-            Contact & Travel Inquiries
+            {pageData?.hero?.title || 'Contact & Travel Inquiries'}
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-            Inquiries are linked directly to Admin Vista (<span className="text-amber-400 font-bold">+91 90688 88578</span>) for instant notification and fast booking confirmation.
+            {pageData?.hero?.subtitle || (
+              <>
+                Inquiries are linked directly to Admin Vista (<span className="text-amber-400 font-bold">{settings.phone || '+91 90688 88578'}</span>) for instant notification and fast booking confirmation.
+              </>
+            )}
           </p>
         </div>
       </div>

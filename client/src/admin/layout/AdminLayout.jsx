@@ -21,7 +21,8 @@ import {
   ChevronRight,
   ShieldCheck,
   Car,
-  Star
+  Star,
+  Layers
 } from 'lucide-react';
 
 export const AdminLayout = () => {
@@ -57,6 +58,7 @@ export const AdminLayout = () => {
     {
       group: 'Content & Media',
       items: [
+        { name: 'Pages & CMS', path: '/admin/pages', icon: Layers },
         { name: 'Traveler Reviews', path: '/admin/reviews', icon: Star },
         { name: 'FAQs', path: '/admin/faqs', icon: HelpCircle }
       ]

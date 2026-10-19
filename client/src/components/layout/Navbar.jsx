@@ -145,6 +145,21 @@ export const Navbar = () => {
 
   return (
     <>
+      {/* Top Announcement Bar */}
+      {settings.announcementBar?.isEnabled && settings.announcementBar?.text && (
+        <div className="bg-gradient-to-r from-amber-600 via-brand-600 to-amber-700 text-white py-1.5 px-3 sm:px-6 text-xs font-semibold text-center flex items-center justify-center gap-2 shadow-xs transition-all">
+          <span>{settings.announcementBar.text}</span>
+          {settings.announcementBar.linkText && (
+            <Link
+              to={settings.announcementBar.linkUrl || '/contact'}
+              className="underline hover:text-amber-200 transition-colors font-bold ml-1 inline-flex items-center gap-0.5"
+            >
+              {settings.announcementBar.linkText} →
+            </Link>
+          )}
+        </div>
+      )}
+
       {/* Top micro bar for phone, Google Reviews badge & Admin Panel */}
       <div className="bg-navy-950/90 backdrop-blur-md text-slate-300 text-xs py-1.5 sm:py-2 px-2.5 min-[360px]:px-4 sm:px-6 border-b border-white/10">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-1.5 sm:gap-2">
