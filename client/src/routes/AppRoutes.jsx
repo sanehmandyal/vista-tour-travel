@@ -18,6 +18,9 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Account from '../pages/Account';
 import NotFound from '../pages/NotFound';
+import Cars from '../pages/Cars';
+import Locations from '../pages/Locations';
+import LocationDetails from '../pages/LocationDetails';
 
 // Public Layout
 import Navbar from '../components/layout/Navbar';
@@ -112,6 +115,16 @@ export default function AppRoutes() {
       <Route path="/yamunanagar" element={<Navigate to="/destinations/yamunanagar" replace />} />
       <Route path="/kaithal" element={<Navigate to="/destinations/kaithal" replace />} />
       <Route path="/chandigarh" element={<Navigate to="/destinations/chandigarh" replace />} />
+      {/* Cars and Fleet Routes */}
+      <Route path="/cars" element={<PublicLayout><Cars /></PublicLayout>} />
+      <Route path="/fleet" element={<Navigate to="/cars" replace />} />
+      <Route path="/vehicles" element={<Navigate to="/cars" replace />} />
+
+      {/* Locations Routes */}
+      <Route path="/locations" element={<PublicLayout><Locations /></PublicLayout>} />
+      <Route path="/locations/:slug" element={<PublicLayout><LocationDetails /></PublicLayout>} />
+      <Route path="/ladwa" element={<Navigate to="/locations/ladwa" replace />} />
+
       <Route path="/packages" element={<PublicLayout><Packages /></PublicLayout>} />
       <Route path="/packages/:slug" element={<PublicLayout><PackageDetails /></PublicLayout>} />
       <Route path="/booking/:packageId" element={<PublicLayout><Booking /></PublicLayout>} />

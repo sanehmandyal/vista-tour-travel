@@ -150,12 +150,13 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">Quick Links</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
+              <li><Link to="/cars" className="hover:text-white transition-colors text-amber-300 font-bold">★ Vehicle Fleet & Cars</Link></li>
+              <li><Link to="/locations" className="hover:text-white transition-colors text-brand-300 font-semibold">24/7 Service Locations</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Haryana & Delhi NCR Tours</Link></li>
               <li><Link to="/packages" className="hover:text-white transition-colors">Tour Packages</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Luxury Cab Fleet</Link></li>
-              <li><Link to="/#reviews" className="hover:text-white transition-colors text-brand-300 font-medium">★ Traveler Reviews</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Taxi Rates & Outstation</Link></li>
+              <li><Link to="/#reviews" className="hover:text-white transition-colors text-slate-300 font-medium">★ Traveler Reviews</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About Vista Travels</Link></li>
-              <li><Link to="/faq" className="hover:text-white transition-colors">FAQs</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Book Cab / Inquire</Link></li>
             </ul>
           </div>

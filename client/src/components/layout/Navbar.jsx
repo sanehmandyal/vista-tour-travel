@@ -26,7 +26,8 @@ import {
   Trees,
   Heart,
   Users,
-  Clock
+  Clock,
+  ShieldCheck
 } from 'lucide-react';
 import Button from '../common/Button';
 
@@ -38,7 +39,9 @@ export const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState({
     destinations: false,
+    cars: false,
     packages: false,
+    locations: false,
     services: false
   });
 
@@ -107,6 +110,27 @@ export const Navbar = () => {
     { name: 'Yamunanagar & Kalesar Wildlife Safari', desc: 'Nature, wildlife & Hathni Kund riverfront tour', path: '/packages/kalesar-jungle-safari-hathni-kund-tour', icon: Clock },
     { name: 'Delhi NCR Heritage & Shopping Tour', desc: 'Full-day door-to-door capital city excursion', path: '/packages/delhi-ncr-capital-heritage-tour', icon: Plane },
     { name: 'Kaithal Hanuman Birthplace & Pehowa', desc: 'Divine family temple & holy sarovar yatra', path: '/packages/kaithal-hanuman-birthplace-pehowa-yatra', icon: Users }
+  ];
+
+  const carsDropdownItems = [
+    { name: 'Toyota Innova Crysta', desc: '7+1 Luxury SUV for outstation & airport', path: '/cars', icon: Car },
+    { name: 'Toyota Innova Hycross', desc: 'Hybrid VIP luxury with ottoman lounge seating', path: '/cars', icon: Sparkles },
+    { name: 'Maruti Suzuki Ertiga', desc: '6+1 Smart MUV for budget family tours', path: '/cars', icon: Users },
+    { name: 'Maruti Suzuki Dzire', desc: '4+1 Premium sedan for quick airport drops', path: '/cars', icon: Compass },
+    { name: 'Mahindra Scorpio-N', desc: 'Commanding heavy-duty highway & rural SUV', path: '/cars', icon: ShieldCheck },
+    { name: 'Force Tempo Traveller', desc: '12, 17 & 26-seater maharaja yatra vans', path: '/cars', icon: Car }
+  ];
+
+  const locationsDropdownItems = [
+    { name: 'Ladwa (Head Office)', desc: 'Nawarsi Bazar central dispatch & 24/7 cabs', path: '/locations/ladwa', icon: MapPin },
+    { name: 'Kurukshetra', desc: 'Railway Junction, Pipli & University pickups', path: '/locations/kurukshetra', icon: Star },
+    { name: 'Ambala', desc: 'Cantt Railway Station & Cloth Market shopping', path: '/locations/ambala', icon: Compass },
+    { name: 'Delhi NCR & IGI Airport', desc: '24/7 Guaranteed flight pickups (T1, T2, T3)', path: '/locations/delhi', icon: Plane },
+    { name: 'Karnal', desc: 'Smart city, Karna Lake & Haveli highway transit', path: '/locations/karnal', icon: MapPin },
+    { name: 'Panipat', desc: 'Textile exporters, refinery & GT Road cabs', path: '/locations/panipat', icon: Sparkles },
+    { name: 'Yamunanagar & Jagadhri', desc: 'Twin city, timber hub & Kalesar safari cabs', path: '/locations/yamunanagar', icon: Trees },
+    { name: 'Kaithal & Pehowa', desc: 'Hanuman birthplace & Saraswati snan yatras', path: '/locations/kaithal', icon: Heart },
+    { name: 'Chandigarh Tricity', desc: 'Airport (IXC), Mohali & corporate cabs', path: '/locations/chandigarh', icon: Compass }
   ];
 
   const servicesDropdownItems = [
@@ -293,15 +317,86 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* 2. Tour Packages Dropdown */}
+            {/* 2. Cars & Fleet Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('cars')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                to="/cars"
+                onClick={() => setOpenDropdown(null)}
+                className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                  location.pathname === '/cars' || openDropdown === 'cars'
+                    ? 'text-brand-600 bg-brand-50'
+                    : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
+                }`}
+              >
+                <span>Cars</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === 'cars' ? 'rotate-180' : ''}`} />
+              </Link>
+
+              {openDropdown === 'cars' && (
+                <div className="absolute -left-16 mt-2.5 w-[580px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                  <div className="flex items-center justify-between px-2.5 pb-2 mb-2 border-b border-slate-100/90">
+                    <div className="flex items-center gap-1.5">
+                      <Car className="w-3.5 h-3.5 text-brand-600" />
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+                        Our Commercial Cab & Luxury Fleet
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/60">
+                      11+ Models
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {carsDropdownItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          onClick={() => setOpenDropdown(null)}
+                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-amber-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                            <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700 truncate">{item.name}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5 line-clamp-1">{item.desc}</p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-2.5 pt-2 border-t border-slate-100/90 px-3 flex items-center justify-between bg-slate-50/60 -mx-3.5 -mb-3.5 p-2.5 rounded-b-2xl">
+                    <span className="text-[11px] text-slate-500 font-medium">All cabs sanitized daily with verified drivers</span>
+                    <Link
+                      to="/cars"
+                      onClick={() => setOpenDropdown(null)}
+                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group shrink-0"
+                    >
+                      <span>Browse All Cars & Rates</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 3. Tour Packages Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => handleMouseEnter('packages')}
               onMouseLeave={handleMouseLeave}
             >
-              <button
-                onClick={() => setOpenDropdown(openDropdown === 'packages' ? null : 'packages')}
-                className={`px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+              <Link
+                to="/packages"
+                onClick={() => setOpenDropdown(null)}
+                className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
                   location.pathname.startsWith('/packages') || openDropdown === 'packages'
                     ? 'text-brand-600 bg-brand-50'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -309,7 +404,7 @@ export const Navbar = () => {
               >
                 <span>Tour Packages</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === 'packages' ? 'rotate-180' : ''}`} />
-              </button>
+              </Link>
 
               {openDropdown === 'packages' && (
                 <div className="absolute -left-28 mt-2.5 w-[640px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
@@ -355,6 +450,76 @@ export const Navbar = () => {
                       className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group shrink-0"
                     >
                       <span>View All Tour Packages</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 4. Locations Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('locations')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                to="/locations"
+                onClick={() => setOpenDropdown(null)}
+                className={`px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-colors flex items-center gap-1 whitespace-nowrap ${
+                  location.pathname.startsWith('/locations') || openDropdown === 'locations'
+                    ? 'text-brand-600 bg-brand-50'
+                    : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
+                }`}
+              >
+                <span>Locations</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === 'locations' ? 'rotate-180' : ''}`} />
+              </Link>
+
+              {openDropdown === 'locations' && (
+                <div className="absolute -left-36 mt-2.5 w-[620px] max-w-[calc(100vw-2rem)] glass-dropdown rounded-2xl p-3.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150 shadow-2xl before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                  <div className="flex items-center justify-between px-2.5 pb-2 mb-2 border-b border-slate-100/90">
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-brand-600" />
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+                        24/7 Doorstep Cab Service Areas
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
+                      9 Service Hubs
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {locationsDropdownItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          onClick={() => setOpenDropdown(null)}
+                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-gradient-to-r hover:from-brand-50/90 hover:to-sky-50/60 text-slate-700 hover:text-navy-900 transition-all group border border-transparent hover:border-brand-200/50"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-slate-100/90 border border-slate-200/60 group-hover:bg-brand-600 group-hover:border-brand-600 text-brand-600 group-hover:text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-all">
+                            <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-xs font-bold leading-tight text-navy-900 group-hover:text-brand-700 truncate">{item.name}</p>
+                            <p className="text-[11px] text-slate-500 leading-tight mt-0.5 line-clamp-1">{item.desc}</p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-2.5 pt-2 border-t border-slate-100/90 px-3 flex items-center justify-between bg-slate-50/60 -mx-3.5 -mb-3.5 p-2.5 rounded-b-2xl">
+                    <span className="text-[11px] text-slate-500 font-medium">Headquarters at Nawarsi Bazar, Ladwa (Kurukshetra)</span>
+                    <Link
+                      to="/locations"
+                      onClick={() => setOpenDropdown(null)}
+                      className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group shrink-0"
+                    >
+                      <span>Explore All Locations</span>
                       <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
@@ -630,6 +795,40 @@ export const Navbar = () => {
                 )}
               </div>
 
+              {/* Mobile Accordion: Cars & Fleet */}
+              <div className="rounded-xl border border-slate-100 overflow-hidden">
+                <button
+                  onClick={() => toggleMobileSubmenu('cars')}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 bg-slate-50/70 text-sm font-bold text-navy-900"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <Car className="w-4 h-4 text-brand-600" /> Cars & Fleet
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${mobileExpanded.cars ? 'rotate-180' : ''}`} />
+                </button>
+                {mobileExpanded.cars && (
+                  <div className="bg-white px-3 py-1 space-y-1">
+                    {carsDropdownItems.map(item => (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-brand-600 rounded-lg hover:bg-slate-50"
+                      >
+                        • {item.name}
+                      </Link>
+                    ))}
+                    <Link
+                      to="/cars"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-2 text-xs font-bold text-brand-600 border-t border-slate-100"
+                    >
+                      Browse All 11+ Fleet Models →
+                    </Link>
+                  </div>
+                )}
+              </div>
+
               {/* Mobile Accordion: Tour Packages */}
               <div className="rounded-xl border border-slate-100 overflow-hidden">
                 <button
@@ -659,6 +858,40 @@ export const Navbar = () => {
                       className="block px-3 py-2 text-xs font-bold text-brand-600 border-t border-slate-100"
                     >
                       View All Tour Packages →
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Accordion: Service Locations */}
+              <div className="rounded-xl border border-slate-100 overflow-hidden">
+                <button
+                  onClick={() => toggleMobileSubmenu('locations')}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 bg-slate-50/70 text-sm font-bold text-navy-900"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <MapPin className="w-4 h-4 text-brand-600" /> Service Locations
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${mobileExpanded.locations ? 'rotate-180' : ''}`} />
+                </button>
+                {mobileExpanded.locations && (
+                  <div className="bg-white px-3 py-1 space-y-1">
+                    {locationsDropdownItems.map(item => (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-brand-600 rounded-lg hover:bg-slate-50"
+                      >
+                        • {item.name}
+                      </Link>
+                    ))}
+                    <Link
+                      to="/locations"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-2 text-xs font-bold text-brand-600 border-t border-slate-100"
+                    >
+                      View All 9 Service Locations →
                     </Link>
                   </div>
                 )}
