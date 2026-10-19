@@ -164,7 +164,7 @@ export const Navbar = () => {
           </div>
 
           {/* Google Reviews Badge + WhatsApp + Admin CTA */}
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour and Travels! I would like to inquire about cabs / tour packages from Ladwa, Haryana.')}`}
               target="_blank"
@@ -172,7 +172,8 @@ export const Navbar = () => {
               className="inline-flex items-center gap-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors border border-emerald-400/30 shrink-0"
             >
               <MessageCircle className="w-3 h-3 fill-emerald-400 text-emerald-400 shrink-0" />
-              <span>WhatsApp Inquiries</span>
+              <span className="hidden xs:inline">WhatsApp Inquiries</span>
+              <span className="xs:hidden">WhatsApp</span>
             </a>
 
             <a
@@ -182,8 +183,8 @@ export const Navbar = () => {
               className="inline-flex items-center gap-1.5 bg-amber-400/15 hover:bg-amber-400/25 text-amber-300 px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors border border-amber-400/30 shrink-0"
             >
               <Star className="w-3 h-3 fill-amber-400 text-amber-400 shrink-0" />
-              <span>5.0 (50+ Google reviews)</span>
-              <ExternalLink className="w-2.5 h-2.5 opacity-70 hidden xs:inline" />
+              <span>5.0 (50+ reviews)</span>
+              <ExternalLink className="w-2.5 h-2.5 opacity-70 hidden sm:inline" />
             </a>
 
             {isAdmin ? (
@@ -198,7 +199,7 @@ export const Navbar = () => {
                 to="/login"
                 className="text-slate-400 hover:text-white text-[11px] font-medium transition-colors flex items-center gap-1 shrink-0"
               >
-                <ShieldAlert className="w-3 h-3 text-brand-400 shrink-0" /> Admin Login
+                <ShieldAlert className="w-3 h-3 text-brand-400 shrink-0" /> <span className="hidden xs:inline">Admin </span>Login
               </Link>
             )}
           </div>
@@ -234,7 +235,7 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation Links with Interactive Dropdowns */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+          <nav className="hidden xl:flex items-center gap-1 xl:gap-1.5">
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -644,7 +645,7 @@ export const Navbar = () => {
           </nav>
 
           {/* Right Action buttons */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 shrink-0">
+          <div className="hidden xl:flex items-center gap-2 xl:gap-2.5 shrink-0">
             {/* Direct WhatsApp Pill */}
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour & Travels! I want to inquire about a cab / holiday package.')}`}
@@ -695,24 +696,26 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile hamburger & Call icon */}
-          <div className="lg:hidden flex items-center gap-2 shrink-0">
+          <div className="xl:hidden flex items-center gap-2 shrink-0">
             <a
               href={`https://wa.me/91${cleanWa}?text=${encodeURIComponent('Hello Vista Tour & Travels! I want to inquire about a cab / tour package.')}`}
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200"
+              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center gap-1.5"
               aria-label="WhatsApp"
               title="WhatsApp Vista Travels"
             >
               <MessageCircle className="w-4 h-4 fill-emerald-500" />
+              <span className="hidden sm:inline text-xs font-bold">WhatsApp</span>
             </a>
             <a
               href={`tel:${cleanPhone}`}
-              className="p-2 rounded-xl bg-brand-50 text-brand-600 border border-brand-200"
+              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-brand-50 text-brand-600 border border-brand-200 flex items-center gap-1.5"
               aria-label="Call Now"
               title="Call Vista Tour and Travels"
             >
               <Phone className="w-4 h-4" />
+              <span className="hidden sm:inline text-xs font-bold">Call</span>
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -726,7 +729,7 @@ export const Navbar = () => {
 
         {/* Mobile menu dropdown with Collapsible Accordions */}
         {mobileMenuOpen && (
-          <div className="lg:hidden glass-dropdown border-b border-white/70 px-4 pt-3 pb-6 mt-2.5 shadow-2xl animate-in slide-in-from-top duration-200 max-h-[85vh] overflow-y-auto no-scrollbar">
+          <div className="xl:hidden glass-dropdown border-b border-white/70 px-4 pt-3 pb-8 pb-safe mt-2.5 shadow-2xl animate-in slide-in-from-top duration-200 max-h-[82vh] overflow-y-auto no-scrollbar overscroll-contain">
             {/* Direct quick-call & WhatsApp banner on mobile */}
             <div className="mb-3 p-3 rounded-2xl bg-gradient-to-r from-brand-600 to-navy-900 text-white flex items-center justify-between shadow-sm">
               <div>

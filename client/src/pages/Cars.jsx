@@ -326,28 +326,28 @@ export const Cars = () => {
         </div>
 
         {/* Final CTA Strip */}
-        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
-          <div>
+        <div className="mt-12 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
+          <div className="text-center md:text-left">
             <span className="text-xs uppercase tracking-widest text-amber-400 font-bold">Custom Cab Requirements?</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-white mt-1">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white mt-1">
               Need a Special Vehicle for Weddings or Corporate Events?
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1">
               Contact our central dispatch in Ladwa at <strong className="text-white">+91 90688 88578</strong> for instant quotes.
             </p>
           </div>
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
             <a
               href={`https://wa.me/91${cleanPhone}?text=${encodeURIComponent('Hello Vista Tour & Travels, I need custom vehicle rental assistance.')}`}
               target="_blank"
               rel="noreferrer"
-              className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2"
+              className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
             >
-              <MessageCircle className="w-4 h-4" /> WhatsApp Dispatch
+              <MessageCircle className="w-4 h-4 shrink-0" /> WhatsApp Dispatch
             </a>
             <Link
               to="/contact"
-              className="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all"
+              className="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all text-center"
             >
               Inquire Online
             </Link>

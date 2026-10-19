@@ -316,7 +316,7 @@ export const PackageDetails = () => {
 
         {/* Right 1 Col: Booking Sidebar Box */}
         <div>
-          <div className="glass-panel rounded-3xl p-6 shadow-glass border border-white/80 sticky top-24 space-y-6">
+          <div className="glass-panel rounded-3xl p-6 shadow-glass border border-white/80 lg:sticky lg:top-24 space-y-6">
             <div>
               <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">Vista Tour and Travels</span>
               <h3 className="text-2xl font-black text-navy-900 mt-1">

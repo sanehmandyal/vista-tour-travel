@@ -251,7 +251,7 @@ export const Packages = () => {
 
         {/* Results Grid */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <CardSkeleton key={i} />
             ))}
@@ -265,7 +265,7 @@ export const Packages = () => {
           />
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {packages.map((pkg) => {
                 const hasDiscount = pkg.discountedPrice > 0 && pkg.discountedPrice < pkg.price;
                 const displayPrice = hasDiscount ? pkg.discountedPrice : pkg.price;
@@ -275,13 +275,13 @@ export const Packages = () => {
                     key={pkg._id}
                     className="group glass-panel glass-panel-hover rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-300 border border-white/80 flex flex-col"
                   >
-                    <div className="relative h-56 w-full overflow-hidden bg-slate-200">
+                    <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-200">
                       <img
-                        src={pkg.featuredImage || 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80'}
+                        src={pkg.featuredImage && !pkg.featuredImage.includes('unsplash') ? pkg.featuredImage : '/assets/images/hero-haryana-kurukshetra.jpg'}
                         alt={pkg.title}
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80';
+                          e.target.src = '/assets/images/hero-haryana-kurukshetra.jpg';
                         }}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"

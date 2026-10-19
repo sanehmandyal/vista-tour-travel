@@ -56,7 +56,7 @@ export const LocationDetails = () => {
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
       {/* Hero Banner with Glassmorphism */}
-      <div className="relative h-[440px] lg:h-[500px] bg-navy-950 overflow-hidden flex items-end">
+      <div className="relative h-auto min-h-[420px] sm:min-h-[460px] lg:h-[500px] bg-navy-950 overflow-hidden flex items-end pt-12">
         <img
           src={location.heroImage}
           alt={location.name}
@@ -226,7 +226,7 @@ export const LocationDetails = () => {
         {/* Right Sidebar */}
         <div className="space-y-8">
           {/* Quick Booking Card */}
-          <div className="glass-panel rounded-2xl p-6 shadow-glass border border-white/90 sticky top-24">
+          <div className="glass-panel rounded-2xl p-6 shadow-glass border border-white/90 lg:sticky lg:top-24">
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">Central Dispatch Active</p>

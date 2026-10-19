@@ -91,38 +91,38 @@ export const WhyChooseUs = () => {
         </div>
 
         {/* Stats Strip (Glassmorphism Dark) */}
-        <div className="mt-16 glass-dark text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/15 relative overflow-hidden">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-navy-800">
-            <div className="pt-4 lg:pt-0">
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-400">
+        <div className="mt-16 glass-dark text-white rounded-2xl sm:rounded-3xl p-6 sm:p-12 shadow-2xl border border-white/15 relative overflow-hidden">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-2xl sm:text-4xl lg:text-5xl font-black text-brand-400">
                 {settings.experienceYears || '10+'}
               </p>
-              <p className="text-xs sm:text-sm text-slate-300 font-medium uppercase tracking-wider mt-1">
-                Years of Experience
+              <p className="text-[11px] sm:text-xs text-slate-300 font-medium uppercase tracking-wider mt-1.5">
+                Years of Trust
               </p>
             </div>
-            <div className="pt-4 lg:pt-0">
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-amber-400">
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-2xl sm:text-4xl lg:text-5xl font-black text-amber-400">
                 {settings.happyTravelers || '5000+'}
               </p>
-              <p className="text-xs sm:text-sm text-slate-300 font-medium uppercase tracking-wider mt-1">
+              <p className="text-[11px] sm:text-xs text-slate-300 font-medium uppercase tracking-wider mt-1.5">
                 Delighted Travelers
               </p>
             </div>
-            <div className="pt-4 lg:pt-0">
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-sky-400">
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-2xl sm:text-4xl lg:text-5xl font-black text-sky-400">
                 {settings.destinationCount || '100+'}
               </p>
-              <p className="text-xs sm:text-sm text-slate-300 font-medium uppercase tracking-wider mt-1">
-                Destinations Explored
+              <p className="text-[11px] sm:text-xs text-slate-300 font-medium uppercase tracking-wider mt-1.5">
+                Destinations & Hubs
               </p>
             </div>
-            <div className="pt-4 lg:pt-0">
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-emerald-400">
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-2xl sm:text-4xl lg:text-5xl font-black text-emerald-400">
                 {settings.supportHours || '24/7'}
               </p>
-              <p className="text-xs sm:text-sm text-slate-300 font-medium uppercase tracking-wider mt-1">
-                Customer Assistance
+              <p className="text-[11px] sm:text-xs text-slate-300 font-medium uppercase tracking-wider mt-1.5">
+                Dispatch Assistance
               </p>
             </div>
           </div>

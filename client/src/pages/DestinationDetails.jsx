@@ -94,7 +94,7 @@ export const DestinationDetails = () => {
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
       {/* Hero Banner with Glassmorphism Overlay */}
-      <div className="relative h-[480px] lg:h-[540px] bg-navy-950 overflow-hidden flex items-end">
+      <div className="relative h-auto min-h-[440px] sm:min-h-[480px] lg:h-[540px] bg-navy-950 overflow-hidden flex items-end pt-12">
         <img
           src={heroImg}
           alt={destination.name}
@@ -494,7 +494,7 @@ export const DestinationDetails = () => {
         {/* Right Sidebar */}
         <div className="space-y-8">
           {/* Quick Booking & Inquiry Card (Sticky Glassmorphic Panel) */}
-          <div className="glass-panel rounded-2xl p-6 shadow-glass border border-white/90 sticky top-24">
+          <div className="glass-panel rounded-2xl p-6 shadow-glass border border-white/90 lg:sticky lg:top-24">
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">Online & Ready to Dispatch</p>

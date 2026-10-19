@@ -56,13 +56,13 @@ export const FeaturedPackages = () => {
 
         {/* Grid */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <CardSkeleton key={i} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {packages.map((pkg) => {
               const hasDiscount = pkg.discountedPrice > 0 && pkg.discountedPrice < pkg.price;
               const displayPrice = hasDiscount ? pkg.discountedPrice : pkg.price;
@@ -73,13 +73,13 @@ export const FeaturedPackages = () => {
                   className="group glass-panel glass-panel-hover rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-300 border border-white/80 flex flex-col"
                 >
                   {/* Image Container */}
-                  <div className="relative h-56 w-full overflow-hidden bg-slate-200">
+                  <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-200">
                     <img
-                      src={pkg.featuredImage && !pkg.featuredImage.includes('unsplash') ? pkg.featuredImage : 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800'}
+                      src={pkg.featuredImage && !pkg.featuredImage.includes('unsplash') ? pkg.featuredImage : '/assets/images/hero-haryana-kurukshetra.jpg'}
                       alt={pkg.title}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800';
+                        e.target.src = '/assets/images/hero-haryana-kurukshetra.jpg';
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"

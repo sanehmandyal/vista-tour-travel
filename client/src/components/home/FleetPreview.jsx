@@ -370,18 +370,18 @@ export const FleetPreview = () => {
               <p className="text-xs text-slate-300">All commercial permits, full insurance coverage, and verified professional chauffeurs included.</p>
             </div>
           </div>
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto shrink-0">
             <a
               href="tel:9068888578"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white text-navy-900 hover:bg-slate-100 text-xs font-bold transition-colors shadow"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-white text-navy-900 hover:bg-slate-100 text-xs font-bold transition-colors shadow"
             >
               <PhoneCall className="w-3.5 h-3.5 text-brand-600" /> +91 90688 88578
             </a>
             <Link
-              to="/services"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors"
+              to="/cars"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors"
             >
-              View Fleet <ArrowRight className="w-3.5 h-3.5" />
+              View All Cars <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>

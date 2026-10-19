@@ -17,11 +17,11 @@ export const FinalCTA = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 opacity-20">
         <img
-          src="https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920"
+          src="/assets/images/hero-haryana-kurukshetra.jpg"
           alt="Haryana Heritage Background"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1920';
+            e.target.src = '/assets/images/hero-haryana-kurukshetra.jpg';
           }}
           className="w-full h-full object-cover"
         />
@@ -41,12 +41,12 @@ export const FinalCTA = () => {
             From sacred Brahma Sarovar & Jyotisar tirthas in Kurukshetra to vibrant Delhi NCR shopping and scenic Chandigarh getaways — travel across Haryana & North India in premium AC cabs with authentic Haryanvi hospitality.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
             <Button
               size="lg"
               variant="accent"
               onClick={() => navigate('/contact')}
-              className="shadow-xl"
+              className="w-full sm:w-auto shadow-xl justify-center"
             >
               Plan My Trip <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
@@ -55,16 +55,16 @@ export const FinalCTA = () => {
               href={`https://wa.me/${(settings.whatsapp || '9068888578').replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hi Vista Tour and Travels, I am planning a holiday trip and would like to get a customized quote.')}`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-xl text-sm sm:text-base px-6 py-3.5 gap-2.5 font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl text-sm sm:text-base px-6 py-3.5 gap-2.5 font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"
             >
-              <MessageCircle className="w-5 h-5" /> WhatsApp Us
+              <MessageCircle className="w-5 h-5 shrink-0" /> WhatsApp Us
             </a>
 
             <a
               href={`tel:${settings.phone || '9068888578'}`}
-              className="inline-flex items-center justify-center rounded-xl text-sm sm:text-base px-6 py-3.5 gap-2.5 font-bold bg-white/10 hover:bg-white/20 text-white transition-all border border-white/20 backdrop-blur-md shadow-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl text-sm sm:text-base px-6 py-3.5 gap-2.5 font-bold bg-white/10 hover:bg-white/20 text-white transition-all border border-white/20 backdrop-blur-md shadow-sm"
             >
-              <PhoneCall className="w-4 h-4 text-amber-400" /> {settings.phone || '+91 90688 88578'}
+              <PhoneCall className="w-4 h-4 text-amber-400 shrink-0" /> {settings.phone || '+91 90688 88578'}
             </a>
           </div>
         </div>

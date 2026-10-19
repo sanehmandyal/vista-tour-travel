@@ -60,13 +60,13 @@ export const About = () => {
 
           <div className="relative rounded-2xl overflow-hidden shadow-xl border border-white/60">
             <img
-              src="https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1000"
+              src="/assets/images/hero-haryana-kurukshetra.jpg"
               alt="Vista Tour and Travels - Ladwa, Kurukshetra & Haryana Journeys"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1000';
+                e.target.src = '/assets/images/hero-haryana-kurukshetra.jpg';
               }}
-              className="w-full h-96 object-cover"
+              className="w-full h-80 sm:h-96 object-cover"
             />
           </div>
         </div>
@@ -99,23 +99,23 @@ export const About = () => {
         </div>
 
         {/* Statistics Bar (Glassmorphism Dark) */}
-        <div className="glass-dark text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/15 relative overflow-hidden">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-navy-800">
-            <div className="pt-4 lg:pt-0">
-              <p className="text-4xl lg:text-5xl font-black text-brand-400">{settings.experienceYears || '10+'}</p>
-              <p className="text-xs text-slate-300 font-bold uppercase tracking-wider mt-1">Years Experience</p>
+        <div className="glass-dark text-white rounded-2xl sm:rounded-3xl p-6 sm:p-12 shadow-2xl border border-white/15 relative overflow-hidden">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-400">{settings.experienceYears || '10+'}</p>
+              <p className="text-[11px] sm:text-xs text-slate-300 font-bold uppercase tracking-wider mt-1.5">Years Experience</p>
             </div>
-            <div className="pt-4 lg:pt-0">
-              <p className="text-4xl lg:text-5xl font-black text-amber-400">{settings.happyTravelers || '5000+'}</p>
-              <p className="text-xs text-slate-300 font-bold uppercase tracking-wider mt-1">Happy Travelers</p>
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-amber-400">{settings.happyTravelers || '5000+'}</p>
+              <p className="text-[11px] sm:text-xs text-slate-300 font-bold uppercase tracking-wider mt-1.5">Happy Travelers</p>
             </div>
-            <div className="pt-4 lg:pt-0">
-              <p className="text-4xl lg:text-5xl font-black text-sky-400">{settings.destinationCount || '100+'}</p>
-              <p className="text-xs text-slate-300 font-bold uppercase tracking-wider mt-1">Destinations Covered</p>
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-sky-400">{settings.destinationCount || '100+'}</p>
+              <p className="text-[11px] sm:text-xs text-slate-300 font-bold uppercase tracking-wider mt-1.5">Destinations Covered</p>
             </div>
-            <div className="pt-4 lg:pt-0">
-              <p className="text-4xl lg:text-5xl font-black text-emerald-400">{settings.supportHours || '24/7'}</p>
-              <p className="text-xs text-slate-300 font-bold uppercase tracking-wider mt-1">Live Helpline</p>
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-emerald-400">{settings.supportHours || '24/7'}</p>
+              <p className="text-[11px] sm:text-xs text-slate-300 font-bold uppercase tracking-wider mt-1.5">Live Helpline</p>
             </div>
           </div>
         </div>

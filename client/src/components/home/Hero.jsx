@@ -82,67 +82,67 @@ export const Hero = () => {
       <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-amber-400/20 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Hero Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-28 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-3.5 sm:px-6 py-10 sm:py-20 lg:py-28 flex flex-col items-center text-center">
         {/* Google 5.0 Rating Badge */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-5 sm:mb-6">
           <a
             href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/maps?q=Nawarsi+Bazar,+Ladwa,+Haryana+136132"}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/25 border border-amber-300/50 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-xl hover:bg-amber-400/35 transition-all shadow-lg shadow-amber-500/20"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-amber-400/25 border border-amber-300/50 text-amber-300 text-[11px] sm:text-xs md:text-sm font-bold backdrop-blur-xl hover:bg-amber-400/35 transition-all shadow-lg shadow-amber-500/20"
           >
-            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-            <span>5.0 ★ Google Rated • 50+ Verified Traveler Reviews</span>
+            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400 shrink-0" />
+            <span>5.0 ★ Google Rated • 50+ Verified Reviews</span>
           </a>
           <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/25 border border-emerald-300/50 text-emerald-300 text-xs font-semibold backdrop-blur-xl">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Ladwa, Kurukshetra, Haryana & NCR Specialists
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Ladwa, Kurukshetra & NCR Specialists
           </span>
         </div>
 
         {/* Headline */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.1] mb-5 drop-shadow-md">
+        <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white max-w-4xl leading-[1.15] mb-4 sm:mb-5 drop-shadow-md">
           {settings.heroTitle || 'Experience Seamless Journeys with Vista Tour and Travels'}
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base lg:text-lg text-slate-100 max-w-2xl leading-relaxed mb-8 font-medium drop-shadow-sm">
+        <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-slate-100 max-w-2xl leading-relaxed mb-6 sm:mb-8 font-medium drop-shadow-sm px-2">
           {settings.heroSubtitle || 'Haryana’s top-rated luxury cab service and travel provider. Clean commercial cabs, verified professional chauffeurs, and transparent all-inclusive quotes.'}
         </p>
 
         {/* Action Buttons: Phone, WhatsApp, Destinations */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
+        <div className="flex flex-col xs:flex-row flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-8 sm:mb-12 w-full max-w-xl sm:max-w-none">
           <a
             href={`tel:${settings.phone || '9068888578'}`}
-            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-6 py-3.5 rounded-xl text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95"
+            className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95"
           >
-            <Phone className="w-4 h-4 text-slate-950" /> Call {settings.phone || '+91 90688 88578'}
+            <Phone className="w-4 h-4 text-slate-950 shrink-0" /> Call {settings.phone || '+91 90688 88578'}
           </a>
 
           <a
             href={`https://wa.me/${(settings.whatsapp || '919068888578').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${settings.companyName || 'Vista Tour and Travels'}! I would like to inquire about cab booking and custom Haryana/Delhi/Chandigarh tour itineraries.`)}`}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3.5 rounded-xl text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"
+            className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm transition-all shadow-xl shadow-emerald-600/20 hover:scale-105 active:scale-95"
           >
-            <MessageCircle className="w-4 h-4 text-white" /> Instant WhatsApp Quote
+            <MessageCircle className="w-4 h-4 text-white shrink-0" /> Instant WhatsApp Quote
           </a>
 
           <Button
             size="lg"
             variant="white"
             onClick={() => navigate('/destinations')}
-            className="font-bold text-xs sm:text-sm py-3 px-5 shadow-lg"
+            className="w-full xs:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 shadow-lg justify-center"
           >
-            <Compass className="w-4 h-4 mr-1.5 text-brand-600" /> Explore Destinations
+            <Compass className="w-4 h-4 mr-1.5 text-brand-600 shrink-0" /> Explore Destinations
           </Button>
 
           <Button
             size="lg"
             variant="outline"
-            onClick={() => navigate('/services')}
-            className="font-bold text-xs sm:text-sm py-3 px-5 text-white border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-sm"
+            onClick={() => navigate('/cars')}
+            className="w-full xs:w-auto font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 text-white border-white/40 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-sm justify-center"
           >
-            <Car className="w-4 h-4 mr-1.5 text-amber-400" /> View Cab Fleet
+            <Car className="w-4 h-4 mr-1.5 text-amber-400 shrink-0" /> View Fleet
           </Button>
         </div>
 
@@ -249,25 +249,25 @@ export const Hero = () => {
           </form>
 
           {/* Quick Features Strip */}
-          <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs text-slate-600 font-medium">
+          <div className="mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-between gap-2 sm:gap-3 text-[11px] sm:text-xs text-slate-600 font-medium">
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Verified Professional Commercial Chauffeurs</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <span>Verified Professional Chauffeurs</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-brand-600" />
-              <span>Clean Sanitized Cabs • Climate Controlled AC</span>
+              <CheckCircle2 className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+              <span>Sanitized Cabs • Chilled AC</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-              <span>Zero Hidden Charges • Transparent All-Inclusive Billing</span>
+              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500 shrink-0" />
+              <span>Zero Hidden Charges</span>
             </div>
             <button
               type="button"
               onClick={handleWhatsAppInstantQuote}
-              className="text-emerald-700 font-bold hover:underline flex items-center gap-1 ml-auto"
+              className="text-emerald-700 font-bold hover:underline flex items-center gap-1 sm:ml-auto pt-1 sm:pt-0"
             >
-              <MessageCircle className="w-3 h-3" /> Need quick quote? WhatsApp Us
+              <MessageCircle className="w-3.5 h-3.5 shrink-0" /> Need quick quote? WhatsApp Us
             </button>
           </div>
         </div>
