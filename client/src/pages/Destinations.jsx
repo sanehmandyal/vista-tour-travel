@@ -163,10 +163,12 @@ export const Destinations = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {destinations.map((dest) => {
                 const exact = getExactDestinationImages(dest.name, dest.slug);
-                const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('unsplash.com') || url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14') || url.includes('Dharamshala_stadium');
+                const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('unsplash.com') || (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) || url.includes('Dharamshala_stadium');
                 const destImg = !isInvalid(dest.heroImage)
                   ? dest.heroImage
-                  : (!isInvalid(dest.featuredImage) ? dest.featuredImage : exact.featuredImage);
+                  : (!isInvalid(dest.featuredImage)
+                      ? dest.featuredImage
+                      : (dest.attractions?.[0]?.image && !isInvalid(dest.attractions[0].image) ? dest.attractions[0].image : exact.featuredImage));
                 return (
                   <Link
                     key={dest._id}
@@ -179,7 +181,7 @@ export const Destinations = () => {
                         alt={dest.name}
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = exact.featuredImage || exact.heroImage;
+                          e.target.src = (dest.attractions?.[0]?.image && !isInvalid(dest.attractions[0].image)) ? dest.attractions[0].image : (exact.featuredImage || exact.heroImage);
                         }}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"

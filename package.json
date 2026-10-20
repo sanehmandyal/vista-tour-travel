@@ -9,8 +9,8 @@
     "dev:client": "npm run dev --prefix client",
     "dev:server": "npm run dev --prefix server",
     "build:client": "npm run build --prefix client",
-    "build": "npm run build --prefix client",
-    "start": "npm start --prefix server",
+    "build": "cd client && npm install && npm run build",
+    "start": "node server/server.js",
     "seed": "npm run seed --prefix server",
     "seed:prod": "npm run seed:prod --prefix server",
     "admin:upsert": "npm run admin:upsert --prefix server"

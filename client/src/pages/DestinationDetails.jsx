@@ -78,14 +78,14 @@ export const DestinationDetails = () => {
     typeof url !== 'string' ||
     url.trim() === '' ||
     url.includes('unsplash.com') ||
-    url.includes('photo-15') ||
-    url.includes('photo-16') ||
-    url.includes('photo-14') ||
+    (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) ||
     url.includes('Dharamshala_stadium');
 
   const heroImg = !isInvalid(destination.heroImage)
     ? destination.heroImage
-    : (!isInvalid(destination.featuredImage) ? destination.featuredImage : exact.heroImage);
+    : (!isInvalid(destination.featuredImage)
+        ? destination.featuredImage
+        : (destination.attractions?.[0]?.image && !isInvalid(destination.attractions[0].image) ? destination.attractions[0].image : exact.heroImage));
 
   const cleanPhone = '9068888578';
   const waMessage = encodeURIComponent(
@@ -102,7 +102,7 @@ export const DestinationDetails = () => {
           alt={destination.name}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = exact.heroImage;
+            e.target.src = (destination.attractions?.[0]?.image && !isInvalid(destination.attractions[0].image)) ? destination.attractions[0].image : exact.heroImage;
           }}
           className="absolute inset-0 w-full h-full object-cover"
         />

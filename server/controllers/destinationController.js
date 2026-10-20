@@ -67,11 +67,11 @@ const getExactDestinationImages = (name = '', slug = '') => {
   }
   if (q.includes('kaithal') || q.includes('kathial') || q.includes('hanuman') || q.includes('anjani')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+      heroImage: '/assets/images/kaithal-temple.jpg',
+      featuredImage: '/assets/images/kaithal-temple.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=1200'
+        '/assets/images/kaithal-temple.jpg',
+        '/assets/images/kaithal-temple-anjani.jpg'
       ]
     };
   }
@@ -99,27 +99,27 @@ const normalizeDestination = (dest) => {
   if (!dest) return dest;
   const doc = dest.toObject ? dest.toObject() : { ...dest };
   const exact = getExactDestinationImages(doc.name, doc.slug);
-  const isGeneric = (url) => !url || 
+
+  const isInvalidUrl = (url) => !url || 
     typeof url !== 'string' ||
     url.trim() === '' ||
     url.includes('unsplash.com') ||
-    url.includes('photo-15') ||
-    url.includes('photo-16') ||
-    url.includes('photo-14') ||
-    url.includes('Dharamshala_stadium') ||
-    (!url.startsWith('http') && !url.startsWith('data:') && !url.startsWith('/'));
+    (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) ||
+    url.includes('Dharamshala_stadium');
 
-  const validHero = !isGeneric(doc.heroImage) ? doc.heroImage : null;
-  const validFeatured = !isGeneric(doc.featuredImage) ? doc.featuredImage : null;
+  const hasCustomHero = doc.heroImage && !isInvalidUrl(doc.heroImage);
+  const hasCustomFeatured = doc.featuredImage && !isInvalidUrl(doc.featuredImage);
+  const attrCustom = Array.isArray(doc.attractions) && doc.attractions[0]?.image && !isInvalidUrl(doc.attractions[0].image) ? doc.attractions[0].image : null;
 
-  doc.heroImage = validHero || validFeatured || exact.heroImage;
-  doc.featuredImage = validFeatured || validHero || exact.featuredImage;
+  const validHero = hasCustomHero ? doc.heroImage : (hasCustomFeatured ? doc.featuredImage : (attrCustom || exact.heroImage));
+  const validFeatured = hasCustomFeatured ? doc.featuredImage : validHero;
 
-  const validImages = Array.isArray(doc.images) ? doc.images.filter(img => !isGeneric(img)) : [];
-  doc.images = validImages.length > 0 ? validImages : exact.images;
+  doc.heroImage = validHero;
+  doc.featuredImage = validFeatured;
 
-  const validGallery = Array.isArray(doc.gallery) ? doc.gallery.filter(img => !isGeneric(img)) : [];
-  doc.gallery = validGallery.length > 0 ? validGallery : (validImages.length > 0 ? validImages : exact.images);
+  const validGallery = Array.isArray(doc.gallery) ? doc.gallery.filter(img => !isInvalidUrl(img)) : [];
+  doc.gallery = validGallery.length > 0 ? validGallery : [validHero];
+  doc.images = doc.gallery;
 
   return doc;
 };

@@ -45,6 +45,16 @@ export const DestinationForm = () => {
           const res = await destinationApi.getById(id);
           if (res.success && res.data) {
             const current = res.data;
+            const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('Dharamshala_stadium') || url.includes('unsplash.com');
+            const customHero = !isInvalid(current.heroImage)
+              ? current.heroImage
+              : (!isInvalid(current.featuredImage)
+                  ? current.featuredImage
+                  : (current.attractions?.[0]?.image && !isInvalid(current.attractions[0].image) ? current.attractions[0].image : ''));
+            const initialGallery = Array.isArray(current.gallery) && current.gallery.length > 0
+              ? current.gallery.filter(g => !isInvalid(g))
+              : (customHero ? [customHero] : []);
+
             setFormData({
               name: current.name || '',
               state: current.state || 'Haryana',
@@ -52,8 +62,8 @@ export const DestinationForm = () => {
               startingPrice: current.startingPrice || 1999,
               shortDescription: current.shortDescription || '',
               description: current.description || '',
-              heroImage: current.heroImage || current.featuredImage || '',
-              gallery: Array.isArray(current.gallery) && current.gallery.length > 0 ? current.gallery : (current.heroImage ? [current.heroImage] : []),
+              heroImage: customHero,
+              gallery: initialGallery.length > 0 ? initialGallery : (customHero ? [customHero] : []),
               attractions: Array.isArray(current.attractions)
                 ? current.attractions.map(a => typeof a === 'string'
                     ? { title: a, description: '', image: '' }

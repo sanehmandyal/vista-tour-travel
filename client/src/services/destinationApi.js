@@ -67,11 +67,11 @@ export const getExactDestinationImages = (name = '', slug = '') => {
   }
   if (q.includes('kaithal') || q.includes('kathial') || q.includes('hanuman') || q.includes('anjani')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+      heroImage: '/assets/images/kaithal-temple.jpg',
+      featuredImage: '/assets/images/kaithal-temple.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=1200'
+        '/assets/images/kaithal-temple.jpg',
+        '/assets/images/kaithal-temple-anjani.jpg'
       ]
     };
   }
@@ -98,32 +98,30 @@ export const getExactDestinationImages = (name = '', slug = '') => {
 const enrichDestinationWithExactImage = (dest) => {
   if (!dest) return dest;
   const exact = getExactDestinationImages(dest.name, dest.slug);
-  const isGenericOrUnmatched = (url) => !url || 
+  const isInvalidUrl = (url) => !url || 
     typeof url !== 'string' || 
-    url.trim() === '' ||
+    url.trim() === '' || 
     url.includes('images.unsplash.com') || 
-    url.includes('photo-15') || 
-    url.includes('photo-16') || 
-    url.includes('photo-14') ||
-    url.includes('Dharamshala_stadium') ||
-    (!url.startsWith('http') && !url.startsWith('data:') && !url.startsWith('/'));
+    (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) || 
+    url.includes('Dharamshala_stadium');
 
   // Prioritize custom valid images uploaded by admin
-  const validHero = !isGenericOrUnmatched(dest.heroImage) ? dest.heroImage : null;
-  const validFeatured = !isGenericOrUnmatched(dest.featuredImage) ? dest.featuredImage : null;
+  const hasCustomHero = dest.heroImage && !isInvalidUrl(dest.heroImage);
+  const hasCustomFeatured = dest.featuredImage && !isInvalidUrl(dest.featuredImage);
+  const attrCustom = Array.isArray(dest.attractions) && dest.attractions[0]?.image && !isInvalidUrl(dest.attractions[0].image)
+    ? dest.attractions[0].image
+    : null;
 
-  const heroImage = validHero || validFeatured || exact.heroImage;
-  const featuredImage = validFeatured || validHero || exact.featuredImage;
-
-  const validImages = Array.isArray(dest.images)
-    ? dest.images.filter(img => !isGenericOrUnmatched(img))
-    : [];
-  const images = validImages.length > 0 ? validImages : exact.images;
+  const heroImage = hasCustomHero ? dest.heroImage : (hasCustomFeatured ? dest.featuredImage : (attrCustom || exact.heroImage));
+  const featuredImage = hasCustomFeatured ? dest.featuredImage : heroImage;
 
   const validGallery = Array.isArray(dest.gallery)
-    ? dest.gallery.filter(img => !isGenericOrUnmatched(img))
+    ? dest.gallery.filter(img => !isInvalidUrl(img))
     : [];
-  const gallery = validGallery.length > 0 ? validGallery : (validImages.length > 0 ? validImages : exact.images);
+  const gallery = validGallery.length > 0 ? validGallery : [heroImage];
+  const images = Array.isArray(dest.images) && dest.images.length > 0 && !dest.images.some(isInvalidUrl)
+    ? dest.images
+    : gallery;
 
   return {
     ...dest,
@@ -354,15 +352,21 @@ export const destinationApi = {
       }
     }
 
+    const finalHero = payload.heroImage || updatedItem?.heroImage;
     const list = getLocalDestinations();
     const updated = list.map(d => {
       if (d._id === id || d.slug === id) {
-        return updatedItem ? enrichDestinationWithExactImage(updatedItem) : { ...d, ...payload };
+        const merged = { ...d, ...(updatedItem || {}), ...payload };
+        if (finalHero) {
+          merged.heroImage = finalHero;
+          merged.featuredImage = finalHero;
+        }
+        return enrichDestinationWithExactImage(merged);
       }
       return d;
     });
     saveLocalDestinations(updated);
-    const resultItem = updated.find(d => d._id === id || d.slug === id) || (updatedItem ? enrichDestinationWithExactImage(updatedItem) : null);
+    const resultItem = updated.find(d => d._id === id || d.slug === id) || enrichDestinationWithExactImage({ ...(updatedItem || {}), ...payload, heroImage: finalHero, featuredImage: finalHero });
     return { success: true, data: resultItem };
   },
 

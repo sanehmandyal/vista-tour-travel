@@ -111,11 +111,11 @@ export const Destinations = () => {
                   <tr key={d._id} className="hover:bg-slate-50/60 transition-colors">
                     <td className="py-3 px-4 flex items-center gap-3">
                       <img
-                        src={d.heroImage || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=150&q=80'}
+                        src={d.heroImage || d.featuredImage || (d.attractions?.[0]?.image) || '/assets/images/kaithal-temple.jpg'}
                         alt={d.name}
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=150&q=80';
+                          e.target.src = '/assets/images/kaithal-temple.jpg';
                         }}
                         className="w-12 h-12 rounded-xl object-cover"
                       />
