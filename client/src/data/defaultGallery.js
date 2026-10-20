@@ -97,11 +97,11 @@ export const defaultGalleryPhotos = [
   },
   {
     _id: 'gal-13',
-    title: 'Ancient Kaithal Fort Ramparts',
+    title: 'Historic Kaithal Sacred Tirth',
     category: 'Kurukshetra Heritage',
     location: 'Kaithal, Haryana',
-    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1000',
-    description: 'Historic 18th-century Bhai Uday Singh Fort overlooking scenic Bidkyar Lake in Kaithal.'
+    imageUrl: '/assets/images/kaithal-temple.jpg',
+    description: 'Revered Anjani Tirth and ancient temple heritage in Kaithal.'
   },
   {
     _id: 'gal-14',

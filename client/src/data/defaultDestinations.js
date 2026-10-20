@@ -97,7 +97,7 @@ Vista Tour and Travels provides 24/7 dedicated door-to-door cab rentals and cust
     relatedDestinations: [
       { name: 'Karnal', slug: 'karnal', state: 'Haryana', heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=600' },
       { name: 'Ambala', slug: 'ambala', state: 'Haryana', heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=600' },
-      { name: 'Kaithal', slug: 'kaithal', state: 'Haryana', heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=600' }
+      { name: 'Kaithal', slug: 'kaithal', state: 'Haryana', heroImage: '/assets/images/kaithal-temple.jpg' }
     ]
   },
   {
@@ -387,7 +387,7 @@ Vista Tour and Travels provides prompt local taxi rentals, day excursions, and h
     relatedDestinations: [
       { name: 'Kurukshetra', slug: 'kurukshetra', state: 'Haryana', heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=600' },
       { name: 'Panipat', slug: 'panipat', state: 'Haryana', heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=600' },
-      { name: 'Kaithal', slug: 'kaithal', state: 'Haryana', heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=600' }
+      { name: 'Kaithal', slug: 'kaithal', state: 'Haryana', heroImage: '/assets/images/kaithal-temple.jpg' }
     ]
   },
   {
@@ -594,15 +594,15 @@ Vista Tour and Travels offers private AC sedans, Ertigas, and rugged SUVs from L
 Devotees flock to sacred Anjani Tirth where Mata Anjani performed severe penance, the ancient Gyarah Rudri Shiv Mandir, and the historical Saraswati Tirth at neighboring Pehowa. For history lovers, Kaithal showcases the imposing 18th-century Bhai Uday Singh Fort overlooking Bidkyar Lake and the rare historic tomb of Razia Sultana (the first and only woman sultan of the Delhi Sultanate).
 
 Vista Tour and Travels offers private AC pilgrimage cabs and custom day tours from Ladwa, Kurukshetra, and Pehowa.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+    featuredImage: '/assets/images/kaithal-temple.jpg',
+    heroImage: '/assets/images/kaithal-temple.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=1200'
+      '/assets/images/kaithal-temple.jpg',
+      '/assets/images/kaithal-temple-anjani.jpg'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=800'
+      '/assets/images/kaithal-temple.jpg',
+      '/assets/images/kaithal-temple-anjani.jpg'
     ],
     bestTimeToVisit: 'October to March',
     idealDuration: '1 Day',
@@ -624,27 +624,27 @@ Vista Tour and Travels offers private AC pilgrimage cabs and custom day tours fr
       {
         title: 'Bhai Uday Singh Fort',
         description: 'Imposing 18th-century Sikh fort palace built by the Bhai dynasty on the shores of Bidkyar Lake, featuring battlements and ornate balconies.',
-        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=600'
+        image: '/assets/images/kaithal-temple.jpg'
       },
       {
         title: 'Anjani Tirth & Hanuman Mandir',
         description: 'Sacred pond and ancient shrine revered as the birthplace of Lord Hanuman where his mother Mata Anjani meditated.',
-        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=600'
+        image: '/assets/images/kaithal-temple-anjani.jpg'
       },
       {
         title: 'Tomb of Razia Sultana',
         description: 'Historic tomb of the first woman ruler of Delhi, situated at the historical battle site where Razia Sultana and Altunia were defeated in 1240.',
-        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=600'
+        image: '/assets/images/kaithal-temple.jpg'
       },
       {
         title: 'Bidkyar Lake Promenade',
         description: 'Peaceful municipal lake in the center of Kaithal with illuminated walking tracks, gardens, and beautiful views of the historic fort.',
-        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=600'
+        image: '/assets/images/kaithal-temple-anjani.jpg'
       },
       {
         title: 'Gyarah Rudri Shiv Mandir',
         description: 'Ancient temple dedicated to 11 forms of Lord Shiva where Arjuna is believed to have performed penance to receive the celestial Pashupatastra weapon.',
-        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=600'
+        image: '/assets/images/kaithal-temple.jpg'
       }
     ],
     thingsToDo: [

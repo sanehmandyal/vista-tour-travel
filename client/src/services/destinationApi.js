@@ -103,7 +103,8 @@ const enrichDestinationWithExactImage = (dest) => {
     url.trim() === '' || 
     url.includes('images.unsplash.com') || 
     (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) || 
-    url.includes('Dharamshala_stadium');
+    url.includes('Dharamshala_stadium') ||
+    url.includes('Kaithal_Fort');
 
   // Prioritize custom valid images uploaded by admin
   const hasCustomHero = dest.heroImage && !isInvalidUrl(dest.heroImage);
@@ -202,7 +203,21 @@ export const destinationApi = {
     try {
       const res = await axiosClient.get('/destinations', { params });
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const enriched = res.data.map(enrichDestinationWithExactImage);
+        const localList = getLocalDestinations();
+        const enriched = res.data.map(serverItem => {
+          const matchSlug = String(serverItem.slug || serverItem.name || '').toLowerCase().trim();
+          const matchId = String(serverItem._id || '').toLowerCase().trim();
+          const localMatch = localList.find(loc => 
+            String(loc._id || '').toLowerCase() === matchId || 
+            String(loc.slug || '').toLowerCase() === matchSlug ||
+            String(loc.name || '').toLowerCase() === matchSlug
+          );
+          const hasCustomLocalHero = localMatch?.heroImage && !isInvalidUrl(localMatch.heroImage);
+          const itemToEnrich = hasCustomLocalHero && isInvalidUrl(serverItem.heroImage)
+            ? { ...serverItem, heroImage: localMatch.heroImage, featuredImage: localMatch.heroImage }
+            : serverItem;
+          return enrichDestinationWithExactImage(itemToEnrich);
+        });
         // Sync local cache with global server catalog
         saveLocalDestinations(enriched);
         return {
@@ -354,8 +369,20 @@ export const destinationApi = {
 
     const finalHero = payload.heroImage || updatedItem?.heroImage;
     const list = getLocalDestinations();
+    let foundMatch = false;
+    const matchId = String(id || '').toLowerCase().trim();
+    const matchSlug = String(payload.slug || payload.name || '').toLowerCase().trim();
+
     const updated = list.map(d => {
-      if (d._id === id || d.slug === id) {
+      const isMatch =
+        String(d._id || '').toLowerCase() === matchId ||
+        String(d.slug || '').toLowerCase() === matchId ||
+        String(d.slug || '').toLowerCase() === matchSlug ||
+        String(d.name || '').toLowerCase() === matchSlug ||
+        String(d.name || '').toLowerCase() === String(payload.name || '').toLowerCase().trim();
+
+      if (isMatch) {
+        foundMatch = true;
         const merged = { ...d, ...(updatedItem || {}), ...payload };
         if (finalHero) {
           merged.heroImage = finalHero;
@@ -365,8 +392,23 @@ export const destinationApi = {
       }
       return d;
     });
+
+    if (!foundMatch) {
+      const newItem = enrichDestinationWithExactImage({
+        _id: id,
+        ...(updatedItem || {}),
+        ...payload,
+        heroImage: finalHero,
+        featuredImage: finalHero
+      });
+      updated.unshift(newItem);
+    }
+
     saveLocalDestinations(updated);
-    const resultItem = updated.find(d => d._id === id || d.slug === id) || enrichDestinationWithExactImage({ ...(updatedItem || {}), ...payload, heroImage: finalHero, featuredImage: finalHero });
+    const resultItem = updated.find(d => 
+      String(d._id || '').toLowerCase() === matchId || 
+      String(d.slug || '').toLowerCase() === matchSlug
+    ) || enrichDestinationWithExactImage({ ...(updatedItem || {}), ...payload, heroImage: finalHero, featuredImage: finalHero });
     return { success: true, data: resultItem };
   },
 

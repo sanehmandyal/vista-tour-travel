@@ -105,7 +105,8 @@ const normalizeDestination = (dest) => {
     url.trim() === '' ||
     url.includes('unsplash.com') ||
     (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) ||
-    url.includes('Dharamshala_stadium');
+    url.includes('Dharamshala_stadium') ||
+    url.includes('Kaithal_Fort');
 
   const hasCustomHero = doc.heroImage && !isInvalidUrl(doc.heroImage);
   const hasCustomFeatured = doc.featuredImage && !isInvalidUrl(doc.featuredImage);

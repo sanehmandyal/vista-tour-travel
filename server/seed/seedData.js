@@ -231,14 +231,14 @@ const seedDB = async () => {
         region: 'Kaithal / Pehowa Belt',
         shortDescription: 'Mythological birthplace of Lord Hanuman, Anjani Tirth, historic Bhai Uday Singh Fort, and Razia Sultana tomb.',
         description: 'Steeped in epic mythology as Kapisthala (the abode of Lord Hanuman), Kaithal is home to sacred Anjani Tirth, the grand 18th-century Bhai Uday Singh Fort, Bidkyar Lake, and the historic Tomb of Razia Sultana (the first woman ruler of Delhi).',
-        heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+        heroImage: '/assets/images/kaithal-temple.jpg',
         gallery: [
-          'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=800',
-          'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=800'
+          '/assets/images/kaithal-temple.jpg',
+          '/assets/images/kaithal-temple-anjani.jpg'
         ],
         attractions: [
-          { title: 'Bhai Uday Singh Fort', description: 'Impressive fort palace overlooking Bidkyar Lake with historical battlements.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=600' },
-          { title: 'Anjani Tirth', description: 'Sacred pond and ancient temple dedicated to Mata Anjani, mother of Hanuman.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=600' }
+          { title: 'Bhai Uday Singh Fort', description: 'Impressive fort palace overlooking Bidkyar Lake with historical battlements.', image: '/assets/images/kaithal-temple.jpg' },
+          { title: 'Anjani Tirth', description: 'Sacred pond and ancient temple dedicated to Mata Anjani, mother of Hanuman.', image: '/assets/images/kaithal-temple-anjani.jpg' }
         ],
         thingsToDo: [
           { title: 'Hanuman Birthplace Yatra', description: 'Special pilgrimage to Anjani Kund, Gyarah Rudri Temple, and Pehowa.', icon: 'Heart' },

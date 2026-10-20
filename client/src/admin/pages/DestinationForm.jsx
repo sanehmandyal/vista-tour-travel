@@ -45,15 +45,16 @@ export const DestinationForm = () => {
           const res = await destinationApi.getById(id);
           if (res.success && res.data) {
             const current = res.data;
-            const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('Dharamshala_stadium') || url.includes('unsplash.com');
+            const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort') || url.includes('unsplash.com');
+            const exactFallback = getExactDestinationImages(current.name, current.slug);
             const customHero = !isInvalid(current.heroImage)
               ? current.heroImage
               : (!isInvalid(current.featuredImage)
                   ? current.featuredImage
-                  : (current.attractions?.[0]?.image && !isInvalid(current.attractions[0].image) ? current.attractions[0].image : ''));
+                  : (current.attractions?.[0]?.image && !isInvalid(current.attractions[0].image) ? current.attractions[0].image : exactFallback.heroImage));
             const initialGallery = Array.isArray(current.gallery) && current.gallery.length > 0
               ? current.gallery.filter(g => !isInvalid(g))
-              : (customHero ? [customHero] : []);
+              : (customHero ? [customHero] : [exactFallback.heroImage]);
 
             setFormData({
               name: current.name || '',

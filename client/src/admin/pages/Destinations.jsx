@@ -107,18 +107,25 @@ export const Destinations = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {filtered.map((d) => (
-                  <tr key={d._id} className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-3 px-4 flex items-center gap-3">
-                      <img
-                        src={d.heroImage || d.featuredImage || (d.attractions?.[0]?.image) || '/assets/images/kaithal-temple.jpg'}
-                        alt={d.name}
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = '/assets/images/kaithal-temple.jpg';
-                        }}
-                        className="w-12 h-12 rounded-xl object-cover"
-                      />
+                {filtered.map((d) => {
+                  const isBad = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('unsplash.com') || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort');
+                  const rowImg = !isBad(d.heroImage) 
+                    ? d.heroImage 
+                    : (!isBad(d.featuredImage) 
+                        ? d.featuredImage 
+                        : (!isBad(d.attractions?.[0]?.image) ? d.attractions[0].image : '/assets/images/kaithal-temple.jpg'));
+                  return (
+                    <tr key={d._id} className="hover:bg-slate-50/60 transition-colors">
+                      <td className="py-3 px-4 flex items-center gap-3">
+                        <img
+                          src={rowImg}
+                          alt={d.name}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/assets/images/kaithal-temple.jpg';
+                          }}
+                          className="w-12 h-12 rounded-xl object-cover"
+                        />
                       <div>
                         <h4 className="font-bold text-navy-900 text-sm">{d.name}</h4>
                         <p className="text-[11px] text-slate-400 line-clamp-1">{d.shortDescription}</p>
@@ -163,7 +170,8 @@ export const Destinations = () => {
                       </button>
                     </td>
                   </tr>
-                ))}
+                );
+              })}
               </tbody>
             </table>
           </div>

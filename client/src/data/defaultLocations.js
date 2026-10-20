@@ -285,7 +285,7 @@ Vista Tour and Travels provides reliable commercial cabs for timber and metal in
     description: `Kaithal (ancient Kapisthala) and neighboring Pehowa are two of the most revered spiritual sites in northern India.
 
 Vista Tour and Travels operates dedicated pilgrim and family cabs for holy darshan at Anjani Kund (birthplace of Lord Hanuman), Gyarah Rudri Temple, and sacred Pind Daan rituals at Pehowa Saraswati Tirth. Our chauffeurs are exceptionally respectful of family and elder needs during pilgrimage journeys.`,
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+    heroImage: '/assets/images/kaithal-temple.jpg',
     pickupPoints: [
       'Kaithal Railway Station & Bus Stand',
       'Pehowa Saraswati Tirth Ghats',

@@ -255,11 +255,11 @@ export const defaultPackages = [
     reviewsCount: 24,
     cabFare: 'Starting ₹1,599 for Cab Yatra',
     description: 'Sacred pilgrimage to the mythological birthplace of Lord Hanuman at Anjani Kund (Kapisthala). Visit Bhai Uday Singh Fort, Bidkyar Lake, Razia Sultana tomb, and Saraswati Tirth at Pehowa.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=800',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200',
+    featuredImage: '/assets/images/kaithal-temple.jpg',
+    heroImage: '/assets/images/kaithal-temple.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Bidkyar_Lake_Kaithal.jpg?width=800'
+      '/assets/images/kaithal-temple.jpg',
+      '/assets/images/kaithal-temple-anjani.jpg'
     ],
     itinerary: [
       { day: 1, title: 'Anjani Tirth Darshan, Kaithal Fort & Pehowa Saraswati Tirth', description: 'Full day doorstep private cab tour covering Anjani Kund, historic 18th-century Kaithal Fort, Gyarah Rudri Mandir, and evening holy snan at Pehowa.', meals: 'Vegetarian Lunch & Refreshments', hotel: 'Day Yatra / Optional Hotel' }
