@@ -343,7 +343,7 @@ export const PackageForm = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div className="sm:col-span-2">
             <label className="text-xs font-bold text-slate-700 block mb-1">
@@ -566,11 +566,11 @@ export const PackageForm = () => {
                 Or paste image web link:
               </div>
               <input
-                type="url"
+                type="text"
                 name="featuredImage"
                 value={formData.featuredImage}
                 onChange={handleChange}
-                placeholder="https://example.com/banner.jpg"
+                placeholder="https://example.com/banner.jpg or /assets/images/..."
                 className="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-1.5 focus:outline-none focus:border-brand-500 font-medium bg-white"
               />
             </div>
@@ -601,10 +601,10 @@ export const PackageForm = () => {
 
           <div className="flex gap-2">
             <input
-              type="url"
+              type="text"
               value={newGalleryUrl}
               onChange={(e) => setNewGalleryUrl(e.target.value)}
-              placeholder="Or paste image URL (https://...)"
+              placeholder="Or paste image URL (https://... or /assets/...)"
               className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
             />
             <button

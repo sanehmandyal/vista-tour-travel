@@ -281,7 +281,7 @@ export const Services = ({ defaultTab }) => {
         title={editingId ? `Edit Service: ${form.title}` : 'Add New Cab / Travel Service'}
         size="lg"
       >
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="sm:col-span-2">
               <label className="text-xs font-bold text-slate-700 block mb-1">
@@ -396,10 +396,10 @@ export const Services = ({ defaultTab }) => {
                   <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   value={form.image}
                   onChange={(e) => setForm(prev => ({ ...prev, image: e.target.value }))}
-                  placeholder="Or paste photo URL..."
+                  placeholder="Or paste photo URL / image path..."
                   className="w-full text-xs rounded-lg border border-slate-200 px-2.5 py-1.5 bg-white"
                 />
               </div>

@@ -431,7 +431,7 @@ export const Cars = () => {
         title={editingId ? `Edit Vehicle: ${form.name}` : 'Add New Vehicle to Fleet'}
         size="lg"
       >
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4">
           {/* Quick Presets */}
           {!editingId && (
             <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
@@ -589,10 +589,10 @@ export const Cars = () => {
                   <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   value={form.image}
                   onChange={(e) => setForm(prev => ({ ...prev, image: e.target.value }))}
-                  placeholder="Or paste photo URL..."
+                  placeholder="Or paste photo URL / image path..."
                   className="w-full text-xs rounded-lg border border-slate-200 px-2.5 py-1.5 bg-white"
                 />
               </div>

@@ -355,7 +355,7 @@ export const DestinationForm = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
         {/* Basic Fields */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
@@ -519,11 +519,11 @@ export const DestinationForm = () => {
                 Or paste an image web link:
               </div>
               <input
-                type="url"
+                type="text"
                 name="heroImage"
                 value={formData.heroImage}
                 onChange={handleChange}
-                placeholder="https://example.com/photo.jpg"
+                placeholder="https://example.com/photo.jpg or /assets/images/photo.jpg"
                 className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 font-medium bg-white"
               />
             </div>
@@ -554,10 +554,10 @@ export const DestinationForm = () => {
 
           <div className="flex gap-2">
             <input
-              type="url"
+              type="text"
               value={newGalleryUrl}
               onChange={(e) => setNewGalleryUrl(e.target.value)}
-              placeholder="Or paste image URL (https://...)"
+              placeholder="Or paste image URL (https://... or /assets/...)"
               className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
             />
             <button
@@ -693,10 +693,10 @@ export const DestinationForm = () => {
                               />
                             </label>
                             <input
-                              type="url"
+                              type="text"
                               value={img}
                               onChange={(e) => handleUpdateAttraction(idx, 'image', e.target.value)}
-                              placeholder="Or paste photo URL (https://...)"
+                              placeholder="Or paste photo URL (https://... or /assets/...)"
                               className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 bg-white"
                             />
                           </div>
@@ -742,7 +742,7 @@ export const DestinationForm = () => {
                 <img src={newAttraction.image} alt="Preview" className="w-8 h-8 rounded-md object-cover border border-slate-200" />
               )}
               <input
-                type="url"
+                type="text"
                 placeholder="Or Image URL"
                 value={newAttraction.image}
                 onChange={(e) => setNewAttraction(prev => ({ ...prev, image: e.target.value }))}
