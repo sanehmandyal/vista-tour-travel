@@ -1,5 +1,6 @@
 import axiosClient from './axiosClient';
 import { adminApi } from './adminApi';
+import { defaultPageData } from '../data/defaultPageData';
 
 const STORAGE_KEY_PREFIX = 'vtt_cms_page_';
 
@@ -7,27 +8,23 @@ export const pageApi = {
   getAll: async () => {
     try {
       const res = await axiosClient.get('/pages');
-      if (res && res.success && Array.isArray(res.data)) {
+      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
         return { success: true, data: res.data };
       }
     } catch (err) {
-      console.warn('API /pages error, falling back to cache:', err.message);
+      // Quietly use local default page registry without throwing console errors
     }
 
     return {
       success: true,
-      data: [
-        { slug: 'home', title: 'Homepage', subtitle: 'Main landing page' },
-        { slug: 'about', title: 'About Us', subtitle: 'Company story & heritage' },
-        { slug: 'services', title: 'Taxi & Tour Services', subtitle: 'Cab & itinerary offerings' },
-        { slug: 'contact', title: 'Contact Us', subtitle: 'Get in touch & office info' },
-        { slug: 'faq', title: 'FAQ', subtitle: 'Frequently Asked Questions' }
-      ]
+      data: defaultPageData
     };
   },
 
   getBySlug: async (slug) => {
     const cleanSlug = (slug || 'home').toLowerCase().trim();
+    const defaultMatch = defaultPageData.find(p => p.slug === cleanSlug) || defaultPageData[0];
+
     try {
       const res = await axiosClient.get(`/pages/${cleanSlug}`);
       if (res && res.success && res.data) {
@@ -35,17 +32,20 @@ export const pageApi = {
         return { success: true, data: res.data };
       }
     } catch (err) {
-      console.warn(`API /pages/${cleanSlug} error:`, err.message);
+      // API not mounted or network unavailable - fail gracefully to cache or defaults
     }
 
     try {
       const cached = localStorage.getItem(`${STORAGE_KEY_PREFIX}${cleanSlug}`);
       if (cached) {
-        return { success: true, data: JSON.parse(cached) };
+        const parsed = JSON.parse(cached);
+        if (parsed && typeof parsed === 'object') {
+          return { success: true, data: { ...defaultMatch, ...parsed } };
+        }
       }
     } catch (e) {}
 
-    return { success: false, message: `Page '${cleanSlug}' not found` };
+    return { success: true, data: defaultMatch };
   },
 
   update: async (slug, data) => {

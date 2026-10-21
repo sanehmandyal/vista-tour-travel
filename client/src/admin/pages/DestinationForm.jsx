@@ -2,7 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { destinationApi, getExactDestinationImages } from '../../services/destinationApi';
 import { processDeviceImage } from '../../utils/imageUpload';
-import { ArrowLeft, Upload, Save, Sparkles, MapPin, Image as ImageIcon, Plus, Trash2, Camera, Compass } from 'lucide-react';
+import {
+  ArrowLeft,
+  Upload,
+  Save,
+  Sparkles,
+  MapPin,
+  Image as ImageIcon,
+  Plus,
+  Trash2,
+  Camera,
+  Compass,
+  ChevronDown,
+  ChevronUp,
+  CheckCircle2,
+  Info
+} from 'lucide-react';
 import Button from '../../components/common/Button';
 import Loader from '../../components/common/Loader';
 import toast from 'react-hot-toast';
@@ -16,11 +31,16 @@ export const DestinationForm = () => {
   const [fetching, setFetching] = useState(isEdit);
   const [uploading, setUploading] = useState(false);
 
+  // Collapsible section toggles - collapsed by default on new creations
+  const [showGallery, setShowGallery] = useState(false);
+  const [showAttractions, setShowAttractions] = useState(false);
+  const [showThings, setShowThings] = useState(false);
+  const [showTips, setShowTips] = useState(false);
+
   const [formData, setFormData] = useState({
     name: '',
     state: 'Haryana',
     region: 'North India',
-    startingPrice: 1999,
     shortDescription: '',
     description: '',
     heroImage: '',
@@ -45,43 +65,69 @@ export const DestinationForm = () => {
           const res = await destinationApi.getById(id);
           if (res.success && res.data) {
             const current = res.data;
-            const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort');
+            const isInvalid = (url) =>
+              !url ||
+              typeof url !== 'string' ||
+              url.trim() === '' ||
+              url.includes('Dharamshala_stadium') ||
+              url.includes('Kaithal_Fort');
+
             const exactFallback = getExactDestinationImages(current.name, current.slug);
             const customHero = !isInvalid(current.heroImage)
               ? current.heroImage
               : (!isInvalid(current.featuredImage)
                   ? current.featuredImage
                   : exactFallback.heroImage);
+
             const initialGallery = Array.isArray(current.gallery) && current.gallery.length > 0
               ? current.gallery.filter(g => !isInvalid(g))
               : (customHero ? [customHero] : [exactFallback.heroImage]);
+
+            const loadedAttractions = Array.isArray(current.attractions)
+              ? current.attractions.map(a =>
+                  typeof a === 'string'
+                    ? { title: a, description: '', image: '' }
+                    : {
+                        title: a?.title || '',
+                        description: a?.description || '',
+                        image: (a?.image && !a.image.includes('photo-15') && !a.image.includes('photo-14') && !a.image.includes('photo-16'))
+                          ? a.image
+                          : ''
+                      }
+                )
+              : [];
+
+            const loadedThings = Array.isArray(current.thingsToDo)
+              ? current.thingsToDo.map(t =>
+                  typeof t === 'string'
+                    ? { title: t, description: '', icon: 'Compass' }
+                    : { title: t?.title || '', description: t?.description || '', icon: t?.icon || 'Compass' }
+                )
+              : [];
+
+            const loadedTips = Array.isArray(current.travelTips) ? current.travelTips : [];
 
             setFormData({
               name: current.name || '',
               state: current.state || 'Haryana',
               region: current.region || 'North India',
-              startingPrice: current.startingPrice || 1999,
               shortDescription: current.shortDescription || '',
               description: current.description || '',
               heroImage: customHero,
               gallery: initialGallery.length > 0 ? initialGallery : (customHero ? [customHero] : []),
-              attractions: Array.isArray(current.attractions)
-                ? current.attractions.map(a => typeof a === 'string'
-                    ? { title: a, description: '', image: '' }
-                    : { title: a?.title || '', description: a?.description || '', image: (a?.image && !a.image.includes('photo-15') && !a.image.includes('photo-14') && !a.image.includes('photo-16')) ? a.image : '' }
-                  )
-                : [],
-              thingsToDo: Array.isArray(current.thingsToDo)
-                ? current.thingsToDo.map(t => typeof t === 'string'
-                    ? { title: t, description: '', icon: 'Compass' }
-                    : { title: t?.title || '', description: t?.description || '', icon: t?.icon || 'Compass' }
-                  )
-                : [],
-              travelTips: Array.isArray(current.travelTips) ? current.travelTips : [],
+              attractions: loadedAttractions,
+              thingsToDo: loadedThings,
+              travelTips: loadedTips,
               bestTimeToVisit: current.bestTimeToVisit || 'September to March',
               featured: Boolean(current.featured || current.isFeatured),
               status: current.status || 'active'
             });
+
+            // Auto-open sections if they contain custom data
+            if (initialGallery.length > 1) setShowGallery(true);
+            if (loadedAttractions.length > 0) setShowAttractions(true);
+            if (loadedThings.length > 0) setShowThings(true);
+            if (loadedTips.length > 0) setShowTips(true);
           } else {
             toast.error('Destination details not found');
           }
@@ -294,26 +340,48 @@ export const DestinationForm = () => {
 
       // Auto-assign authentic image if left empty
       const exact = getExactDestinationImages(formData.name);
-      const finalImage = formData.heroImage.trim() || exact.heroImage;
+      const finalImage = formData.heroImage?.trim() || exact.heroImage;
       const galleryList = Array.isArray(formData.gallery) && formData.gallery.length > 0
         ? formData.gallery
         : [finalImage];
 
       const payload = {
-        ...formData,
+        name: formData.name.trim(),
+        state: formData.state?.trim() || 'Haryana',
         region: formData.region || 'North India',
-        startingPrice: Number(formData.startingPrice) || 1999,
-        bestTimeToVisit: formData.bestTimeToVisit || 'September to March',
+        startingPrice: 0,
+        bestTimeToVisit: formData.bestTimeToVisit?.trim() || 'September to March',
         heroImage: finalImage,
         featuredImage: finalImage,
         images: galleryList,
         gallery: galleryList,
-        attractions: formData.attractions,
-        thingsToDo: formData.thingsToDo,
-        travelTips: formData.travelTips,
-        shortDescription: formData.shortDescription.trim() || `${formData.name} tour and 24/7 commercial cab packages from Ladwa & Kurukshetra, Haryana.`,
-        description: formData.description.trim() || `Explore ${formData.name} in comfortable sanitized cabs with verified professional chauffeurs from Vista Tour and Travels.`,
-        state: formData.state.trim() || 'Haryana'
+        attractions: Array.isArray(formData.attractions) && formData.attractions.length > 0
+          ? formData.attractions
+          : [
+              {
+                title: `${formData.name.trim()} Sightseeing`,
+                description: `Key historic and spiritual points of interest in ${formData.name.trim()}.`,
+                image: finalImage
+              }
+            ],
+        thingsToDo: Array.isArray(formData.thingsToDo) && formData.thingsToDo.length > 0
+          ? formData.thingsToDo
+          : [
+              {
+                title: 'Local Sightseeing & Tour',
+                description: `Explore top landmarks and heritage markets in ${formData.name.trim()}.`,
+                icon: 'Compass'
+              }
+            ],
+        travelTips: Array.isArray(formData.travelTips) && formData.travelTips.length > 0
+          ? formData.travelTips
+          : [
+              'Doorstep chauffeur cab booking available 24/7 from Ladwa and Kurukshetra.'
+            ],
+        shortDescription: formData.shortDescription?.trim() || `${formData.name.trim()} tour and 24/7 commercial cab packages from Ladwa & Kurukshetra, Haryana.`,
+        description: formData.description?.trim() || `Explore ${formData.name.trim()} in comfortable sanitized cabs with verified professional chauffeurs from Vista Tour and Travels.`,
+        featured: Boolean(formData.featured),
+        status: formData.status || 'active'
       };
 
       if (isEdit) {
@@ -351,7 +419,23 @@ export const DestinationForm = () => {
             {isEdit ? `Edit Destination: ${formData.name}` : 'Add New Destination'}
           </h1>
           <p className="text-xs text-slate-500">
-            Fill in basic details to publish or update this destination on the website.
+            Publish or update this destination on the website.
+          </p>
+        </div>
+      </div>
+
+      {/* Prominent Guidance Banner */}
+      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-xs">
+        <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 font-bold text-sm shadow-xs">
+          <CheckCircle2 className="w-5 h-5" />
+        </div>
+        <div className="space-y-1">
+          <h4 className="text-sm font-bold text-emerald-950 flex items-center gap-2">
+            <span>Quick &amp; Easy: Only Destination Name is Required!</span>
+            <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider">Fast Publish</span>
+          </h4>
+          <p className="text-xs text-emerald-800 leading-relaxed">
+            All other fields below (Photo, State, Summary, Attractions, Gallery, Activities, Tips) are <strong>Optional / Not Important</strong>. If you leave them empty, the website automatically fills authentic regional details, photos, and sightseeing points for you!
           </p>
         </div>
       </div>
@@ -359,9 +443,9 @@ export const DestinationForm = () => {
       <form noValidate onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
         {/* Basic Fields */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div>
+          <div className="sm:col-span-2">
             <label className="text-xs font-bold text-slate-700 block mb-1">
-              Destination Name <span className="text-rose-500">*</span>
+              Destination Name <span className="text-rose-500 font-bold">* (Required)</span>
             </label>
             <input
               type="text"
@@ -369,13 +453,15 @@ export const DestinationForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="e.g. Kurukshetra, Ambala, Delhi, Karnal"
-              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-semibold text-navy-900"
+              placeholder="e.g. Kurukshetra, Ambala, Delhi, Karnal, Yamunanagar"
+              className="w-full text-sm rounded-xl border border-slate-300 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-semibold text-navy-900 shadow-xs"
             />
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">State / Territory</label>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              State / Territory <span className="text-slate-400 font-normal">(Optional)</span>
+            </label>
             <input
               type="text"
               name="state"
@@ -386,36 +472,10 @@ export const DestinationForm = () => {
             />
           </div>
 
-          <div className="sm:col-span-2">
-            <label className="text-xs font-bold text-slate-700 block mb-1">
-              Short Summary / Tagline
-            </label>
-            <input
-              type="text"
-              name="shortDescription"
-              value={formData.shortDescription}
-              onChange={handleChange}
-              placeholder="e.g. Brahma Sarovar, Jyotisar & Mahabharata heritage tours with luxury cabs"
-              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
-            />
-          </div>
-
-          <div className="sm:col-span-2">
-            <label className="text-xs font-bold text-slate-700 block mb-1">
-              Detailed Description / About This Destination
-            </label>
-            <textarea
-              name="description"
-              rows={4}
-              value={formData.description}
-              onChange={handleChange}
-              placeholder="Share what makes this destination special, key sights, temple circuits, or pickup info..."
-              className="w-full text-sm rounded-xl border border-slate-200 p-3.5 focus:outline-none focus:border-brand-500 font-normal leading-relaxed"
-            />
-          </div>
-
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Geographical Region</label>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Geographical Region <span className="text-slate-400 font-normal">(Optional)</span>
+            </label>
             <select
               name="region"
               value={formData.region}
@@ -431,8 +491,38 @@ export const DestinationForm = () => {
             </select>
           </div>
 
+          <div className="sm:col-span-2">
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Short Summary / Tagline <span className="text-slate-400 font-normal">(Optional - auto-generated if blank)</span>
+            </label>
+            <input
+              type="text"
+              name="shortDescription"
+              value={formData.shortDescription}
+              onChange={handleChange}
+              placeholder="e.g. Brahma Sarovar, Jyotisar & Mahabharata heritage tours with luxury cabs"
+              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Detailed Description <span className="text-slate-400 font-normal">(Optional - auto-generated if blank)</span>
+            </label>
+            <textarea
+              name="description"
+              rows={3}
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Share what makes this destination special, key sights, temple circuits, or pickup info..."
+              className="w-full text-sm rounded-xl border border-slate-200 p-3.5 focus:outline-none focus:border-brand-500 font-normal leading-relaxed"
+            />
+          </div>
+
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Best Time to Visit</label>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Best Time to Visit <span className="text-slate-400 font-normal">(Optional)</span>
+            </label>
             <input
               type="text"
               name="bestTimeToVisit"
@@ -444,7 +534,9 @@ export const DestinationForm = () => {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Status</label>
+            <label className="text-xs font-bold text-slate-700 block mb-1">
+              Status <span className="text-slate-400 font-normal">(Optional)</span>
+            </label>
             <select
               name="status"
               value={formData.status}
@@ -457,11 +549,14 @@ export const DestinationForm = () => {
           </div>
         </div>
 
-        {/* Photo Upload & Preview */}
+        {/* Destination Photo (Optional) */}
         <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
           <label className="text-xs font-bold text-slate-700 flex items-center justify-between">
-            <span>Destination Photo</span>
-            <span className="text-[11px] text-slate-400 font-normal">Optional (Auto-assigns authentic regional image if blank)</span>
+            <span className="flex items-center gap-1.5">
+              <Camera className="w-3.5 h-3.5 text-brand-600" /> Destination Main Photo
+              <span className="px-2 py-0.5 rounded-full bg-slate-200/80 text-slate-600 text-[10px] font-semibold">Optional</span>
+            </span>
+            <span className="text-[11px] text-slate-400 font-normal">Auto-assigns authentic regional image if left blank</span>
           </label>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -484,14 +579,14 @@ export const DestinationForm = () => {
             ) : (
               <div className="w-36 h-24 rounded-xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400 shrink-0 bg-white">
                 <ImageIcon className="w-6 h-6 mb-1 text-slate-300" />
-                <span className="text-[10px] font-bold">No Photo</span>
+                <span className="text-[10px] font-bold">Auto Assigns</span>
               </div>
             )}
 
             <div className="flex-1 space-y-2 w-full">
               <label className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-300 hover:border-brand-500 text-navy-900 font-bold text-xs shadow-xs cursor-pointer transition-colors">
                 <Upload className="w-3.5 h-3.5 text-brand-600" />
-                <span>{uploading ? 'Processing Image...' : 'Upload Photo from Device'}</span>
+                <span>{uploading ? 'Processing Image...' : 'Upload Photo from Device (Optional)'}</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -502,7 +597,7 @@ export const DestinationForm = () => {
               </label>
 
               <div className="text-[11px] text-slate-500">
-                Or paste an image web link:
+                Or paste an image web link (Optional):
               </div>
               <input
                 type="text"
@@ -516,361 +611,446 @@ export const DestinationForm = () => {
           </div>
         </div>
 
-        {/* 2. Multi-Photo Gallery Manager */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                <Camera className="w-3.5 h-3.5 text-brand-600" /> Photo Gallery ({formData.gallery.length} Images)
-              </h3>
-              <p className="text-[11px] text-slate-400">Add multiple high-resolution photos displayed in the destination gallery.</p>
+        {/* Section divider */}
+        <div className="pt-2 border-t border-slate-100">
+          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+            Additional Optional Sections (Skip or expand if needed)
+          </div>
+        </div>
+
+        {/* 1. Multi-Photo Gallery (Collapsible / Optional) */}
+        <div className="rounded-2xl bg-slate-50 border border-slate-200/80 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowGallery(prev => !prev)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-slate-100/60 transition-colors"
+          >
+            <div className="flex items-center gap-2.5">
+              <Camera className="w-4 h-4 text-brand-600" />
+              <div>
+                <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                  <span>Photo Gallery</span>
+                  <span className="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-[10px] font-semibold lowercase">optional</span>
+                  <span className="text-[11px] text-slate-400 font-normal">({formData.gallery.length} photos)</span>
+                </h3>
+                <p className="text-[11px] text-slate-400">Add multiple high-resolution photos for the destination gallery.</p>
+              </div>
             </div>
-            <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-50 text-brand-700 hover:bg-brand-100 font-bold text-xs cursor-pointer transition-colors border border-brand-200">
-              <Upload className="w-3 h-3" /> Upload Device Photos
-              <input
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleGalleryFileUpload}
-                disabled={uploading}
-                className="hidden"
-              />
-            </label>
-          </div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-brand-600">
+              <span>{showGallery ? 'Collapse' : 'Click to Add / View'}</span>
+              {showGallery ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </div>
+          </button>
 
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={newGalleryUrl}
-              onChange={(e) => setNewGalleryUrl(e.target.value)}
-              placeholder="Or paste image URL (https://... or /assets/...)"
-              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
-            />
-            <button
-              type="button"
-              onClick={handleAddGalleryUrl}
-              className="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold transition-colors"
-            >
-              Add URL
-            </button>
-          </div>
+          {showGallery && (
+            <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-200/60">
+              <div className="flex items-center justify-between pt-3">
+                <span className="text-xs text-slate-500 font-medium">Add gallery images:</span>
+                <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-50 text-brand-700 hover:bg-brand-100 font-bold text-xs cursor-pointer transition-colors border border-brand-200">
+                  <Upload className="w-3 h-3" /> Upload Device Photos
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleGalleryFileUpload}
+                    disabled={uploading}
+                    className="hidden"
+                  />
+                </label>
+              </div>
 
-          {formData.gallery.length > 0 && (
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-              {formData.gallery.map((imgUrl, idx) => (
-                <div key={idx} className="relative group rounded-xl overflow-hidden aspect-video bg-slate-200 border border-slate-200 shadow-xs">
-                  <img src={imgUrl} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveGalleryImage(idx)}
-                    className="absolute top-1 right-1 bg-rose-600 text-white rounded-full p-1 opacity-80 hover:opacity-100 transition-opacity"
-                    title="Delete Photo"
-                  >
-                    <Trash2 className="w-3 h-3" />
-                  </button>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={newGalleryUrl}
+                  onChange={(e) => setNewGalleryUrl(e.target.value)}
+                  placeholder="Or paste image URL (https://... or /assets/...)"
+                  className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddGalleryUrl}
+                  className="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold transition-colors"
+                >
+                  Add URL
+                </button>
+              </div>
+
+              {formData.gallery.length > 0 && (
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                  {formData.gallery.map((imgUrl, idx) => (
+                    <div key={idx} className="relative group rounded-xl overflow-hidden aspect-video bg-slate-200 border border-slate-200 shadow-xs">
+                      <img src={imgUrl} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveGalleryImage(idx)}
+                        className="absolute top-1 right-1 bg-rose-600 text-white rounded-full p-1 opacity-80 hover:opacity-100 transition-opacity"
+                        title="Delete Photo"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
           )}
         </div>
 
-        {/* 3. Must-Visit Attractions Builder */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
-          <div>
-            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-brand-600" /> Must-Visit Attractions ({formData.attractions.length})
-            </h3>
-            <p className="text-[11px] text-slate-400">Key monuments, sacred tirthas, or sightseeing landmarks.</p>
-          </div>
+        {/* 2. Must-Visit Attractions (Collapsible / Optional) */}
+        <div className="rounded-2xl bg-slate-50 border border-slate-200/80 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowAttractions(prev => !prev)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-slate-100/60 transition-colors"
+          >
+            <div className="flex items-center gap-2.5">
+              <MapPin className="w-4 h-4 text-brand-600" />
+              <div>
+                <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                  <span>Must-Visit Attractions</span>
+                  <span className="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-[10px] font-semibold lowercase">optional</span>
+                  <span className="text-[11px] text-slate-400 font-normal">({formData.attractions.length} landmarks)</span>
+                </h3>
+                <p className="text-[11px] text-slate-400">Key monuments, sacred tirthas, or sightseeing landmarks.</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-brand-600">
+              <span>{showAttractions ? 'Collapse' : 'Click to Add / View'}</span>
+              {showAttractions ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </div>
+          </button>
 
-          {formData.attractions.length > 0 && (
-            <div className="space-y-4">
-              {formData.attractions.map((attr, idx) => {
-                const title = typeof attr === 'string' ? attr : (attr.title || '');
-                const desc = typeof attr === 'string' ? '' : (attr.description || '');
-                const img = typeof attr === 'object' ? (attr.image || '') : '';
+          {showAttractions && (
+            <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-200/60">
+              {formData.attractions.length > 0 && (
+                <div className="space-y-4 pt-3">
+                  {formData.attractions.map((attr, idx) => {
+                    const title = typeof attr === 'string' ? attr : (attr.title || '');
+                    const desc = typeof attr === 'string' ? '' : (attr.description || '');
+                    const img = typeof attr === 'object' ? (attr.image || '') : '';
 
-                return (
-                  <div key={idx} className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-brand-500 text-white font-bold text-[10px] flex items-center justify-center">
-                          {idx + 1}
-                        </span>
-                        <span className="text-xs font-bold text-navy-900">Attraction #{idx + 1}</span>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveAttraction(idx)}
-                        className="text-xs text-rose-500 hover:text-rose-700 font-semibold flex items-center gap-1 transition-colors"
-                        title="Delete Attraction"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" /> Delete
-                      </button>
-                    </div>
+                    return (
+                      <div key={idx} className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                          <div className="flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full bg-brand-500 text-white font-bold text-[10px] flex items-center justify-center">
+                              {idx + 1}
+                            </span>
+                            <span className="text-xs font-bold text-navy-900">Attraction #{idx + 1}</span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveAttraction(idx)}
+                            className="text-xs text-rose-500 hover:text-rose-700 font-semibold flex items-center gap-1 transition-colors"
+                            title="Delete Attraction"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" /> Delete
+                          </button>
+                        </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="sm:col-span-2">
-                        <label className="text-[11px] font-bold text-slate-600 block mb-1">Attraction Name / Title</label>
-                        <input
-                          type="text"
-                          value={title}
-                          onChange={(e) => handleUpdateAttraction(idx, 'title', e.target.value)}
-                          placeholder="e.g. Bhai Uday Singh Fort"
-                          className="w-full text-xs font-bold text-navy-900 rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
-                        />
-                      </div>
-
-                      <div className="sm:col-span-2">
-                        <label className="text-[11px] font-bold text-slate-600 block mb-1">Description / Sightseeing Details</label>
-                        <textarea
-                          rows={2}
-                          value={desc}
-                          onChange={(e) => handleUpdateAttraction(idx, 'description', e.target.value)}
-                          placeholder="Describe history, importance, and sightseeing highlights..."
-                          className="w-full text-xs rounded-xl border border-slate-200 p-2.5 focus:outline-none focus:border-brand-500 font-normal leading-relaxed"
-                        />
-                      </div>
-
-                      <div className="sm:col-span-2">
-                        <label className="text-[11px] font-bold text-slate-600 block mb-1">Attraction Photo</label>
-                        <div className="flex flex-col sm:flex-row items-center gap-3">
-                          {img ? (
-                            <div className="relative w-24 h-16 rounded-xl overflow-hidden border border-slate-200 shrink-0 bg-slate-100">
-                              <img
-                                src={img}
-                                alt={title}
-                                onError={(e) => {
-                                  e.target.onerror = null;
-                                  e.target.src = '/assets/images/hero-haryana-kurukshetra.jpg';
-                                }}
-                                className="w-full h-full object-cover"
-                              />
-                              <button
-                                type="button"
-                                onClick={() => handleUpdateAttraction(idx, 'image', '')}
-                                className="absolute top-1 right-1 bg-navy-950/80 text-white rounded-full p-1 text-[9px] hover:bg-rose-600 transition-colors"
-                                title="Remove Photo"
-                              >
-                                ✕
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="w-24 h-16 rounded-xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400 shrink-0 bg-white">
-                              <ImageIcon className="w-4 h-4 text-slate-300" />
-                              <span className="text-[9px] font-bold">No Photo</span>
-                            </div>
-                          )}
-
-                          <div className="flex-1 space-y-1.5 w-full">
-                            <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 cursor-pointer transition-colors shadow-xs">
-                              <Upload className="w-3 h-3 text-brand-600" />
-                              <span>Upload from Device</span>
-                              <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => {
-                                  const f = e.target.files?.[0];
-                                  if (f) handleAttractionImageUploadFor(idx, f);
-                                  e.target.value = '';
-                                }}
-                                disabled={uploading}
-                                className="hidden"
-                              />
-                            </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div className="sm:col-span-2">
+                            <label className="text-[11px] font-bold text-slate-600 block mb-1">Attraction Name / Title</label>
                             <input
                               type="text"
-                              value={img}
-                              onChange={(e) => handleUpdateAttraction(idx, 'image', e.target.value)}
-                              placeholder="Or paste photo URL (https://... or /assets/...)"
-                              className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 bg-white"
+                              value={title}
+                              onChange={(e) => handleUpdateAttraction(idx, 'title', e.target.value)}
+                              placeholder="e.g. Brahma Sarovar, Hathni Kund Barrage"
+                              className="w-full text-xs font-bold text-navy-900 rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
                             />
+                          </div>
+
+                          <div className="sm:col-span-2">
+                            <label className="text-[11px] font-bold text-slate-600 block mb-1">Description / Sightseeing Details</label>
+                            <textarea
+                              rows={2}
+                              value={desc}
+                              onChange={(e) => handleUpdateAttraction(idx, 'description', e.target.value)}
+                              placeholder="Describe history, importance, and sightseeing highlights..."
+                              className="w-full text-xs rounded-xl border border-slate-200 p-2.5 focus:outline-none focus:border-brand-500 font-normal leading-relaxed"
+                            />
+                          </div>
+
+                          <div className="sm:col-span-2">
+                            <label className="text-[11px] font-bold text-slate-600 block mb-1">Attraction Photo (Optional)</label>
+                            <div className="flex flex-col sm:flex-row items-center gap-3">
+                              {img ? (
+                                <div className="relative w-24 h-16 rounded-xl overflow-hidden border border-slate-200 shrink-0 bg-slate-100">
+                                  <img
+                                    src={img}
+                                    alt={title}
+                                    onError={(e) => {
+                                      e.target.onerror = null;
+                                      e.target.src = '/assets/images/hero-haryana-kurukshetra.jpg';
+                                    }}
+                                    className="w-full h-full object-cover"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => handleUpdateAttraction(idx, 'image', '')}
+                                    className="absolute top-1 right-1 bg-navy-950/80 text-white rounded-full p-1 text-[9px] hover:bg-rose-600 transition-colors"
+                                    title="Remove Photo"
+                                  >
+                                    ✕
+                                  </button>
+                                </div>
+                              ) : (
+                                <div className="w-24 h-16 rounded-xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400 shrink-0 bg-white">
+                                  <ImageIcon className="w-4 h-4 text-slate-300" />
+                                  <span className="text-[9px] font-bold">No Photo</span>
+                                </div>
+                              )}
+
+                              <div className="flex-1 space-y-1.5 w-full">
+                                <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 cursor-pointer transition-colors shadow-xs">
+                                  <Upload className="w-3 h-3 text-brand-600" />
+                                  <span>Upload from Device</span>
+                                  <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                      const f = e.target.files?.[0];
+                                      if (f) handleAttractionImageUploadFor(idx, f);
+                                      e.target.value = '';
+                                    }}
+                                    disabled={uploading}
+                                    className="hidden"
+                                  />
+                                </label>
+                                <input
+                                  type="text"
+                                  value={img}
+                                  onChange={(e) => handleUpdateAttraction(idx, 'image', e.target.value)}
+                                  placeholder="Or paste photo URL (https://... or /assets/...)"
+                                  className="w-full text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500 bg-white"
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-
-          <div className="bg-white p-3.5 rounded-xl border border-slate-200 space-y-3">
-            <span className="text-[11px] font-bold text-slate-700 block">Add New Attraction</span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <input
-                type="text"
-                placeholder="Attraction Title (e.g. Brahma Sarovar)"
-                value={newAttraction.title}
-                onChange={(e) => setNewAttraction(prev => ({ ...prev, title: e.target.value }))}
-                className="text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
-              />
-              <input
-                type="text"
-                placeholder="Short Description"
-                value={newAttraction.description}
-                onChange={(e) => setNewAttraction(prev => ({ ...prev, description: e.target.value }))}
-                className="text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer">
-                <Upload className="w-3 h-3 text-brand-600" /> Photo from Device
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleAttractionImageUpload}
-                  disabled={uploading}
-                  className="hidden"
-                />
-              </label>
-              {newAttraction.image && (
-                <img src={newAttraction.image} alt="Preview" className="w-8 h-8 rounded-md object-cover border border-slate-200" />
+                    );
+                  })}
+                </div>
               )}
-              <input
-                type="text"
-                placeholder="Or Image URL"
-                value={newAttraction.image}
-                onChange={(e) => setNewAttraction(prev => ({ ...prev, image: e.target.value }))}
-                className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500"
-              />
-              <button
-                type="button"
-                onClick={handleAddAttraction}
-                className="px-4 py-1.5 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
-              >
-                Add
-              </button>
-            </div>
-          </div>
-        </div>
 
-        {/* 4. Top Experiences & Activities */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
-          <div>
-            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Highlights & Activities ({formData.thingsToDo.length})
-            </h3>
-            <p className="text-[11px] text-slate-400">Special curated experiences for visitors.</p>
-          </div>
-
-          {formData.thingsToDo.length > 0 && (
-            <div className="space-y-3">
-              {formData.thingsToDo.map((thing, idx) => {
-                const title = typeof thing === 'string' ? thing : (thing.title || '');
-                const desc = typeof thing === 'string' ? '' : (thing.description || '');
-
-                return (
-                  <div key={idx} className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                      <span className="text-xs font-bold text-navy-900 flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Experience #{idx + 1}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveThing(idx)}
-                        className="text-xs text-rose-500 hover:text-rose-700 font-semibold flex items-center gap-1 transition-colors"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" /> Delete
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => handleUpdateThing(idx, 'title', e.target.value)}
-                        placeholder="Activity Title"
-                        className="w-full text-xs font-bold text-navy-900 rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500"
-                      />
-                      <input
-                        type="text"
-                        value={desc}
-                        onChange={(e) => handleUpdateThing(idx, 'description', e.target.value)}
-                        placeholder="Activity Description"
-                        className="w-full text-xs text-slate-600 rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500"
-                      />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-
-          <div className="bg-white p-3 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2">
-            <input
-              type="text"
-              placeholder="Activity Title (e.g. Evening Aarti & Light Show)"
-              value={newThing.title}
-              onChange={(e) => setNewThing(prev => ({ ...prev, title: e.target.value }))}
-              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
-            />
-            <input
-              type="text"
-              placeholder="Description"
-              value={newThing.description}
-              onChange={(e) => setNewThing(prev => ({ ...prev, description: e.target.value }))}
-              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
-            />
-            <button
-              type="button"
-              onClick={handleAddThing}
-              className="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
-            >
-              Add Activity
-            </button>
-          </div>
-        </div>
-
-        {/* 5. Driver Travel Tips */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
-          <div>
-            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <Compass className="w-3.5 h-3.5 text-brand-600" /> Local Travel Tips ({formData.travelTips.length})
-            </h3>
-            <p className="text-[11px] text-slate-400">Helpful local advice from chauffeurs and guides.</p>
-          </div>
-
-          {formData.travelTips.length > 0 && (
-            <div className="space-y-2">
-              {formData.travelTips.map((tip, idx) => (
-                <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-slate-200 shadow-xs">
-                  <span className="text-brand-500 font-bold text-xs shrink-0">•</span>
+              <div className="bg-white p-3.5 rounded-xl border border-slate-200 space-y-3">
+                <span className="text-[11px] font-bold text-slate-700 block">Add New Attraction</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <input
                     type="text"
-                    value={tip}
-                    onChange={(e) => handleUpdateTip(idx, e.target.value)}
-                    className="flex-1 text-xs text-slate-700 focus:outline-none bg-transparent"
+                    placeholder="Attraction Title (e.g. Hathni Kund Barrage)"
+                    value={newAttraction.title}
+                    onChange={(e) => setNewAttraction(prev => ({ ...prev, title: e.target.value }))}
+                    className="text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Short Description"
+                    value={newAttraction.description}
+                    onChange={(e) => setNewAttraction(prev => ({ ...prev, description: e.target.value }))}
+                    className="text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer">
+                    <Upload className="w-3 h-3 text-brand-600" /> Photo from Device
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleAttractionImageUpload}
+                      disabled={uploading}
+                      className="hidden"
+                    />
+                  </label>
+                  {newAttraction.image && (
+                    <img src={newAttraction.image} alt="Preview" className="w-8 h-8 rounded-md object-cover border border-slate-200" />
+                  )}
+                  <input
+                    type="text"
+                    placeholder="Or Image URL"
+                    value={newAttraction.image}
+                    onChange={(e) => setNewAttraction(prev => ({ ...prev, image: e.target.value }))}
+                    className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500"
                   />
                   <button
                     type="button"
-                    onClick={() => handleRemoveTip(idx)}
-                    className="p-1 text-slate-400 hover:text-rose-600 transition-colors shrink-0"
-                    title="Delete Tip"
+                    onClick={handleAddAttraction}
+                    className="px-4 py-1.5 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    Add
                   </button>
                 </div>
-              ))}
+              </div>
             </div>
           )}
+        </div>
 
-          <div className="flex gap-2">
-            <input
-              type="text"
-              placeholder="e.g. Best photographed during early morning sunrise."
-              value={newTip}
-              onChange={(e) => setNewTip(e.target.value)}
-              className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
-            />
-            <button
-              type="button"
-              onClick={handleAddTip}
-              className="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
-            >
-              Add Tip
-            </button>
-          </div>
+        {/* 3. Top Experiences & Activities (Collapsible / Optional) */}
+        <div className="rounded-2xl bg-slate-50 border border-slate-200/80 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowThings(prev => !prev)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-slate-100/60 transition-colors"
+          >
+            <div className="flex items-center gap-2.5">
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              <div>
+                <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                  <span>Highlights &amp; Activities</span>
+                  <span className="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-[10px] font-semibold lowercase">optional</span>
+                  <span className="text-[11px] text-slate-400 font-normal">({formData.thingsToDo.length} activities)</span>
+                </h3>
+                <p className="text-[11px] text-slate-400">Special curated experiences for visitors.</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-brand-600">
+              <span>{showThings ? 'Collapse' : 'Click to Add / View'}</span>
+              {showThings ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </div>
+          </button>
+
+          {showThings && (
+            <div className="p-4 sm:p-5 pt-0 space-y-3 border-t border-slate-200/60">
+              {formData.thingsToDo.length > 0 && (
+                <div className="space-y-3 pt-3">
+                  {formData.thingsToDo.map((thing, idx) => {
+                    const title = typeof thing === 'string' ? thing : (thing.title || '');
+                    const desc = typeof thing === 'string' ? '' : (thing.description || '');
+
+                    return (
+                      <div key={idx} className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
+                          <span className="text-xs font-bold text-navy-900 flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Experience #{idx + 1}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveThing(idx)}
+                            className="text-xs text-rose-500 hover:text-rose-700 font-semibold flex items-center gap-1 transition-colors"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" /> Delete
+                          </button>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => handleUpdateThing(idx, 'title', e.target.value)}
+                            placeholder="Activity Title"
+                            className="w-full text-xs font-bold text-navy-900 rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500"
+                          />
+                          <input
+                            type="text"
+                            value={desc}
+                            onChange={(e) => handleUpdateThing(idx, 'description', e.target.value)}
+                            placeholder="Activity Description"
+                            className="w-full text-xs text-slate-600 rounded-xl border border-slate-200 px-3 py-1.5 focus:outline-none focus:border-brand-500"
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              <div className="bg-white p-3 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-2">
+                <input
+                  type="text"
+                  placeholder="Activity Title (e.g. Evening Aarti & Light Show)"
+                  value={newThing.title}
+                  onChange={(e) => setNewThing(prev => ({ ...prev, title: e.target.value }))}
+                  className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+                />
+                <input
+                  type="text"
+                  placeholder="Description"
+                  value={newThing.description}
+                  onChange={(e) => setNewThing(prev => ({ ...prev, description: e.target.value }))}
+                  className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 focus:outline-none focus:border-brand-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddThing}
+                  className="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
+                >
+                  Add Activity
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 4. Local Travel Tips (Collapsible / Optional) */}
+        <div className="rounded-2xl bg-slate-50 border border-slate-200/80 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowTips(prev => !prev)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-slate-100/60 transition-colors"
+          >
+            <div className="flex items-center gap-2.5">
+              <Compass className="w-4 h-4 text-brand-600" />
+              <div>
+                <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                  <span>Local Travel Tips</span>
+                  <span className="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-[10px] font-semibold lowercase">optional</span>
+                  <span className="text-[11px] text-slate-400 font-normal">({formData.travelTips.length} tips)</span>
+                </h3>
+                <p className="text-[11px] text-slate-400">Helpful local advice from chauffeurs and guides.</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-brand-600">
+              <span>{showTips ? 'Collapse' : 'Click to Add / View'}</span>
+              {showTips ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </div>
+          </button>
+
+          {showTips && (
+            <div className="p-4 sm:p-5 pt-0 space-y-4 border-t border-slate-200/60">
+              {formData.travelTips.length > 0 && (
+                <div className="space-y-2 pt-3">
+                  {formData.travelTips.map((tip, idx) => (
+                    <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+                      <span className="text-brand-500 font-bold text-xs shrink-0">•</span>
+                      <input
+                        type="text"
+                        value={tip}
+                        onChange={(e) => handleUpdateTip(idx, e.target.value)}
+                        className="flex-1 text-xs text-slate-700 focus:outline-none bg-transparent"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveTip(idx)}
+                        className="p-1 text-slate-400 hover:text-rose-600 transition-colors shrink-0"
+                        title="Delete Tip"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="e.g. Best photographed during early morning sunrise."
+                  value={newTip}
+                  onChange={(e) => setNewTip(e.target.value)}
+                  className="flex-1 text-xs rounded-xl border border-slate-200 px-3 py-2 bg-white focus:outline-none focus:border-brand-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddTip}
+                  className="px-3.5 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors shrink-0"
+                >
+                  Add Tip
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Featured Switch */}

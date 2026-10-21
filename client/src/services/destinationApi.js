@@ -11,58 +11,53 @@ export const getExactDestinationImages = (name = '', slug = '') => {
       featuredImage: '/assets/images/hero-haryana-kurukshetra.jpg',
       images: [
         '/assets/images/hero-haryana-kurukshetra.jpg',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200'
       ]
     };
   }
   if (q.includes('ambala') || q.includes('cantt')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
+      heroImage: '/assets/images/ambala.jpg',
+      featuredImage: '/assets/images/ambala.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=1200'
+        '/assets/images/ambala.jpg'
       ]
     };
   }
   if (q.includes('delhi') || q.includes('ncr') || q.includes('qutub') || q.includes('india gate')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
+      heroImage: '/assets/images/delhi.jpg',
+      featuredImage: '/assets/images/delhi.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=1200'
+        '/assets/images/delhi.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200'
       ]
     };
   }
   if (q.includes('karnal') || q.includes('karna')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
+      heroImage: '/assets/images/karnal.jpg',
+      featuredImage: '/assets/images/karnal.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Cantonment_Church_Tower_Karnal.jpg?width=1200'
+        '/assets/images/karnal.jpg'
       ]
     };
   }
   if (q.includes('panipat') || q.includes('kala amb') || q.includes('kabuli')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200',
+      heroImage: '/assets/images/panipat.jpg',
+      featuredImage: '/assets/images/panipat.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200'
+        '/assets/images/panipat.jpg'
       ]
     };
   }
   if (q.includes('yamunanagar') || q.includes('kalesar') || q.includes('hathni')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
+      heroImage: '/assets/images/yamunanagar.jpg',
+      featuredImage: '/assets/images/yamunanagar.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200'
+        '/assets/images/yamunanagar.jpg'
       ]
     };
   }
@@ -78,12 +73,11 @@ export const getExactDestinationImages = (name = '', slug = '') => {
   }
   if (q.includes('chandigarh') || q.includes('chandigark') || q.includes('sukhna') || q.includes('rock garden')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
+      heroImage: '/assets/images/chandigarh.jpg',
+      featuredImage: '/assets/images/chandigarh.jpg',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=1200'
+        '/assets/images/chandigarh.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200'
       ]
     };
   }

@@ -9,9 +9,9 @@ export const destinationsData = [
     region: 'Kurukshetra / GT Road',
     shortDescription: 'Land of the Bhagavad Gita, sacred Brahma Sarovar, Sheikh Chilli’s tomb, and Mahabharata war battlefields.',
     description: 'The historic epicenter of the Mahabharata where Lord Krishna imparted the eternal Bhagavad Gita to Arjuna at Jyotisar. Visit Asia’s largest man-made water tank Brahma Sarovar, Sheikh Chilli’s marble tomb, Kurukshetra Panorama & Science Centre, Sannihit Sarovar, and Dharohar Folk Museum.',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+    heroImage: '/assets/images/hero-haryana-kurukshetra.jpg',
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
+      '/assets/images/hero-haryana-kurukshetra.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=800'
     ],
     attractions: [
@@ -35,9 +35,9 @@ export const destinationsData = [
     region: 'Ambala Division',
     shortDescription: 'Twin city of military cantonment heritage, historic Gurdwaras, and Asia’s largest cloth market.',
     description: 'A historic crossroads of northern India known for magnificent British Cantonment architecture, revered Gurdwaras (Manji Sahib & Sis Ganj Sahib), Holy Redeemer Church, Patel Park, and Asia’s biggest wholesale textile market for wedding shopping.',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
+    heroImage: '/assets/images/ambala.jpg',
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=800',
+      '/assets/images/ambala.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=800'
     ],
     attractions: [
@@ -61,9 +61,9 @@ export const destinationsData = [
     region: 'National Capital Region',
     shortDescription: 'Heart of the nation combining monumental UNESCO heritage, Mughal forts, and 24/7 IGI airport transfers.',
     description: 'India’s bustling capital city combining monumental Mughal forts, colonial British avenues, and state-of-the-art expressways. Enjoy door-to-door AC cabs to India Gate, Red Fort, Qutub Minar, Akshardham Temple, Lotus Temple, and 24/7 direct IGI Airport transfers.',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
+    heroImage: '/assets/images/delhi.jpg',
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
+      '/assets/images/delhi.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=800'
     ],
     attractions: [
@@ -87,9 +87,9 @@ export const destinationsData = [
     region: 'Karnal / GT Road',
     shortDescription: 'City of Daanveer Karna, serene Karna Lake, Kalpana Chawla Planetarium, and highway culinary stops.',
     description: 'Named after the legendary King Karna, this scenic city on the Grand Trunk Road features the tranquil Karna Lake, British Cantonment Church Tower, Kalpana Chawla Memorial Planetarium, and renowned highway culinary destinations.',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
+    heroImage: '/assets/images/karnal.jpg',
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=800',
+      '/assets/images/karnal.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Cantonment_Church_Tower_Karnal.jpg?width=800'
     ],
     attractions: [
@@ -113,9 +113,9 @@ export const destinationsData = [
     region: 'Panipat / GT Road',
     shortDescription: 'Historic battlefield of three epic Indian empire wars, Kabuli Bagh mosque, and City of Weavers.',
     description: 'Renowned worldwide for the three pivotal Battles of Panipat (1526, 1556, and 1761) that shaped the destiny of India. Explore Kala Amb battlefield memorial, the 500-year-old Kabuli Bagh Mosque, Tomb of Bu-Ali Shah Qalandar, and world-class textile markets.',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
+    heroImage: '/assets/images/panipat.jpg',
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=800',
+      '/assets/images/panipat.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=800'
     ],
     attractions: [
@@ -139,9 +139,9 @@ export const destinationsData = [
     region: 'Shivalik Foothills',
     shortDescription: 'Eco-tourism paradise with Kalesar National Park, Hathni Kund Barrage, and ancient Chaneti stupa.',
     description: 'Nestled between the Yamuna River and the scenic Shivalik hills, Yamunanagar is Haryana’s eco-tourism and nature paradise. Discover wild leopards and elephants in Kalesar National Park, panoramic riverfront views at Hathni Kund Barrage, and ancient Chaneti Buddhist Stupa.',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
+    heroImage: '/assets/images/yamunanagar.jpg',
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=800',
+      '/assets/images/yamunanagar.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=800'
     ],
     attractions: [
@@ -191,9 +191,9 @@ export const destinationsData = [
     region: 'Chandigarh Tricity',
     shortDescription: 'The City Beautiful with Rock Garden, Sukhna Lake, Rose Garden, and premier corporate & airport cab services.',
     description: 'India’s premier planned modern city designed by Le Corbusier. Relax by the serene waters of Sukhna Lake, walk through Nek Chand’s extraordinary Rock Garden, visit Zakir Hussain Rose Garden, shop at Elante Mall, and enjoy seamless 24/7 airport and corporate chauffeur service.',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
+    heroImage: '/assets/images/chandigarh.jpg',
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
+      '/assets/images/chandigarh.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=800'
     ],
     attractions: [
@@ -226,9 +226,9 @@ export const getRegionalPackagesData = (destMap) => [
     rating: 5.0,
     reviewsCount: 52,
     description: 'Immerse yourself in epic Indian history with our signature Kurukshetra spiritual tour. Experience sacred holy dip at Brahma Sarovar, visit the eternal Jyotisar banyan tree, explore Sheikh Chilli’s marble tomb, and witness the Gita Panorama.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
+    featuredImage: '/assets/images/hero-haryana-kurukshetra.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
+      '/assets/images/hero-haryana-kurukshetra.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=800'
     ],
     itinerary: [
@@ -262,9 +262,9 @@ export const getRegionalPackagesData = (destMap) => [
     rating: 5.0,
     reviewsCount: 38,
     description: 'Perfect blend of spiritual solace and world-class wedding shopping. Visit Gurudwara Manji Sahib, Holy Redeemer Church, and spend a dedicated day shopping at Asia’s largest cloth market with private cab luggage storage.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=800',
+    featuredImage: '/assets/images/ambala.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=800',
+      '/assets/images/ambala.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=800'
     ],
     itinerary: [
@@ -298,9 +298,9 @@ export const getRegionalPackagesData = (destMap) => [
     rating: 5.0,
     reviewsCount: 65,
     description: 'Comprehensive private chauffeur tour of India’s capital. Discover India Gate, Red Fort, Qutub Minar, Akshardham Temple, Lotus Temple, and Connaught Place with seamless point-to-point AC transfers.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
+    featuredImage: '/assets/images/delhi.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
+      '/assets/images/delhi.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=800'
     ],
     itinerary: [
@@ -335,10 +335,10 @@ export const getRegionalPackagesData = (destMap) => [
     rating: 5.0,
     reviewsCount: 31,
     description: 'Discover the rich history of the Grand Trunk Road. Cruise along NH 44 to relax at Karna Lake, explore the ancient Panipat battlefields at Kala Amb, visit Babur’s 500-year-old Kabuli Bagh Mosque, and savor authentic highway dhabas.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=800',
+    featuredImage: '/assets/images/karnal.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=800'
+      '/assets/images/karnal.jpg',
+      '/assets/images/panipat.jpg'
     ],
     itinerary: [
       { day: 1, title: 'Karnal Arrival, Karna Lake Boating & Planetarium', description: 'Scenic drive to Karnal. Relax at Karna Lake, take a pedal boat ride, and visit the Kalpana Chawla Planetarium.', meals: 'Dinner', hotel: 'Karna Lake Resort Karnal' },
@@ -371,9 +371,9 @@ export const getRegionalPackagesData = (destMap) => [
     rating: 5.0,
     reviewsCount: 29,
     description: 'Haryana’s premier nature and wildlife escape in the Shivalik foothills. Enjoy open jeep jungle safaris in Kalesar National Park, panoramic riverside walks at Hathni Kund Barrage, and visit ancient Chaneti Buddhist Stupa.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=800',
+    featuredImage: '/assets/images/yamunanagar.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=800',
+      '/assets/images/yamunanagar.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=800'
     ],
     itinerary: [
@@ -441,9 +441,9 @@ export const getRegionalPackagesData = (destMap) => [
     rating: 5.0,
     reviewsCount: 47,
     description: 'Experience India’s cleanest and most modern city. Tour Nek Chand’s world-famous Rock Garden, enjoy sunset boating at Sukhna Lake, stroll through Zakir Hussain Rose Garden, and shop at Elante Mall with premium chauffeur comfort.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
+    featuredImage: '/assets/images/chandigarh.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
+      '/assets/images/chandigarh.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=800'
     ],
     itinerary: [
@@ -477,11 +477,11 @@ export const getRegionalPackagesData = (destMap) => [
     rating: 5.0,
     reviewsCount: 72,
     description: 'The ultimate regional holiday spanning India’s capital, epic Mahabharata spiritual lands, and modern City Beautiful. Covers Delhi UNESCO monuments, Panipat battlefields, sacred Kurukshetra Brahma Sarovar, and Chandigarh Rock Garden.',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
+    featuredImage: '/assets/images/delhi.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800'
+      '/assets/images/delhi.jpg',
+      '/assets/images/hero-haryana-kurukshetra.jpg',
+      '/assets/images/chandigarh.jpg'
     ],
     itinerary: [
       { day: 1, title: 'Delhi Arrival & Monument Exploration', description: 'Pickup at Delhi IGI Airport / doorstep. Sightseeing at India Gate, Qutub Minar, and Connaught Place.', meals: 'Dinner', hotel: '4-Star Central Delhi Hotel' },

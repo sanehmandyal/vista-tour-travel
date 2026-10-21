@@ -116,15 +116,13 @@ Vista Tour and Travels provides 24/7 dedicated door-to-door cab rentals and cust
 Known for its majestic 19th-century British Cantonment architecture, Ambala is deeply revered for historical Sikh pilgrimage shrines including Gurudwara Manji Sahib (associated with Guru Hargobind Ji and Guru Tegh Bahadur Ji) and Sis Ganj Gurudwara. The city is equally renowned across India for Asia's largest wholesale cloth market—the go-to shopping destination for bridal lehengas, silk sarees, and wedding trousseaus at unbeatable mill rates.
 
 Vista Tour and Travels provides dedicated shopping cab hires with ample trunk luggage space and safe driver waiting, outstation airport cabs, and heritage sightseeing transfers.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
+    featuredImage: '/assets/images/ambala.jpg',
+    heroImage: '/assets/images/ambala.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=1200'
+      '/assets/images/ambala.jpg'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Holy_Redeemer_Church_Ambala.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Ambala_Cantt_Railway_Station.jpg?width=800'
+      '/assets/images/ambala.jpg'
     ],
     bestTimeToVisit: 'October to April',
     idealDuration: '1 - 2 Days',
@@ -211,15 +209,13 @@ Vista Tour and Travels provides dedicated shopping cab hires with ample trunk lu
 From the towering sandstone ramparts of Shah Jahan’s Red Fort and the medieval marvel of Qutub Minar to the grand imperial avenues of Lutyens’ Delhi and the majestic Swaminarayan Akshardham Temple, Delhi is a world unto itself.
 
 Vista Tour and Travels provides 24/7 door-to-door commercial cab transfers between Haryana (Ladwa, Kurukshetra, Karnal, Panipat) and Delhi Indira Gandhi International Airport (Terminals 1, 2, and 3), New Delhi Railway Station, top medical hospitals (AIIMS, Medanta), and customized private chauffeur sightseeing tours.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
+    featuredImage: '/assets/images/delhi.jpg',
+    heroImage: '/assets/images/delhi.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=1200'
+      '/assets/images/delhi.jpg'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/India_Gate_in_New_Delhi_03-2016.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Qutub_Minar_in_New_Delhi_03-2016.jpg?width=800'
+      '/assets/images/delhi.jpg'
     ],
     bestTimeToVisit: 'October to March',
     idealDuration: '2 - 3 Days',
@@ -311,15 +307,13 @@ Vista Tour and Travels provides 24/7 door-to-door commercial cab transfers betwe
 Widely celebrated as the "Rice Bowl of India" and home to premier agricultural institutes like NDRI, Karnal is a delightful destination combining history, leisure, and culinary delights. Visitors love spending relaxed evenings boating at the landscaped Karna Lake complex, visiting the 19th-century British Cantonment Church Tower, and exploring the cosmos at the Kalpana Chawla Memorial Planetarium.
 
 Vista Tour and Travels provides prompt local taxi rentals, day excursions, and highway dining transfers from Ladwa, Kurukshetra, and Nilokheri.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
+    featuredImage: '/assets/images/karnal.jpg',
+    heroImage: '/assets/images/karnal.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Cantonment_Church_Tower_Karnal.jpg?width=1200'
+      '/assets/images/karnal.jpg'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Karna_Lake_Karnal.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Cantonment_Church_Tower_Karnal.jpg?width=800'
+      '/assets/images/karnal.jpg'
     ],
     bestTimeToVisit: 'September to April',
     idealDuration: '1 Day',
@@ -406,15 +400,13 @@ Vista Tour and Travels provides prompt local taxi rentals, day excursions, and h
 Beyond its monumental battlefield memorials at Kala Amb and Emperor Babur’s 500-year-old Kabuli Bagh Mosque, Panipat is hailed today as the "Textile City" and "City of Weavers." It is the world’s leading hub for recycled woolens, exquisite handloom rugs, mink blankets, and luxury home furnishing fabrics.
 
 Vista Tour and Travels provides dedicated commercial car rentals from Ladwa, Kurukshetra, and Karnal with ample boot space for textile shopping, battlefield history tours, and airport drops.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
+    featuredImage: '/assets/images/panipat.jpg',
+    heroImage: '/assets/images/panipat.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200'
+      '/assets/images/panipat.jpg'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=800'
+      '/assets/images/panipat.jpg'
     ],
     bestTimeToVisit: 'October to March',
     idealDuration: '1 Day',
@@ -501,14 +493,14 @@ Vista Tour and Travels provides dedicated commercial car rentals from Ladwa, Kur
 Nature enthusiasts can experience thrilling open jeep safaris in Kalesar National Park—home to leopards, wild elephants, sambhars, and over 200 bird species. Marvel at the breathtaking engineering of Hathni Kund Barrage, visit the ancient 3rd-century BC Buddhist Stupa at Chaneti, and explore the sacred Adi Badri pilgrimage where the holy Saraswati River emerges from the hills.
 
 Vista Tour and Travels offers private AC sedans, Ertigas, and rugged SUVs from Ladwa, Kurukshetra, and Jagadhri for scenic foothill excursions and safari transfers.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
+    featuredImage: '/assets/images/yamunanagar.jpg',
+    heroImage: '/assets/images/yamunanagar.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
+      '/assets/images/yamunanagar.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=800',
+      '/assets/images/yamunanagar.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=800'
     ],
     bestTimeToVisit: 'October to May',
@@ -691,15 +683,15 @@ Vista Tour and Travels offers private AC pilgrimage cabs and custom day tours fr
 Serving as the joint capital of Haryana and Punjab, Chandigarh is renowned for its wide tree-lined boulevards, landscaped gardens, and clean urban aesthetics. Iconic highlights include Nek Chand's world-famous 40-acre Rock Garden built entirely from recycled household and industrial materials, the serene waters of Sukhna Lake with pedal and solar boating, Zakir Hussain Rose Garden, and high-end shopping at Elante Mall.
 
 Vista Tour and Travels provides 24/7 corporate cabs, airport and railway pickups, and weekend holiday packages from Ladwa, Kurukshetra, Ambala, and across Haryana.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
+    featuredImage: '/assets/images/chandigarh.jpg',
+    heroImage: '/assets/images/chandigarh.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
+      '/assets/images/chandigarh.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=1200'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=800',
+      '/assets/images/chandigarh.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=800'
     ],
