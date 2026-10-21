@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { destinationApi, getExactDestinationImages } from '../services/destinationApi';
-import { formatCurrency } from '../utils/formatCurrency';
 import { Search, MapPin, ArrowRight, Filter, Compass, SlidersHorizontal } from 'lucide-react';
 import { CardSkeleton } from '../components/common/Skeleton';
 import Pagination from '../components/common/Pagination';
@@ -17,7 +16,6 @@ export const Destinations = () => {
   // Filters
   const [search, setSearch] = useState(searchParams.get('search') || '');
   const [region, setRegion] = useState(searchParams.get('region') || 'All');
-  const [budget, setBudget] = useState(searchParams.get('budget') || 'all');
   const [sort, setSort] = useState(searchParams.get('sort') || '');
   const regions = ['All', 'Kurukshetra / GT Road', 'Ambala Division', 'National Capital Region', 'Karnal / GT Road', 'Panipat / GT Road', 'Shivalik Foothills', 'Kaithal / Pehowa Belt', 'Chandigarh Tricity'];
 
@@ -28,10 +26,6 @@ export const Destinations = () => {
       if (search) params.search = search;
       if (region && region !== 'All') params.region = region;
       if (sort) params.sort = sort;
-
-      if (budget === 'under-10k') params.maxPrice = 10000;
-      else if (budget === '10k-20k') { params.minPrice = 10000; params.maxPrice = 20000; }
-      else if (budget === 'above-20k') params.minPrice = 20000;
 
       const res = await destinationApi.getAll(params);
       if (res.success) {
@@ -53,7 +47,7 @@ export const Destinations = () => {
     const handleUpdate = () => fetchDestinations();
     window.addEventListener('rtt_destinations_updated', handleUpdate);
     return () => window.removeEventListener('rtt_destinations_updated', handleUpdate);
-  }, [search, region, budget, sort, page]);
+  }, [search, region, sort, page]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -148,12 +142,11 @@ export const Destinations = () => {
         ) : destinations.length === 0 ? (
           <EmptyState
             title="No destinations match your criteria"
-            description="Try changing your search keywords or resetting your budget filters."
+            description="Try changing your search keywords or resetting your filters."
             actionLabel="Reset Filters"
             onAction={() => {
               setSearch('');
               setRegion('All');
-              setBudget('all');
               setSort('');
               setPage(1);
             }}

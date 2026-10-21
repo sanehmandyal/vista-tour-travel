@@ -259,43 +259,43 @@ export const Cars = () => {
           </div>
         )}
 
-        {/* Transparent Rates & Pricing Policy Guide */}
+        {/* Vehicle Specifications & Fleet Guide */}
         <div className="mt-16 glass-panel rounded-3xl p-6 sm:p-10 shadow-glass border border-white/80">
           <div className="max-w-3xl mb-8">
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full mb-2 border border-amber-200/80">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Transparent Pricing
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Fleet Specifications
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900">
-              Cab Rental Pricing & Per-KM Billing Guide
+              Vehicle Specifications & Fleet Guide
             </h2>
             <p className="text-slate-500 text-xs sm:text-sm mt-1">
-              Clear, transparent rates with zero surge pricing, transparent toll billing, and polite verified chauffeurs.
+              Commercial GPS-enabled cabs with verified polite chauffeurs, sanitized interiors, and on-demand quotes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
               <span className="text-xs font-bold text-slate-400 uppercase">Maruti Dzire / Etios</span>
-              <p className="text-xl font-black text-navy-900 mt-1">₹11 - ₹12 / km</p>
-              <p className="text-[11px] text-slate-500 mt-1">Outstation min. 250 km/day. AC included.</p>
+              <p className="text-lg font-black text-navy-900 mt-1">Compact AC Sedan</p>
+              <p className="text-[11px] text-slate-500 mt-1">Ideal for couples & solo travelers. Boot space for 2 bags.</p>
             </div>
 
             <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
               <span className="text-xs font-bold text-slate-400 uppercase">Maruti Ertiga (MUV)</span>
-              <p className="text-xl font-black text-navy-900 mt-1">₹14 - ₹15 / km</p>
-              <p className="text-[11px] text-slate-500 mt-1">6 passenger seats + roof carrier for luggage.</p>
+              <p className="text-lg font-black text-navy-900 mt-1">Family AC MUV</p>
+              <p className="text-[11px] text-slate-500 mt-1">6 passenger seats + roof carrier for extra luggage.</p>
             </div>
 
             <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
               <span className="text-xs font-bold text-slate-400 uppercase">Toyota Innova Crysta</span>
-              <p className="text-xl font-black text-navy-900 mt-1">₹18 - ₹20 / km</p>
-              <p className="text-[11px] text-slate-500 mt-1">Plush captain recliners & dual chill AC.</p>
+              <p className="text-lg font-black text-navy-900 mt-1">Executive AC SUV</p>
+              <p className="text-[11px] text-slate-500 mt-1">Plush captain recliners, superior suspension & dual chill AC.</p>
             </div>
 
             <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
               <span className="text-xs font-bold text-slate-400 uppercase">Force Tempo Traveller</span>
-              <p className="text-xl font-black text-navy-900 mt-1">₹24 - ₹28 / km</p>
-              <p className="text-[11px] text-slate-500 mt-1">12, 17, and 26-seater maharaja pushback seats.</p>
+              <p className="text-lg font-black text-navy-900 mt-1">Group Coach</p>
+              <p className="text-[11px] text-slate-500 mt-1">12, 17, and 26-seater maharaja pushback seats with LED TV.</p>
             </div>
           </div>
 

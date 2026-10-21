@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { packageApi } from '../services/packageApi';
 import { destinationApi } from '../services/destinationApi';
-import { formatCurrency } from '../utils/formatCurrency';
 import {
   Search,
   Clock,
@@ -33,8 +32,6 @@ export const Packages = () => {
   const [destination, setDestination] = useState(searchParams.get('destination') || '');
   const [category, setCategory] = useState(searchParams.get('category') || 'All');
   const [duration, setDuration] = useState(searchParams.get('duration') || '');
-  const [minPrice, setMinPrice] = useState(searchParams.get('minPrice') || '');
-  const [maxPrice, setMaxPrice] = useState(searchParams.get('maxPrice') || '');
   const [sort, setSort] = useState(searchParams.get('sort') || '');
   const [page, setPage] = useState(1);
 
@@ -70,8 +67,6 @@ export const Packages = () => {
       if (destination) params.destination = destination;
       if (category && category !== 'All') params.category = category;
       if (duration) params.duration = duration;
-      if (minPrice) params.minPrice = minPrice;
-      if (maxPrice) params.maxPrice = maxPrice;
       if (sort) params.sort = sort;
 
       const res = await packageApi.getAll(params);
@@ -90,7 +85,7 @@ export const Packages = () => {
 
   useEffect(() => {
     fetchPackages();
-  }, [search, destination, category, duration, minPrice, maxPrice, sort, page]);
+  }, [search, destination, category, duration, sort, page]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -103,8 +98,6 @@ export const Packages = () => {
     setDestination('');
     setCategory('All');
     setDuration('');
-    setMinPrice('');
-    setMaxPrice('');
     setSort('');
     setPage(1);
   };
@@ -267,9 +260,6 @@ export const Packages = () => {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {packages.map((pkg) => {
-                const hasDiscount = pkg.discountedPrice > 0 && pkg.discountedPrice < pkg.price;
-                const displayPrice = hasDiscount ? pkg.discountedPrice : pkg.price;
-
                 return (
                   <div
                     key={pkg._id}
@@ -332,14 +322,14 @@ export const Packages = () => {
                       <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
                         <div>
                           <span className="text-[10px] text-brand-600 uppercase font-bold tracking-wider">Vista Tour and Travels</span>
-                          <p className="text-sm font-black text-navy-900">Customized Pricing</p>
+                          <p className="text-sm font-black text-navy-900">Custom Tour Plan</p>
                         </div>
 
                         <Link
                           to={`/packages/${pkg.slug}`}
                           className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm"
                         >
-                          View Details & Quote <ArrowRight className="w-3.5 h-3.5" />
+                          View Details & Enquire <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
                     </div>

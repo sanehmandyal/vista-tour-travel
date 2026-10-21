@@ -101,8 +101,8 @@ export const LocationDetails = () => {
 
             <div className="glass-dark border border-white/20 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-glass shrink-0">
               <div>
-                <p className="text-[11px] text-slate-300 uppercase font-extrabold tracking-wider">Starting Fare</p>
-                <p className="text-xl sm:text-2xl font-black text-amber-300">{location.startingFare}</p>
+                <p className="text-[11px] text-slate-300 uppercase font-extrabold tracking-wider">Cab & Tour Service</p>
+                <p className="text-xl sm:text-2xl font-black text-amber-300">Custom Quotes</p>
               </div>
               <a
                 href={waUrl}
@@ -206,7 +206,7 @@ export const LocationDetails = () => {
                       </p>
                     </div>
                     <div className="flex items-center justify-between sm:justify-end gap-3 pl-4 sm:pl-0 border-t sm:border-t-0 pt-2 sm:pt-0">
-                      <span className="text-sm font-black text-brand-600">{route.fare}</span>
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 border border-brand-200">On Request</span>
                       <a
                         href={`https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello Vista Travels, I want to book cab from ${location.name} to ${route.to}.`)}`}
                         target="_blank"

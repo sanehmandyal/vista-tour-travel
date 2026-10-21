@@ -70,14 +70,12 @@ const getInitialSettings = () => {
         parsed.address?.includes('Una') ||
         parsed.email?.includes('ravi') ||
         parsed.logo === '/logo.svg' ||
-        parsed.heroImage?.includes('photo-1506744038136-46273834b3fb') ||
-        parsed.heroImage?.includes('unsplash') ||
-        parsed.heroImage?.includes('Brahma_Sarovar_Kurukshetra.jpg')
+        parsed.heroImage?.includes('photo-1506744038136-46273834b3fb')
       ) {
         localStorage.setItem(SETTINGS_KEY, JSON.stringify(defaultSettings));
         return defaultSettings;
       }
-      return { ...defaultSettings, ...parsed, heroImage: (!parsed.heroImage || parsed.heroImage.includes('unsplash') || parsed.heroImage.includes('Brahma_Sarovar_Kurukshetra.jpg')) ? defaultSettings.heroImage : parsed.heroImage, logo: parsed.logo === '/logo.svg' ? '/logo.jpg' : (parsed.logo || '/logo.jpg') };
+      return { ...defaultSettings, ...parsed, heroImage: parsed.heroImage || defaultSettings.heroImage, logo: parsed.logo === '/logo.svg' ? '/logo.jpg' : (parsed.logo || '/logo.jpg') };
     }
   } catch (e) {}
   return defaultSettings;
@@ -112,7 +110,7 @@ export const WebsiteProvider = ({ children }) => {
           data.googleReviewsUrl = defaultSettings.googleReviewsUrl;
           data.whatsapp = defaultSettings.whatsapp;
         }
-        if (!data.heroImage || data.heroImage.includes('unsplash') || data.heroImage.includes('photo-1506744038136-46273834b3fb') || data.heroImage.includes('Brahma_Sarovar_Kurukshetra.jpg')) {
+        if (!data.heroImage) {
           data.heroImage = defaultSettings.heroImage;
         }
         setSettings(prev => ({ ...prev, ...data }));

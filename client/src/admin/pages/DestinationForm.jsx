@@ -415,21 +415,6 @@ export const DestinationForm = () => {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">
-              Starting Cab / Package Fare (₹) <span className="text-rose-500">*</span>
-            </label>
-            <input
-              type="number"
-              name="startingPrice"
-              value={formData.startingPrice}
-              onChange={handleChange}
-              min="0"
-              placeholder="e.g. 1999"
-              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-semibold text-navy-900"
-            />
-          </div>
-
-          <div>
             <label className="text-xs font-bold text-slate-700 block mb-1">Geographical Region</label>
             <select
               name="region"

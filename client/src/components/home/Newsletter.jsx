@@ -39,10 +39,10 @@ export const Newsletter = () => {
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
-          Get Secret Travel Discounts & Itineraries
+          Get Curated Regional Itineraries & Road Trips
         </h2>
         <p className="text-brand-100 text-sm sm:text-base max-w-xl mx-auto mb-8">
-          Join over 15,000+ wanderers receiving our curated weekend road trip maps and exclusive seasonal flash sales.
+          Join over 15,000+ wanderers receiving our curated weekend road trip maps and exclusive seasonal travel guides.
         </p>
 
         {subscribed ? (

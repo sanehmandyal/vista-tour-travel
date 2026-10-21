@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { destinationApi, getExactDestinationImages } from '../../services/destinationApi';
-import { formatCurrency } from '../../utils/formatCurrency';
 import { PlusCircle, Search, Edit2, Trash2, ExternalLink, MapPin } from 'lucide-react';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
@@ -101,7 +100,6 @@ export const Destinations = () => {
                 <tr>
                   <th className="py-3 px-4">Destination</th>
                   <th className="py-3 px-4">State / Region</th>
-                  <th className="py-3 px-4">Starting Price</th>
                   <th className="py-3 px-4">Featured</th>
                   <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
@@ -135,9 +133,6 @@ export const Destinations = () => {
                     <td className="py-3 px-4 text-slate-700">
                       <span className="font-semibold">{d.state}</span>
                       <span className="text-slate-400 block text-[11px]">{d.region}</span>
-                    </td>
-                    <td className="py-3 px-4 font-bold text-navy-900">
-                      {formatCurrency(d.startingPrice)}
                     </td>
                     <td className="py-3 px-4">
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${

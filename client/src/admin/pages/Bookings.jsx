@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { bookingApi } from '../../services/bookingApi';
-import { formatCurrency } from '../../utils/formatCurrency';
 import { formatDate } from '../../utils/formatDate';
 import {
   CalendarCheck,
@@ -157,7 +156,6 @@ export const Bookings = () => {
                   <th className="py-3 px-4">Package</th>
                   <th className="py-3 px-4">Travel Date</th>
                   <th className="py-3 px-4">Travelers</th>
-                  <th className="py-3 px-4">Amount</th>
                   <th className="py-3 px-4">Status</th>
                   <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
@@ -180,9 +178,6 @@ export const Bookings = () => {
                     </td>
                     <td className="py-3 px-4 font-medium text-slate-600">
                       {b.adults} Ad{b.children > 0 ? `, ${b.children} Ch` : ''}
-                    </td>
-                    <td className="py-3 px-4 font-black text-navy-900">
-                      {formatCurrency(b.totalAmount)}
                     </td>
                     <td className="py-3 px-4">
                       <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
@@ -331,19 +326,19 @@ export const Bookings = () => {
               </div>
             )}
 
-            {/* Financial Summary */}
+            {/* Inquiry Overview */}
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
               <div className="flex justify-between">
-                <span className="text-slate-500">Package Fare:</span>
-                <span className="font-semibold text-navy-900">{formatCurrency(selectedBooking.packagePrice)} per adult</span>
+                <span className="text-slate-500">Service Plan:</span>
+                <span className="font-semibold text-navy-900">Customized Tour & Cab Service</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">Taxes (GST 5%):</span>
-                <span className="font-semibold text-navy-900">{formatCurrency(selectedBooking.taxes)}</span>
+                <span className="text-slate-500">Booking Status:</span>
+                <span className="font-semibold text-navy-900">{selectedBooking.bookingStatus}</span>
               </div>
-              <div className="pt-2 border-t border-slate-200 flex justify-between text-base">
-                <span className="font-bold text-navy-900">Total Booking Amount:</span>
-                <span className="font-black text-brand-700">{formatCurrency(selectedBooking.totalAmount)}</span>
+              <div className="pt-2 border-t border-slate-200 flex justify-between text-sm">
+                <span className="font-bold text-navy-900">Payment & Pricing:</span>
+                <span className="font-bold text-brand-700">Custom Quote on Request</span>
               </div>
             </div>
           </div>

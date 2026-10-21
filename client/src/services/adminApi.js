@@ -54,54 +54,51 @@ export const adminApi = {
   deleteUser: (id) => axiosClient.delete(`/users/${id}`),
 
   getSettings: async () => {
-    let localData = null;
-    try {
-      localStorage.removeItem('rtt_website_settings');
-      const saved = localStorage.getItem(SETTINGS_KEY);
-      if (saved) {
-        localData = sanitizeSettings(JSON.parse(saved));
-      }
-    } catch (e) {}
-
     try {
       const res = await axiosClient.get('/admin/settings');
       if (res && res.success && res.data) {
-        // Cache and merge: local customized admin changes take precedence over default MongoDB fields
-        const merged = sanitizeSettings({ ...res.data, ...(localData || {}) });
-        localStorage.setItem(SETTINGS_KEY, JSON.stringify(merged));
-        return { success: true, data: merged };
+        // Production MongoDB is the single source of truth
+        const sanitized = sanitizeSettings(res.data);
+        try {
+          localStorage.setItem(SETTINGS_KEY, JSON.stringify(sanitized));
+        } catch (e) {}
+        return { success: true, data: sanitized };
       }
-    } catch (err) {}
-
-    // Fallback to local storage
-    if (localData) {
-      localStorage.setItem(SETTINGS_KEY, JSON.stringify(localData));
-      return { success: true, data: localData };
+    } catch (err) {
+      console.warn('Network issue fetching settings from server, checking local cache:', err.message);
     }
+
+    // Fallback to local cache only if server is unreachable
+    try {
+      const saved = localStorage.getItem(SETTINGS_KEY);
+      if (saved) {
+        return { success: true, data: sanitizeSettings(JSON.parse(saved)) };
+      }
+    } catch (e) {}
 
     return { success: false, data: null };
   },
 
   updateSettings: async (data) => {
     const sanitized = sanitizeSettings(data);
-    // 1. Immediately persist locally
-    try {
-      localStorage.setItem(SETTINGS_KEY, JSON.stringify(sanitized));
-      window.dispatchEvent(new CustomEvent('vtt_settings_updated', { detail: sanitized }));
-      window.dispatchEvent(new CustomEvent('rtt_settings_updated', { detail: sanitized }));
-    } catch (e) {}
 
-    // 2. Try remote API update
+    // 1. Send update directly to Production MongoDB API
     try {
       const res = await axiosClient.put('/admin/settings', sanitized);
       if (res && res.success) {
-        return res;
+        const serverData = res.data ? sanitizeSettings(res.data) : sanitized;
+        try {
+          localStorage.setItem(SETTINGS_KEY, JSON.stringify(serverData));
+          window.dispatchEvent(new CustomEvent('vtt_settings_updated', { detail: serverData }));
+          window.dispatchEvent(new CustomEvent('rtt_settings_updated', { detail: serverData }));
+        } catch (e) {}
+        return { success: true, data: serverData, message: 'Settings saved to MongoDB and published globally!' };
       }
-    } catch (e) {
-      // Remote call failed, but local update succeeded
+      throw new Error(res?.message || 'Server rejected settings update');
+    } catch (err) {
+      console.error('Failed to update website settings in database:', err);
+      throw new Error(err.message || 'Could not save settings to database. Please check your admin session.');
     }
-
-    return { success: true, data: sanitized, message: 'Settings saved and published live!' };
   },
 
   uploadImage: (formData) => axiosClient.post('/admin/upload', formData),

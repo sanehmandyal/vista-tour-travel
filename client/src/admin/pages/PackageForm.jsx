@@ -411,34 +411,6 @@ export const PackageForm = () => {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">
-              Package Fare (₹) <span className="text-rose-500">*</span>
-            </label>
-            <input
-              type="number"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-              min="0"
-              placeholder="e.g. 3499"
-              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-semibold text-navy-900"
-            />
-          </div>
-
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-1">Discounted / Offer Fare (₹)</label>
-            <input
-              type="number"
-              name="discountedPrice"
-              value={formData.discountedPrice}
-              onChange={handleChange}
-              min="0"
-              placeholder="e.g. 2999"
-              className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500 font-medium"
-            />
-          </div>
-
-          <div>
             <label className="text-xs font-bold text-slate-700 block mb-1">Status</label>
             <select
               name="status"

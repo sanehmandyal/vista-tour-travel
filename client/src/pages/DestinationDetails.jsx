@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { destinationApi, getExactDestinationImages } from '../services/destinationApi';
-import { formatCurrency } from '../utils/formatCurrency';
 import {
   MapPin,
   Calendar,
@@ -150,8 +149,8 @@ export const DestinationDetails = () => {
             {/* Quick Action Glass CTA in Hero */}
             <div className="glass-dark border border-white/20 rounded-2xl p-4 sm:p-5 flex flex-wrap sm:flex-nowrap items-center gap-4 shadow-glass shrink-0">
               <div>
-                <p className="text-[11px] text-slate-300 uppercase font-extrabold tracking-wider">Starting Cab Fare</p>
-                <p className="text-xl sm:text-2xl font-black text-amber-300">{destination.cabFare || 'Starting ₹1,499'}</p>
+                <p className="text-[11px] text-slate-300 uppercase font-extrabold tracking-wider">Cab & Tour Service</p>
+                <p className="text-xl sm:text-2xl font-black text-amber-300">Customized Quotes</p>
               </div>
               <div className="flex items-center gap-2">
                 <a
@@ -231,15 +230,15 @@ export const DestinationDetails = () => {
             )}
           </div>
 
-          {/* Dedicated Cab Fare & Rates Table */}
+          {/* Dedicated Cab Fleet & Vehicle Options */}
           <div className="glass-panel rounded-2xl p-6 sm:p-8 shadow-glass border border-white/80">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div>
                 <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full mb-2 border border-emerald-200/80">
-                  <Car className="w-3.5 h-3.5 text-emerald-600" /> Commercial Taxi Rates
+                  <Car className="w-3.5 h-3.5 text-emerald-600" /> Commercial Taxi Fleet
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-navy-900">
-                  {destination.name} Cab Fare & Vehicle Options
+                  {destination.name} Cab Fleet & Vehicle Options
                 </h3>
               </div>
               <a
@@ -253,15 +252,12 @@ export const DestinationDetails = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {(destination.cabRates && destination.cabRates.length > 0
-                ? destination.cabRates
-                : [
-                    { vehicle: 'Maruti Dzire (AC Sedan)', price: destination.cabFare || 'Starting ₹1,499', capacity: '4 Passengers + Boot', idealFor: 'Couples & Small Families' },
-                    { vehicle: 'Maruti Ertiga (AC MUV)', price: 'Starting ₹2,199', capacity: '6 Passengers + Boot', idealFor: 'Family Group Travel' },
-                    { vehicle: 'Innova Crysta (Luxury SUV)', price: 'Starting ₹3,199', capacity: '7 Passengers + Boot', idealFor: 'VIP Chauffeur & Executives' },
-                    { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'Starting ₹4,999', capacity: '12-17 Passengers', idealFor: 'Pilgrims & Large Groups' }
-                  ]
-              ).map((cab, idx) => (
+              {[
+                { vehicle: 'Maruti Dzire (AC Sedan)', capacity: '4 Passengers + Boot', idealFor: 'Couples & Small Families' },
+                { vehicle: 'Maruti Ertiga (AC MUV)', capacity: '6 Passengers + Boot', idealFor: 'Family Group Travel' },
+                { vehicle: 'Innova Crysta (Luxury SUV)', capacity: '7 Passengers + Boot', idealFor: 'VIP Chauffeur & Executives' },
+                { vehicle: 'Tempo Traveller (12/17 Seater)', capacity: '12-17 Passengers', idealFor: 'Pilgrims & Large Groups' }
+              ].map((cab, idx) => (
                 <div
                   key={idx}
                   className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:border-brand-400 hover:bg-brand-50/30 transition-all flex flex-col justify-between"
@@ -269,7 +265,7 @@ export const DestinationDetails = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
                       <h4 className="text-sm font-bold text-navy-900">{cab.vehicle}</h4>
-                      <span className="text-sm font-black text-brand-600">{cab.price}</span>
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 border border-brand-200">On Request</span>
                     </div>
                     <p className="text-xs text-slate-500 font-medium flex items-center gap-1 mb-1">
                       <Users className="w-3.5 h-3.5 text-slate-400" /> {cab.capacity}
@@ -286,7 +282,7 @@ export const DestinationDetails = () => {
                       rel="noreferrer"
                       className="font-bold text-brand-600 hover:text-brand-800 transition-colors"
                     >
-                      Book Now →
+                      Enquire Now →
                     </a>
                   </div>
                 </div>
@@ -466,7 +462,7 @@ export const DestinationDetails = () => {
                         {pkg.duration || '2 Days'}
                       </div>
                       <div className="absolute bottom-3 right-3 bg-navy-950/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-xs font-bold text-amber-300">
-                        {pkg.discountedPrice ? formatCurrency(pkg.discountedPrice) : formatCurrency(pkg.price || 4999)}
+                        Custom Tour Plan
                       </div>
                     </div>
                     <div className="p-5 flex flex-col justify-between flex-grow">

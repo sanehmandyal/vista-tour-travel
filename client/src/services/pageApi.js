@@ -56,9 +56,12 @@ export const pageApi = {
       const res = await axiosClient.put(`/pages/${cleanSlug}`, data);
       if (res && res.success && res.data) {
         updatedItem = res.data;
+      } else {
+        throw new Error(res?.message || 'Server rejected page update');
       }
     } catch (err) {
-      console.warn(`Direct server update failed for page ${cleanSlug}:`, err.message);
+      console.error(`Direct server update failed for page ${cleanSlug}:`, err);
+      throw new Error(err.message || `Could not save page content for '${cleanSlug}' to database.`);
     }
 
     // If home page is updated, seamlessly synchronize hero image & text into global WebsiteSettings
@@ -76,13 +79,12 @@ export const pageApi = {
       }
     }
 
-    const finalItem = updatedItem || { ...data, slug: cleanSlug, updatedAt: new Date().toISOString() };
     try {
-      localStorage.setItem(`${STORAGE_KEY_PREFIX}${cleanSlug}`, JSON.stringify(finalItem));
-      window.dispatchEvent(new CustomEvent('vtt_page_updated', { detail: { slug: cleanSlug, data: finalItem } }));
+      localStorage.setItem(`${STORAGE_KEY_PREFIX}${cleanSlug}`, JSON.stringify(updatedItem));
+      window.dispatchEvent(new CustomEvent('vtt_page_updated', { detail: { slug: cleanSlug, data: updatedItem } }));
     } catch (e) {}
 
-    return { success: true, data: finalItem };
+    return { success: true, data: updatedItem };
   },
 
   create: async (data) => {
@@ -91,17 +93,22 @@ export const pageApi = {
       if (res && res.success && res.data) {
         return { success: true, data: res.data };
       }
+      throw new Error(res?.message || 'Server rejected page creation');
     } catch (err) {
-      console.warn('Direct server create failed for page:', err.message);
+      console.error('Direct server create failed for page:', err);
+      throw new Error(err.message || 'Could not create page in database.');
     }
-    return { success: true, data: data };
   },
 
   delete: async (slug) => {
     try {
-      await axiosClient.delete(`/pages/${slug}`);
+      const res = await axiosClient.delete(`/pages/${slug}`);
+      if (res && res.success === false) {
+        throw new Error(res.message || 'Server rejected page deletion');
+      }
     } catch (err) {
-      console.warn(`Direct delete failed for page ${slug}:`, err.message);
+      console.error(`Direct delete failed for page ${slug}:`, err);
+      throw new Error(err.message || `Could not delete page '${slug}' from database.`);
     }
     return { success: true, message: 'Page deleted successfully' };
   }

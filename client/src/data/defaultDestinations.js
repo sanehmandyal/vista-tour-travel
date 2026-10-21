@@ -25,7 +25,7 @@ Vista Tour and Travels provides 24/7 dedicated door-to-door cab rentals and cust
     ],
     bestTimeToVisit: 'September to March',
     idealDuration: '1 - 2 Days',
-    cabFare: 'Starting ₹1,499',
+    cabFare: 'Available On Request',
     startingPrice: 1499,
     estimatedBudget: 2499,
     rating: 5.0,
@@ -34,10 +34,10 @@ Vista Tour and Travels provides 24/7 dedicated door-to-door cab rentals and cust
     distanceFromLadwa: '18 km (25 mins)',
     routeInfo: 'Via Ladwa - Kurukshetra Rd / SH 6',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹1,499', capacity: '4 Passengers + Luggage', idealFor: 'Couples & Small Families' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹2,199', capacity: '6 Passengers + Luggage', idealFor: 'Family Group Sightseeing' },
-      { vehicle: 'Innova Crysta (Luxury SUV)', price: '₹3,199', capacity: '7 Passengers + Luggage', idealFor: 'VIP Chauffeur & Corporate' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹4,999', capacity: '12-17 Passengers', idealFor: 'Pilgrimage Groups & Yatras' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Couples & Small Families' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Family Group Sightseeing' },
+      { vehicle: 'Innova Crysta (Luxury SUV)', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'VIP Chauffeur & Corporate' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Pilgrimage Groups & Yatras' }
     ],
     attractions: [
       {
@@ -126,7 +126,7 @@ Vista Tour and Travels provides dedicated shopping cab hires with ample trunk lu
     ],
     bestTimeToVisit: 'October to April',
     idealDuration: '1 - 2 Days',
-    cabFare: 'Starting ₹1,799',
+    cabFare: 'Available On Request',
     startingPrice: 1799,
     estimatedBudget: 2199,
     rating: 5.0,
@@ -135,10 +135,10 @@ Vista Tour and Travels provides dedicated shopping cab hires with ample trunk lu
     distanceFromLadwa: '48 km (50 mins)',
     routeInfo: 'Via NH 44 (GT Road) / Ambala - Ladwa Rd',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹1,799', capacity: '4 Passengers + Luggage', idealFor: 'Shopping & Single Day Trips' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹2,499', capacity: '6 Passengers + Luggage', idealFor: 'Bridal Shopping Family Groups' },
-      { vehicle: 'Innova Crysta (Luxury SUV)', price: '₹3,499', capacity: '7 Passengers + Luggage', idealFor: 'Executive & Comfort Travel' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹5,499', capacity: '12-17 Passengers', idealFor: 'Extended Wedding Delegations' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Shopping & Single Day Trips' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Bridal Shopping Family Groups' },
+      { vehicle: 'Innova Crysta (Luxury SUV)', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'Executive & Comfort Travel' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Extended Wedding Delegations' }
     ],
     attractions: [
       {
@@ -221,7 +221,7 @@ Vista Tour and Travels provides 24/7 door-to-door commercial cab transfers betwe
     ],
     bestTimeToVisit: 'October to March',
     idealDuration: '2 - 3 Days',
-    cabFare: 'Starting ₹3,199',
+    cabFare: 'Available On Request',
     startingPrice: 3199,
     estimatedBudget: 4999,
     rating: 5.0,
@@ -230,10 +230,10 @@ Vista Tour and Travels provides 24/7 door-to-door commercial cab transfers betwe
     distanceFromLadwa: '155 km (2.5 - 3 hours)',
     routeInfo: 'Via NH 44 (Direct 6-Lane Expressway)',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹3,199', capacity: '4 Passengers + Luggage', idealFor: 'Airport Drops & One-Way Transfers' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹4,199', capacity: '6 Passengers + Luggage', idealFor: 'Family Airport Pickups & Sightseeing' },
-      { vehicle: 'Innova Crysta (Luxury SUV)', price: '₹5,499', capacity: '7 Passengers + Luggage', idealFor: 'Executive Comfort & VIP Transfers' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹8,999', capacity: '12-17 Passengers', idealFor: 'Tour Groups & Overseas Travelers' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Airport Drops & One-Way Transfers' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Family Airport Pickups & Sightseeing' },
+      { vehicle: 'Innova Crysta (Luxury SUV)', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'Executive Comfort & VIP Transfers' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Tour Groups & Overseas Travelers' }
     ],
     attractions: [
       {
@@ -321,7 +321,7 @@ Vista Tour and Travels provides prompt local taxi rentals, day excursions, and h
     ],
     bestTimeToVisit: 'September to April',
     idealDuration: '1 Day',
-    cabFare: 'Starting ₹1,499',
+    cabFare: 'Available On Request',
     startingPrice: 1499,
     estimatedBudget: 1999,
     rating: 5.0,
@@ -330,10 +330,10 @@ Vista Tour and Travels provides prompt local taxi rentals, day excursions, and h
     distanceFromLadwa: '42 km (45 mins)',
     routeInfo: 'Via Ladwa - Indri - Karnal Rd',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹1,499', capacity: '4 Passengers + Luggage', idealFor: 'Day Excursion & Lake Visits' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹2,199', capacity: '6 Passengers + Luggage', idealFor: 'Family Highway Outings' },
-      { vehicle: 'Innova Crysta (Luxury SUV)', price: '₹2,999', capacity: '7 Passengers + Luggage', idealFor: 'Corporate & Executive Travel' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹4,799', capacity: '12-17 Passengers', idealFor: 'Group Outings & School Tours' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Day Excursion & Lake Visits' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Family Highway Outings' },
+      { vehicle: 'Innova Crysta (Luxury SUV)', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'Corporate & Executive Travel' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Group Outings & School Tours' }
     ],
     attractions: [
       {
@@ -416,7 +416,7 @@ Vista Tour and Travels provides dedicated commercial car rentals from Ladwa, Kur
     ],
     bestTimeToVisit: 'October to March',
     idealDuration: '1 Day',
-    cabFare: 'Starting ₹1,999',
+    cabFare: 'Available On Request',
     startingPrice: 1999,
     estimatedBudget: 2499,
     rating: 5.0,
@@ -425,10 +425,10 @@ Vista Tour and Travels provides dedicated commercial car rentals from Ladwa, Kur
     distanceFromLadwa: '78 km (1 hr 15 mins)',
     routeInfo: 'Via NH 44 (GT Road)',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹1,999', capacity: '4 Passengers + Luggage', idealFor: 'Textile Shopping & History Tours' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹2,799', capacity: '6 Passengers + Luggage', idealFor: 'Family Wholesale Shopping Trips' },
-      { vehicle: 'Innova Crysta (Luxury SUV)', price: '₹3,799', capacity: '7 Passengers + Luggage', idealFor: 'Executive Chauffeur Comfort' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹5,999', capacity: '12-17 Passengers', idealFor: 'Textile Buyer Delegations' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Textile Shopping & History Tours' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Family Wholesale Shopping Trips' },
+      { vehicle: 'Innova Crysta (Luxury SUV)', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'Executive Chauffeur Comfort' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Textile Buyer Delegations' }
     ],
     attractions: [
       {
@@ -511,7 +511,7 @@ Vista Tour and Travels offers private AC sedans, Ertigas, and rugged SUVs from L
     ],
     bestTimeToVisit: 'October to May',
     idealDuration: '1 - 2 Days',
-    cabFare: 'Starting ₹1,699',
+    cabFare: 'Available On Request',
     startingPrice: 1699,
     estimatedBudget: 2299,
     rating: 5.0,
@@ -520,10 +520,10 @@ Vista Tour and Travels offers private AC sedans, Ertigas, and rugged SUVs from L
     distanceFromLadwa: '36 km (40 mins)',
     routeInfo: 'Via SH 6 (Ladwa - Radaur - Yamunanagar Rd)',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹1,699', capacity: '4 Passengers + Luggage', idealFor: 'Barrage Day Visits & Family Trips' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹2,399', capacity: '6 Passengers + Luggage', idealFor: 'Foothill & Family Nature Safaris' },
-      { vehicle: 'Mahindra Scorpio / Innova', price: '₹3,299', capacity: '7 Passengers + Luggage', idealFor: 'Kalesar Jungle Safari & Foothill Terrain' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹5,299', capacity: '12-17 Passengers', idealFor: 'Adventure Groups & Eco Picnics' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Barrage Day Visits & Family Trips' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Foothill & Family Nature Safaris' },
+      { vehicle: 'Mahindra Scorpio / Innova', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'Kalesar Jungle Safari & Foothill Terrain' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Adventure Groups & Eco Picnics' }
     ],
     attractions: [
       {
@@ -606,7 +606,7 @@ Vista Tour and Travels offers private AC pilgrimage cabs and custom day tours fr
     ],
     bestTimeToVisit: 'October to March',
     idealDuration: '1 Day',
-    cabFare: 'Starting ₹1,599',
+    cabFare: 'Available On Request',
     startingPrice: 1599,
     estimatedBudget: 1999,
     rating: 5.0,
@@ -615,10 +615,10 @@ Vista Tour and Travels offers private AC pilgrimage cabs and custom day tours fr
     distanceFromLadwa: '58 km (1 hour)',
     routeInfo: 'Via Kurukshetra - Dhand - Kaithal Rd',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹1,599', capacity: '4 Passengers + Luggage', idealFor: 'Hanuman Yatra & Day Excursions' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹2,299', capacity: '6 Passengers + Luggage', idealFor: 'Family Temple & Pehowa Snan Tours' },
-      { vehicle: 'Innova Crysta (Luxury SUV)', price: '₹3,199', capacity: '7 Passengers + Luggage', idealFor: 'Comfortable Pilgrim Travel' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹4,999', capacity: '12-17 Passengers', idealFor: 'Devotional Yatra Groups' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Hanuman Yatra & Day Excursions' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Family Temple & Pehowa Snan Tours' },
+      { vehicle: 'Innova Crysta (Luxury SUV)', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'Comfortable Pilgrim Travel' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Devotional Yatra Groups' }
     ],
     attractions: [
       {
@@ -701,7 +701,7 @@ Vista Tour and Travels provides 24/7 corporate cabs, airport and railway pickups
     ],
     bestTimeToVisit: 'Year-Round (Best: October to April)',
     idealDuration: '2 Days',
-    cabFare: 'Starting ₹2,199',
+    cabFare: 'Available On Request',
     startingPrice: 2199,
     estimatedBudget: 3499,
     rating: 5.0,
@@ -710,10 +710,10 @@ Vista Tour and Travels provides 24/7 corporate cabs, airport and railway pickups
     distanceFromLadwa: '92 km (1 hr 30 mins)',
     routeInfo: 'Via NH 44 to Ambala & Chandigarh Expressway',
     cabRates: [
-      { vehicle: 'Maruti Dzire (AC Sedan)', price: '₹2,199', capacity: '4 Passengers + Luggage', idealFor: 'Round Trip Day Visits & Airport Drops' },
-      { vehicle: 'Maruti Ertiga (AC MUV)', price: '₹2,999', capacity: '6 Passengers + Luggage', idealFor: 'Family Weekend Sightseeing' },
-      { vehicle: 'Innova Crysta (Luxury SUV)', price: '₹3,999', capacity: '7 Passengers + Luggage', idealFor: 'Corporate & VIP Chauffeur Comfort' },
-      { vehicle: 'Tempo Traveller (12/17 Seater)', price: '₹6,499', capacity: '12-17 Passengers', idealFor: 'Group Tours & College Trips' }
+      { vehicle: 'Maruti Dzire (AC Sedan)', price: 'On Request', capacity: '4 Passengers + Luggage', idealFor: 'Round Trip Day Visits & Airport Drops' },
+      { vehicle: 'Maruti Ertiga (AC MUV)', price: 'On Request', capacity: '6 Passengers + Luggage', idealFor: 'Family Weekend Sightseeing' },
+      { vehicle: 'Innova Crysta (Luxury SUV)', price: 'On Request', capacity: '7 Passengers + Luggage', idealFor: 'Corporate & VIP Chauffeur Comfort' },
+      { vehicle: 'Tempo Traveller (12/17 Seater)', price: 'On Request', capacity: '12-17 Passengers', idealFor: 'Group Tours & College Trips' }
     ],
     attractions: [
       {

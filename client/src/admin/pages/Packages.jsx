@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { packageApi } from '../../services/packageApi';
-import { formatCurrency } from '../../utils/formatCurrency';
 import { PlusCircle, Search, Edit2, Trash2, ExternalLink, Package as PkgIcon } from 'lucide-react';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
@@ -104,7 +103,6 @@ export const Packages = () => {
                   <th className="py-3 px-4">Destination</th>
                   <th className="py-3 px-4">Category</th>
                   <th className="py-3 px-4">Duration</th>
-                  <th className="py-3 px-4">Price / Discount</th>
                   <th className="py-3 px-4">Status</th>
                   <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
@@ -137,12 +135,6 @@ export const Packages = () => {
                     </td>
                     <td className="py-3 px-4 text-slate-600 font-medium">
                       {pkg.duration}
-                    </td>
-                    <td className="py-3 px-4 font-bold text-navy-900">
-                      <div>{formatCurrency(pkg.discountedPrice || pkg.price)}</div>
-                      {pkg.discountedPrice > 0 && (
-                        <div className="text-[10px] text-slate-400 line-through">{formatCurrency(pkg.price)}</div>
-                      )}
                     </td>
                     <td className="py-3 px-4">
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${

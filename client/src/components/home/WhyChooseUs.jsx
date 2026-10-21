@@ -43,8 +43,8 @@ export const WhyChooseUs = () => {
     },
     {
       icon: BadgePercent,
-      title: 'Best Price Guarantee',
-      description: 'Direct tie-ups with premium hotels and transport fleets ensure transparent rates without middleman fees.'
+      title: 'Transparent Fair Quotes',
+      description: 'Direct tie-ups with premium hotels and transport fleets ensure transparent service without hidden fees.'
     },
     {
       icon: Headphones,

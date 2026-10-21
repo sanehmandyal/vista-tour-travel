@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { adminApi } from '../../services/adminApi';
-import { formatCurrency } from '../../utils/formatCurrency';
 import { formatDate } from '../../utils/formatDate';
 import {
   CalendarCheck,
@@ -241,18 +240,18 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        {/* Revenue */}
+        {/* Total Inquiries */}
         <div className="bg-white rounded-2xl p-5 shadow-soft border border-slate-100 flex flex-col justify-between hover:border-emerald-200 transition-colors">
           <div className="flex items-center justify-between mb-3">
             <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
               <TrendingUp className="w-4 h-4" />
             </div>
-            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md">INR</span>
+            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md">Live</span>
           </div>
           <div>
-            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Gross Turnover</p>
-            <h3 className="text-xl font-black text-navy-900 truncate">{formatCurrency(metrics.totalRevenue)}</h3>
-            <p className="text-[10px] text-emerald-600 font-semibold mt-1">Confirmed trips</p>
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Verified Inquiries</p>
+            <h3 className="text-xl font-black text-navy-900 truncate">{metrics.totalBookings || 0}</h3>
+            <p className="text-[10px] text-emerald-600 font-semibold mt-1">Confirmed bookings</p>
           </div>
         </div>
 
@@ -322,24 +321,21 @@ export const Dashboard = () => {
 
       {/* Analytics Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Monthly Revenue & Booking Trends Area Chart */}
+        {/* Monthly Booking Trends Area Chart */}
         <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-soft border border-slate-100 flex flex-col justify-between">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-navy-900">Revenue & Booking Trends</h3>
+                <h3 className="text-base font-bold text-navy-900">Booking & Inquiry Trends</h3>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200">
                   Season 2026
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-0.5">Monthly booking demand and revenue generated across Haryana & NCR circuits</p>
+              <p className="text-xs text-slate-400 mt-0.5">Monthly booking volume across Haryana, Delhi NCR & Chandigarh circuits</p>
             </div>
             <div className="flex items-center gap-4 text-xs">
               <span className="flex items-center gap-1.5 font-medium text-slate-600">
-                <span className="w-2.5 h-2.5 rounded-full bg-brand-600" /> Revenue (₹)
-              </span>
-              <span className="flex items-center gap-1.5 font-medium text-slate-600">
-                <span className="w-2.5 h-2.5 rounded-full bg-sky-400" /> Bookings
+                <span className="w-2.5 h-2.5 rounded-full bg-brand-600" /> Bookings / Inquiries
               </span>
             </div>
           </div>
@@ -348,13 +344,9 @@ export const Dashboard = () => {
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={monthlyTrends} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient id="colorBookings" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#0284c7" stopOpacity={0.4} />
                     <stop offset="95%" stopColor="#0284c7" stopOpacity={0.02} />
-                  </linearGradient>
-                  <linearGradient id="colorBookings" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#38bdf8" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
@@ -363,13 +355,10 @@ export const Dashboard = () => {
                   stroke="#94a3b8"
                   fontSize={11}
                   tickLine={false}
-                  tickFormatter={(val) => val >= 1000 ? `₹${(val / 1000).toFixed(0)}k` : val}
+                  allowDecimals={false}
                 />
                 <Tooltip
-                  formatter={(value, name) => [
-                    name === 'revenue' ? formatCurrency(value) : `${value} trips`,
-                    name === 'revenue' ? 'Revenue Intake' : 'Total Trips'
-                  ]}
+                  formatter={(value) => [`${value} bookings`, 'Inquiries / Bookings']}
                   contentStyle={{
                     backgroundColor: '#0f172a',
                     borderRadius: '12px',
@@ -382,11 +371,11 @@ export const Dashboard = () => {
                 />
                 <Area
                   type="monotone"
-                  dataKey="revenue"
+                  dataKey="bookings"
                   stroke="#0284c7"
                   strokeWidth={2.5}
                   fillOpacity={1}
-                  fill="url(#colorRev)"
+                  fill="url(#colorBookings)"
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -488,7 +477,7 @@ export const Dashboard = () => {
                     <th className="py-2.5 px-3">Customer</th>
                     <th className="py-2.5 px-3">Tour / Destination</th>
                     <th className="py-2.5 px-3">Cab Model</th>
-                    <th className="py-2.5 px-3">Amount</th>
+                    <th className="py-2.5 px-3">Travel Date</th>
                     <th className="py-2.5 px-3 rounded-r-lg">Status</th>
                   </tr>
                 </thead>
@@ -509,8 +498,8 @@ export const Dashboard = () => {
                         <td className="py-3 px-3 text-slate-600 font-medium">
                           {b.vehicle || b.vehicleType || b.carType || 'Sedan / SUV'}
                         </td>
-                        <td className="py-3 px-3 font-bold text-navy-900">
-                          {formatCurrency(b.totalAmount || 0)}
+                        <td className="py-3 px-3 text-slate-600 font-medium">
+                          {b.travelDate ? formatDate(b.travelDate) : 'On Request'}
                         </td>
                         <td className="py-3 px-3">
                           <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${

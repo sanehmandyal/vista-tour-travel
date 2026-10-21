@@ -149,7 +149,7 @@ export const Locations = () => {
                     </div>
 
                     <div className="flex items-center justify-between text-xs font-semibold text-slate-600 pt-2 border-t border-slate-100">
-                      <span>Rate: <strong className="text-navy-900">{loc.startingFare}</strong></span>
+                      <span>Service: <strong className="text-navy-900">24/7 Verified Cab</strong></span>
                       <Link
                         to={`/locations/${loc.slug}`}
                         className="text-brand-600 hover:text-brand-800 font-bold flex items-center gap-1 group"
@@ -173,7 +173,7 @@ export const Locations = () => {
                     to={`/locations/${loc.slug}`}
                     className="py-2.5 px-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 font-bold text-xs transition-colors"
                   >
-                    Fares
+                    Details
                   </Link>
                 </div>
               </div>

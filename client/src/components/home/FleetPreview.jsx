@@ -112,7 +112,7 @@ const fallbackFleet = [
       'Nimble Handling for City Traffic & Local Markets',
       'Efficient Engine for Cost-Effective Travel',
       'Chilling AC & Comfortable Seating',
-      'Most Economical Per-KM Fare'
+      'Comfortable & Punctual Cab Transfer'
     ],
     description: 'Pocket-friendly cab for solo travelers, couples, and fast point-to-point journeys across Ladwa, Kurukshetra, and nearby districts.',
     isAvailable: true
@@ -326,10 +326,10 @@ export const FleetPreview = () => {
                     </div>
                   )}
 
-                  {/* Pricing Badge (Transparent / Zero Numeric Price) */}
+                  {/* Quality Badge */}
                   <div className="pt-1">
                     <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] sm:text-[11px] font-bold leading-tight">
-                      <Sparkles className="w-3 h-3 shrink-0" /> <span>Best Rates & Transparent Billing Guaranteed</span>
+                      <Sparkles className="w-3 h-3 shrink-0" /> <span>Chauffeur Driven & Dedicated Fleet Guaranteed</span>
                     </div>
                   </div>
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { packageApi } from '../services/packageApi';
-import { formatCurrency } from '../utils/formatCurrency';
 import {
   Clock,
   Star,
@@ -70,8 +69,6 @@ export const PackageDetails = () => {
     );
   }
 
-  const hasDiscount = pkg.discountedPrice > 0 && pkg.discountedPrice < pkg.price;
-  const currentPrice = hasDiscount ? pkg.discountedPrice : pkg.price;
   const allImages = [pkg.featuredImage, ...(pkg.images || [])].filter(Boolean);
 
   const handleShare = () => {
@@ -320,10 +317,10 @@ export const PackageDetails = () => {
             <div>
               <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">Vista Tour and Travels</span>
               <h3 className="text-2xl font-black text-navy-900 mt-1">
-                Customized Fare on Request
+                Custom Itinerary & Quote
               </h3>
               <p className="text-xs text-slate-500 mt-1">
-                Transparent rates tailored to your travel dates, vehicle preference, and guest count.
+                Transparent quotes tailored to your travel dates, vehicle preference, and guest count.
               </p>
             </div>
 
@@ -352,7 +349,7 @@ export const PackageDetails = () => {
               onClick={() => navigate(`/booking/${pkg._id}`)}
               className="w-full py-3.5 font-bold shadow-lg"
             >
-              Book / Inquire This Tour <ArrowRight className="w-4 h-4 ml-1.5" />
+              Inquire / Book This Tour <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
 
             <a

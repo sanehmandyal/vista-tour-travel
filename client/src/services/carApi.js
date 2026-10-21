@@ -129,63 +129,48 @@ export const carApi = {
   },
 
   create: async (data) => {
-    let savedItem = null;
     try {
       const res = await axiosClient.post('/cars', data);
       if (res && res.success && res.data) {
-        savedItem = res.data;
+        const enriched = enrichCarWithExactImage(res.data);
+        const list = getLocalCars();
+        const updated = [enriched, ...list.filter(c => c._id !== enriched._id && c.name !== enriched.name)];
+        saveLocalCars(updated);
+        return { success: true, data: enriched };
       }
+      throw new Error(res?.message || 'Server rejected car creation');
     } catch (e) {
-      console.warn('Direct server create failed, saving locally:', e.message);
+      console.error('Direct server car create failed:', e);
+      throw new Error(e.message || 'Could not save vehicle to database.');
     }
-
-    const list = getLocalCars();
-    const newCar = savedItem ? enrichCarWithExactImage(savedItem) : {
-      ...data,
-      _id: `car-custom-${Date.now()}`,
-      isAvailable: data.isAvailable !== undefined ? data.isAvailable : true,
-      features: Array.isArray(data.features)
-        ? data.features
-        : (typeof data.features === 'string' ? data.features.split(',').map(s => s.trim()).filter(Boolean) : []),
-      createdAt: new Date().toISOString()
-    };
-    const updated = [newCar, ...list.filter(c => c._id !== newCar._id && c.name !== newCar.name)];
-    saveLocalCars(updated);
-    return { success: true, data: newCar };
   },
 
   update: async (id, data) => {
-    let updatedItem = null;
     try {
       const res = await axiosClient.put(`/cars/${id}`, data);
       if (res && res.success && res.data) {
-        updatedItem = res.data;
+        const enriched = enrichCarWithExactImage(res.data);
+        const list = getLocalCars();
+        const updated = list.map(c => (c._id === id || c.name?.toLowerCase() === id?.toLowerCase() ? enriched : c));
+        saveLocalCars(updated);
+        return { success: true, data: enriched };
       }
+      throw new Error(res?.message || 'Server update failed');
     } catch (e) {
-      console.warn('Direct server update failed, updating locally:', e.message);
+      console.error('Direct server car update failed:', e);
+      throw new Error(e.message || 'Could not update vehicle in database.');
     }
-
-    const list = getLocalCars();
-    const updated = list.map(c => {
-      if (c._id === id || c.name?.toLowerCase() === id?.toLowerCase()) {
-        if (updatedItem) return enrichCarWithExactImage(updatedItem);
-        const features = Array.isArray(data.features)
-          ? data.features
-          : (typeof data.features === 'string' ? data.features.split(',').map(s => s.trim()).filter(Boolean) : c.features);
-        return { ...c, ...data, features };
-      }
-      return c;
-    });
-    saveLocalCars(updated);
-    const resultItem = updated.find(c => c._id === id || c.name?.toLowerCase() === id?.toLowerCase()) || (updatedItem ? enrichCarWithExactImage(updatedItem) : null);
-    return { success: true, data: resultItem };
   },
 
   delete: async (id) => {
     try {
-      await axiosClient.delete(`/cars/${id}`);
+      const res = await axiosClient.delete(`/cars/${id}`);
+      if (res && res.success === false) {
+        throw new Error(res.message || 'Failed to delete vehicle from database');
+      }
     } catch (e) {
-      console.warn('Direct server delete failed, removing locally:', e.message);
+      console.error('Direct server car delete failed:', e);
+      throw new Error(e.message || 'Could not remove vehicle from database.');
     }
 
     const list = getLocalCars();

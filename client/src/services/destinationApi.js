@@ -185,14 +185,6 @@ const filterDestinationsLocally = (params = {}) => {
     list = list.filter(d => Boolean(d.featured || d.isFeatured) === isFeat);
   }
 
-  if (params.minPrice) {
-    list = list.filter(d => (d.startingPrice || d.estimatedBudget || 0) >= params.minPrice);
-  }
-
-  if (params.maxPrice) {
-    list = list.filter(d => (d.startingPrice || d.estimatedBudget || 0) <= params.maxPrice);
-  }
-
   return list;
 };
 
@@ -292,7 +284,6 @@ export const destinationApi = {
   },
 
   create: async (data) => {
-    let savedItem = null;
     const VALID_REGIONS = ['North India', 'South India', 'West India', 'East India', 'Himalayas', 'Central India', 'International'];
     const exact = getExactDestinationImages(data.name, data.slug);
     const finalHero = data.heroImage || exact.heroImage;
@@ -300,7 +291,7 @@ export const destinationApi = {
     const payload = {
       ...data,
       region: VALID_REGIONS.includes(data.region) ? data.region : 'North India',
-      startingPrice: Number(data.startingPrice) || 1999,
+      startingPrice: 0,
       bestTimeToVisit: data.bestTimeToVisit || 'September to March',
       heroImage: finalHero,
       featuredImage: data.featuredImage || finalHero,
@@ -319,27 +310,17 @@ export const destinationApi = {
     try {
       const res = await axiosClient.post('/destinations', payload);
       if (res && res.success && res.data) {
-        savedItem = res.data;
+        const enriched = enrichDestinationWithExactImage(res.data);
+        const list = getLocalDestinations();
+        const updated = [enriched, ...list.filter(d => d._id !== enriched._id && d.slug !== enriched.slug)];
+        saveLocalDestinations(updated);
+        return { success: true, data: enriched };
       }
+      throw new Error(res?.message || 'Server rejected destination creation');
     } catch (e) {
-      console.warn('Direct server create error, falling back locally:', e.message);
+      console.error('Direct server create error:', e);
+      throw new Error(e.message || 'Could not save destination to database. Please check your admin login session.');
     }
-
-    const list = getLocalDestinations();
-    const newDest = savedItem ? enrichDestinationWithExactImage(savedItem) : {
-      ...payload,
-      _id: `custom-dest-${Date.now()}`,
-      slug: data.slug || data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-      rating: data.rating || 5.0,
-      reviewsCount: data.reviewsCount || 1,
-      featured: data.featured !== undefined ? data.featured : true,
-      isFeatured: data.featured !== undefined ? data.featured : true,
-      createdAt: new Date().toISOString()
-    };
-
-    const updated = [newDest, ...list.filter(d => d._id !== newDest._id && d.slug !== newDest.slug)];
-    saveLocalDestinations(updated);
-    return { success: true, data: newDest };
   },
 
   update: async (id, data) => {
@@ -349,7 +330,7 @@ export const destinationApi = {
       ...data,
       region: data.region && VALID_REGIONS.includes(data.region) ? data.region : (data.region ? 'North India' : undefined)
     };
-    if (payload.startingPrice !== undefined) payload.startingPrice = Number(payload.startingPrice) || 1999;
+    payload.startingPrice = 0;
     if (payload.heroImage && !payload.featuredImage) payload.featuredImage = payload.heroImage;
     if (payload.featuredImage && !payload.heroImage) payload.heroImage = payload.featuredImage;
 
@@ -376,16 +357,13 @@ export const destinationApi = {
       }
     }
 
-    if (!updatedItem && serverError) {
-      if (serverError.status === 401 || serverError.status === 403) {
-        throw new Error(serverError.message || 'You must be signed in as administrator to update destinations.');
-      }
-      console.warn('Direct server update warning, will cache locally and propagate:', serverError.message);
+    if (!updatedItem) {
+      console.error('Direct server update error:', serverError);
+      throw new Error(serverError?.message || 'Failed to update destination in database. Please verify your connection.');
     }
 
     const finalHero = payload.heroImage || updatedItem?.heroImage;
     const list = getLocalDestinations();
-    let foundMatch = false;
     const matchId = String(id || '').toLowerCase().trim();
     const matchSlug = String(payload.slug || payload.name || '').toLowerCase().trim();
 
@@ -398,8 +376,7 @@ export const destinationApi = {
         String(d.name || '').toLowerCase() === String(payload.name || '').toLowerCase().trim();
 
       if (isMatch) {
-        foundMatch = true;
-        const merged = { ...d, ...(updatedItem || {}), ...payload };
+        const merged = { ...d, ...updatedItem, ...payload };
         if (finalHero) {
           merged.heroImage = finalHero;
           merged.featuredImage = finalHero;
@@ -409,30 +386,19 @@ export const destinationApi = {
       return d;
     });
 
-    if (!foundMatch) {
-      const newItem = enrichDestinationWithExactImage({
-        _id: id,
-        ...(updatedItem || {}),
-        ...payload,
-        heroImage: finalHero,
-        featuredImage: finalHero
-      });
-      updated.unshift(newItem);
-    }
-
     saveLocalDestinations(updated);
-    const resultItem = updated.find(d => 
-      String(d._id || '').toLowerCase() === matchId || 
-      String(d.slug || '').toLowerCase() === matchSlug
-    ) || enrichDestinationWithExactImage({ ...(updatedItem || {}), ...payload, heroImage: finalHero, featuredImage: finalHero });
-    return { success: true, data: resultItem };
+    return { success: true, data: enrichDestinationWithExactImage(updatedItem) };
   },
 
   delete: async (id) => {
     try {
-      await axiosClient.delete(`/destinations/${id}`);
+      const res = await axiosClient.delete(`/destinations/${id}`);
+      if (res && res.success === false) {
+        throw new Error(res.message || 'Failed to delete destination from database');
+      }
     } catch (e) {
-      console.warn('Direct server delete failed, removing locally:', e.message);
+      console.error('Direct server delete failed:', e);
+      throw new Error(e.message || 'Could not delete destination from database');
     }
 
     const list = getLocalDestinations();

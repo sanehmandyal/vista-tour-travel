@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { bookingApi } from '../services/bookingApi';
 import { authApi } from '../services/authApi';
-import { formatCurrency } from '../utils/formatCurrency';
 import { formatDate } from '../utils/formatDate';
 import {
   User,
@@ -227,8 +226,8 @@ export const Account = () => {
                       </div>
 
                       <div className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto gap-2 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
-                        <span className="text-lg font-black text-navy-900">
-                          {formatCurrency(b.totalAmount)}
+                        <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                          Quote Active
                         </span>
                         <Button
                           variant="outline"
@@ -431,9 +430,9 @@ export const Account = () => {
               </div>
             )}
 
-            <div className="pt-3 border-t border-slate-100 flex justify-between items-baseline">
-              <span className="font-bold text-navy-900">Total Booking Fare:</span>
-              <span className="text-2xl font-black text-brand-700">{formatCurrency(selectedBooking.totalAmount)}</span>
+            <div className="pt-3 border-t border-slate-100 flex justify-between items-center">
+              <span className="font-bold text-navy-900">Inquiry Status:</span>
+              <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Active Confirmation</span>
             </div>
           </div>
         </Modal>

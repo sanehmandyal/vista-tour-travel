@@ -65,14 +65,6 @@ const filterPackagesLocally = (params = {}) => {
     );
   }
 
-  if (params.minPrice) {
-    list = list.filter(p => (p.discountedPrice || p.price || 0) >= params.minPrice);
-  }
-
-  if (params.maxPrice) {
-    list = list.filter(p => (p.discountedPrice || p.price || 0) <= params.maxPrice);
-  }
-
   return list;
 };
 
@@ -164,8 +156,8 @@ export const packageApi = {
       ...data,
       category: mapCategory(data.category),
       destination: destId,
-      price: Number(data.price) || 3499,
-      discountedPrice: Number(data.discountedPrice) || Number(data.price) || 2999,
+      price: 0,
+      discountedPrice: 0,
       duration: data.duration || '2 Days / 1 Night',
       featuredImage: data.featuredImage || '/assets/images/hero-haryana-kurukshetra.jpg',
       images: Array.isArray(data.images) && data.images.length > 0 ? data.images : [data.featuredImage || '/assets/images/hero-haryana-kurukshetra.jpg'],
@@ -184,24 +176,16 @@ export const packageApi = {
       const res = await axiosClient.post('/packages', payload);
       if (res && res.success && res.data) {
         savedItem = res.data;
+        const list = getLocalPackages();
+        const updated = [savedItem, ...list.filter(p => p._id !== savedItem._id && p.slug !== savedItem.slug)];
+        saveLocalPackages(updated);
+        return { success: true, data: savedItem };
       }
+      throw new Error(res?.message || 'Server rejected package creation');
     } catch (e) {
-      console.warn('Direct server create error, falling back locally:', e.message);
+      console.error('Direct server package create error:', e);
+      throw new Error(e.message || 'Could not save tour package to database. Please check admin login session.');
     }
-
-    const list = getLocalPackages();
-    const newPkg = savedItem || {
-      ...payload,
-      _id: `custom-pkg-${Date.now()}`,
-      slug: data.slug || data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-      rating: data.rating || 5.0,
-      reviewsCount: data.reviewsCount || 1,
-      status: 'published',
-      createdAt: new Date().toISOString()
-    };
-    const updated = [newPkg, ...list.filter(p => p._id !== newPkg._id && p.slug !== newPkg.slug)];
-    saveLocalPackages(updated);
-    return { success: true, data: newPkg };
   },
 
   update: async (id, data) => {
@@ -223,37 +207,43 @@ export const packageApi = {
 
     const payload = {
       ...data,
-      category: data.category ? mapCategory(data.category) : undefined
+      category: data.category ? mapCategory(data.category) : undefined,
+      price: 0,
+      discountedPrice: 0
     };
-    if (payload.price !== undefined) payload.price = Number(payload.price) || 0;
-    if (payload.discountedPrice !== undefined) payload.discountedPrice = Number(payload.discountedPrice) || 0;
 
     try {
       const res = await axiosClient.put(`/packages/${id}`, payload);
       if (res && res.success && res.data) {
         updatedItem = res.data;
+      } else {
+        throw new Error(res?.message || 'Server update failed');
       }
     } catch (e) {
-      console.warn('Direct server update error, updating locally:', e.message);
+      console.error('Direct server package update error:', e);
+      throw new Error(e.message || 'Failed to update tour package in database.');
     }
 
     const list = getLocalPackages();
     const updated = list.map(p => {
       if (p._id === id || p.slug === id) {
-        return updatedItem ? { ...p, ...updatedItem } : { ...p, ...data };
+        return { ...p, ...updatedItem };
       }
       return p;
     });
     saveLocalPackages(updated);
-    const resultItem = updated.find(p => p._id === id || p.slug === id) || updatedItem;
-    return { success: true, data: resultItem };
+    return { success: true, data: updatedItem };
   },
 
   delete: async (id) => {
     try {
-      await axiosClient.delete(`/packages/${id}`);
+      const res = await axiosClient.delete(`/packages/${id}`);
+      if (res && res.success === false) {
+        throw new Error(res.message || 'Failed to delete package from database');
+      }
     } catch (e) {
-      console.warn('Direct server delete failed, removing locally:', e.message);
+      console.error('Direct server package delete failed:', e);
+      throw new Error(e.message || 'Could not delete package from database.');
     }
 
     const list = getLocalPackages();

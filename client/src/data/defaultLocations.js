@@ -22,17 +22,17 @@ We pride ourselves on zero hidden charges, transparent per-kilometer billing, sa
       'Bapuda, Mathana & Kurala Belt',
       'Doorstep Home Pickups Across Ladwa'
     ],
-    startingFare: '₹499 Local / ₹1,499 Outstation',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '160 km (2.5 - 3 hours)',
     distanceToChandigarh: '90 km (1.5 hours)',
     distanceToKurukshetra: '18 km (25 mins)',
     popularRoutes: [
-      { to: 'Delhi IGI Airport (T1/T2/T3)', fare: 'Starting ₹3,199', time: '2.5 - 3 Hours', vehicle: 'Sedan / MUV / SUV' },
-      { to: 'Chandigarh Airport (IXC)', fare: 'Starting ₹2,199', time: '1.5 Hours', vehicle: 'AC Sedan / Ertiga' },
-      { to: 'Kurukshetra Railway Station', fare: 'Starting ₹699', time: '25 Mins', vehicle: 'Dzire / WagonR' },
-      { to: 'Ambala Cantt Railway Station', fare: 'Starting ₹1,699', time: '50 Mins', vehicle: 'Dzire / Ertiga' },
-      { to: 'Karnal City / Haveli', fare: 'Starting ₹1,399', time: '40 Mins', vehicle: 'AC Sedan / MUV' },
-      { to: 'Yamunanagar / Jagadhri', fare: 'Starting ₹1,299', time: '35 Mins', vehicle: 'Sedan / Ertiga' }
+      { to: 'Delhi IGI Airport (T1/T2/T3)', fare: 'On Request', time: '2.5 - 3 Hours', vehicle: 'Sedan / MUV / SUV' },
+      { to: 'Chandigarh Airport (IXC)', fare: 'On Request', time: '1.5 Hours', vehicle: 'AC Sedan / Ertiga' },
+      { to: 'Kurukshetra Railway Station', fare: 'On Request', time: '25 Mins', vehicle: 'Dzire / WagonR' },
+      { to: 'Ambala Cantt Railway Station', fare: 'On Request', time: '50 Mins', vehicle: 'Dzire / Ertiga' },
+      { to: 'Karnal City / Haveli', fare: 'On Request', time: '40 Mins', vehicle: 'AC Sedan / MUV' },
+      { to: 'Yamunanagar / Jagadhri', fare: 'On Request', time: '35 Mins', vehicle: 'Sedan / Ertiga' }
     ],
     features: [
       'Flagship Head Office in Nawarsi Bazar, Ladwa',
@@ -65,16 +65,16 @@ Our air-conditioned sedans, Ertigas, and Innovas are also available for one-way 
       'Kurukshetra University & NIT Campus',
       'Mohan Nagar & Railway Road'
     ],
-    startingFare: 'Starting ₹699',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '165 km (2.5 - 3 hours)',
     distanceToChandigarh: '92 km (1.5 hours)',
     distanceToKurukshetra: 'Local City Service',
     popularRoutes: [
-      { to: 'Delhi IGI Airport Drops', fare: 'Starting ₹3,199', time: '2.5 - 3 Hours', vehicle: 'Dzire / Ertiga / Innova' },
-      { to: 'Chandigarh City / Airport', fare: 'Starting ₹2,199', time: '1.5 Hours', vehicle: 'AC Sedan / MUV' },
-      { to: 'Full Day Mahabharata Circuit Tour', fare: 'Starting ₹1,799', time: '8 Hours / 80 Km', vehicle: 'Dzire / Ertiga' },
-      { to: 'Pehowa Saraswati Tirth Snan', fare: 'Starting ₹1,299', time: '40 Mins', vehicle: 'AC Sedan' },
-      { to: 'Ambala Cantt', fare: 'Starting ₹1,499', time: '45 Mins', vehicle: 'AC Cab' }
+      { to: 'Delhi IGI Airport Drops', fare: 'On Request', time: '2.5 - 3 Hours', vehicle: 'Dzire / Ertiga / Innova' },
+      { to: 'Chandigarh City / Airport', fare: 'On Request', time: '1.5 Hours', vehicle: 'AC Sedan / MUV' },
+      { to: 'Full Day Mahabharata Circuit Tour', fare: 'On Request', time: '8 Hours / 80 Km', vehicle: 'Dzire / Ertiga' },
+      { to: 'Pehowa Saraswati Tirth Snan', fare: 'On Request', time: '40 Mins', vehicle: 'AC Sedan' },
+      { to: 'Ambala Cantt', fare: 'On Request', time: '45 Mins', vehicle: 'AC Cab' }
     ],
     features: [
       'Guaranteed On-Time Railway Station Pickups',
@@ -104,15 +104,15 @@ Vista Tour and Travels delivers seamless cab services for passengers arriving at
       'Model Town & Jagadhri Road',
       'Patel Park & Cantonment Areas'
     ],
-    startingFare: 'Starting ₹999 Local / ₹1,699 Outstation',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '200 km (3.5 hours)',
     distanceToChandigarh: '45 km (45 mins)',
     distanceToKurukshetra: '48 km (50 mins)',
     popularRoutes: [
-      { to: 'Ladwa / Kurukshetra', fare: 'Starting ₹1,699', time: '50 Mins', vehicle: 'Sedan / MUV' },
-      { to: 'Delhi IGI Airport', fare: 'Starting ₹3,799', time: '3.5 Hours', vehicle: 'Dzire / Innova' },
-      { to: 'Chandigarh Airport / Elante', fare: 'Starting ₹1,399', time: '45 Mins', vehicle: 'AC Sedan' },
-      { to: 'Cloth Market Full-Day Wait Cab', fare: 'Starting ₹1,999', time: 'Full Day', vehicle: 'Large Trunk Sedan / Ertiga' }
+      { to: 'Ladwa / Kurukshetra', fare: 'On Request', time: '50 Mins', vehicle: 'Sedan / MUV' },
+      { to: 'Delhi IGI Airport', fare: 'On Request', time: '3.5 Hours', vehicle: 'Dzire / Innova' },
+      { to: 'Chandigarh Airport / Elante', fare: 'On Request', time: '45 Mins', vehicle: 'AC Sedan' },
+      { to: 'Cloth Market Full-Day Wait Cab', fare: 'On Request', time: 'Full Day', vehicle: 'Large Trunk Sedan / Ertiga' }
     ],
     features: [
       'Luggage Monitoring for Wholesale Cloth Shoppers',
@@ -142,15 +142,15 @@ Our verified chauffeurs track your flight schedules in real time, greet you with
       'Connaught Place, Janpath & Karol Bagh',
       'Doorstep Drop across Gurgaon, Noida & Faridabad'
     ],
-    startingFare: 'Starting ₹3,199 One-Way Drop',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: 'Direct Airport Service',
     distanceToChandigarh: '240 km (4 hours)',
     distanceToKurukshetra: '160 km (2.5 - 3 hours)',
     popularRoutes: [
-      { to: 'Ladwa / Kurukshetra from IGI Airport', fare: 'Starting ₹3,199', time: '2.5 - 3 Hours', vehicle: 'AC Dzire / Ertiga / Innova' },
-      { to: 'Karnal from IGI Airport', fare: 'Starting ₹2,699', time: '2 Hours', vehicle: 'Sedan / MUV' },
-      { to: 'Ambala from IGI Airport', fare: 'Starting ₹3,799', time: '3.5 Hours', vehicle: 'Dzire / Innova Crysta' },
-      { to: 'Full Day Delhi Sightseeing Cab', fare: 'Starting ₹2,499', time: '8 Hours / 80 Km', vehicle: 'AC Sedan' }
+      { to: 'Ladwa / Kurukshetra from IGI Airport', fare: 'On Request', time: '2.5 - 3 Hours', vehicle: 'AC Dzire / Ertiga / Innova' },
+      { to: 'Karnal from IGI Airport', fare: 'On Request', time: '2 Hours', vehicle: 'Sedan / MUV' },
+      { to: 'Ambala from IGI Airport', fare: 'On Request', time: '3.5 Hours', vehicle: 'Dzire / Innova Crysta' },
+      { to: 'Full Day Delhi Sightseeing Cab', fare: 'On Request', time: '8 Hours / 80 Km', vehicle: 'AC Sedan' }
     ],
     features: [
       'Real-Time Flight Tracking (Zero Delay Penalty)',
@@ -180,15 +180,15 @@ Vista Tour and Travels provides prompt local taxi rentals, day excursions, and h
       'Namaste Chowk & Highway Haveli (NH 44)',
       'Indri - Karnal Road Doorstep Locations'
     ],
-    startingFare: 'Starting ₹799 Local / ₹1,399 Outstation',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '130 km (2 hours)',
     distanceToChandigarh: '125 km (2 hours)',
     distanceToKurukshetra: '42 km (45 mins)',
     popularRoutes: [
-      { to: 'Delhi IGI Airport', fare: 'Starting ₹2,699', time: '2 Hours', vehicle: 'Dzire / Ertiga / Innova' },
-      { to: 'Ladwa / Kurukshetra', fare: 'Starting ₹1,399', time: '40 Mins', vehicle: 'AC Sedan' },
-      { to: 'Chandigarh City / Airport', fare: 'Starting ₹2,499', time: '2 Hours', vehicle: 'Sedan / MUV' },
-      { to: 'Panipat Textile Hub', fare: 'Starting ₹1,199', time: '35 Mins', vehicle: 'AC Cab' }
+      { to: 'Delhi IGI Airport', fare: 'On Request', time: '2 Hours', vehicle: 'Dzire / Ertiga / Innova' },
+      { to: 'Ladwa / Kurukshetra', fare: 'On Request', time: '40 Mins', vehicle: 'AC Sedan' },
+      { to: 'Chandigarh City / Airport', fare: 'On Request', time: '2 Hours', vehicle: 'Sedan / MUV' },
+      { to: 'Panipat Textile Hub', fare: 'On Request', time: '35 Mins', vehicle: 'AC Cab' }
     ],
     features: [
       'Quick 40-Minute Transit to Ladwa via Indri Rd',
@@ -218,15 +218,15 @@ Vista Tour and Travels serves textile merchants, industrial executives at the IO
       'Toll Plaza (NH 44)',
       'Barsat Road & Model Town'
     ],
-    startingFare: 'Starting ₹899 Local / ₹1,899 Outstation',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '100 km (1.5 - 2 hours)',
     distanceToChandigarh: '160 km (2.5 hours)',
     distanceToKurukshetra: '78 km (1 hr 15 mins)',
     popularRoutes: [
-      { to: 'Delhi IGI Airport', fare: 'Starting ₹2,299', time: '1.5 - 2 Hours', vehicle: 'Dzire / Ertiga / Innova' },
-      { to: 'Ladwa / Kurukshetra', fare: 'Starting ₹1,999', time: '1 Hr 15 Mins', vehicle: 'AC Sedan / MUV' },
-      { to: 'Chandigarh', fare: 'Starting ₹2,999', time: '2.5 Hours', vehicle: 'Sedan / Innova' },
-      { to: 'Textile Factory Full-Day Tour', fare: 'Starting ₹1,999', time: 'Full Day', vehicle: 'Spacious Trunk Cab' }
+      { to: 'Delhi IGI Airport', fare: 'On Request', time: '1.5 - 2 Hours', vehicle: 'Dzire / Ertiga / Innova' },
+      { to: 'Ladwa / Kurukshetra', fare: 'On Request', time: '1 Hr 15 Mins', vehicle: 'AC Sedan / MUV' },
+      { to: 'Chandigarh', fare: 'On Request', time: '2.5 Hours', vehicle: 'Sedan / Innova' },
+      { to: 'Textile Factory Full-Day Tour', fare: 'On Request', time: 'Full Day', vehicle: 'Spacious Trunk Cab' }
     ],
     features: [
       'Large Trunk Luggage Space for Textile Cargo',
@@ -256,15 +256,15 @@ Vista Tour and Travels provides reliable commercial cabs for timber and metal in
       'Hathni Kund Barrage & Kalesar National Park',
       'Doorstep Pickups Across Yamunanagar & Jagadhri'
     ],
-    startingFare: 'Starting ₹799 Local / ₹1,499 Outstation',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '210 km (3.5 - 4 hours)',
     distanceToChandigarh: '105 km (1.5 - 2 hours)',
     distanceToKurukshetra: '36 km (40 mins)',
     popularRoutes: [
-      { to: 'Ladwa / Kurukshetra', fare: 'Starting ₹1,299', time: '35 - 40 Mins', vehicle: 'AC Sedan' },
-      { to: 'Hathni Kund & Kalesar Safari Tour', fare: 'Starting ₹1,799', time: 'Day Tour', vehicle: 'Ertiga / Scorpio SUV' },
-      { to: 'Delhi IGI Airport', fare: 'Starting ₹3,799', time: '3.5 - 4 Hours', vehicle: 'Dzire / Innova Crysta' },
-      { to: 'Chandigarh City / Airport', fare: 'Starting ₹2,299', time: '1.5 - 2 Hours', vehicle: 'Sedan / MUV' }
+      { to: 'Ladwa / Kurukshetra', fare: 'On Request', time: '35 - 40 Mins', vehicle: 'AC Sedan' },
+      { to: 'Hathni Kund & Kalesar Safari Tour', fare: 'On Request', time: 'Day Tour', vehicle: 'Ertiga / Scorpio SUV' },
+      { to: 'Delhi IGI Airport', fare: 'On Request', time: '3.5 - 4 Hours', vehicle: 'Dzire / Innova Crysta' },
+      { to: 'Chandigarh City / Airport', fare: 'On Request', time: '1.5 - 2 Hours', vehicle: 'Sedan / MUV' }
     ],
     features: [
       'Only 35 Minutes Drive from Ladwa Office',
@@ -294,15 +294,15 @@ Vista Tour and Travels operates dedicated pilgrim and family cabs for holy darsh
       'Dhand, Pundri & Kalayat',
       'Kurukshetra - Kaithal Highway'
     ],
-    startingFare: 'Starting ₹799 Local / ₹1,499 Outstation',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '190 km (3 - 3.5 hours)',
     distanceToChandigarh: '120 km (2 hours)',
     distanceToKurukshetra: '58 km (1 hour)',
     popularRoutes: [
-      { to: 'Pehowa Holy Snan Circuit from Ladwa', fare: 'Starting ₹1,299', time: '40 Mins', vehicle: 'AC Sedan / Ertiga' },
-      { to: 'Kurukshetra Brahma Sarovar', fare: 'Starting ₹1,499', time: '1 Hour', vehicle: 'AC Cab' },
-      { to: 'Delhi IGI Airport', fare: 'Starting ₹3,499', time: '3 - 3.5 Hours', vehicle: 'Dzire / Innova' },
-      { to: 'Chandigarh City / Airport', fare: 'Starting ₹2,499', time: '2 Hours', vehicle: 'AC Sedan / MUV' }
+      { to: 'Pehowa Holy Snan Circuit from Ladwa', fare: 'On Request', time: '40 Mins', vehicle: 'AC Sedan / Ertiga' },
+      { to: 'Kurukshetra Brahma Sarovar', fare: 'On Request', time: '1 Hour', vehicle: 'AC Cab' },
+      { to: 'Delhi IGI Airport', fare: 'On Request', time: '3 - 3.5 Hours', vehicle: 'Dzire / Innova' },
+      { to: 'Chandigarh City / Airport', fare: 'On Request', time: '2 Hours', vehicle: 'AC Sedan / MUV' }
     ],
     features: [
       'Elderly-Friendly Cabs with Low Step-in Height',
@@ -332,15 +332,15 @@ Vista Tour and Travels provides 24/7 executive and family cab rentals connecting
       'Elante Mall (Industrial Area Phase 1)',
       'Panchkula & Mohali Phase 7/8'
     ],
-    startingFare: 'Starting ₹999 Local / ₹2,199 Outstation',
+    startingFare: 'Available On Request',
     distanceToDelhiAirport: '250 km (4 hours)',
     distanceToChandigarh: 'Local Tricity Service',
     distanceToKurukshetra: '92 km (1.5 hours)',
     popularRoutes: [
-      { to: 'Ladwa / Kurukshetra', fare: 'Starting ₹2,199', time: '1.5 Hours', vehicle: 'AC Sedan / MUV / SUV' },
-      { to: 'Ambala Cantt', fare: 'Starting ₹1,399', time: '45 Mins', vehicle: 'AC Cab' },
-      { to: 'Delhi IGI Airport', fare: 'Starting ₹3,999', time: '4 Hours', vehicle: 'Dzire / Innova Crysta' },
-      { to: 'Full Day City Beautiful Sightseeing', fare: 'Starting ₹2,499', time: '8 Hours / 80 Km', vehicle: 'AC Sedan / Ertiga' }
+      { to: 'Ladwa / Kurukshetra', fare: 'On Request', time: '1.5 Hours', vehicle: 'AC Sedan / MUV / SUV' },
+      { to: 'Ambala Cantt', fare: 'On Request', time: '45 Mins', vehicle: 'AC Cab' },
+      { to: 'Delhi IGI Airport', fare: 'On Request', time: '4 Hours', vehicle: 'Dzire / Innova Crysta' },
+      { to: 'Full Day City Beautiful Sightseeing', fare: 'On Request', time: '8 Hours / 80 Km', vehicle: 'AC Sedan / Ertiga' }
     ],
     features: [
       '24/7 Timely Airport Pickups with Flight Monitoring',

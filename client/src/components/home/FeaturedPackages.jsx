@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { packageApi } from '../../services/packageApi';
-import { formatCurrency } from '../../utils/formatCurrency';
 import { Clock, Star, MapPin, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { CardSkeleton } from '../common/Skeleton';
 import Badge from '../common/Badge';
@@ -64,9 +63,6 @@ export const FeaturedPackages = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {packages.map((pkg) => {
-              const hasDiscount = pkg.discountedPrice > 0 && pkg.discountedPrice < pkg.price;
-              const displayPrice = hasDiscount ? pkg.discountedPrice : pkg.price;
-
               return (
                 <div
                   key={pkg._id}
@@ -138,14 +134,14 @@ export const FeaturedPackages = () => {
                     <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
                       <div>
                         <span className="text-[10px] text-brand-600 uppercase font-bold tracking-wider">Vista Tour and Travels</span>
-                        <p className="text-sm font-black text-navy-900">Customized Pricing</p>
+                        <p className="text-sm font-black text-navy-900">Custom Tour Plan</p>
                       </div>
 
                       <Link
                         to={`/packages/${pkg.slug}`}
                         className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm"
                       >
-                        Get Best Quote <ArrowRight className="w-3.5 h-3.5" />
+                        Enquire / View Tour <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     </div>
                   </div>
