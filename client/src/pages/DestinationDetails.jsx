@@ -77,8 +77,6 @@ export const DestinationDetails = () => {
     !url ||
     typeof url !== 'string' ||
     url.trim() === '' ||
-    url.includes('unsplash.com') ||
-    (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) ||
     url.includes('Dharamshala_stadium') ||
     url.includes('Kaithal_Fort');
 

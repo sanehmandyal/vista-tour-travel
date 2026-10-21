@@ -100,17 +100,16 @@ const normalizeDestination = (dest) => {
   const doc = dest.toObject ? dest.toObject() : { ...dest };
   const exact = getExactDestinationImages(doc.name, doc.slug);
 
-  const isInvalidUrl = (url) => !url || 
+  const isLegacyCorrupted = (url) => !url || 
     typeof url !== 'string' ||
     url.trim() === '' ||
-    url.includes('unsplash.com') ||
-    (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) ||
     url.includes('Dharamshala_stadium') ||
     url.includes('Kaithal_Fort');
 
-  const hasCustomHero = doc.heroImage && !isInvalidUrl(doc.heroImage);
-  const hasCustomFeatured = doc.featuredImage && !isInvalidUrl(doc.featuredImage);
-  const attrCustom = Array.isArray(doc.attractions) && doc.attractions[0]?.image && !isInvalidUrl(doc.attractions[0].image) ? doc.attractions[0].image : null;
+  // Strictly preserve admin-uploaded images (base64 data URIs, hosted URLs, assets)
+  const hasCustomHero = doc.heroImage && !isLegacyCorrupted(doc.heroImage);
+  const hasCustomFeatured = doc.featuredImage && !isLegacyCorrupted(doc.featuredImage);
+  const attrCustom = Array.isArray(doc.attractions) && doc.attractions[0]?.image && !isLegacyCorrupted(doc.attractions[0].image) ? doc.attractions[0].image : null;
 
   const validHero = hasCustomHero ? doc.heroImage : (hasCustomFeatured ? doc.featuredImage : (attrCustom || exact.heroImage));
   const validFeatured = hasCustomFeatured ? doc.featuredImage : validHero;
@@ -118,7 +117,7 @@ const normalizeDestination = (dest) => {
   doc.heroImage = validHero;
   doc.featuredImage = validFeatured;
 
-  const validGallery = Array.isArray(doc.gallery) ? doc.gallery.filter(img => !isInvalidUrl(img)) : [];
+  const validGallery = Array.isArray(doc.gallery) ? doc.gallery.filter(img => !isLegacyCorrupted(img)) : [];
   doc.gallery = validGallery.length > 0 ? validGallery : [validHero];
   doc.images = doc.gallery;
 
@@ -296,8 +295,23 @@ export const updateDestination = async (req, res, next) => {
       req.body.slug = createSlug(req.body.name);
     }
 
-    const isId = mongoose.isValidObjectId(id);
-    const filter = isId ? { _id: id } : { $or: [{ slug: id }, { name: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }] };
+    let filter;
+    if (mongoose.isValidObjectId(id)) {
+      filter = { _id: id };
+    } else {
+      const cleanSlug = id.replace(/^dest-/, '').toLowerCase().trim();
+      const bodySlug = (req.body.slug || '').toLowerCase().trim();
+      const bodyName = (req.body.name || '').trim();
+      filter = {
+        $or: [
+          { slug: id },
+          { slug: cleanSlug },
+          ...(bodySlug ? [{ slug: bodySlug }] : []),
+          ...(bodyName ? [{ name: new RegExp('^' + bodyName + '$', 'i') }] : []),
+          { name: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }
+        ]
+      };
+    }
 
     if (req.body.heroImage && !req.body.featuredImage) {
       req.body.featuredImage = req.body.heroImage;

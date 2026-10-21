@@ -45,7 +45,7 @@ export const DestinationForm = () => {
           const res = await destinationApi.getById(id);
           if (res.success && res.data) {
             const current = res.data;
-            const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort') || url.includes('unsplash.com');
+            const isInvalid = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort');
             const exactFallback = getExactDestinationImages(current.name, current.slug);
             const customHero = !isInvalid(current.heroImage)
               ? current.heroImage

@@ -109,7 +109,7 @@ export const Destinations = () => {
               <tbody className="divide-y divide-slate-100">
                 {filtered.map((d) => {
                   const exact = getExactDestinationImages(d.name, d.slug);
-                  const isBad = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('unsplash.com') || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort');
+                  const isBad = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort');
                   const rowImg = !isBad(d.heroImage) 
                     ? d.heroImage 
                     : (!isBad(d.featuredImage) 

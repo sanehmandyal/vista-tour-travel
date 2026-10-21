@@ -101,12 +101,10 @@ const enrichDestinationWithExactImage = (dest) => {
   const isInvalidUrl = (url) => !url || 
     typeof url !== 'string' || 
     url.trim() === '' || 
-    url.includes('images.unsplash.com') || 
-    (url.startsWith('http') && (url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14'))) || 
     url.includes('Dharamshala_stadium') ||
     url.includes('Kaithal_Fort');
 
-  // Prioritize custom valid images uploaded by admin
+  // Prioritize custom valid images uploaded by admin (data URIs, hosted URLs, assets)
   const hasCustomHero = dest.heroImage && !isInvalidUrl(dest.heroImage);
   const hasCustomFeatured = dest.featuredImage && !isInvalidUrl(dest.featuredImage);
   const attrCustom = Array.isArray(dest.attractions) && dest.attractions[0]?.image && !isInvalidUrl(dest.attractions[0].image)
@@ -355,16 +353,34 @@ export const destinationApi = {
     if (payload.heroImage && !payload.featuredImage) payload.featuredImage = payload.heroImage;
     if (payload.featuredImage && !payload.heroImage) payload.heroImage = payload.featuredImage;
 
+    const isObjectId = (val) => Boolean(val && /^[0-9a-fA-F]{24}$/.test(String(val).trim()));
+    const targetId = isObjectId(id) ? id : (isObjectId(data._id) ? data._id : (id || data.slug));
+
+    let serverError = null;
     try {
-      const res = await axiosClient.put(`/destinations/${id}`, payload);
+      const res = await axiosClient.put(`/destinations/${targetId}`, payload);
       if (res && res.success && res.data) {
         updatedItem = res.data;
       }
     } catch (e) {
-      console.warn('Direct server update error, updating locally:', e.message);
-      if (e.status === 401 || e.status === 403) {
-        throw new Error(e.message || 'You must be signed in as administrator to update destinations.');
+      serverError = e;
+      // If failed with custom id, retry with slug or real ObjectId if available
+      if (data.slug && targetId !== data.slug) {
+        try {
+          const res2 = await axiosClient.put(`/destinations/${data.slug}`, payload);
+          if (res2 && res2.success && res2.data) {
+            updatedItem = res2.data;
+            serverError = null;
+          }
+        } catch (e2) {}
       }
+    }
+
+    if (!updatedItem && serverError) {
+      if (serverError.status === 401 || serverError.status === 403) {
+        throw new Error(serverError.message || 'You must be signed in as administrator to update destinations.');
+      }
+      console.warn('Direct server update warning, will cache locally and propagate:', serverError.message);
     }
 
     const finalHero = payload.heroImage || updatedItem?.heroImage;
