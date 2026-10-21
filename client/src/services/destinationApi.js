@@ -1,7 +1,7 @@
 import axiosClient from './axiosClient';
 import { defaultDestinations } from '../data/defaultDestinations';
 
-const STORAGE_KEY = 'rtt_custom_destinations';
+const STORAGE_KEY = 'rtt_destinations_v6';
 
 export const getExactDestinationImages = (name = '', slug = '') => {
   const q = `${name} ${slug}`.toLowerCase();
@@ -108,12 +108,9 @@ const enrichDestinationWithExactImage = (dest) => {
   // Prioritize custom valid images uploaded by admin (data URIs, hosted URLs, assets)
   const hasCustomHero = dest.heroImage && !isInvalidUrl(dest.heroImage);
   const hasCustomFeatured = dest.featuredImage && !isInvalidUrl(dest.featuredImage);
-  const attrCustom = Array.isArray(dest.attractions) && dest.attractions[0]?.image && !isInvalidUrl(dest.attractions[0].image)
-    ? dest.attractions[0].image
-    : null;
 
-  const heroImage = hasCustomHero ? dest.heroImage : (hasCustomFeatured ? dest.featuredImage : (attrCustom || exact.heroImage));
-  const featuredImage = hasCustomFeatured ? dest.featuredImage : heroImage;
+  const heroImage = hasCustomHero ? dest.heroImage : (hasCustomFeatured ? dest.featuredImage : exact.heroImage);
+  const featuredImage = hasCustomFeatured ? dest.featuredImage : (hasCustomHero ? dest.heroImage : exact.featuredImage);
 
   const validGallery = Array.isArray(dest.gallery)
     ? dest.gallery.filter(img => !isInvalidUrl(img))

@@ -100,7 +100,7 @@ export const DestinationDetails = () => {
     ? destination.heroImage
     : (!isInvalid(destination.featuredImage)
         ? destination.featuredImage
-        : (destination.attractions?.[0]?.image && !isInvalid(destination.attractions[0].image) ? destination.attractions[0].image : exact.heroImage));
+        : exact.heroImage);
 
   const cleanPhone = '9068888578';
   const waMessage = encodeURIComponent(
@@ -117,7 +117,7 @@ export const DestinationDetails = () => {
           alt={destination.name}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = (destination.attractions?.[0]?.image && !isInvalid(destination.attractions[0].image)) ? destination.attractions[0].image : exact.heroImage;
+            e.target.src = exact.heroImage;
           }}
           className="absolute inset-0 w-full h-full object-cover"
         />

@@ -161,7 +161,7 @@ export const Destinations = () => {
                   ? dest.heroImage
                   : (!isInvalid(dest.featuredImage)
                       ? dest.featuredImage
-                      : (dest.attractions?.[0]?.image && !isInvalid(dest.attractions[0].image) ? dest.attractions[0].image : exact.featuredImage));
+                      : (exact.featuredImage || exact.heroImage));
                 return (
                   <Link
                     key={dest._id}
@@ -174,7 +174,7 @@ export const Destinations = () => {
                         alt={dest.name}
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = (dest.attractions?.[0]?.image && !isInvalid(dest.attractions[0].image)) ? dest.attractions[0].image : (exact.featuredImage || exact.heroImage);
+                          e.target.src = exact.featuredImage || exact.heroImage;
                         }}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"

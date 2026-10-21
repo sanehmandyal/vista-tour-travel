@@ -112,7 +112,7 @@ export const Destinations = () => {
                     ? d.heroImage 
                     : (!isBad(d.featuredImage) 
                         ? d.featuredImage 
-                        : (!isBad(d.attractions?.[0]?.image) ? d.attractions[0].image : exact.heroImage));
+                        : exact.heroImage);
                   return (
                     <tr key={d._id} className="hover:bg-slate-50/60 transition-colors">
                       <td className="py-3 px-4 flex items-center gap-3">

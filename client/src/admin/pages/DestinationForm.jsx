@@ -51,7 +51,7 @@ export const DestinationForm = () => {
               ? current.heroImage
               : (!isInvalid(current.featuredImage)
                   ? current.featuredImage
-                  : (current.attractions?.[0]?.image && !isInvalid(current.attractions[0].image) ? current.attractions[0].image : exactFallback.heroImage));
+                  : exactFallback.heroImage);
             const initialGallery = Array.isArray(current.gallery) && current.gallery.length > 0
               ? current.gallery.filter(g => !isInvalid(g))
               : (customHero ? [customHero] : [exactFallback.heroImage]);

@@ -109,10 +109,9 @@ const normalizeDestination = (dest) => {
   // Strictly preserve admin-uploaded images (base64 data URIs, hosted URLs, assets)
   const hasCustomHero = doc.heroImage && !isLegacyCorrupted(doc.heroImage);
   const hasCustomFeatured = doc.featuredImage && !isLegacyCorrupted(doc.featuredImage);
-  const attrCustom = Array.isArray(doc.attractions) && doc.attractions[0]?.image && !isLegacyCorrupted(doc.attractions[0].image) ? doc.attractions[0].image : null;
 
-  const validHero = hasCustomHero ? doc.heroImage : (hasCustomFeatured ? doc.featuredImage : (attrCustom || exact.heroImage));
-  const validFeatured = hasCustomFeatured ? doc.featuredImage : validHero;
+  const validHero = hasCustomHero ? doc.heroImage : (hasCustomFeatured ? doc.featuredImage : exact.heroImage);
+  const validFeatured = hasCustomFeatured ? doc.featuredImage : (hasCustomHero ? doc.heroImage : exact.featuredImage);
 
   doc.heroImage = validHero;
   doc.featuredImage = validFeatured;
