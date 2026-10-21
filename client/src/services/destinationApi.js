@@ -7,9 +7,10 @@ export const getExactDestinationImages = (name = '', slug = '') => {
   const q = `${name} ${slug}`.toLowerCase();
   if (q.includes('kurukshetra') || q.includes('brahma') || q.includes('jyotisar')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+      heroImage: '/assets/images/hero-haryana-kurukshetra.jpg',
+      featuredImage: '/assets/images/hero-haryana-kurukshetra.jpg',
       images: [
+        '/assets/images/hero-haryana-kurukshetra.jpg',
         'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
         'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=1200'
       ]
@@ -47,21 +48,21 @@ export const getExactDestinationImages = (name = '', slug = '') => {
   }
   if (q.includes('panipat') || q.includes('kala amb') || q.includes('kabuli')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kala_Amb_Panipat.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200'
       ]
     };
   }
   if (q.includes('yamunanagar') || q.includes('kalesar') || q.includes('hathni')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200'
       ]
     };
   }
@@ -77,20 +78,20 @@ export const getExactDestinationImages = (name = '', slug = '') => {
   }
   if (q.includes('chandigarh') || q.includes('chandigark') || q.includes('sukhna') || q.includes('rock garden')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
       images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
         'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
         'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=1200'
       ]
     };
   }
   return {
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+    heroImage: '/assets/images/hero-haryana-kurukshetra.jpg',
+    featuredImage: '/assets/images/hero-haryana-kurukshetra.jpg',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=1200'
+      '/assets/images/hero-haryana-kurukshetra.jpg'
     ]
   };
 };
@@ -401,13 +402,25 @@ export const destinationApi = {
           merged.heroImage = finalHero;
           merged.featuredImage = finalHero;
         }
+        if (payload.gallery && payload.gallery.length > 0) {
+          merged.gallery = payload.gallery;
+          merged.images = payload.gallery;
+        }
+        if (payload.attractions) {
+          merged.attractions = payload.attractions;
+        }
         return enrichDestinationWithExactImage(merged);
       }
       return d;
     });
 
     saveLocalDestinations(updated);
-    return { success: true, data: enrichDestinationWithExactImage(updatedItem) };
+    const resultObj = { ...updatedItem, ...payload };
+    if (finalHero) {
+      resultObj.heroImage = finalHero;
+      resultObj.featuredImage = finalHero;
+    }
+    return { success: true, data: enrichDestinationWithExactImage(resultObj) };
   },
 
   delete: async (id) => {

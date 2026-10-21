@@ -13,13 +13,15 @@ export const defaultDestinations = [
 Visitors from across India and the world travel here to take a holy dip in the serene waters of Brahma Sarovar (Asia’s largest sacred man-made water tank) during solar eclipses and auspicious days. The city is also home to Sheikh Chilli’s stunning Mughal marble tomb, the Kurukshetra Panorama & Science Centre, Sannihit Sarovar, Bhishma Kund at Narkatari, and the Dharohar Folk Museum showcasing rich Haryanvi culture.
 
 Vista Tour and Travels provides 24/7 dedicated door-to-door cab rentals and custom spiritual tour itineraries from Nawarsi Bazar (Ladwa), Kurukshetra Junction Railway Station, Ambala, and Delhi.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
+    featuredImage: '/assets/images/hero-haryana-kurukshetra.jpg',
+    heroImage: '/assets/images/hero-haryana-kurukshetra.jpg',
     images: [
+      '/assets/images/hero-haryana-kurukshetra.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=1200',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=1200'
     ],
     gallery: [
+      '/assets/images/hero-haryana-kurukshetra.jpg',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Brahma_Sarovar_Kurukshetra.jpg?width=800',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sheikh_Chilli_Tomb_Kurukshetra.jpg?width=800'
     ],
@@ -499,15 +501,15 @@ Vista Tour and Travels provides dedicated commercial car rentals from Ladwa, Kur
 Nature enthusiasts can experience thrilling open jeep safaris in Kalesar National Park—home to leopards, wild elephants, sambhars, and over 200 bird species. Marvel at the breathtaking engineering of Hathni Kund Barrage, visit the ancient 3rd-century BC Buddhist Stupa at Chaneti, and explore the sacred Adi Badri pilgrimage where the holy Saraswati River emerges from the hills.
 
 Vista Tour and Travels offers private AC sedans, Ertigas, and rugged SUVs from Ladwa, Kurukshetra, and Jagadhri for scenic foothill excursions and safari transfers.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
+    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
+    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
     images: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200'
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200'
     ],
     gallery: [
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=800',
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=800'
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Kalesar_National_Park.jpg?width=800',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=800'
     ],
     bestTimeToVisit: 'October to May',
     idealDuration: '1 - 2 Days',
@@ -689,13 +691,15 @@ Vista Tour and Travels offers private AC pilgrimage cabs and custom day tours fr
 Serving as the joint capital of Haryana and Punjab, Chandigarh is renowned for its wide tree-lined boulevards, landscaped gardens, and clean urban aesthetics. Iconic highlights include Nek Chand's world-famous 40-acre Rock Garden built entirely from recycled household and industrial materials, the serene waters of Sukhna Lake with pedal and solar boating, Zakir Hussain Rose Garden, and high-end shopping at Elante Mall.
 
 Vista Tour and Travels provides 24/7 corporate cabs, airport and railway pickups, and weekend holiday packages from Ladwa, Kurukshetra, Ambala, and across Haryana.`,
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
+    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
+    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
     images: [
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=1200',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=1200'
     ],
     gallery: [
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Open_Hand_Monument_Chandigarh.jpg?width=800',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=800',
       'https://commons.wikimedia.org/wiki/Special:FilePath/Sukhna_Lake_Chandigarh.jpg?width=800'
     ],
