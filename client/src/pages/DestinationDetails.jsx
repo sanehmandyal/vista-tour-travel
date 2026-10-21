@@ -35,11 +35,28 @@ export const DestinationDetails = () => {
         const res = await destinationApi.getBySlug(slug);
         if (res.success && res.data) {
           setDestination(res.data);
-          // Set dynamic SEO page title
           document.title = `${res.data.name} Tour Packages & 24/7 Cab Booking | Vista Tour & Travels`;
+        } else {
+          const resId = await destinationApi.getById(slug);
+          if (resId.success && resId.data) {
+            setDestination(resId.data);
+            document.title = `${resId.data.name} Tour Packages & 24/7 Cab Booking | Vista Tour & Travels`;
+          } else {
+            setDestination(null);
+          }
         }
       } catch (err) {
         console.error('Failed to fetch destination details:', err);
+        try {
+          const fallbackRes = await destinationApi.getById(slug);
+          if (fallbackRes.success && fallbackRes.data) {
+            setDestination(fallbackRes.data);
+          } else {
+            setDestination(null);
+          }
+        } catch (e2) {
+          setDestination(null);
+        }
       } finally {
         setLoading(false);
       }

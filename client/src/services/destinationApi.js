@@ -95,14 +95,15 @@ export const getExactDestinationImages = (name = '', slug = '') => {
   };
 };
 
+export const isInvalidUrl = (url) => !url || 
+  typeof url !== 'string' || 
+  url.trim() === '' || 
+  url.includes('Dharamshala_stadium') ||
+  url.includes('Kaithal_Fort');
+
 const enrichDestinationWithExactImage = (dest) => {
   if (!dest) return dest;
   const exact = getExactDestinationImages(dest.name, dest.slug);
-  const isInvalidUrl = (url) => !url || 
-    typeof url !== 'string' || 
-    url.trim() === '' || 
-    url.includes('Dharamshala_stadium') ||
-    url.includes('Kaithal_Fort');
 
   // Prioritize custom valid images uploaded by admin (data URIs, hosted URLs, assets)
   const hasCustomHero = dest.heroImage && !isInvalidUrl(dest.heroImage);
@@ -193,21 +194,7 @@ export const destinationApi = {
     try {
       const res = await axiosClient.get('/destinations', { params });
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const localList = getLocalDestinations();
-        const enriched = res.data.map(serverItem => {
-          const matchSlug = String(serverItem.slug || serverItem.name || '').toLowerCase().trim();
-          const matchId = String(serverItem._id || '').toLowerCase().trim();
-          const localMatch = localList.find(loc => 
-            String(loc._id || '').toLowerCase() === matchId || 
-            String(loc.slug || '').toLowerCase() === matchSlug ||
-            String(loc.name || '').toLowerCase() === matchSlug
-          );
-          const hasCustomLocalHero = localMatch?.heroImage && !isInvalidUrl(localMatch.heroImage);
-          const itemToEnrich = hasCustomLocalHero && isInvalidUrl(serverItem.heroImage)
-            ? { ...serverItem, heroImage: localMatch.heroImage, featuredImage: localMatch.heroImage }
-            : serverItem;
-          return enrichDestinationWithExactImage(itemToEnrich);
-        });
+        const enriched = res.data.map(serverItem => enrichDestinationWithExactImage(serverItem));
         // Sync local cache with global server catalog
         saveLocalDestinations(enriched);
         return {
@@ -239,21 +226,33 @@ export const destinationApi = {
   },
 
   getBySlug: async (slug) => {
-    const cleanSlug = (slug || '').toLowerCase().trim();
+    const rawSlug = (slug || '').trim();
+    const cleanSlug = rawSlug.replace(/^dest-/, '').toLowerCase().trim();
     const list = getLocalDestinations();
     const defaultMatch = list.find(d =>
       (d.slug || '').toLowerCase() === cleanSlug ||
-      (d._id || '').toLowerCase() === cleanSlug ||
+      (d.slug || '').toLowerCase() === rawSlug.toLowerCase() ||
+      String(d._id || '').toLowerCase() === cleanSlug ||
+      String(d._id || '').toLowerCase() === rawSlug.toLowerCase() ||
       (d.name || '').toLowerCase() === cleanSlug
     );
 
     try {
-      const res = await axiosClient.get(`/destinations/${slug}`);
+      const res = await axiosClient.get(`/destinations/${rawSlug}`);
       if (res && res.success && res.data) {
         const item = defaultMatch ? { ...defaultMatch, ...res.data } : res.data;
         return { success: true, data: enrichDestinationWithExactImage(item) };
       }
-    } catch (err) {}
+    } catch (err) {
+      if (cleanSlug && cleanSlug !== rawSlug) {
+        try {
+          const res2 = await axiosClient.get(`/destinations/${cleanSlug}`);
+          if (res2 && res2.success && res2.data) {
+            return { success: true, data: enrichDestinationWithExactImage(res2.data) };
+          }
+        } catch (e2) {}
+      }
+    }
 
     if (defaultMatch) {
       return { success: true, data: enrichDestinationWithExactImage(defaultMatch) };
@@ -262,20 +261,32 @@ export const destinationApi = {
   },
 
   getById: async (id) => {
-    const cleanId = (id || '').toLowerCase().trim();
+    const rawId = (id || '').trim();
+    const cleanId = rawId.replace(/^dest-/, '').toLowerCase().trim();
     const list = getLocalDestinations();
     const defaultMatch = list.find(d =>
-      (d._id || '').toLowerCase() === cleanId ||
-      (d.slug || '').toLowerCase() === cleanId
+      String(d._id || '').toLowerCase() === rawId.toLowerCase() ||
+      String(d._id || '').toLowerCase() === cleanId ||
+      (d.slug || '').toLowerCase() === cleanId ||
+      (d.slug || '').toLowerCase() === rawId.toLowerCase()
     );
 
     try {
-      const res = await axiosClient.get(`/destinations/${id}`);
+      const res = await axiosClient.get(`/destinations/${rawId}`);
       if (res && res.success && res.data) {
-        const item = defaultMatch ? { ...defaultMatch, ...res.data } : res.data;
-        return { success: true, data: enrichDestinationWithExactImage(item) };
+        return { success: true, data: enrichDestinationWithExactImage(res.data) };
       }
-    } catch (err) {}
+    } catch (err) {
+      const fallbackTarget = defaultMatch?.slug || (cleanId !== rawId ? cleanId : null);
+      if (fallbackTarget) {
+        try {
+          const res2 = await axiosClient.get(`/destinations/${fallbackTarget}`);
+          if (res2 && res2.success && res2.data) {
+            return { success: true, data: enrichDestinationWithExactImage(res2.data) };
+          }
+        } catch (e2) {}
+      }
+    }
 
     if (defaultMatch) {
       return { success: true, data: enrichDestinationWithExactImage(defaultMatch) };
@@ -354,6 +365,18 @@ export const destinationApi = {
             serverError = null;
           }
         } catch (e2) {}
+      }
+      if (!updatedItem) {
+        const cleanSlug = (data.slug || id || '').replace(/^dest-/, '').toLowerCase().trim();
+        if (cleanSlug && cleanSlug !== targetId) {
+          try {
+            const res3 = await axiosClient.put(`/destinations/${cleanSlug}`, payload);
+            if (res3 && res3.success && res3.data) {
+              updatedItem = res3.data;
+              serverError = null;
+            }
+          } catch (e3) {}
+        }
       }
     }
 

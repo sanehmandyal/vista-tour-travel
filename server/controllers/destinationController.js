@@ -215,9 +215,22 @@ export const getDestinationBySlug = async (req, res, next) => {
   try {
     const { slug } = req.params;
     const isId = mongoose.isValidObjectId(slug);
-    const destination = isId
-      ? await Destination.findById(slug)
-      : await Destination.findOne({ slug });
+    const cleanSlug = slug.replace(/^dest-/, '').toLowerCase().trim();
+
+    let destination = null;
+    if (isId) {
+      destination = await Destination.findById(slug);
+    }
+    if (!destination) {
+      destination = await Destination.findOne({
+        $or: [
+          { slug: slug },
+          { slug: cleanSlug },
+          { slug: new RegExp('^' + cleanSlug + '$', 'i') },
+          { name: new RegExp('^' + cleanSlug.replace(/[-_]/g, ' ') + '$', 'i') }
+        ]
+      });
+    }
 
     if (!destination) {
       return res.status(404).json({
@@ -295,22 +308,24 @@ export const updateDestination = async (req, res, next) => {
       req.body.slug = createSlug(req.body.name);
     }
 
-    let filter;
-    if (mongoose.isValidObjectId(id)) {
-      filter = { _id: id };
-    } else {
-      const cleanSlug = id.replace(/^dest-/, '').toLowerCase().trim();
-      const bodySlug = (req.body.slug || '').toLowerCase().trim();
-      const bodyName = (req.body.name || '').trim();
-      filter = {
+    const isId = mongoose.isValidObjectId(id);
+    const cleanSlug = id.replace(/^dest-/, '').toLowerCase().trim();
+    const bodySlug = (req.body.slug || '').toLowerCase().trim();
+    const bodyName = (req.body.name || '').trim();
+
+    let destination = null;
+    if (isId) {
+      destination = await Destination.findById(id);
+    }
+    if (!destination) {
+      destination = await Destination.findOne({
         $or: [
-          { slug: id },
-          { slug: cleanSlug },
-          ...(bodySlug ? [{ slug: bodySlug }] : []),
+          ...(cleanSlug ? [{ slug: cleanSlug }, { slug: id }, { slug: new RegExp('^' + cleanSlug + '$', 'i') }] : []),
+          ...(bodySlug ? [{ slug: bodySlug }, { slug: new RegExp('^' + bodySlug + '$', 'i') }] : []),
           ...(bodyName ? [{ name: new RegExp('^' + bodyName + '$', 'i') }] : []),
           { name: new RegExp('^' + id.replace(/[-_]/g, ' ') + '$', 'i') }
         ]
-      };
+      });
     }
 
     if (req.body.heroImage && !req.body.featuredImage) {
@@ -320,17 +335,27 @@ export const updateDestination = async (req, res, next) => {
       req.body.heroImage = req.body.featuredImage;
     }
 
-    const destination = await Destination.findOneAndUpdate(filter, req.body, {
-      new: true,
-      runValidators: false,
-      upsert: true,
-      setDefaultsOnInsert: true
+    if (destination) {
+      Object.assign(destination, req.body);
+      if (req.body.heroImage) destination.heroImage = req.body.heroImage;
+      if (req.body.featuredImage) destination.featuredImage = req.body.featuredImage;
+      await destination.save();
+      return res.status(200).json({
+        success: true,
+        message: 'Destination updated in database successfully',
+        data: normalizeDestination(destination)
+      });
+    }
+
+    const newDoc = await Destination.create({
+      ...req.body,
+      slug: bodySlug || cleanSlug || createSlug(req.body.name || id)
     });
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
-      message: 'Destination updated in database successfully',
-      data: normalizeDestination(destination)
+      message: 'Destination saved to database successfully',
+      data: normalizeDestination(newDoc)
     });
   } catch (error) {
     next(error);

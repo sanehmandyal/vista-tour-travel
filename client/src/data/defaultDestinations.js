@@ -1,6 +1,6 @@
 export const defaultDestinations = [
   {
-    _id: 'dest-kurukshetra',
+    _id: '6ad7b42ff2fc948d93e595b6',
     name: 'Kurukshetra',
     slug: 'kurukshetra',
     country: 'India',
@@ -101,7 +101,7 @@ Vista Tour and Travels provides 24/7 dedicated door-to-door cab rentals and cust
     ]
   },
   {
-    _id: 'dest-ambala',
+    _id: '6ad7b42ff2fc948d93e595bb',
     name: 'Ambala',
     slug: 'ambala',
     country: 'India',
@@ -196,7 +196,7 @@ Vista Tour and Travels provides dedicated shopping cab hires with ample trunk lu
     ]
   },
   {
-    _id: 'dest-delhi',
+    _id: '6ad7b42ff2fc948d93e595c0',
     name: 'Delhi',
     slug: 'delhi',
     country: 'India',
@@ -296,7 +296,7 @@ Vista Tour and Travels provides 24/7 door-to-door commercial cab transfers betwe
     ]
   },
   {
-    _id: 'dest-karnal',
+    _id: '6ad7b42ff2fc948d93e595c5',
     name: 'Karnal',
     slug: 'karnal',
     country: 'India',
@@ -391,7 +391,7 @@ Vista Tour and Travels provides prompt local taxi rentals, day excursions, and h
     ]
   },
   {
-    _id: 'dest-panipat',
+    _id: '6ad7b430f2fc948d93e595ca',
     name: 'Panipat',
     slug: 'panipat',
     country: 'India',
@@ -486,7 +486,7 @@ Vista Tour and Travels provides dedicated commercial car rentals from Ladwa, Kur
     ]
   },
   {
-    _id: 'dest-yamunanagar',
+    _id: '6ad7b430f2fc948d93e595cf',
     name: 'Yamunanagar',
     slug: 'yamunanagar',
     country: 'India',
@@ -581,7 +581,7 @@ Vista Tour and Travels offers private AC sedans, Ertigas, and rugged SUVs from L
     ]
   },
   {
-    _id: 'dest-kaithal',
+    _id: '6ad7b430f2fc948d93e595d4',
     name: 'Kaithal',
     slug: 'kaithal',
     country: 'India',
@@ -676,7 +676,7 @@ Vista Tour and Travels offers private AC pilgrimage cabs and custom day tours fr
     ]
   },
   {
-    _id: 'dest-chandigarh',
+    _id: '6ad7b430f2fc948d93e595d9',
     name: 'Chandigarh',
     slug: 'chandigarh',
     country: 'India',
