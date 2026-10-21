@@ -161,7 +161,7 @@ export const FAQs = () => {
         onClose={() => setIsModalOpen(false)}
         title={editingId ? 'Edit FAQ' : 'Add FAQ'}
       >
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="text-xs font-bold text-slate-700 block mb-1">Category</label>
             <select

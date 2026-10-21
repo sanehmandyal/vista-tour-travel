@@ -287,7 +287,7 @@ export default function AdminProfile() {
             <User className="w-5 h-5 text-brand-600" />
             <h3 className="text-base font-bold text-navy-900">Edit Personal Details</h3>
           </div>
-          <form onSubmit={handleProfileSubmit} className="space-y-4">
+          <form noValidate onSubmit={handleProfileSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Admin Full Name</label>
               <input
@@ -375,7 +375,7 @@ export default function AdminProfile() {
             </div>
           )}
 
-          <form onSubmit={handlePasswordSubmit} className="space-y-4">
+          <form noValidate onSubmit={handlePasswordSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Current Password</label>
               <div className="relative">

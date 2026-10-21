@@ -1,4 +1,5 @@
 import axiosClient from './axiosClient';
+import { adminApi } from './adminApi';
 
 const STORAGE_KEY_PREFIX = 'vtt_cms_page_';
 
@@ -58,6 +59,21 @@ export const pageApi = {
       }
     } catch (err) {
       console.warn(`Direct server update failed for page ${cleanSlug}:`, err.message);
+    }
+
+    // If home page is updated, seamlessly synchronize hero image & text into global WebsiteSettings
+    if (cleanSlug === 'home' && data.hero) {
+      try {
+        const syncPayload = {};
+        if (data.hero.image) syncPayload.heroImage = data.hero.image;
+        if (data.hero.title) syncPayload.heroTitle = data.hero.title;
+        if (data.hero.subtitle) syncPayload.heroSubtitle = data.hero.subtitle;
+        if (Object.keys(syncPayload).length > 0) {
+          await adminApi.updateSettings(syncPayload);
+        }
+      } catch (e) {
+        console.warn('Sync to website settings notice:', e.message);
+      }
     }
 
     const finalItem = updatedItem || { ...data, slug: cleanSlug, updatedAt: new Date().toISOString() };

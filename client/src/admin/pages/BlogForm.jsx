@@ -115,7 +115,7 @@ export const BlogForm = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
+      <form noValidate onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-100 space-y-6">
         <div>
           <label className="text-xs font-bold text-slate-700 block mb-1">Article Title *</label>
           <input

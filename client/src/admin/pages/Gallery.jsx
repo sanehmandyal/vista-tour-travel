@@ -184,7 +184,7 @@ export const Gallery = () => {
 
       {/* Add Photo Modal */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Add Photo to Gallery">
-        <form onSubmit={handleCreate} className="space-y-4">
+        <form noValidate onSubmit={handleCreate} className="space-y-4">
           <div>
             <label className="text-xs font-bold text-slate-700 block mb-1">Title *</label>
             <input

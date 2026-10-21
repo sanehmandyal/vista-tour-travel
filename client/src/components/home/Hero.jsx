@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWebsite } from '../../context/WebsiteContext';
+import { pageApi } from '../../services/pageApi';
 import {
   Search,
   MapPin,
@@ -21,6 +22,33 @@ import Button from '../common/Button';
 export const Hero = () => {
   const { settings } = useWebsite();
   const navigate = useNavigate();
+
+  // Dynamic Home Page CMS state
+  const [homePage, setHomePage] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadHome = async () => {
+      try {
+        const res = await pageApi.getBySlug('home');
+        if (res.success && res.data && isMounted) {
+          setHomePage(res.data);
+        }
+      } catch (err) {}
+    };
+    loadHome();
+
+    const onPageUpdate = (e) => {
+      if (e.detail?.slug === 'home' && e.detail?.data && isMounted) {
+        setHomePage(e.detail.data);
+      }
+    };
+    window.addEventListener('vtt_page_updated', onPageUpdate);
+    return () => {
+      isMounted = false;
+      window.removeEventListener('vtt_page_updated', onPageUpdate);
+    };
+  }, []);
 
   // Form State
   const [fromLocation, setFromLocation] = useState('');
@@ -56,12 +84,22 @@ export const Hero = () => {
     window.open(`https://wa.me/${cleanWa}?text=${text}`, '_blank');
   };
 
+  const heroImage = (homePage?.hero?.image && !homePage.hero.image.includes('unsplash'))
+    ? homePage.hero.image
+    : (settings.heroImage && !settings.heroImage.includes('unsplash') && !settings.heroImage.includes('Brahma_Sarovar_Kurukshetra.jpg')
+        ? settings.heroImage
+        : "/assets/images/hero-haryana-kurukshetra.jpg");
+
+  const heroTitle = homePage?.hero?.title || settings.heroTitle || 'Experience Seamless Journeys with Vista Tour and Travels';
+  const heroSubtitle = homePage?.hero?.subtitle || settings.heroSubtitle || 'Haryana’s top-rated luxury cab service and travel provider. Clean commercial cabs, verified professional chauffeurs, and transparent all-inclusive quotes.';
+  const heroBadge = homePage?.hero?.badge || '5.0 ★ Google Rated • 50+ Verified Reviews';
+
   return (
     <div className="relative flex items-center justify-center bg-navy-950 overflow-hidden">
       {/* Background Photography with Vibrant Golden Hour Atmosphere */}
       <div className="absolute inset-0 z-0">
         <img
-          src={settings.heroImage && !settings.heroImage.includes('unsplash') && !settings.heroImage.includes('Brahma_Sarovar_Kurukshetra.jpg') ? settings.heroImage : "/assets/images/hero-haryana-kurukshetra.jpg"}
+          src={heroImage}
           alt="Vista Tour and Travels - Ladwa, Kurukshetra & Haryana Tour & Luxury Cabs"
           onError={(e) => {
             e.target.onerror = null;
@@ -92,7 +130,7 @@ export const Hero = () => {
             className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-amber-400/25 border border-amber-300/50 text-amber-300 text-[11px] sm:text-xs font-bold backdrop-blur-xl hover:bg-amber-400/35 transition-all shadow-md shadow-amber-500/20"
           >
             <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400 shrink-0" />
-            <span className="hidden min-[380px]:inline">5.0 ★ Google Rated • 50+ Verified Reviews</span>
+            <span className="hidden min-[380px]:inline">{heroBadge}</span>
             <span className="min-[380px]:hidden">5.0 ★ (50+ Google Reviews)</span>
           </a>
           <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/25 border border-emerald-300/50 text-emerald-300 text-xs font-semibold backdrop-blur-xl">
@@ -102,12 +140,12 @@ export const Hero = () => {
 
         {/* Headline */}
         <h1 className="text-xl min-[360px]:text-2xl sm:text-3xl lg:text-[2.25rem] 2xl:text-5xl font-black tracking-tight text-white max-w-3xl leading-[1.18] mb-2 sm:mb-2.5 drop-shadow-md break-words">
-          {settings.heroTitle || 'Experience Seamless Journeys with Vista Tour and Travels'}
+          {heroTitle}
         </h1>
 
         {/* Subtitle */}
         <p className="text-xs sm:text-sm text-slate-100 max-w-2xl leading-relaxed mb-3 sm:mb-4 font-normal drop-shadow-sm px-2">
-          {settings.heroSubtitle || 'Haryana’s top-rated luxury cab service and travel provider. Clean commercial cabs, verified professional chauffeurs, and transparent all-inclusive quotes.'}
+          {heroSubtitle}
         </p>
 
         {/* Action Buttons: Phone, WhatsApp, Destinations */}

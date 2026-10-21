@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { adminApi } from '../../services/adminApi';
+import { pageApi } from '../../services/pageApi';
 import { processDeviceImage } from '../../utils/imageUpload';
 import { useWebsite, defaultSettings } from '../../context/WebsiteContext';
 import { Settings, Save, Upload, Plus, Trash2, ArrowUp, ArrowDown, Eye, EyeOff, Navigation, Bell, ShieldCheck } from 'lucide-react';
@@ -192,6 +193,25 @@ export const WebsiteSettings = () => {
       setSaving(true);
       updateSettingsState(form);
       await adminApi.updateSettings(form);
+
+      // Also sync hero details into home page CMS
+      try {
+        const homeRes = await pageApi.getBySlug('home');
+        const currentHome = homeRes.success && homeRes.data ? homeRes.data : { slug: 'home', title: 'Homepage', hero: {} };
+        const updatedHome = {
+          ...currentHome,
+          hero: {
+            ...(currentHome.hero || {}),
+            image: form.heroImage || currentHome.hero?.image,
+            title: form.heroTitle || currentHome.hero?.title,
+            subtitle: form.heroSubtitle || currentHome.hero?.subtitle
+          }
+        };
+        await pageApi.update('home', updatedHome);
+      } catch (e) {
+        console.warn('Page sync notice:', e.message);
+      }
+
       toast.success('Website settings saved & updated live across the site!');
     } catch (err) {
       updateSettingsState(form);
@@ -212,7 +232,7 @@ export const WebsiteSettings = () => {
         <p className="text-xs text-slate-500">Update company branding, contact details, hero banner headline, and social media handles.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-slate-100 space-y-8">
+      <form noValidate onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-slate-100 space-y-8">
         {/* 1. Brand & Hero Banner */}
         <div className="space-y-4">
           <h2 className="text-base font-bold text-navy-900 border-b border-slate-100 pb-2">

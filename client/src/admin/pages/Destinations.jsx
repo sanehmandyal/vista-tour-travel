@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { destinationApi } from '../../services/destinationApi';
+import { destinationApi, getExactDestinationImages } from '../../services/destinationApi';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { PlusCircle, Search, Edit2, Trash2, ExternalLink, MapPin } from 'lucide-react';
 import Loader from '../../components/common/Loader';
@@ -108,12 +108,13 @@ export const Destinations = () => {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filtered.map((d) => {
+                  const exact = getExactDestinationImages(d.name, d.slug);
                   const isBad = (url) => !url || typeof url !== 'string' || url.trim() === '' || url.includes('unsplash.com') || url.includes('Dharamshala_stadium') || url.includes('Kaithal_Fort');
                   const rowImg = !isBad(d.heroImage) 
                     ? d.heroImage 
                     : (!isBad(d.featuredImage) 
                         ? d.featuredImage 
-                        : (!isBad(d.attractions?.[0]?.image) ? d.attractions[0].image : '/assets/images/kaithal-temple.jpg'));
+                        : (!isBad(d.attractions?.[0]?.image) ? d.attractions[0].image : exact.heroImage));
                   return (
                     <tr key={d._id} className="hover:bg-slate-50/60 transition-colors">
                       <td className="py-3 px-4 flex items-center gap-3">
@@ -122,7 +123,7 @@ export const Destinations = () => {
                           alt={d.name}
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = '/assets/images/kaithal-temple.jpg';
+                            e.target.src = exact.heroImage || '/assets/images/kaithal-temple.jpg';
                           }}
                           className="w-12 h-12 rounded-xl object-cover"
                         />

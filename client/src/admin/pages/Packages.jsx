@@ -114,11 +114,11 @@ export const Packages = () => {
                   <tr key={pkg._id} className="hover:bg-slate-50/60 transition-colors">
                     <td className="py-3 px-4 flex items-center gap-3">
                       <img
-                        src={pkg.featuredImage || 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=150&q=80'}
+                        src={pkg.featuredImage || '/assets/images/hero-haryana-kurukshetra.jpg'}
                         alt={pkg.title}
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=150&q=80';
+                          e.target.src = '/assets/images/hero-haryana-kurukshetra.jpg';
                         }}
                         className="w-12 h-12 rounded-xl object-cover"
                       />

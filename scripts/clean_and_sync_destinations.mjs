@@ -1,4 +1,5 @@
-﻿const API_URL = 'https://vista-tour-travel-api.onrender.com/api';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+const API_URL = 'https://vista-tour-travel-api.onrender.com/api';
 const TOKEN = 'vtt_admin_authenticated_' + Date.now();
 
 const headers = {
@@ -14,7 +15,7 @@ const authenticImages = {
   panipat: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kabuli_Bagh_Mosque_Panipat.jpg?width=1200',
   yamunanagar: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hathni_Kund_Barrage.jpg?width=1200',
   chandigarh: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rock_Garden_of_Chandigarh.jpg?width=1200',
-  kaithal: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kaithal_Fort.jpg?width=1200'
+  kaithal: '/assets/images/kaithal-temple.jpg'
 };
 
 async function sync() {
@@ -35,15 +36,15 @@ async function sync() {
         hero = d.attractions[0].image;
         featured = d.attractions[0].image;
       } else {
-        if (!hero || hero.includes('Dharamshala') || hero.includes('unsplash')) {
+        if (!hero || hero.includes('Dharamshala') || hero.includes('unsplash') || hero.includes('Kaithal_Fort')) {
           hero = authenticImages[slug] || hero;
         }
-        if (!featured || featured.includes('Dharamshala') || featured.includes('unsplash')) {
+        if (!featured || featured.includes('Dharamshala') || featured.includes('unsplash') || featured.includes('Kaithal_Fort')) {
           featured = authenticImages[slug] || hero;
         }
       }
 
-      let gallery = Array.isArray(d.gallery) ? d.gallery.filter(img => img && !img.includes('Dharamshala') && !img.includes('unsplash')) : [];
+      let gallery = Array.isArray(d.gallery) ? d.gallery.filter(img => img && !img.includes('Dharamshala') && !img.includes('unsplash') && !img.includes('Kaithal_Fort')) : [];
       if (gallery.length === 0 && hero) {
         gallery = [hero];
       }
