@@ -110,6 +110,11 @@ app.get(['/robots.txt', '/api/robots.txt'], (req, res) => {
   res.sendFile(robotsPath);
 });
 
+app.get(['/llm.txt', '/api/llm.txt'], (req, res) => {
+  const llmPath = path.resolve(__dirname, '../client/public/llm.txt');
+  res.type('text/markdown').sendFile(llmPath);
+});
+
 // Mount API routes with /api and root fallback alias so requests work either way
 const mountRoutes = (prefix = '') => {
   app.use(`${prefix}/auth`, authRoutes);

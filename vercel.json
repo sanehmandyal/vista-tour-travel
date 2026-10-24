@@ -18,6 +18,10 @@
       "destination": "/client/dist/robots.txt"
     },
     {
+      "source": "/llm.txt",
+      "destination": "/client/dist/llm.txt"
+    },
+    {
       "source": "/favicon.jpg",
       "destination": "/client/dist/favicon.jpg"
     },
