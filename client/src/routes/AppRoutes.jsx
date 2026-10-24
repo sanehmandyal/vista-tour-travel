@@ -131,6 +131,7 @@ export default function AppRoutes() {
 
       <Route path="/packages" element={<PublicLayout><Packages /></PublicLayout>} />
       <Route path="/packages/:slug" element={<PublicLayout><PackageDetails /></PublicLayout>} />
+      <Route path="/booking" element={<PublicLayout><Booking /></PublicLayout>} />
       <Route path="/booking/:packageId" element={<PublicLayout><Booking /></PublicLayout>} />
       
       <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />

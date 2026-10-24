@@ -47,6 +47,8 @@ app.use(helmet({
 const clientUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, '') : '';
 const allowedOrigins = [
   clientUrl,
+  'https://www.vistatours.in',
+  'https://vistatours.in',
   'https://vista-tour-travel.vercel.app',
   'https://vista-tour-travels.vercel.app',
   'http://localhost:5173',
@@ -96,6 +98,17 @@ const sendHealth = (req, res) => {
 };
 app.get('/api/health', sendHealth);
 app.get('/health', sendHealth);
+
+// Sitemap and robots endpoints
+app.get(['/sitemap.xml', '/api/sitemap.xml'], (req, res) => {
+  const sitemapPath = path.resolve(__dirname, '../client/public/sitemap.xml');
+  res.sendFile(sitemapPath);
+});
+
+app.get(['/robots.txt', '/api/robots.txt'], (req, res) => {
+  const robotsPath = path.resolve(__dirname, '../client/public/robots.txt');
+  res.sendFile(robotsPath);
+});
 
 // Mount API routes with /api and root fallback alias so requests work either way
 const mountRoutes = (prefix = '') => {
